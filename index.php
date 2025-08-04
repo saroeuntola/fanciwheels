@@ -162,22 +162,7 @@ if ($selectedCategory) {
   <div class="mb-10"></div>
 
   <!-- Category Buttons -->
-  <div class="w-full flex justify-center mt-4 sm:mt-0">
-    <div class="flex flex-wrap justify-center gap-2">
-      <!-- 'All' Button -->
-      <a href="?category=" class="px-4 py-2 rounded-xl shadow-md text-sm font-medium transition-all duration-300 
-        <?= empty($selectedCategory) ? 'bg-blue-600 text-white' : 'bg-gray-800 text-white border border-slate-500 hover:bg-blue-600' ?>">
-        All
-      </a>
-      <?php foreach ($categories as $cat): ?>
-        <a href="?category=<?= $cat['id'] ?>"
-           class="px-4 py-2 rounded-xl shadow-md text-sm font-medium transition-all duration-300 
-             <?= $selectedCategory == $cat['id'] ? 'bg-blue-600 text-white' : 'bg-gray-800 text-white border border-slate-500 hover:bg-blue-600' ?>">
-          <?= htmlspecialchars($cat['name']) ?>
-        </a>
-      <?php endforeach; ?>
-    </div>
-  </div>
+ 
 
   <!-- Cards Section -->
   <div class="lg:px-20 mt-6">
