@@ -87,6 +87,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
     .play-btn:hover {
       background: var(--candy-pink);
     }
+    @media (max-width: 768px ) { 
+   .game-grid {
+      padding: 0px 10px;
+}
+    }
 
     @media (max-width: 600px) {
       h1 {
@@ -94,7 +99,13 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
       }
       .game-grid {
       padding: 0px 10px;
-     
+      grid-template-columns: repeat(2, 1fr);
+
+    }
+    .game-card img {
+      width: 100%;
+      height: 125px;
+      object-fit: cover;
     }
     }
 
@@ -158,103 +169,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
 </head>
 <body id="games-grid">
   <h1><span class="animated-text">🎮 Hot Games Play Free 🎮</span></h1>
-  <div class="game-grid">
-    <!-- Game 1 -->
-    <div class="game-card">
-      <img src="./games/img/spinwheel.png" alt="Lucky Wheel">
-      <div class="game-content">
-        <h2 class="game-title">Lucky Wheel</h2>
-        <p class="game-desc">Spin the lucky wheel and win daily prizes. Try your luck!</p>
-        <a href="<?= $baseURL ?>/games/spin-wheel.php" target="_blank" class="play-btn">Play Now</a>
-      </div>
-    </div>
-
-    <!-- Game 2 -->
-    <div class="game-card">
-      <img src="./games/img/slot.jpg" alt="Lucky Slot">
-      <div class="game-content">
-        <h2 class="game-title">Lucky Slot</h2>
-        <p class="game-desc">Spin the reels and win big in this exciting slot machine game.</p>
-        <a href="<?= $baseURL ?>/games/slot-spin.php" target="_blank" class="play-btn">Play Now</a>
-      </div>
-    </div>
-
-    <!-- Game 3 -->
-    <div class="game-card">
-      <img src="./games/img/fish.png" alt="Fish Shooter">
-      <div class="game-content">
-        <h2 class="game-title">Fish Shooter</h2>
-        <p class="game-desc">Shoot fish and earn rewards in this fun underwater shooter game.</p>
-        <a href="<?= $baseURL ?>/games/fish-shooting.php" target="_blank" class="play-btn">Play Now</a>
-      </div>
-    </div>
-
-    <!-- Game 4 - Coming Soon -->
-    <div class="game-card">
-      <img src="./games/img/The-Mystery-of-Jewels.jpg" alt="Match 3 Jewels">
-      <div class="game-content">
-        <h2 class="game-title">Match 3 Jewels</h2>
-        <p class="game-desc">Match candies and jewels to clear levels and unlock new worlds.</p>
-         <a href="<?= $baseURL ?>/games/mystery-of-Jewels.php" target="_blank" class="play-btn">Play Now</a>
-      </div>
-    </div>
-
-    <!-- Game 5 - Coming Soon -->
-    <div class="game-card">
-      <img src="./games/img/Fruit-Blast.png" alt="Fruit Blast">
-      <div class="game-content">
-        <h2 class="game-title">Fruit Blast</h2>
-        <p class="game-desc">Blast fruits in colorful combos and complete juicy puzzles!</p>
-        <a href="#" class="play-btn">Play Now</a>
-      </div>
-    </div>
-  <!-- Game 6 - Coming Soon -->
-     <div class="game-card">
-      <img src="./games/img/megajump.webp" alt="mega jump">
-      <div class="game-content">
-        <h2 class="game-title">Mega Jump</h2>
-        <p class="game-desc">Arcade jumping fun — how high can you go?</p>
-        <a href="#" class="play-btn">Play Now</a>
-      </div>
-    </div>
-  <!-- Game 7 - Coming Soon -->
-     <div class="game-card">
-      <img src="./games/img/yummy-tales.webp" alt="yummy tales">
-      <div class="game-content">
-        <h2 class="game-title">Yummy Tales</h2>
-        <p class="game-desc">Match fruits and feed the animals in this fun puzzle game.</p>
-        <a href="#" class="play-btn">Play Now</a>
-      </div>
-    </div>
-  <!-- Game 8 - Coming Soon -->
-     <div class="game-card">
-      <img src="./games/img/SOHO.png" alt="soho card">
-      <div class="game-content">
-        <h2 class="game-title">Soho</h2>
-        <p class="game-desc">A fast-paced card game of strategy and sharp thinking.</p>
-        <a href="#" class="play-btn">Play Now</a>
-      </div>
-    </div>
-  <!-- Game 9 - Coming Soon -->
-     <div class="game-card">
-      <img src="./games/img/spades.jpg" alt="spades card">
-      <div class="game-content">
-        <h2 class="game-title">Spades</h2>
-       <p class="game-desc">Classic Spades — play tricks, partner up, and win big.</p>
-        <a href="#" class="play-btn">Play Now</a>
-      </div>
-    </div>
-  <!-- Game 10 - Coming Soon -->
-     <div class="game-card">
-      <img src="./games/img/mob.webp" alt="mob big win">
-      <div class="game-content">
-        <h2 class="game-title">MOB Big Win</h2>
-       <p class="game-desc">Join the mob, spin the reels, and chase massive jackpots.</p>
-        <a href="#" class="play-btn">Play Now</a>
-      </div>
-    </div>
+  <div class="game-grid" id="gameGrid">
+  
   </div>
-
   <!-- Modal -->
   <div id="comingSoonModal" class="modal">
     <div class="modal-content">
@@ -269,32 +186,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
 
     </div>
   </div>
-
-  <script>
-    const modal = document.getElementById("comingSoonModal");
-    const playButtons = document.querySelectorAll(".play-btn");
-    const closeBtn = document.querySelector(".close-btn");
-
-    playButtons.forEach(btn => {
-      btn.addEventListener("click", function(e) {
-        const href = this.getAttribute("href");
-        if (href === "#") {
-          e.preventDefault();
-          modal.style.display = "block";
-        }
-      });
-    });
-
-    closeBtn.addEventListener("click", () => {
-      modal.style.display = "none";
-    });
-
-    window.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.style.display = "none";
-      }
-    });
-  </script>
-
+<script>
+  const baseURL = "<?= $baseURL ?>";
+</script>
+<script src="./js/games_item.js"></script>
 </body>
 </html>

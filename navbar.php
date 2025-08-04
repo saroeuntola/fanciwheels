@@ -67,7 +67,7 @@ if (!file_exists($fullPath)) {
           <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
         </a>
         <!-- Modern Search Bar -->
-        <form action="search.php" method="GET" class="relative group">
+        <!-- <form action="search.php" method="GET" class="relative group">
           <div class="relative">
             <input type="text" name="q" placeholder="Search..."
               class="w-64 px-4 py-2 pl-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 focus:w-72">
@@ -82,7 +82,7 @@ if (!file_exists($fullPath)) {
               </svg>
             </button>
           </div>
-        </form>
+        </form> -->
         <!-- Desktop Profile -->
         <?php if ($userId): ?>
           <div class="relative">
@@ -197,7 +197,7 @@ if (!file_exists($fullPath)) {
         </svg>
         <span>Contact</span>
       </a>
-      <form action="search.php" method="GET" class="relative group">
+      <!-- <form action="search.php" method="GET" class="relative group">
           <div class="relative">
             <input type="text" name="q" placeholder="Search..."
               class="w-full px-4 py-2 pl-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300">
@@ -212,7 +212,7 @@ if (!file_exists($fullPath)) {
               </svg>
             </button>
           </div>
-        </form>
+        </form> -->
     </div>
   </div>
 </nav>
