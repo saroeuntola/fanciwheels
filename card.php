@@ -323,3 +323,98 @@ function slugify($text) {
         window.location.href = url.toString();
     });
 </script>
+<?php
+// Slugify function to create URL-friendly slugs from game names
+function slugify($text) {
+    $text = strtolower($text);
+    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+    if (function_exists('iconv')) {
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+    }
+    $text = preg_replace('~[^-\w]+~', '', $text);
+    $text = trim($text, '-');
+    $text = preg_replace('~-+~', '-', $text);
+    if (empty($text)) {
+        return 'n-a';
+    }
+    return $text;
+}
+?>
+
+<div class="games-container">
+    <div class="games-header">
+        <h1 class="games-title">Popular Cities in Bangladesh</h1>
+
+        <!-- Sort dropdown -->
+        <select id="sortSelect">
+            <option value="">Filter Sort</option>
+            <option value="asc" <?= (isset($_GET['sort']) && $_GET['sort'] === 'asc') ? 'selected' : '' ?>>A–Z</option>
+            <option value="desc" <?= (isset($_GET['sort']) && $_GET['sort'] === 'desc') ? 'selected' : '' ?>>Z–A</option>
+        </select>
+    </div>
+
+    <p class="games-subtitle">
+        These rankings are informed by user reviews, ratings, number of downloads, and gameplay hours.
+    </p>
+
+    <div class="games-grid">
+        <?php
+        // Sort games array if requested
+        if (isset($_GET['sort']) && in_array($_GET['sort'], ['asc', 'desc'])) {
+            usort($games, function ($a, $b) {
+                $order = $_GET['sort'] === 'asc' ? 1 : -1;
+                return $order * strcmp($a['name'], $b['name']);
+            });
+        }
+        ?>
+
+        <?php if (!empty($games)): ?>
+            <?php foreach ($games as $index => $g): ?>
+                <?php $slug = slugify($g['name']); ?>
+                <div class="game-card" onclick="window.location.href='detail.php?slug=<?= urlencode($slug) ?>'">
+                    <div class="game-image">
+                        <?php if (!empty($g['image'])): ?>
+                            <img src="<?= './admin/page/game/' . htmlspecialchars($g['image']) ?>"
+                                 alt="<?= htmlspecialchars($g['meta_text']) ?>">
+                        <?php else: ?>
+                            <div class="no-image-placeholder">
+                                <!-- You can add your SVG or placeholder here -->
+                                <span>No Image</span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="game-content">
+                        <div class="game-rank"><?= ($index + 1) ?>. <?= htmlspecialchars($g['name']) ?></div>
+                        <div class="game-category"><?= isset($g['category_name']) ? htmlspecialchars($g['category_name']) : '' ?></div>
+                        <div class="game-description">
+                            <span><?= htmlspecialchars(substr($g['description'], 0, 120)) ?><?= (strlen($g['description']) > 120 ? '...' : '') ?></span>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="empty-state">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="48" height="48">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414a1 1 0 00-.707-.293H4"/>
+                </svg>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">No Posts Found</h3>
+                <p>No content found in this category. Try selecting a different category.</p>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<!-- Sort Script -->
+<script>
+    document.getElementById('sortSelect').addEventListener('change', function () {
+        const selected = this.value;
+        const url = new URL(window.location.href);
+        if (selected) {
+            url.searchParams.set('sort', selected);
+        } else {
+            url.searchParams.delete('sort');
+        }
+        window.location.href = url.toString();
+    });
+</script>
