@@ -30,19 +30,20 @@ const modal = document.getElementById("comingSoonModal");
   const closeBtn = document.querySelector(".close-btn");
   const container = document.getElementById("gameGrid");
 
-  // 1. Render game cards
-  games_item.forEach(game => {
-    const card = document.createElement("div");
-    card.className = "game-card";
-    card.innerHTML = `
-      <img src="${game.image}" alt="${game.title}">
-      <div class="game-content">
-        <h2 class="game-title">${game.title}</h2>
-        <a href="${game.link}" target="_blank" class="play-btn">Play Now</a>
-      </div>
-    `;
-    container.appendChild(card);
-  });
+ container.innerHTML = ""; // Clear existing cards
+
+games_item.forEach(game => {
+  const card = document.createElement("div");
+  card.className = "game-card";
+  card.innerHTML = `
+    <img src="${game.image}" alt="${game.title}">
+    <div class="game-content">
+      <h2 class="game-title">${game.title}</h2>
+      <a href="${game.link}" target="_blank" class="play-btn">Play Now</a>
+    </div>
+  `;
+  container.appendChild(card);
+});
 
   // 2. Add modal functionality AFTER cards are in the DOM
   const playButtons = document.querySelectorAll(".play-btn");
