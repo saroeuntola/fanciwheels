@@ -26,6 +26,7 @@ $metaText = $game['meta_text'] ?? 'Image';
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
   <title><?= htmlspecialchars($game['name'] ?? 'Detail') ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -48,11 +49,15 @@ $metaText = $game['meta_text'] ?? 'Image';
   </style>
 </head>
 <body class="bg-gray-900 text-white">
-<?php include 'navbar.php'; ?>
+<nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
+    <?php 
+    include 'navbar.php';
+    ?>
+  </nav>
 <?php include 'loading.php'; ?>
 <?php include 'scroll-top-button.php'; ?>
 
-<div class="max-w-7xl mx-auto px-4 py-8 lg:py-12">
+<div class="max-w-7xl mx-auto px-10 py-8 lg:py-12">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Main Content -->
     <div class="lg:col-span-2 space-y-8">
