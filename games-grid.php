@@ -175,6 +175,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
 
     </div>
   </div>
-
+  <script>
+  const baseURL = "<?= $baseURL ?>";
+</script>
+<script src="./js/games_item.js?v=1.0.2"></script>
 </body>
 </html>
