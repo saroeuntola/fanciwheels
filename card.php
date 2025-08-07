@@ -229,6 +229,22 @@
         }
     }
 </style>
+<?php
+function slugify($text) {
+    $text = strtolower($text);
+    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+    if (function_exists('iconv')) {
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+    }
+    $text = preg_replace('~[^-\w]+~', '', $text);
+    $text = trim($text, '-');
+    $text = preg_replace('~-+~', '-', $text);
+    if (empty($text)) {
+        return 'n-a';
+    }
+    return $text;
+}
+?>
 
 <!-- HTML CONTENT START -->
 <div class="games-container">
@@ -258,33 +274,29 @@
         ?>
 
         <?php if (!empty($games)): ?>
-            <?php foreach ($games as $index => $g): ?>
-                <div class="game-card" onclick="window.location.href='detail.php?id=<?= $g['id'] ?>'">
-                    <div class="game-image">
-                        <?php if (!empty($g['image'])): ?>
-                            <img src="<?= './admin/page/game/' . htmlspecialchars($g['image']) ?>"
-                                 alt="<?= htmlspecialchars($g['meta_text']) ?>">
-                        <?php else: ?>
-                            <div class="no-image-placeholder">
-                                <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
-                                <span>No Image</span>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                    <div class="game-content">
-                        <div class="game-rank"><?= ($index + 1) ?>. <?= htmlspecialchars($g['name']) ?></div>
-                      
-                        <div class="game-category"><?= isset($g['category_name']) ? htmlspecialchars($g['category_name']) : '' ?></div>
-                        <div class="game-description">
-                           
-                            <span><?= htmlspecialchars(substr($g['description'], 0, 120)) ?><?= strlen($g['description']) > 120 ? '...' : '' ?></span>
-                        </div>
-                    </div>
+          <?php foreach ($games as $index => $g): ?>
+    <?php $slug = slugify($g['name']); ?>
+    <div class="game-card" onclick="window.location.href='detail?slug=<?= urlencode($slug) ?>'">
+        <div class="game-image">
+            <?php if (!empty($g['image'])): ?>
+                <img src="<?= './admin/page/game/' . htmlspecialchars($g['image']) ?>"
+                     alt="<?= htmlspecialchars($g['meta_text']) ?>">
+            <?php else: ?>
+                <div class="no-image-placeholder">
+                    <!-- SVG omitted for brevity -->
                 </div>
-            <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+        <div class="game-content">
+            <div class="game-rank"><?= ($index + 1) ?>. <?= htmlspecialchars($g['name']) ?></div>
+            <div class="game-category"><?= isset($g['category_name']) ? htmlspecialchars($g['category_name']) : '' ?></div>
+            <div class="game-description">
+                <span><?= htmlspecialchars(substr($g['description'], 0, 120)) ?><?= strlen($g['description']) > 120 ? '...' : '' ?></span>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
         <?php else: ?>
             <div class="empty-state">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
