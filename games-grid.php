@@ -146,6 +146,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
   display: inline-block;
   font-weight: bold;
   letter-spacing: 2px;
+  margin-top: 30px;
 }
 
 @keyframes glowText {
