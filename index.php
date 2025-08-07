@@ -27,32 +27,31 @@ if ($selectedCategory) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <!-- Title for search engines -->
-  <title>FancyWheel - Spin & Win Real Rewards Instantly!</title>
+  <title>Popular Cities in Bangladesh Tour - Explore Dhaka, Chittagong & More!</title>
 
   <!-- Meta description for Google -->
-  <meta name="description" content="Spin the FancyWheel and win real cash rewards instantly. No sign-up required — just pure luck and fun! Try your fortune now.">
+  <meta name="description" content="Discover the most popular cities in Bangladesh. Explore Dhaka, Chittagong, Sylhet, and more with our comprehensive tour guides and travel tips. Plan your perfect trip today!">
 
   <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845" type="image/png">
   <!-- Canonical URL -->
   <link rel="canonical" href="https://fanciwheel.com" />
 
   <!-- Open Graph (for Facebook, LinkedIn, etc.) -->
-  <meta property="og:title" content="FancyWheel - Spin & Win Real Rewards!" />
-  <meta property="og:description" content="Spin the lucky wheel and win exciting prizes instantly. It’s fun, fast, and free to play." />
+  <meta property="og:title" content="Popular Cities in Bangladesh Tour - Explore Top Destinations!" />
+  <meta property="og:description" content="Plan your Bangladesh tour with highlights on Dhaka, Chittagong, Sylhet, and other must-see cities. Get travel guides and tips now." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fanciwheel.com" />
-  <meta property="og:image" content="https://fanciwheel.com/assets/og-image.jpg" />
+  <meta property="og:image" content="https://fanciwheel.com/" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="FancyWheel - Spin & Win Real Rewards!" />
-  <meta name="twitter:description" content="Try your luck on FancyWheel and win instant rewards. Spin now!" />
-  <meta name="twitter:image" content="https://fanciwheel.com/assets/og-image.jpg" />
+  <meta name="twitter:title" content="Popular Cities in Bangladesh Tour - Explore Top Destinations!" />
+  <meta name="twitter:description" content="Explore the best cities in Bangladesh for your next trip. Travel guides, tips, and more." />
+  <meta name="twitter:image" content="https://fanciwheel.com" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 
 <style>
   /* Line clamp utilities */
