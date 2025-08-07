@@ -237,7 +237,7 @@
 
         <!-- Sort dropdown -->
         <select id="sortSelect">
-            <option value="">Filter Sort</option>
+            <option value="">Sort</option>
             <option value="asc" <?= isset($_GET['sort']) && $_GET['sort'] === 'asc' ? 'selected' : '' ?>>A–Z</option>
             <option value="desc" <?= isset($_GET['sort']) && $_GET['sort'] === 'desc' ? 'selected' : '' ?>>Z–A</option>
         </select>
