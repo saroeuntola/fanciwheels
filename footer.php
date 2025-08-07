@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Gaming Footer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     <style>
+      #privacyModal{
+        color : black
+      }
+     #privacyModal h1, h2, h3 {
+        color: red;
+           font-weight: bold;
+        }
+       #privacyModal h1{
+            font-size: 25px;
+        }
+        #privacyModal h3 {
+            margin-top: 30px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        #privacyModal section {
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         .footer {
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             color: white;
@@ -30,9 +53,17 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
 
         .footer-wave {
@@ -47,8 +78,15 @@
         }
 
         @keyframes wave {
-            0%, 100% { transform: translateX(0px); }
-            50% { transform: translateX(-10px); }
+
+            0%,
+            100% {
+                transform: translateX(0px);
+            }
+
+            50% {
+                transform: translateX(-10px);
+            }
         }
 
         .footer-content {
@@ -230,10 +268,21 @@
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
-        .social-link:nth-child(1):hover { background: linear-gradient(135deg, #3b5998, #8b9dc3); }
-        .social-link:nth-child(2):hover { background: linear-gradient(135deg, #1da1f2, #0084b4); }
-        .social-link:nth-child(3):hover { background: linear-gradient(135deg, #e4405f, #f77737); }
-        .social-link:nth-child(4):hover { background: linear-gradient(135deg, #ff0000, #cc0000); }
+        .social-link:nth-child(1):hover {
+            background: linear-gradient(135deg, #3b5998, #8b9dc3);
+        }
+
+        .social-link:nth-child(2):hover {
+            background: linear-gradient(135deg, #1da1f2, #0084b4);
+        }
+
+        .social-link:nth-child(3):hover {
+            background: linear-gradient(135deg, #e4405f, #f77737);
+        }
+
+        .social-link:nth-child(4):hover {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+        }
 
         .footer-bottom {
             background: rgba(0, 0, 0, 0.3);
@@ -269,11 +318,11 @@
                 gap: 2rem;
                 padding: 3rem 1rem 1rem;
             }
-            
+
             .logo-section {
                 padding: 1.5rem;
             }
-            
+
             .social-links {
                 justify-content: center;
             }
@@ -285,8 +334,13 @@
         }
 
         @keyframes glow {
-            from { text-shadow: 0 0 10px rgba(102, 126, 234, 0.5); }
-            to { text-shadow: 0 0 20px rgba(102, 126, 234, 0.8); }
+            from {
+                text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+            }
+
+            to {
+                text-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+            }
         }
 
         /* Particle effect */
@@ -299,18 +353,51 @@
             animation: particle-float 6s infinite ease-in-out;
         }
 
-        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .particle:nth-child(2) { top: 60%; left: 90%; animation-delay: 1s; }
-        .particle:nth-child(3) { top: 80%; left: 20%; animation-delay: 2s; }
-        .particle:nth-child(4) { top: 30%; left: 70%; animation-delay: 3s; }
+        .particle:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            top: 60%;
+            left: 90%;
+            animation-delay: 1s;
+        }
+
+        .particle:nth-child(3) {
+            top: 80%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(4) {
+            top: 30%;
+            left: 70%;
+            animation-delay: 3s;
+        }
 
         @keyframes particle-float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-            33% { transform: translateY(-30px) rotate(120deg); opacity: 0.7; }
-            66% { transform: translateY(30px) rotate(240deg); opacity: 0.4; }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 1;
+            }
+
+            33% {
+                transform: translateY(-30px) rotate(120deg);
+                opacity: 0.7;
+            }
+
+            66% {
+                transform: translateY(30px) rotate(240deg);
+                opacity: 0.4;
+            }
         }
     </style>
 </head>
+
 <body id="footer">
     <footer class="footer">
         <div class="footer-wave"></div>
@@ -318,7 +405,7 @@
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
-        
+
         <div class="footer-content">
             <!-- Logo & Description -->
             <div class="footer-section logo-section">
@@ -332,24 +419,23 @@
             <div class="footer-section">
                 <h3 class="footer-title">Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Games</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="services">Services</a></li>
+                    <li><a href="#games-grid">Games</a></li>
                 </ul>
             </div>
-            
+
             <!-- Resources -->
             <div class="footer-section">
                 <h3 class="footer-title">Support</h3>
                 <ul class="footer-links">
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Community</a></li>
+                    <li><a href="faq" id="faqLink">FAQs</a></li>
+                    <li><a href="#" id="helpCenterLink">Help Center</a></li>
+                    <li><a href="#" id="termsLink">Terms of Service</a></li>
+                    <li><a href="#" id="privacyLink">Privacy Policy</a></li>
                 </ul>
+
             </div>
 
             <!-- Social -->
@@ -377,21 +463,19 @@
             <div class="footer-section">
 
                 <h3 class="footer-title">Join Now</h3>
+                <p class="footer-description" style="margin-bottom: 1rem;">
+                    Sign up to get exclusive access to new games, updates, and special offers!
+                </p>
 
-                
-                    <p class="footer-description" style="margin-bottom: 1rem;">
-                        Sign up to get exclusive access to new games, updates, and special offers!
-                    </p>
-             
-                    <div>
-                      
-                    </div>
-                <input type="email" placeholder="Enter your email" class="px-4 py-2 rounded-full bg-gray-800 text-white w-full mb-2" /> 
+                <div>
+
+                </div>
+                <input type="email" placeholder="Enter your email" class="px-4 py-2 rounded-full bg-gray-800 text-white w-full mb-2" />
                 <ul class="footer-links">
-                 <a href="https://fancywin.city" target="_blank" class="relative group px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                 <span class="relative z-10 font-medium">Get Started</span>
-           
-          </a>
+                    <a href="https://fancywin.city" target="_blank" class="relative group px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        <span class="relative z-10 font-medium">Get Started</span>
+
+                    </a>
 
                 </ul>
             </div>
@@ -400,7 +484,201 @@
         <div class="footer-bottom">
             &copy; <span class="current-year">2024</span> FancyWheel. All rights reserved. | Made with ❤️ for gamers worldwide
         </div>
+
+
+
+
+        </div>
+
+
+
     </footer>
+
+    <!-- Help Center Modal -->
+    <div id="helpModal" class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg max-w-md w-full shadow-lg relative">
+            <button class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl font-bold" onclick="closeModal('helpModal')">&times;</button>
+            <h2 class="text-xl font-bold mb-4 text-center">Help Center</h2>
+            <p class="text-gray-700 text-center">
+                Welcome to the FancyWin Help Center. Here you’ll find support, guides, and answers to your questions.
+            </p>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="termsModal" class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg max-w-md w-full shadow-lg relative">
+            <button class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl font-bold" onclick="closeModal('termsModal')">&times;</button>
+            <h2 class="text-xl font-bold mb-4 text-center">Terms of Service</h2>
+            <p class="text-gray-700 text-center">
+                Please read our Terms of Service carefully before using FancyWin. By accessing our platform, you agree to be bound by these terms.
+            </p>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal (Scrollable) -->
+    <div id="privacyModal" class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg max-w-md w-full shadow-lg relative max-h-[80vh] overflow-y-auto">
+            <button class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl font-bold" onclick="closeModal('privacyModal')">&times;</button>
+           <h1>Privacy Policy – FancyWin Casino</h1>
+
+    <section>
+        <h3>1.1. Privacy</h3>
+        <p>FancyWin is committed to protecting your personal information. This Privacy Policy explains what information we collect when you use our services, why we collect it, and how we use it.</p>
+        <p>This policy is an integral part of FancyWin’s Terms and Conditions. We may update it periodically and will notify you by posting the modified terms on our platform. Please review this policy regularly.</p>
+    </section>
+
+    <section>
+        <h3>1.2. Information Collected</h3>
+        <p>We consider information that identifies an individual—such as name, date of birth, address, email, phone number, and other personal data—as <strong>Personal Information</strong>.</p>
+        <p>We may collect this information when you:</p>
+        <ul>
+            <li>Use our website</li>
+            <li>Register for an account</li>
+            <li>Use our services</li>
+        </ul>
+        <p>Collected information includes:</p>
+        <ul>
+            <li>Contact details (email, phone)</li>
+            <li>Billing/shipping info</li>
+            <li>Transaction history</li>
+            <li>Website usage preferences</li>
+            <li>Feedback on services</li>
+        </ul>
+        <p>Our servers may log your IP address, access time/date, pages visited, language preferences, browser type, and crash reports.</p>
+    </section>
+
+    <section>
+        <h3>1.3. Data Collection and Processing</h3>
+        <p>We may receive your Personal Information:</p>
+        <ul>
+            <li>Automatically through our services</li>
+            <li>When submitted by you directly</li>
+            <li>From online vendors, service providers, and third-party marketing lists</li>
+        </ul>
+        <p>We may use third-party providers for technical support, processing transactions, and maintaining accounts. These parties are obligated to protect your privacy according to this policy.</p>
+    </section>
+
+    <section>
+        <h3>1.4. Information Use</h3>
+        <p>We use your information to:</p>
+        <ul>
+            <li>Provide services and support</li>
+            <li>Perform security checks and identity verification</li>
+            <li>Process transactions</li>
+            <li>Enable participation in promotions</li>
+            <li>Comply with business requirements</li>
+        </ul>
+        <p>We may also share your data with select partners to offer additional products and services.</p>
+        <p>We may contact you with:</p>
+        <ul>
+            <li>Promotional offers about our services</li>
+            <li>Offers from partners</li>
+            <li>Surveys or contests (participation is voluntary)</li>
+        </ul>
+        <p>By accepting prizes, you consent to your name being used in promotions, unless prohibited by law.</p>
+    </section>
+
+    <section>
+        <h3>1.5. Disclosures</h3>
+        <p>We may disclose Personal Information to:</p>
+        <ul>
+            <li>Comply with legal obligations</li>
+            <li>Protect our rights or users' safety</li>
+            <li>Investigate fraud, manipulation, or other illegal activity</li>
+        </ul>
+        <p>If you are found to have violated our rules or engaged in fraud, we may share your data with:</p>
+        <ul>
+            <li>Other gaming platforms</li>
+            <li>Banks and credit card companies</li>
+            <li>Law enforcement agencies</li>
+        </ul>
+        <p>For addiction research, anonymized data may be shared with relevant institutions.</p>
+    </section>
+
+    <section>
+        <h3>1.6. Access and Control</h3>
+        <p>You can opt out of promotional communications via:</p>
+        <ul>
+            <li>Your account settings</li>
+            <li>Links in emails</li>
+            <li>Contacting customer service</li>
+        </ul>
+        <p>You may contact us to verify or update your Personal Information or to file complaints. We may retain certain data to comply with legal obligations.</p>
+    </section>
+
+    <section>
+        <h3>1.7. Electronic Payment Providers</h3>
+        <p>To play real money games, you must process transactions through third-party payment providers. By using these services, you consent to the transfer of necessary data, including international transfers, under privacy protection agreements.</p>
+    </section>
+
+    <section>
+        <h3>1.8. Security Reviews</h3>
+        <p>We may perform security reviews to:</p>
+        <ul>
+            <li>Validate registration data</li>
+            <li>Check for terms violations</li>
+            <li>Confirm financial transactions</li>
+        </ul>
+        <p>This may include checking against third-party databases, credit reports, and requesting documentation.</p>
+    </section>
+
+    <section>
+        <h3>1.9. Security</h3>
+        <p>We store Personal Information on secure, encrypted, password-protected servers behind advanced firewalls. SSL encryption is supported. Our partners also follow strict data security practices.</p>
+    </section>
+
+    <section>
+        <h3>1.10. Protection of Minors</h3>
+        <p>FancyWin services are only for users <strong>18 years or older</strong> (or legal age in their jurisdiction). Attempts by minors to register may result in account denial and data removal.</p>
+    </section>
+
+    <section>
+        <h3>1.11. International Transfers</h3>
+        <p>Personal Information may be stored or processed in countries outside your own. By using our services, you consent to such transfers. We ensure third parties maintain our privacy standards.</p>
+    </section>
+
+    <section>
+        <h3>1.12. Cookies</h3>
+        <p>We use cookies and flash cookies to:</p>
+        <ul>
+            <li>Store your preferences</li>
+            <li>Improve your experience</li>
+            <li>Track site usage and performance</li>
+            <li>Display relevant ads</li>
+        </ul>
+        <p><strong>Cookie Types Used:</strong></p>
+        <ul>
+            <li><strong>Session cookies:</strong> Expire after your visit</li>
+            <li><strong>Persistent cookies:</strong> Stay on your device longer</li>
+            <li><strong>Analytical cookies:</strong> Help us improve site functionality</li>
+        </ul>
+        <p>You can manage cookies through your browser or Flash Player settings.</p>
+    </section>
+
+    <section>
+        <h3>1.13. Third-Party Practices</h3>
+        <p>We are not responsible for data collected by third-party sites linked from our platform. Their privacy policies apply.</p>
+    </section>
+
+    <section>
+        <h3>1.14. Legal Disclaimer</h3>
+        <p>Our services operate <strong>"as-is"</strong> and <strong>"as-available."</strong> We are not liable for uncontrollable events or errors affecting your Personal Information. Use of our services implies acceptance of potential privacy risks.</p>
+    </section>
+
+    <section>
+        <h3>1.15. Consent to Privacy Policy</h3>
+        <p>By using our services, you agree to this Privacy Policy. This document supersedes all previous versions. Changes will be posted on our platform. Continued use implies acceptance of any updates.</p>
+    </section>
+
+    <section>
+        <h3>1.16. External Websites</h3>
+        <p>Our website may link to third-party websites outside our control. Those sites may collect your data under their own privacy policies. We are not responsible for their content or practices.</p>
+    </section>
+
+        </div>
+    </div>
+
 
     <script>
         // Update current year
@@ -408,7 +686,7 @@
 
         // Add smooth scroll effect for links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -446,7 +724,7 @@
         document.querySelectorAll('.social-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                
+
                 // Create ripple effect
                 const ripple = document.createElement('span');
                 ripple.style.position = 'absolute';
@@ -460,9 +738,9 @@
                 ripple.style.height = '20px';
                 ripple.style.marginLeft = '-10px';
                 ripple.style.marginTop = '-10px';
-                
+
                 this.appendChild(ripple);
-                
+
                 setTimeout(() => {
                     ripple.remove();
                 }, 600);
@@ -481,5 +759,39 @@
         `;
         document.head.appendChild(style);
     </script>
+    <script>
+        // Open modals
+        document.getElementById("helpCenterLink").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.getElementById("helpModal").classList.remove("hidden");
+        });
+
+        document.getElementById("termsLink").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.getElementById("termsModal").classList.remove("hidden");
+        });
+
+        document.getElementById("privacyLink").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.getElementById("privacyModal").classList.remove("hidden");
+        });
+
+        // Close modal
+        function closeModal(id) {
+            document.getElementById(id).classList.add("hidden");
+        }
+    </script>
+    <style>
+        .max-h-\[80vh\]::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .max-h-\[80vh\]::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+        }
+    </style>
+
 </body>
+
 </html>

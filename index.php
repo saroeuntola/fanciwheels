@@ -156,18 +156,18 @@ if ($selectedCategory) {
   <?php include 'slideshow.php'; ?>
   <?php include 'scroll-top-button.php'; ?>
 
-  <?php
-    include 'games-grid.php'
-  ?>
-  <div class="mb-10"></div>
-
-  <!-- Category Buttons -->
- 
-
   <!-- Cards Section -->
   <div class="lg:px-20 mt-6">
     <?php include 'card.php'; ?>
+
   </div>
+  <?php
+    include 'games-grid.php'
+  ?>
+
+<div class="mb-12">
+
+</div>
 
   <?php include 'footer.php'; ?>
   <?php include 'spin-popup.php'; ?>

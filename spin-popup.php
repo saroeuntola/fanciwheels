@@ -51,7 +51,7 @@
     margin: 0 auto;
   }
 
-  .border {
+  .border-spin {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -157,12 +157,11 @@
 </style>
 
 <body>
-  <p>helll</p>
   <!-- Spin Wheel Modal -->
   <div id="spinWheelModal">
     <div class="popup">
       <div class="wheel-container">
-        <div class="border"></div>
+        <div class="border-spin"></div>
         <div class="wheel" id="wheel"></div>
       </div>
       <button id="spinBtn">SPIN</button>

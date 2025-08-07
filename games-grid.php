@@ -97,16 +97,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
       h1 {
         font-size: 1rem;
       }
-      .game-grid {
-      padding: 0px 10px;
-      grid-template-columns: repeat(2, 1fr);
-
-    }
-    .game-card img {
-      width: 100%;
-      height: 125px;
-      object-fit: cover;
-    }
     }
 
     /* Modal styles */
@@ -120,7 +110,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
       height: 100%;
       background-color: rgba(0,0,0,0.6);
     }
-
     .modal-content {
       background-color: #333329;
       color: whitesmoke;

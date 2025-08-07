@@ -1,65 +1,30 @@
 const games_item = [
-   {
-    title: "MOB Big Win",
-    description: "Join the mob, spin the reels, and chase massive jackpots.",
-    image: "./games/img/mob.webp",
-    link: "#"
-  },
+
   {
-    
-    title: "Lucky Wheel",
-    description: "Spin the lucky wheel and win daily prizes. Try your luck!",
-    image: "./games/img/spinwheel.png",
-    link: baseURL + "/games/spin-wheel.php"
-  },
-  {
-    title: "Lucky Slot",
-    description: "Spin the reels and win big in this exciting slot machine game.",
-    image: "./games/img/slot.jpg",
-    link: baseURL + "/games/slot-spin.php"
-  },
-  {
-    title: "Fish Shooter",
-    description: "Shoot fish and earn rewards in this fun underwater shooter game.",
-    image: "./games/img/fish.png",
-    link: baseURL + "/games/fish-shooting.php"
-  },
-  {
-    title: "Match 3 Jewels",
-    description: "Match candies and jewels to clear levels and unlock new worlds.",
-    image: "./games/img/The-Mystery-of-Jewels.jpg",
-    link: baseURL + "/games/mystery-of-Jewels.php"
-  },
-  {
-    title: "Fruit Blast",
-    description: "Blast fruits in colorful combos and complete juicy puzzles!",
-    image: "./games/img/Fruit-Blast.png",
-    link: "#"
-  },
-  {
-    title: "Mega Jump",
+    title: "Crazy Time (Evo)",
     description: "Arcade jumping fun — how high can you go?",
-    image: "./games/img/megajump.webp",
+    image: "./games/img/time.webp",
     link: "#"
   },
   {
-    title: "Yummy Tales",
+    title: "Super Ace jili Slot",
     description: "Match fruits and feed the animals in this fun puzzle game.",
-    image: "./games/img/yummy-tales.webp",
+    image: "./games/img/Super-Ace-Jili-Slot.jpg",
     link: "#"
   },
   {
-    title: "Soho",
+    title: "Coin Toss (KM)",
     description: "A fast-paced card game of strategy and sharp thinking.",
-    image: "./games/img/SOHO.png",
+    image: "./games/img/coin.webp",
     link: "#"
   },
   {
     title: "Spades",
     description: "Classic Spades — play tricks, partner up, and win big.",
-    image: "./games/img/spades.jpg",
+    image: "./games/img/pg.png",
     link: "#"
   }
+
 ];
 
 const modal = document.getElementById("comingSoonModal");
