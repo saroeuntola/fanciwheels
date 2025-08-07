@@ -15,7 +15,7 @@
     .games-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 32px 20px;
+        padding: 32px 2px;
     }
 
     .games-header {

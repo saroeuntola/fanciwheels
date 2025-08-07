@@ -171,6 +171,11 @@ if ($selectedCategory) {
 
   <?php include 'footer.php'; ?>
   <?php include 'spin-popup.php'; ?>
+
+  <script>
+  const baseURL = "<?= $baseURL ?>";
+</script>
+<script src="./js/games_item.js"></script>
 </body>
 
 </html>
