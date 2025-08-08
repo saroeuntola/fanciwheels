@@ -46,6 +46,17 @@ $metaText = $game['meta_text'] ?? 'Image';
     .group:hover .group-hover\:opacity-80 { opacity: 0.8; }
     .group:hover .group-hover\:text-blue-400 { color: rgb(96 165 250); }
     .group:hover .group-hover\:scale-105 { transform: scale(1.05); }
+@media (max-width: 480px) {
+.detail-page {
+  padding: 15px;
+}
+ }
+    @media (max-width: 1024px) {
+   .detail-page {
+  padding: 24px;
+}
+    }
+
   </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -57,7 +68,7 @@ $metaText = $game['meta_text'] ?? 'Image';
 <?php include 'loading.php'; ?>
 <?php include 'scroll-top-button.php'; ?>
 
-<div class="max-w-7xl mx-auto px-10 py-8 lg:py-12">
+<div class="max-w-7xl mx-auto detail-page lg:p-[32px]">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Main Content -->
     <div class="lg:col-span-2 space-y-8">

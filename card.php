@@ -68,6 +68,7 @@
             background: none;
             border: none;
             box-shadow: none;
+            margin-top: 15px;
 
         }
         .post-header, .post-subtitle{
@@ -96,8 +97,11 @@ font-size: 13px;
     </div>
 
     <p class="post-subtitle">
-        These rankings are informed by user reviews, ratings, number of downloads, and gameplay hours.
+    Discover the top popular cities in Bangladesh, ranked according to verified user reviews <br> and player ratings to guide you to the most loved locations.
     </p>
+  <P class="text-scroll">
+    See Mores Scroll Left/Right 
+  </P>
 
     <div class="post-grid">
         <?php

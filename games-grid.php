@@ -56,8 +56,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
 
       #hot-games-title{
         font-size: 40px;
-        margin-top: 100px;
+        margin-bottom: 15px;
       }
+    #games-header {
+      margin-top: 50px;
+    }
     @media (max-width: 1024px) {
       .game-card {
         flex-basis: calc((100% - 20px) / 2); /* 2 items on medium screens */
@@ -65,29 +68,45 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
       }
        #hot-games-title{
         font-size: 30px;
-        margin-top: 50px;
       }
+   
     }
-
     @media (max-width: 480px) {
       .game-card {
         flex-basis: 100%; /* 1 item full width on small/mobile */
         min-width: 100vw;
-        padding: 15px;
+        padding: 0px 15px;
       }
       #hot-games-title{
-        font-size: 20px;
-        margin-top: 0px;
+        font-size: 25px;
+        margin: 0;
+        padding: 0;
       }
+      #games-header {
+      padding: 0 20px;
+    }
+       .text-scroll{
+         padding: 0 18px;
+    }
+    }
+    .text-scroll{
+      color: darkred;
     }
   </style>
 </head>
 <body class="bg-gray-900" id="games-grid">
 <div class="">
-    <h1 class="text-center mb-8 text-yellow-400 text-4xl md:text-5xl">
-      <span class="animated-text" id="hot-games-title">🎮 Hot Games Play Free 🎮</span>
-    </h1>
+<div class="flex flex-col items-center mb-5" id="games-header">
+  <!-- Title -->
+  <h1 class="text-yellow-400 text-4xl md:text-5xl font-bold mb-4 text-center">
+    <span class="animated-text" id="hot-games-title">Hot Games Play Free</span>
+  </h1>
+  <P class="text-scroll">
+    See Mores Scroll Left/Right 
+  </P>
+</div>
 
+</div>
     <div class="relative">
       <div id="gameGrid" class="game-grid flex overflow-x-auto snap-x snap-mandatory gap-5 p-0 m-0">
         <!-- Game cards injected here -->
@@ -212,6 +231,23 @@ sliders.addEventListener("mousemove", (e) => {
   const walks = (xs - startXs) * 2; // scroll speed
   sliders.scrollLeft = scrollLefts - walks;
 });
+
+
+const grid = document.getElementById("gameGrid");
+const scrollLeftBtn = document.getElementById("prev-btn"); // match HTML
+const scrollRightBtn = document.getElementById("next-btn"); // match HTML
+
+const scrollAmount = 300; // px to scroll each click
+
+scrollLeftBtn.addEventListener("click", () => {
+  grid.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+});
+
+scrollRightBtn.addEventListener("click", () => {
+  grid.scrollBy({ left: scrollAmount, behavior: "smooth" });
+});
+
+
 
   </script>
 </body>

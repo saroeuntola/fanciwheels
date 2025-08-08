@@ -15,8 +15,8 @@
 
     .slideshow-container {
       position: relative;
-      width: 79vw; /* Use viewport width, more natural */
-      max-width: 1280px; /* max width for bigger screens */
+      width: 100vw; /* Use viewport width, more natural */
+      max-width: 1212px; /* max width for bigger screens */
       height: 400px;
       max-height: 400px;
       overflow: hidden;
@@ -129,7 +129,7 @@
 </head>
 <body>
 
-<section class="slideshow-container" aria-label="Image slideshow">
+<section class="slideshow-container max-w-7xl mx-auto" aria-label="Image slideshow">
   <div id="slide-container">
     <img class="slide-image active" src="./image/banner7.jpg" alt="Banner 1" />
     <img class="slide-image" src="./image/banner5.webp" alt="Banner 2" />
