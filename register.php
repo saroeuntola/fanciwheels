@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <p class="subtitle-text">Create your account to get started</p>
         </div>
 
-        <form action="register.php" method="POST" id="registerForm">
+        <form action="register" method="POST" id="registerForm">
           <div class="mb-4">
             <input type="text" name="username" placeholder="Username" required class="input-field" />
           </div>

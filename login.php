@@ -286,7 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <p class="subtitle-text">Sign in to your account</p>
                 </div>
                 
-                <form action="login.php" method="POST">
+                <form action="login" method="POST">
                     <div class="input-group">
     
                         <input type="text" id="username" name="username" required 

@@ -156,14 +156,13 @@ if ($selectedCategory) {
   <?php include 'scroll-top-button.php'; ?>
 
   <!-- Cards Section -->
-  <div class="lg:px-20 mt-6">
+  <div class="max-w-7xl mx-auto lg:px-[35px] md:px-[24px] mt-6">
     <?php include 'card.php'; ?>
-
   </div>
-  <?php
-    include 'games-grid.php'
-  ?>
 
+    <div class="max-w-7xl mx-auto lg:px-[35px] md:px-[24px]">
+    <?php include 'games-grid.php'?>
+  </div>
 <div class="mb-12">
 
 </div>

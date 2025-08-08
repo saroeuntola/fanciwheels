@@ -1,10 +1,13 @@
 RewriteEngine On
 
-# Redirect requests with .php extension to extensionless URL (optional, for clean URLs)
+# Redirect /file.php to /file
 RewriteCond %{THE_REQUEST} \s([^\s]+)\.php[\s?] [NC]
 RewriteRule ^ %1 [R=301,L]
 
-# Internally rewrite extensionless URLs to .php files
+# If requested resource is not a file or directory
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
+
+# But if .php version exists, serve that internally
+RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.*)$ $1.php [L]

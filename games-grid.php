@@ -4,9 +4,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Game List</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script> <!-- in pc show 3 item -->
+
   <style>
     :root {
       --candy-pink: #f472b6;
@@ -16,169 +19,200 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
       --candy-purple: #a78bfa;
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: var(--candy-yellow);
-      font-size: 2.5rem;
-    }
-
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .game-card {
-      background: #1f2937;
-      border: 1px solid #374151;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .game-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
-    }
-
-    .game-card img {
-      width: 100%;
-      height: 206px;
-      object-fit: cover;
-    }
-
-    .game-content {
-      padding: 16px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .game-title {
-      font-size: 18px;
-      margin: 0 0 10px;
-      color: var(--candy-pink);
-    }
-
-    .game-desc {
-      font-size: 14px;
-      color: #cbd5e1;
-      flex-grow: 1;
-    }
-
-    .play-btn {
-      margin-top: 15px;
-      padding: 10px;
-      text-align: center;
-      background: var(--candy-purple);
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
+    .animated-text {
+      background: linear-gradient(90deg, #facc15, #fb923c, #a78bfa, #22c55e, #f472b6);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glowText 5s ease-in-out infinite;
+      display: inline-block;
       font-weight: bold;
-      transition: background 0.3s;
+      letter-spacing: 2px;
+      margin-top: 30px;
     }
 
-    .play-btn:hover {
-      background: var(--candy-pink);
-    }
-    @media (max-width: 768px ) { 
-   .game-grid {
-      padding: 0px 10px;
-}
+    @keyframes glowText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1rem;
+    .game-grid::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .game-grid::-webkit-scrollbar-thumb {
+      background: var(--candy-purple);
+      border-radius: 4px;
+    }
+
+    /* Responsive card widths using flex-basis */
+    .game-card {
+      flex-shrink: 0;
+      flex-grow: 0;
+      flex-basis: calc((100% - 40px) / 3); /* 3 items with 20px gap */
+      min-width: 390px; /* prevent cards from getting too narrow */
+    }
+
+      #hot-games-title{
+        font-size: 40px;
+        margin-top: 100px;
+      }
+    @media (max-width: 1024px) {
+      .game-card {
+        flex-basis: calc((100% - 20px) / 2); /* 2 items on medium screens */
+
+      }
+       #hot-games-title{
+        font-size: 30px;
+        margin-top: 50px;
       }
     }
 
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.6);
+    @media (max-width: 480px) {
+      .game-card {
+        flex-basis: 100%; /* 1 item full width on small/mobile */
+        min-width: 100vw;
+        padding: 15px;
+      }
+      #hot-games-title{
+        font-size: 20px;
+        margin-top: 0px;
+      }
     }
-    .modal-content {
-      background-color: #333329;
-      color: whitesmoke;
-      margin: 15% auto;
-      padding: 30px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
-
-    .close-btn {
-      color: #999;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close-btn:hover {
-      color: #000;
-    }
-    #link{
-      color: #00B7FF;
-      font-weight: bold;
-      text-decoration-line: underline;
-    }
-    .animated-text {
-  background: linear-gradient(90deg, #facc15, #fb923c, #a78bfa, #22c55e, #f472b6);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: glowText 5s ease-in-out infinite;
-  display: inline-block;
-  font-weight: bold;
-  letter-spacing: 2px;
-  margin-top: 30px;
-}
-
-@keyframes glowText {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
   </style>
 </head>
-<body id="games-grid">
-  <h1><span class="animated-text">🎮 Hot Games Play Free 🎮</span></h1>
-  <div class="game-grid" id="gameGrid">
-  
-  </div>
-  <!-- Modal -->
-  <div id="comingSoonModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn">&times;</span>
-      <h2>Game Looked</h2>
-      <p>
-  <a id="link" href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" rel="noopener noreferrer">
-    Join now
-  </a> 
- to unlock more games, enjoy exciting gameplay, and win big — safe, fun, and easy!
-</p>
+<body class="bg-gray-900" id="games-grid">
+<div class="">
+    <h1 class="text-center mb-8 text-yellow-400 text-4xl md:text-5xl">
+      <span class="animated-text" id="hot-games-title">🎮 Hot Games Play Free 🎮</span>
+    </h1>
 
+    <div class="relative">
+      <div id="gameGrid" class="game-grid flex overflow-x-auto snap-x snap-mandatory gap-5 p-0 m-0">
+        <!-- Game cards injected here -->
+      </div>
     </div>
   </div>
+  <!-- Modal -->
+  <div id="comingSoonModal" class="modal hidden fixed inset-0 z-[1000] bg-black/60">
+    <div class="modal-content bg-gray-800 text-gray-100 mx-auto mt-[15%] p-8 rounded-lg w-[90%] max-w-md text-center">
+      <span class="close-btn text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-black">&times;</span>
+      <h2 class="text-xl mb-4">Game Locked</h2>
+      <p>
+        <a id="link" href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" rel="noopener noreferrer" class="text-cyan-400 font-bold underline">
+          Join now
+        </a> 
+        to unlock more games, enjoy exciting gameplay, and win big — safe, fun, and easy!
+      </p>
+    </div>
+  </div>
+
   <script>
-  const baseURL = "<?= $baseURL ?>";
-</script>
-<script src="./js/games_item.js?v=1.0.2"></script>
+    const baseURL = "<?= $baseURL ?>";
+    const games_item = [
+      {
+        title: "Crazy Time (Evo)",
+        description: "Arcade jumping fun — how high can you go?",
+        image: "./games/img/time.webp",
+        link: "#"
+      },
+      {
+        title: "Super Ace Jili Slot",
+        description: "Match fruits and feed the animals in this fun puzzle game.",
+        image: "./games/img/Super-Ace-Jili-Slot.jpg",
+        link: "#"
+      },
+      {
+        title: "Coin Toss (KM)",
+        description: "A fast-paced card game of strategy and sharp thinking.",
+        image: "./games/img/coin.webp",
+        link: "#"
+      },
+      {
+        title: "Spades",
+        description: "Classic Spades — play tricks, partner up, and win big.",
+        image: "./games/img/pg.png",
+        link: "#"
+      }
+    ];
+
+    const modal = document.getElementById("comingSoonModal");
+    const closeBtn = document.querySelector(".close-btn");
+    const container = document.getElementById("gameGrid");
+
+    container.innerHTML = ""; // Clear existing cards
+
+    games_item.forEach(game => {
+      const card = document.createElement("div");
+      card.className = "game-card mb-2 bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-200 flex flex-col snap-start";
+
+      card.innerHTML = `
+        <img src="${baseURL}${game.image}" alt="${game.title}" class="w-full h-[206px] object-cover" />
+        <div class="game-content p-4 flex flex-col flex-grow">
+          <h2 class="game-title text-lg mb-2 text-pink-400">${game.title}</h2>
+          <p class="game-desc text-sm text-gray-300 flex-grow">${game.description}</p>
+          <a href="${game.link}" target="_blank" class="play-btn mt-4 p-2 text-center bg-purple-400 text-white rounded-lg font-bold hover:bg-pink-400 transition-colors duration-300">Play Now</a>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    // Modal functionality
+    const playButtons = document.querySelectorAll(".play-btn");
+
+    playButtons.forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        const href = this.getAttribute("href");
+        if (href === "#") {
+          e.preventDefault();
+          modal.style.display = "block";
+        }
+      });
+    });
+
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Drag-to-scroll functionality
+   // Drag to scroll horizontally
+const sliders = document.getElementById("gameGrid");
+let isDowns = false;
+let startXs;
+let scrollLefts;
+
+sliders.addEventListener("mousedown", (e) => {
+  isDowns = true;
+  sliders.classList.add("active");
+  startXs = e.pageX - sliders.offsetLeft;
+  scrollLefts = sliders.scrollLeft;
+});
+
+sliders.addEventListener("mouseleave", () => {
+  isDowns = false;
+  sliders.classList.remove("active");
+});
+
+sliders.addEventListener("mouseup", () => {
+  isDowns = false;
+  sliders.classList.remove("active");
+});
+
+sliders.addEventListener("mousemove", (e) => {
+  if (!isDowns) return;
+  e.preventDefault();
+  const xs = e.pageX - sliders.offsetLeft;
+  const walks = (xs - startXs) * 2; // scroll speed
+  sliders.scrollLeft = scrollLefts - walks;
+});
+
+  </script>
 </body>
 </html>

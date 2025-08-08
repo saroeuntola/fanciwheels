@@ -1,3 +1,4 @@
 /page/product/game_image/*
 /page/banner/banner_image/*
 /page/libary/db.php
+/page/**
