@@ -22,11 +22,19 @@
 .post-header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 #sortSelect {
     background-color:darkred;
     border-radius: 20px;
-    padding: 2px 15px;
+   padding: 10px 28px;
+   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20fill%3D'%23ffffff'%20height%3D'20'%20viewBox%3D'0%200%2024%2024'%20width%3D'20'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M7%2010l5%205%205-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  background-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  appearance: none;
 }
     .game-card {
         flex: 0 0 calc((100% - 40px) / 3); /* 3 cards visible minus gaps */
@@ -47,7 +55,12 @@
     .post-title{
          color: red;
          font-weight: bold;
-         font-size: 30px;
+         font-size: 30px
+    }
+    
+    .post-header {
+        margin-top: 50px;
+        line-height: 20px;
     }
 
     @media (max-width: 1024px) {
@@ -71,17 +84,71 @@
             margin-top: 15px;
 
         }
+        #sortSelect{
+               padding: 5px 27px;
+        }
         .post-header, .post-subtitle{
             padding: 0 16px;
         }
         .post-title{
-         font-size: 16px;
+         font-size: 18px;
         
         }
         .post-subtitle{
 font-size: 13px;
         }
+        #category{
+            padding: 0 16px;
+        }
     }
+
+.category-filter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.custom-select {
+  background-color: #1f2937; /* dark gray */
+  color: #fff;
+  padding: 0.6rem 2.5rem 0.6rem 1rem; /* desktop/tablet default */
+  font-size: 1rem;
+  border: 1px solid #374151;
+  border-radius: 0.5rem;
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20fill%3D'%23ffffff'%20height%3D'20'%20viewBox%3D'0%200%2024%2024'%20width%3D'20'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M7%2010l5%205%205-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  background-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Mobile friendly adjustments */
+@media (max-width: 640px) {
+  .custom-select {
+    font-size: 1.1rem; /* slightly larger text for tapping */
+    background-position: right 0rem center; /* adjust arrow */
+  }
+}
+
+.custom-select:hover {
+  color: red;
+}
+
+.custom-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.custom-select option {
+  background-color: #1f2937;
+  color: #fff;
+  padding: 5px;
+}
+
 </style>
 
 
@@ -90,18 +157,36 @@ font-size: 13px;
         <h1 class="post-title">Popular Cities in Bangladesh</h1>
         <!-- Sort dropdown -->
         <select id="sortSelect">
-            <option value="">Sort </option>
             <option value="asc" <?= isset($_GET['sort']) && $_GET['sort'] === 'asc' ? 'selected' : '' ?>>A–Z</option>
             <option value="desc" <?= isset($_GET['sort']) && $_GET['sort'] === 'desc' ? 'selected' : '' ?>>Z–A</option>
         </select>
     </div>
 
-    <p class="post-subtitle">
+    <p class="post-subtitle mt-2">
     Discover the top popular cities in Bangladesh, ranked according to verified user reviews <br> and player ratings to guide you to the most loved locations.
     </p>
   <P class="text-scroll">
     See Mores Scroll Left/Right 
   </P>
+<!-- Category Filter -->
+<div class="mt-4 mb-4" id="category">
+<form method="GET" class="category-filter">
+    <select 
+      id="category" 
+      name="category" 
+      class="custom-select"
+      onchange="this.form.submit()"
+    >
+      <option value="">All Categories</option>
+      <?php foreach ($categories as $cat): ?>
+        <option value="<?php echo $cat['id']; ?>" 
+          <?php echo ($selectedCategory == $cat['id']) ? 'selected' : ''; ?>>
+          <?php echo htmlspecialchars($cat['name']); ?>
+        </option>
+      <?php endforeach; ?>
+    </select>
+</form>
+</div>
 
     <div class="post-grid">
         <?php
@@ -167,31 +252,64 @@ font-size: 13px;
         window.location.href = url.toString();
     });
 
-    // Drag to scroll horizontally on the post-grid container
-    const slider = document.querySelector('.post-grid');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+    // Drag to scroll hornt.querySelector('.post-grid');
 
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        slider.classList.add('active');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-    });
-    slider.addEventListener('mouseleave', () => {
-        isDown = false;
-        slider.classList.remove('active');
-    });
-    slider.addEventListener('mouseup', () => {
-        isDown = false;
-        slider.classList.remove('active');
-    });
-    slider.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2; //scroll speed
-        slider.scrollLeft = scrollLeft - walk;
-    });
+    $(function () {
+  const $grid = $(".post-grid");
+  const $scrollLeftBtn = $("#prev-btn");
+  const $scrollRightBtn = $("#next-btn");
+  const scrollAmount = 300;
+
+  let isDowns = false;
+  let startXs = 0;
+  let scrollLefts = 0;
+  let x = 0;
+  let walk = 0;
+
+  // Mouse down
+  $grid.on("mousedown", function (e) {
+    isDowns = true;
+    $grid.addClass("active");
+    startXs = e.pageX - $grid.offset().left;
+    scrollLefts = $grid.scrollLeft();
+    e.preventDefault();
+  });
+
+  // Mouse leave or up
+  $(document).on("mouseup mouseleave", function () {
+    if (isDowns) {
+      isDowns = false;
+      $grid.removeClass("active");
+    }
+  });
+
+  // Mouse move
+  $grid.on("mousemove", function (e) {
+    if (!isDowns) return;
+    e.preventDefault();
+    x = e.pageX - $grid.offset().left;
+    walk = (x - startXs) * 2; // scroll speed multiplier
+    $grid.scrollLeft(scrollLefts - walk);
+  });
+
+  // Button scroll with smooth animation
+  $scrollLeftBtn.on("click", function () {
+    $grid.animate(
+      { scrollLeft: $grid.scrollLeft() - scrollAmount },
+      400,
+      "swing"
+    );
+  });
+
+  $scrollRightBtn.on("click", function () {
+    $grid.animate(
+      { scrollLeft: $grid.scrollLeft() + scrollAmount },
+      400,
+      "swing"
+    );
+  });
+});
+
+
+  
 </script>

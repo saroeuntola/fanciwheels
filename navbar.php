@@ -156,7 +156,6 @@ if (!file_exists($fullPath)) {
       </svg>
     </a>
   <?php endif; ?>
-
   <!-- Modern Hamburger Toggle -->
   <button onclick="toggleMenu()" class="relative p-2 text-white focus:outline-none group" aria-label="Toggle Menu">
     <div class="absolute inset-0 bg-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
@@ -217,89 +216,67 @@ if (!file_exists($fullPath)) {
   </div>
 </nav>
 <!-- JavaScript for Navbar Interactions -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById('mobileMenu');
-    const hamburgerIcon = document.getElementById('hamburgerIcon');
-    
-    menu.classList.toggle('hidden');
-    hamburgerIcon.classList.toggle('rotate-90');
-  }
-
-  // Desktop profile dropdown with enhanced interactions
-  const profileBtn = document.getElementById('profileMenuBtn');
-  const profileDropdown = document.getElementById('profileDropdown');
-  if (profileBtn && profileDropdown) {
-    profileBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      profileDropdown.classList.toggle('hidden');
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
-        profileDropdown.classList.add('hidden');
-      }
-    });
-    
-    // Close dropdown on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !profileDropdown.classList.contains('hidden')) {
-        profileDropdown.classList.add('hidden');
-      }
-    });
-  }
-
-  // Mobile profile dropdown with enhanced interactions
-  const mobileProfileBtn = document.getElementById('mobileProfileBtn');
-  const mobileProfileDropdown = document.getElementById('mobileProfileDropdown');
-  if (mobileProfileBtn && mobileProfileDropdown) {
-    mobileProfileBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      mobileProfileDropdown.classList.toggle('hidden');
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!mobileProfileBtn.contains(e.target) && !mobileProfileDropdown.contains(e.target)) {
-        mobileProfileDropdown.classList.add('hidden');
-      }
-    });
-    
-    // Close dropdown on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !mobileProfileDropdown.classList.contains('hidden')) {
-        mobileProfileDropdown.classList.add('hidden');
-      }
-    });
-  }
-
-  // Enhanced search bar interactions
-  const searchInput = document.querySelector('input[name="q"]');
-  if (searchInput) {
-    searchInput.addEventListener('focus', () => {
-      searchInput.parentElement.classList.add('ring-2', 'ring-purple-500');
-    });
-    
-    searchInput.addEventListener('blur', () => {
-      searchInput.parentElement.classList.remove('ring-2', 'ring-purple-500');
-    });
-  }
-
-  // Add smooth scroll behavior for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    });
+$(function() {
+  // Toggle mobile menu with rotation animation on hamburger icon
+  $('#hamburgerIcon').on('click', function() {
+    $('#mobileMenu').stop(true, true).fadeToggle(250);
+    $(this).toggleClass('rotate-90');
   });
+
+  // Function to close dropdown if clicking outside or on escape key
+  function setupDropdown(toggleBtnSelector, dropdownSelector) {
+    const $btn = $(toggleBtnSelector);
+    const $dropdown = $(dropdownSelector);
+
+    if ($btn.length && $dropdown.length) {
+      $btn.on('click', function(e) {
+        e.stopPropagation();
+        $dropdown.stop(true, true).fadeToggle(200);
+      });
+
+      // Click outside closes dropdown
+      $(document).on('click', function(e) {
+        if (!$btn.is(e.target) && $btn.has(e.target).length === 0 &&
+            !$dropdown.is(e.target) && $dropdown.has(e.target).length === 0) {
+          $dropdown.stop(true, true).fadeOut(200);
+        }
+      });
+
+      // Escape key closes dropdown
+      $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' && $dropdown.is(':visible')) {
+          $dropdown.stop(true, true).fadeOut(200);
+        }
+      });
+    }
+  }
+
+  // Setup dropdowns
+  setupDropdown('#profileMenuBtn', '#profileDropdown');
+  setupDropdown('#mobileProfileBtn', '#mobileProfileDropdown');
+
+  // Search input focus/blur ring effect
+  const $searchInput = $('input[name="q"]');
+  $searchInput.on('focus', function() {
+    $(this).parent().addClass('ring-2 ring-purple-500');
+  });
+  $searchInput.on('blur', function() {
+    $(this).parent().removeClass('ring-2 ring-purple-500');
+  });
+
+  // Smooth scroll for anchor links
+  $('a[href^="#"]').on('click', function(e) {
+    e.preventDefault();
+    const target = $($(this).attr('href'));
+    if (target.length) {
+      $('html, body').animate({ scrollTop: target.offset().top }, 500);
+    }
+  });
+});
 </script>
+
 
 <style>
   /* Custom gradient animations */

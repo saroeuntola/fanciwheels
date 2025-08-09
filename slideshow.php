@@ -6,6 +6,7 @@
   <title>Cold Slideshow</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -20,7 +21,6 @@
       height: 400px;
       max-height: 400px;
       overflow: hidden;
-      background-color: #B3E5FC;
       margin: 30px auto; /* center horizontally */
       display: flex;
       align-items: center;
@@ -131,7 +131,7 @@
 
 <section class="slideshow-container max-w-7xl mx-auto" aria-label="Image slideshow">
   <div id="slide-container">
-    <img class="slide-image active" src="./image/banner7.jpg" alt="Banner 1" />
+    <img class="slide-image" src="./image/banner7.jpg" alt="Banner 1" />
     <img class="slide-image" src="./image/banner5.webp" alt="Banner 2" />
     <img class="slide-image" src="./image/banner3.avif" alt="Banner 3" />
   </div>
@@ -147,37 +147,57 @@
 </section>
 
 <script>
-  const slides = document.querySelectorAll('.slide-image');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsContainer = document.getElementById('dots');
+    $(document).ready(function () {
+  let $slides = $(".slide-image");
+  let $dotsContainer = $("#dots");
   let currentSlide = 0;
-  const totalSlides = slides.length;
+  let totalSlides = $slides.length;
+  let slideInterval;
 
-  // Create dots with accessibility
-  for (let i = 0; i < totalSlides; i++) {
-    const dot = document.createElement('button');
-    dot.classList.add('dot');
-    dot.setAttribute('role', 'tab');
-    dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-    dot.addEventListener('click', () => goToSlide(i));
-    dotsContainer.appendChild(dot);
-  }
-
-  const dots = dotsContainer.querySelectorAll('.dot');
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-      dots[i].classList.toggle('active', i === index);
-      dots[i].setAttribute('aria-selected', i === index ? 'true' : 'false');
+  // Initialize slides position
+  $slides.each(function (index) {
+    $(this).css({
+      position: "absolute",
+      top: 0,
+      left: index === 0 ? 0 : "100%",
+      opacity: 1,
+      display: "block"
     });
+  });
+
+  // Create navigation dots
+  for (let i = 0; i < totalSlides; i++) {
+    $dotsContainer.append(`<button class="dot" aria-label="Go to slide ${i + 1}"></button>`);
+  }
+  let $dots = $(".dot");
+  $dots.eq(0).addClass("active");
+
+  function showSlide(newIndex) {
+    if (newIndex === currentSlide) return;
+
+    let $currentSlide = $slides.eq(currentSlide);
+    let $nextSlide = $slides.eq(newIndex);
+
+    // Slide direction
+    let direction = newIndex > currentSlide ? "-100%" : "100%";
+    // Position next slide offscreen to right or left
+    $nextSlide.css({ left: direction });
+
+    // Animate current slide out
+    $currentSlide.animate({ left: direction }, 500);
+
+    // Animate next slide in
+    $nextSlide.animate({ left: 0 }, 500);
+
+    // Update dots
+    $dots.removeClass("active").eq(newIndex).addClass("active");
+
+    currentSlide = newIndex;
   }
 
   function goToSlide(index) {
-    currentSlide = (index + totalSlides) % totalSlides;
-    showSlide(currentSlide);
+    let newIndex = (index + totalSlides) % totalSlides;
+    showSlide(newIndex);
   }
 
   function nextSlide() {
@@ -188,21 +208,31 @@
     goToSlide(currentSlide - 1);
   }
 
-  nextBtn.addEventListener('click', nextSlide);
-  prevBtn.addEventListener('click', prevSlide);
+  // Button events
+  $("#nextBtn").click(nextSlide);
+  $("#prevBtn").click(prevSlide);
 
-  let autoSlide = setInterval(nextSlide, 5000);
-
-  document.querySelector('.slideshow-container').addEventListener('mouseenter', () => {
-    clearInterval(autoSlide);
+  // Dot click events
+  $dotsContainer.on("click", ".dot", function () {
+    goToSlide($(this).index());
   });
 
-  document.querySelector('.slideshow-container').addEventListener('mouseleave', () => {
-    autoSlide = setInterval(nextSlide, 5000);
-  });
+  // Auto slide
+  function startAutoSlide() {
+    slideInterval = setInterval(nextSlide, 5000);
+  }
 
-  showSlide(currentSlide);
+  function stopAutoSlide() {
+    clearInterval(slideInterval);
+  }
+
+  $(".slideshow-container").hover(stopAutoSlide, startAutoSlide);
+
+  startAutoSlide();
+});
+
 </script>
+
 
 </body>
 </html>

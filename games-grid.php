@@ -200,54 +200,61 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
       }
     });
 
-    // Drag-to-scroll functionality
    // Drag to scroll horizontally
-const sliders = document.getElementById("gameGrid");
-let isDowns = false;
-let startXs;
-let scrollLefts;
+   $(function () {
+  const $grid = $("#gameGrid");
+  const $scrollLeftBtn = $("#prev-btn");
+  const $scrollRightBtn = $("#next-btn");
 
-sliders.addEventListener("mousedown", (e) => {
-  isDowns = true;
-  sliders.classList.add("active");
-  startXs = e.pageX - sliders.offsetLeft;
-  scrollLefts = sliders.scrollLeft;
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  // Mouse down
+  $grid.on("mousedown", function (e) {
+    isDown = true;
+    $grid.addClass("active");
+    startX = e.pageX - $grid.offset().left;
+    scrollLeft = $grid.scrollLeft();
+    e.preventDefault();
+  });
+
+  // Mouse leave or up
+  $(document).on("mouseup mouseleave", function () {
+    if (isDown) {
+      isDown = false;
+      $grid.removeClass("active");
+    }
+  });
+
+  // Mouse move
+  $grid.on("mousemove", function (e) {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - $grid.offset().left;
+    const walk = (x - startX) * 2; // scroll speed multiplier
+    $grid.scrollLeft(scrollLeft - walk);
+  });
+
+  // Button scroll with smooth animation
+  const scrollAmount = 300;
+
+  $scrollLeftBtn.on("click", function () {
+    $grid.animate(
+      { scrollLeft: $grid.scrollLeft() - scrollAmount },
+      400,
+      "swing"
+    );
+  });
+
+  $scrollRightBtn.on("click", function () {
+    $grid.animate(
+      { scrollLeft: $grid.scrollLeft() + scrollAmount },
+      400,
+      "swing"
+    );
+  });
 });
-
-sliders.addEventListener("mouseleave", () => {
-  isDowns = false;
-  sliders.classList.remove("active");
-});
-
-sliders.addEventListener("mouseup", () => {
-  isDowns = false;
-  sliders.classList.remove("active");
-});
-
-sliders.addEventListener("mousemove", (e) => {
-  if (!isDowns) return;
-  e.preventDefault();
-  const xs = e.pageX - sliders.offsetLeft;
-  const walks = (xs - startXs) * 2; // scroll speed
-  sliders.scrollLeft = scrollLefts - walks;
-});
-
-
-const grid = document.getElementById("gameGrid");
-const scrollLeftBtn = document.getElementById("prev-btn"); // match HTML
-const scrollRightBtn = document.getElementById("next-btn"); // match HTML
-
-const scrollAmount = 300; // px to scroll each click
-
-scrollLeftBtn.addEventListener("click", () => {
-  grid.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-});
-
-scrollRightBtn.addEventListener("click", () => {
-  grid.scrollBy({ left: scrollAmount, behavior: "smooth" });
-});
-
-
 
   </script>
 </body>

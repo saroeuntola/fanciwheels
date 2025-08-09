@@ -46,14 +46,14 @@ $metaText = $game['meta_text'] ?? 'Image';
     .group:hover .group-hover\:opacity-80 { opacity: 0.8; }
     .group:hover .group-hover\:text-blue-400 { color: rgb(96 165 250); }
     .group:hover .group-hover\:scale-105 { transform: scale(1.05); }
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
 .detail-page {
-  padding: 15px;
+  padding: 25px;
 }
  }
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
    .detail-page {
-  padding: 24px;
+  padding: 16px;
 }
     }
 

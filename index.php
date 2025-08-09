@@ -170,7 +170,7 @@ if ($selectedCategory) {
   <?php include 'footer.php'; ?>
   <?php include 'spin-popup.php'; ?>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>
