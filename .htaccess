@@ -1,13 +1,65 @@
 RewriteEngine On
 
-# Redirect /file.php to /file
+# =========================================
+# 1. Force extensionless URLs for .php
+# =========================================
+# Redirect /file.php → /file
 RewriteCond %{THE_REQUEST} \s([^\s]+)\.php[\s?] [NC]
 RewriteRule ^ %1 [R=301,L]
 
-# If requested resource is not a file or directory
+# Internally map /file → /file.php (if exists)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# But if .php version exists, serve that internally
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.*)$ $1.php [L]
+
+# =========================================
+# 2. Deny access to sensitive files
+# =========================================
+<FilesMatch "\.(env|ini|log|bak|sql|git|htaccess)$">
+    Require all denied
+</FilesMatch>
+
+# =========================================
+# 5. Strong security headers
+# =========================================
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Clickjacking protection
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # Enable XSS protection
+    Header always set X-XSS-Protection "1; mode=block"
+
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # HSTS (force HTTPS for 6 months, preload enabled)
+    # Remove this if your site doesn't use HTTPS yet
+    Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains; preload"
+
+    # Content Security Policy (restrict resources to same origin)
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; frame-ancestors 'self'; base-uri 'self'"
+
+    # Disable old browser features
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+</IfModule>
+
+# =========================================
+# 3. Prevent directory listing
+# =========================================
+Options -Indexes
+
+# =========================================
+# 4. Block common exploit patterns
+# =========================================
+<IfModule mod_rewrite.c>
+    RewriteCond %{QUERY_STRING} (\.\./|\.\.\\) [NC,OR]
+    RewriteCond %{QUERY_STRING} (etc/passwd|boot.ini|\.ini|\.log) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\%27)|(\')|(\-\-)|(\%23)|(#) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\%3C)|(<)|(\%3E)|(>) [NC]
+    RewriteRule .* - [F]
+</IfModule>
+
