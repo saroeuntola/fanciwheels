@@ -291,56 +291,53 @@
 
     // Drag to scroll & arrow button scroll
     $(function () {
-        const $grid = $(".post-grid");
-        const $scrollLeftBtn = $("#prev-btns");
-        const $scrollRightBtn = $("#next-btns");
-        const scrollAmount = 300;
+  const $grid = $(".post-grid");
+  const scrollAmount = 390;
 
-        let isDowns = false;
-        let startXs = 0;
-        let scrollLefts = 0;
+  // Clone content before and after for infinite loop illusion
+  const originalContent = $grid.html();
+  $grid.prepend(originalContent);
+  $grid.append(originalContent);
 
-        // Mouse down
-        $grid.on("mousedown", function (e) {
-            isDowns = true;
-            $grid.addClass("active");
-            startXs = e.pageX - $grid.offset().left;
-            scrollLefts = $grid.scrollLeft();
-            e.preventDefault();
-        });
+  // Scroll to the original items in the middle
+  const originalScrollLeft = $grid[0].scrollWidth / 3;
+  $grid.scrollLeft(originalScrollLeft);
 
-        // Mouse leave or up
-        $(document).on("mouseup mouseleave", function () {
-            if (isDowns) {
-                isDowns = false;
-                $grid.removeClass("active");
-            }
-        });
+  // Handle scroll event to loop scroll position
+  $grid.on("scroll", function () {
+    const maxScrollLeft = $grid[0].scrollWidth;
+    const scrollLeft = $grid.scrollLeft();
 
-        // Mouse move
-        $grid.on("mousemove", function (e) {
-            if (!isDowns) return;
-            e.preventDefault();
-            let x = e.pageX - $grid.offset().left;
-            let walk = (x - startXs) * 2; // scroll speed multiplier
-            $grid.scrollLeft(scrollLefts - walk);
-        });
+    if (scrollLeft <= 0) {
+      // Scrolled to (or past) left cloned content - jump to middle copy
+      $grid.scrollLeft(scrollLeft + (maxScrollLeft / 3));
+    } else if (scrollLeft >= (maxScrollLeft * 2) / 3) {
+      // Scrolled to (or past) right cloned content - jump back to middle copy
+      $grid.scrollLeft(scrollLeft - (maxScrollLeft / 3));
+    }
+  });
 
-        // Arrow buttons click
-        $scrollLeftBtn.on("click", function () {
-            $grid.animate(
-                {scrollLeft: $grid.scrollLeft() - scrollAmount},
-                400,
-                "swing"
-            );
-        });
+  // Arrow buttons scroll with looping
+  $("#prev-btns").on("click", function () {
+    $grid.animate(
+      { scrollLeft: $grid.scrollLeft() - scrollAmount },
+      300
+    );
+  });
 
-        $scrollRightBtn.on("click", function () {
-            $grid.animate(
-                {scrollLeft: $grid.scrollLeft() + scrollAmount},
-                400,
-                "swing"
-            );
-        });
-    });
+  $("#next-btns").on("click", function () {
+    $grid.animate(
+      { scrollLeft: $grid.scrollLeft() + scrollAmount },
+      300
+    );
+  });
+
+  // Mouse wheel scroll horizontally
+  $grid.on("wheel", function (e) {
+    e.preventDefault();
+    const delta = e.originalEvent.deltaY;
+    $grid.scrollLeft($grid.scrollLeft() + delta);
+  });
+});
+
 </script>
