@@ -1,9 +1,15 @@
+
+<?php 
+  include './admin/page/library/banner_lib.php';
+  $bannerObj = new Banner();
+$banners = $bannerObj->getBanner();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cold Slideshow</title>
+  <title>Slideshow</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -127,12 +133,18 @@
   </style>
 </head>
 <body>
-
 <section class="slideshow-container max-w-7xl mx-auto" aria-label="Image slideshow">
   <div id="slide-container">
-    <img class="slide-image" src="./image/banner7.jpg" alt="Banner 1" />
-    <img class="slide-image" src="./image/banner5.webp" alt="Banner 2" />
-    <img class="slide-image" src="./image/banner3.avif" alt="Banner 3" />
+   <?php if (!empty($banners)): ?>
+      <?php foreach ($banners as $index => $banner): ?>
+          <img class="slide-image <?= $index === 0 ? 'active' : '' ?>" 
+               src="<?= htmlspecialchars($banner['image']) ?>" 
+               alt="<?= htmlspecialchars($banner['title']) ?>" 
+               class="w-full h-full object-cover">
+      <?php endforeach; ?>
+    <?php else: ?>
+      <p class="text-center text-gray-500">No banners available</p>
+    <?php endif; ?>
   </div>
 
   <button id="prevBtn" class="nav-btn" aria-label="Previous slide">

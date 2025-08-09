@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold text-center mb-6">Create Banner</h2>
 
-        <form action="create.php" method="POST" enctype="multipart/form-data">
+        <form action="create" method="POST" enctype="multipart/form-data">
             <!-- Banner Title -->
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700">Banner Title</label>

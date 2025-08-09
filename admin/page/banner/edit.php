@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php endif; ?>
 
         <!-- Edit Product Form -->
-        <form action="edit.php?id=<?php echo $bannerData['id']; ?>" method="POST" enctype="multipart/form-data">
+        <form action="edit?id=<?php echo $bannerData['id']; ?>" method="POST" enctype="multipart/form-data">
             <!-- Product Name -->
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Banner Title</label>

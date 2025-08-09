@@ -80,8 +80,8 @@ $banners = $banner->getBanner();
             <td class="px-4 py-3 border-b"><?= htmlspecialchars($row['link']) ?></td>
             <td class="px-4 py-3 border-b"><?= date("Y-m-d", strtotime($row['created_at'])) ?></td>
             <td class="px-4 py-3 border-b">
-                <a href="edit.php?id=<?= $row['id'] ?>" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 mr-2">Edit</a>
-                <a href="delete.php?id=<?= $row['id'] ?>" class="bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700" onclick="return confirm('Are you sure you want to delete this banners?');">Delete</a>
+                <a href="edit?id=<?= $row['id'] ?>" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 mr-2">Edit</a>
+                <a href="delete?id=<?= $row['id'] ?>" class="bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700" onclick="return confirm('Are you sure you want to delete this banners?');">Delete</a>
             </td>
         </tr>
     <?php endforeach; ?>
