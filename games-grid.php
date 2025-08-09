@@ -8,7 +8,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
   <title>Game List</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script> <!-- in pc show 3 item -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     :root {
@@ -18,6 +18,22 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
       --candy-green: #22c55e;
       --candy-purple: #a78bfa;
     }
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.game-grid::-webkit-scrollbar {
+  display: none;
+}
+.post-grid::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for Firefox */
+.game-grid, .post-grid{
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for IE, Edge */
+.game-grid, .post-grid {
+  -ms-overflow-style: none; /* IE and Edge */
+}
 
     .animated-text {
       background: linear-gradient(90deg, #facc15, #fb923c, #a78bfa, #22c55e, #f472b6);
@@ -54,23 +70,23 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
       min-width: 390px; /* prevent cards from getting too narrow */
     }
 
-      #hot-games-title{
-        font-size: 40px;
-        margin-bottom: 15px;
-      }
+    #hot-games-title{
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
     #games-header {
       margin-top: 50px;
     }
+
     @media (max-width: 1024px) {
       .game-card {
         flex-basis: calc((100% - 20px) / 2); /* 2 items on medium screens */
-
       }
-       #hot-games-title{
+      #hot-games-title{
         font-size: 30px;
       }
-   
     }
+
     @media (max-width: 480px) {
       .game-card {
         flex-basis: 100%; /* 1 item full width on small/mobile */
@@ -83,36 +99,92 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
         padding: 0;
       }
       #games-header {
-      padding: 0 20px;
+        padding: 0 20px;
+      }
+      .text-scroll{
+        padding: 0 18px;
+      }
+      .game-card {
+        background: none;
+        border: none;
+      }
     }
-       .text-scroll{
-         padding: 0 18px;
-    }
-    }
+
     .text-scroll{
       color: darkred;
     }
+
+    /* Arrow buttons styling */
+    .arrow-btn {
+      position: absolute;
+      background-color: rgba(100, 100, 100, 0.7);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      width: 40px;
+      height: 60px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, transform 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      left: unset; /* reset for animation */
+      right: unset;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .arrow-btn.left-0 {
+      left: 20px;
+      top: 112px;
+    }
+
+    .arrow-btn.right-0 {
+      right: 20px;
+      top: 112px;
+    }
+
+    .arrow-btn:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+      color: black;
+    }
+
   </style>
 </head>
 <body class="bg-gray-900" id="games-grid">
-<div class="">
-<div class="flex flex-col items-center mb-5" id="games-header">
-  <!-- Title -->
-  <h1 class="text-yellow-400 text-4xl md:text-5xl font-bold mb-4 text-center">
-    <span class="animated-text" id="hot-games-title">Hot Games Play Free</span>
-  </h1>
-  <P class="text-scroll">
-    See Mores Scroll Left/Right 
-  </P>
-</div>
 
-</div>
-    <div class="relative">
-      <div id="gameGrid" class="game-grid flex overflow-x-auto snap-x snap-mandatory gap-5 p-0 m-0">
-        <!-- Game cards injected here -->
-      </div>
+  <div>
+    <div class="flex flex-col items-center mb-5" id="games-header">
+      <!-- Title -->
+      <h1 class="text-yellow-400 text-4xl md:text-5xl font-bold mb-4 text-center">
+        <span class="animated-text" id="hot-games-title">Hot Games Play Free</span>
+      </h1>
     </div>
   </div>
+
+  <div class="relative">
+    <!-- Left Arrow Button -->
+   <button id="prev-btn" aria-label="Scroll Left" class="arrow-btn left-0">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+  </svg>
+</button>
+
+    <div id="gameGrid" class="game-grid flex overflow-x-auto snap-x snap-mandatory gap-5 p-0 m-0">
+      <!-- Game cards injected here -->
+    </div>
+
+    <!-- Right Arrow Button -->
+    <button id="next-btn" aria-label="Scroll Right" class="arrow-btn right-0">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+  </svg>
+</button>
+  </div>
+
   <!-- Modal -->
   <div id="comingSoonModal" class="modal hidden fixed inset-0 z-[1000] bg-black/60">
     <div class="modal-content bg-gray-800 text-gray-100 mx-auto mt-[15%] p-8 rounded-lg w-[90%] max-w-md text-center">
@@ -126,6 +198,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
       </p>
     </div>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
 
   <script>
     const baseURL = "<?= $baseURL ?>";
@@ -200,62 +274,83 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
       }
     });
 
-   // Drag to scroll horizontally
-   $(function () {
-  const $grid = $("#gameGrid");
-  const $scrollLeftBtn = $("#prev-btn");
-  const $scrollRightBtn = $("#next-btn");
+    // Drag to scroll horizontally and arrow button scroll
+    $(function () {
+      const $grid = $("#gameGrid");
+      const $scrollLeftBtn = $("#prev-btn");
+      const $scrollRightBtn = $("#next-btn");
 
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+      let isDown = false;
+      let startX;
+      let scrollLeft;
 
-  // Mouse down
-  $grid.on("mousedown", function (e) {
-    isDown = true;
-    $grid.addClass("active");
-    startX = e.pageX - $grid.offset().left;
-    scrollLeft = $grid.scrollLeft();
-    e.preventDefault();
-  });
+      // Mouse down
+      $grid.on("mousedown", function (e) {
+        isDown = true;
+        $grid.addClass("active");
+        startX = e.pageX - $grid.offset().left;
+        scrollLeft = $grid.scrollLeft();
+        e.preventDefault();
+      });
 
-  // Mouse leave or up
-  $(document).on("mouseup mouseleave", function () {
-    if (isDown) {
-      isDown = false;
-      $grid.removeClass("active");
-    }
-  });
+      // Mouse leave or up
+      $(document).on("mouseup mouseleave", function () {
+        if (isDown) {
+          isDown = false;
+          $grid.removeClass("active");
+        }
+      });
 
-  // Mouse move
-  $grid.on("mousemove", function (e) {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - $grid.offset().left;
-    const walk = (x - startX) * 2; // scroll speed multiplier
-    $grid.scrollLeft(scrollLeft - walk);
-  });
+      // Mouse move
+      $grid.on("mousemove", function (e) {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - $grid.offset().left;
+        const walk = (x - startX) * 2; // scroll speed multiplier
+        $grid.scrollLeft(scrollLeft - walk);
+      });
 
-  // Button scroll with smooth animation
-  const scrollAmount = 300;
+      // Button scroll with smooth animation
+      const scrollAmount = 300;
 
-  $scrollLeftBtn.on("click", function () {
-    $grid.animate(
-      { scrollLeft: $grid.scrollLeft() - scrollAmount },
-      400,
-      "swing"
-    );
-  });
+      $scrollLeftBtn.on("click", function () {
+        // Press animation handled by CSS :active
 
-  $scrollRightBtn.on("click", function () {
-    $grid.animate(
-      { scrollLeft: $grid.scrollLeft() + scrollAmount },
-      400,
-      "swing"
-    );
-  });
-});
+        // Arrow slide animation (left arrow slides left then back)
+        $(this).animate(
+          { left: "-=10px" },
+          100,
+          "swing",
+          () => {
+            $(this).animate({ left: "+=10px" }, 100);
+          }
+        );
 
+        $grid.animate(
+          { scrollLeft: $grid.scrollLeft() - scrollAmount },
+          400,
+          "swing"
+        );
+      });
+
+      $scrollRightBtn.on("click", function () {
+        // Arrow slide animation (right arrow slides right then back)
+        $(this).animate(
+          { right: "-=10px" },
+          100,
+          "swing",
+          () => {
+            $(this).animate({ right: "+=10px" }, 100);
+          }
+        );
+
+        $grid.animate(
+          { scrollLeft: $grid.scrollLeft() + scrollAmount },
+          400,
+          "swing"
+        );
+      });
+    });
   </script>
 </body>
 </html>
