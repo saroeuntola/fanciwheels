@@ -1,125 +1,110 @@
-const canvas = document.getElementById("wheelCanvas");
-const ctx = canvas.getContext("2d");
-const spinBtn = document.getElementById("spinBtn");
-const prizeMessage = document.getElementById("prizeMessage");
-const prizeText = document.getElementById("prizeText");
+ const wheel = document.getElementById("wheel");
+    const spinBtn = document.getElementById("spinBtn");
+    const popupOverlay = document.getElementById("popupOverlay");
+    const popupMessage = document.getElementById("popupMessage");
+    const closePopup = document.getElementById("closePopup");
+    const closeModalBtn = document.getElementById("closeModalBtn");
 
-const prizes = ["20$", "100$", "1$", "50$", "0$", "1000$", "10$", "5$"];
-const colors = [
-  "#f87171",
-  "#a78bfa",
-  "#60a5fa",
-  "#34d399",
-  "#fbbf24",
-  "#f472b6",
-  "#818cf8",
-  "#22d3ee",
-];
+    const segmentNumbers = ["Jackpot", "$100", "$150", "$200", "$250", "$300", "$350", "$400", "$450", "$500", "$600", "$700", "$800", "$900", "$1000", "$2000", "$3000", "$4000"];
+    const segments = segmentNumbers.length;
+    const segmentAngle = 360 / segments;
 
-const segments = prizes.length;
-const segmentAngle = (2 * Math.PI) / segments;
+    let startTimestamp = null;
+    let duration = 8000;
+    let startRotation = 0;
+    let targetRotation = 0;
+    let animationFrameId = null;
+    let winningIndex = 0;
 
-let startAngle = 0;
-let spinTimeout = null;
-let spinAngleStart = 0;
-let spinTime = 0;
-let spinTimeTotal = 0;
+    function easeOutQuart(t) {
+      return 1 - Math.pow(1 - t, 4);
+    }
 
-function drawWheel() {
-  for (let i = 0; i < segments; i++) {
-    const angle = startAngle + i * segmentAngle;
-    ctx.beginPath();
-    ctx.fillStyle = colors[i];
-    ctx.moveTo(canvas.width / 2, canvas.height / 2);
-    ctx.arc(
-      canvas.width / 2,
-      canvas.height / 2,
-      canvas.width / 2 - 10,
-      angle,
-      angle + segmentAngle,
-      false
-    );
-    ctx.lineTo(canvas.width / 2, canvas.height / 2);
-    ctx.fill();
+    function animate(timestamp) {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const elapsed = timestamp - startTimestamp;
+      let progress = elapsed / duration;
+      if (progress > 1) progress = 1;
 
-    // Draw prize text
-    ctx.save();
-    ctx.fillStyle = "#fff";
-    ctx.translate(canvas.width / 2, canvas.height / 2);
-    ctx.rotate(angle + segmentAngle / 2);
-    ctx.textAlign = "right";
-    ctx.font = "bold 18px Arial";
-    ctx.fillText(prizes[i], canvas.width / 2 - 20, 10);
-    ctx.restore();
-  }
-}
+      const easedProgress = easeOutQuart(progress);
+      const currentRotation = startRotation + easedProgress * (targetRotation - startRotation);
+      wheel.style.transform = `rotate(${currentRotation}deg)`;
 
-function rotateWheel(angle) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.save();
-  ctx.translate(canvas.width / 2, canvas.height / 2);
-  ctx.rotate(angle);
-  ctx.translate(-canvas.width / 2, -canvas.height / 2);
-  drawWheel();
-  ctx.restore();
-}
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      } else {
+        performWobble(currentRotation);
+      }
+    }
 
-function easeOut(t, b, c, d) {
-  const ts = (t /= d) * t;
-  const tc = ts * t;
-  return b + c * (tc + -3 * ts + 3 * t);
-}
+    function performWobble(baseRotation) {
+      const wobbleSequence = [-5, 4, -3, 2, -1, 1, -0.5, 0];
+      let index = 0;
 
-function spin() {
-  spinBtn.disabled = true;
-  prizeMessage.classList.add("hidden");
+      function doWobble() {
+        if (index >= wobbleSequence.length) {
+          spinBtn.disabled = false;
 
-  spinAngleStart = Math.random() * 4000 + 5000; // random total spin angle
-  spinTime = 0;
-  spinTimeTotal = Math.random() * 5000 + 6000; // spin duration
+          const finalRotation = baseRotation + wobbleSequence[wobbleSequence.length - 1];
+          const normalizedRotation = finalRotation % 360;
+          const adjustedRotation = (normalizedRotation + segmentAngle / 2) % 360;
+          winningIndex = Math.floor(adjustedRotation / segmentAngle);
+          winningIndex = (segments - (winningIndex % segments)) % segments;
 
-  rotate();
-}
+          const winNumber = segmentNumbers[winningIndex];
+          popupMessage.textContent = `🎉 You won ${winNumber}!`;
+          popupOverlay.style.display = "flex";
+          return;
+        }
 
-function rotate() {
-  spinTime += 16;
-  if (spinTime >= spinTimeTotal) {
-    stopRotateWheel();
-    return;
-  }
+        const currentWobbleRotation = baseRotation + wobbleSequence[index];
+        wheel.style.transition = "transform 0.3s ease-in-out";
+        wheel.style.transform = `rotate(${currentWobbleRotation}deg)`;
+        index++;
+        setTimeout(doWobble, 200);
+      }
 
-  const angle = easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
-  rotateWheel((angle * Math.PI) / 180);
-  spinTimeout = setTimeout(rotate, 16); // 60fps
-}
+      doWobble();
+    }
 
-function stopRotateWheel() {
-  clearTimeout(spinTimeout);
+    function getCurrentRotation() {
+      const style = window.getComputedStyle(wheel);
+      const transform = style.getPropertyValue("transform");
+      if (transform === "none") return 0;
+      const values = transform.match(/matrix\(([^)]+)\)/)[1].split(", ");
+      const a = parseFloat(values[0]);
+      const b = parseFloat(values[1]);
+      let angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+      return angle < 0 ? angle + 360 : angle;
+    }
 
-  const finalAngle = easeOut(spinTimeTotal, 0, spinAngleStart, spinTimeTotal);
-  const degrees = finalAngle % 360;
+    spinBtn.addEventListener("click", () => {
+      if (spinBtn.disabled) return;
 
-  // Adjust based on the pointer being at 270 degrees (top of the canvas)
-  const adjustedDegrees = (360 - degrees + 270) % 360;
+      spinBtn.disabled = true;
+      cancelAnimationFrame(animationFrameId);
 
-  const index =
-    Math.floor(adjustedDegrees / (360 / prizes.length)) % prizes.length;
+      startTimestamp = null;
+      startRotation = getCurrentRotation();
 
-  prizeText.textContent = `🎉 You won: ${prizes[index]}!`;
-  prizeMessage.classList.remove("hidden");
-  spinBtn.disabled = false;
-}
+      const spins = 6;
+      winningIndex = Math.floor(Math.random() * segments);
+      targetRotation = startRotation + spins * 360 + winningIndex * segmentAngle;
 
-spinBtn.addEventListener("click", spin);
+      wheel.style.transition = "none";
+      animationFrameId = requestAnimationFrame(animate);
+    });
 
-window.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => {
-    document.getElementById("spinModal").classList.remove("hidden");
-    rotateWheel(0); 
-  }, 500);
-});
+    closePopup.addEventListener("click", () => {
+      popupOverlay.style.display = "none";
+    });
 
-function closeSpinModal() {
-  document.getElementById("spinModal").classList.add("hidden");
-}
+    closeModalBtn.addEventListener("click", () => {
+      document.getElementById("spinWheelModal").style.display = "none";
+    });
 
+    // Show modal on page load
+    window.addEventListener("load", () => {
+      document.getElementById("spinWheelModal").style.display = "flex";
+      wheel.style.transform = "rotate(0deg)";
+    });

@@ -1,7 +1,9 @@
 <?php include './admin/page/library/db.php'?>
 <!DOCTYPE html>
 <html lang="en">
-<!-- Primary Meta Tags -->
+ 
+<head>
+  <!-- Primary Meta Tags -->
 <title>Fancywheel - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support</title>
 <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
 <meta name="title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
@@ -22,6 +24,9 @@
 <meta property="twitter:title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
 <meta property="twitter:description" content="Play real money games and withdraw instantly at Fancywin. Safe, licensed, and available 24/7.">
 <meta property="twitter:image" content="https://fancywheel.com/images/og-banner.jpg">
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
 <body class="bg-gray-900 text-white">
 <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
     <?php 
