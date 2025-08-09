@@ -227,7 +227,7 @@
             <?php if (!empty($games)): ?>
                 <?php foreach ($games as $index => $g): ?>
                     <div class="game-card" onclick="window.location.href='detail?id=<?= $g['id'] ?>'">
-                        <div class="game-image" style="height: 210px; overflow: hidden;">
+                        <div class="game-image" style="height: 210px;">
                             <?php if (!empty($g['image'])): ?>
                                 <img src="<?= './admin/page/game/' . htmlspecialchars($g['image']) ?>"
                                      alt="<?= htmlspecialchars($g['meta_text']) ?>"
@@ -333,11 +333,6 @@
   });
 
   // Mouse wheel scroll horizontally
-  $grid.on("wheel", function (e) {
-    e.preventDefault();
-    const delta = e.originalEvent.deltaY;
-    $grid.scrollLeft($grid.scrollLeft() + delta);
-  });
 });
 
 </script>

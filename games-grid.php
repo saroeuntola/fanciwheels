@@ -68,6 +68,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
       flex-grow: 0;
       flex-basis: calc((100% - 40px) / 3); /* 3 items with 20px gap */
       min-width: 390px; /* prevent cards from getting too narrow */
+       overflow-x: auto;
     }
 
     #hot-games-title{
@@ -317,7 +318,6 @@ $(function () {
     );
   });
 
-  // Optional: drag to scroll logic as before, no changes needed.
 });
 
   </script>
