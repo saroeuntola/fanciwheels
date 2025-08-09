@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <p class="text-red-500 text-center"><?= htmlspecialchars($error) ?></p>
     <?php endif; ?>
 
-    <form action="edit.php?id=<?= $catData['id'] ?>" method="POST" enctype="multipart/form-data">
+    <form action="edit?id=<?= $catData['id'] ?>" method="POST" enctype="multipart/form-data">
       <!-- Category Name -->
       <div class="mb-4">
         <label for="name" class="block text-sm font-medium text-gray-700">Category Name</label>

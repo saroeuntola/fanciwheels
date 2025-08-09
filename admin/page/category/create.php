@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2 class="text-2xl font-bold text-center mb-6">Create Category</h2>
 
     <!-- Category Form -->
-    <form action="create.php" method="POST" enctype="multipart/form-data">
+    <form action="create" method="POST" enctype="multipart/form-data">
       
       <!-- Category Name -->
       <div class="mb-4">
