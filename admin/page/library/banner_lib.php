@@ -17,10 +17,13 @@ class Banner {
     }
 
     // READ all Banner
-    public function getBanner()
-    {
-        return dbSelect('banner', '*');
-    }
+ public function getBanner() {
+    $sql = "SELECT * FROM banner ORDER BY created_at DESC";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
     // READ a specific Banner by ID
     public function getBannerById($id)
