@@ -1,52 +1,83 @@
-const banners = [
-  "https://store-images.s-microsoft.com/image/apps.46648.13839736556320994.df80f16e-5cb1-44e6-8aeb-c2921556326d.71fe5692-88db-490e-b495-7dc79da34c03",
-  "https://images.sftcdn.net/images/t_app-cover-s-16-9,f_auto/p/19c18f31-37e6-4809-a6ed-3d4e6ed50959/3781302577/lucky-winner-tsx-screenshot",
-  "https://via.placeholder.com/1200x400/059669/FFFFFF?text=Game+3",
-  "https://via.placeholder.com/1200x400/F59E0B/FFFFFF?text=Game+4",
-];
-const slideImage = document.getElementById("slide-image");
-const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
+   $(document).ready(function () {
+  let $slides = $(".slide-image");
+  let $dotsContainer = $("#dots");
+  let currentSlide = 0;
+  let totalSlides = $slides.length;
+  let slideInterval;
 
-let currentIndex = 0;
-let slideInterval;
+  // Initialize slides position
+  $slides.each(function (index) {
+    $(this).css({
+      position: "absolute",
+      top: 0,
+      left: index === 0 ? 0 : "100%",
+      opacity: 1,
+      display: "block"
+    });
+  });
 
-function showSlide(index) {
-  slideImage.src = banners[index];
-}
+  // Create navigation dots
+  for (let i = 0; i < totalSlides; i++) {
+    $dotsContainer.append(`<button class="dot" aria-label="Go to slide ${i + 1}"></button>`);
+  }
+  let $dots = $(".dot");
+  $dots.eq(0).addClass("active");
 
-function nextSlide() {
-  currentIndex = (currentIndex + 1) % banners.length;
-  showSlide(currentIndex);
-}
+  function showSlide(newIndex) {
+    if (newIndex === currentSlide) return;
 
-function prevSlide() {
-  currentIndex = (currentIndex - 1 + banners.length) % banners.length;
-  showSlide(currentIndex);
-}
+    let $currentSlide = $slides.eq(currentSlide);
+    let $nextSlide = $slides.eq(newIndex);
 
-// Auto slide every 5 seconds
-function startAutoSlide() {
-  slideInterval = setInterval(nextSlide, 5000);
-}
+    // Slide direction
+    let direction = newIndex > currentSlide ? "-100%" : "100%";
+    // Position next slide offscreen to right or left
+    $nextSlide.css({ left: direction });
 
-function stopAutoSlide() {
-  clearInterval(slideInterval);
-}
+    // Animate current slide out
+    $currentSlide.animate({ left: direction }, 500);
 
-// Initialize
-showSlide(currentIndex);
-startAutoSlide();
+    // Animate next slide in
+    $nextSlide.animate({ left: 0 }, 500);
 
-// Add event listeners
-nextBtn.addEventListener("click", () => {
-  stopAutoSlide();
-  nextSlide();
-  startAutoSlide();
-});
+    // Update dots
+    $dots.removeClass("active").eq(newIndex).addClass("active");
 
-prevBtn.addEventListener("click", () => {
-  stopAutoSlide();
-  prevSlide();
+    currentSlide = newIndex;
+  }
+
+  function goToSlide(index) {
+    let newIndex = (index + totalSlides) % totalSlides;
+    showSlide(newIndex);
+  }
+
+  function nextSlide() {
+    goToSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    goToSlide(currentSlide - 1);
+  }
+
+  // Button events
+  $("#nextBtn").click(nextSlide);
+  $("#prevBtn").click(prevSlide);
+
+  // Dot click events
+  $dotsContainer.on("click", ".dot", function () {
+    goToSlide($(this).index());
+  });
+
+  // Auto slide
+  function startAutoSlide() {
+    slideInterval = setInterval(nextSlide, 5000);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(slideInterval);
+  }
+
+  $(".slideshow-container").hover(stopAutoSlide, startAutoSlide);
+
   startAutoSlide();
 });
