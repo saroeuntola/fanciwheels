@@ -70,7 +70,7 @@
 
   // Auto slide
   function startAutoSlide() {
-    slideInterval = setInterval(nextSlide, 5000);
+    slideInterval = setInterval(nextSlide, 4000);
   }
 
   function stopAutoSlide() {
