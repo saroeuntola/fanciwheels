@@ -1,6 +1,4 @@
-<?php 
-include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,7 +126,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
   </div>
 
   <script>
-    const baseURL = "<?= $baseURL ?>";
     const games_item = [
       {
         title: "Crazy Time (Evo)",

@@ -1,4 +1,7 @@
 
+<?php 
+include $_SERVER['DOCUMENT_ROOT'] . 'config/baseURL.php';
+?>
 <?php
 $userLib = new User();
 $userId = $_SESSION['user_id'] ?? null;
@@ -11,9 +14,9 @@ $user = $userLib->getUser($userId);
 ?>
 <div class="scrollbar-inner sidebar-wrapper">
     <!-- Profile Block -->
-    <a href="/fanciwheel/admin/page/user/profile.php" class="flex flex-col items-center bg-white p-4 rounded-2xl shadow-md mb-4">
+    <a href="<?php echo $baseURL; ?>/admin/page/user/profile.php" class="flex flex-col items-center bg-white p-4 rounded-2xl shadow-md mb-4">
         <?php if (!empty($user['profile'])): ?>
-            <img src="/fanciwheel/admin/page/user/user_image/<?php echo htmlspecialchars($user['profile']); ?>"
+            <img src="<?php echo $baseURL; ?>/admin/page/user/user_image/<?php echo htmlspecialchars($user['profile']); ?>"
                  alt="User Avatar"
                  class="w-20 h-20 rounded-full object-cover shadow" />
         <?php else: ?>
@@ -32,7 +35,7 @@ $user = $userLib->getUser($userId);
     <!-- Navigation -->
     <ul class="nav">
         <li class="nav-item <?php echo (basename($_SERVER['REQUEST_URI']) == 'index.php') ? 'active' : ''; ?>">
-            <a href="/fanciwheel/admin/index.php">
+            <a href="<?php echo $baseURL; ?>/admin/index.php">
                 <i class="la la-dashboard"></i>
                 <p>Dashboard</p>
                 <span class="badge badge-count">5</span>
@@ -40,7 +43,7 @@ $user = $userLib->getUser($userId);
         </li>
 
         <li class="nav-item <?php echo (strpos($_SERVER['REQUEST_URI'], 'page/product/index.php') !== false) ? 'active' : ''; ?>">
-            <a href="/fanciwheel/admin/page/game/index.php">
+            <a href="<?php echo $baseURL; ?>/admin/page/game/index.php">
                 <i class="la la-table"></i>
                 <p>Content</p>
            
@@ -48,7 +51,7 @@ $user = $userLib->getUser($userId);
         </li>
 
         <li class="nav-item <?php echo (strpos($_SERVER['REQUEST_URI'], 'page/category/index.php') !== false) ? 'active' : ''; ?>">
-            <a href="/fanciwheel/admin/page/category/index.php">
+            <a href="<?php echo $baseURL; ?>/admin/page/category/index.php">
                 <i class="la la-keyboard-o"></i>
                 <p>Category</p>
      
@@ -56,7 +59,7 @@ $user = $userLib->getUser($userId);
         </li>
 
         <li class="nav-item <?php echo (strpos($_SERVER['REQUEST_URI'], 'banner') !== false) ? 'active' : ''; ?>">
-            <a href="/fanciwheel/admin/page/banner/index.php">
+            <a href="<?php echo $baseURL; ?>/admin/page/banner/index.php">
                 <i class="la la-th"></i>
                 <p>Banner</p>
              
@@ -64,7 +67,7 @@ $user = $userLib->getUser($userId);
         </li>
 
         <li class="nav-item <?php echo (strpos($_SERVER['REQUEST_URI'], 'brand') !== false) ? 'active' : ''; ?>">
-            <a href="/fanciwheel/admin/page/brand/index.php">
+            <a href="<?php echo $baseURL; ?>/admin/page/brand/index.php">
                 <i class="la la-tags"></i>
                 <p>Brand</p>
               
@@ -72,7 +75,7 @@ $user = $userLib->getUser($userId);
         </li>
 
         <li class="nav-item <?php echo (strpos($_SERVER['REQUEST_URI'], 'user/index.php') !== false) ? 'active' : ''; ?>">
-            <a href="/fanciwheel/admin/page/user/index.php">
+            <a href="<?php echo $baseURL; ?>/admin/page/user/index.php">
                 <i class="la la-users"></i>
                 <p>Users</p>
               
@@ -81,7 +84,7 @@ $user = $userLib->getUser($userId);
 
         <!-- Logout Link -->
         <li class="nav-item">
-            <a href="/fanciwheel/logout.php">
+            <a href="<?php echo $baseURL; ?>/logout.php">
                 <i class="la la-sign-out"></i>
                 <p>Logout</p>
             </a>
