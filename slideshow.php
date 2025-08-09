@@ -137,8 +137,10 @@ $banners = $bannerObj->getBanner();
   <div id="slide-container">
    <?php if (!empty($banners)): ?>
       <?php foreach ($banners as $index => $banner): ?>
+
+        
           <img class="slide-image <?= $index === 0 ? 'active' : '' ?>" 
-               src="<?= htmlspecialchars($banner['image']) ?>" 
+               src="<?= './admin/page/banner' . htmlspecialchars($banner['image']) ?>"
                alt="<?= htmlspecialchars($banner['title']) ?>" 
                class="w-full h-full object-cover">
       <?php endforeach; ?>

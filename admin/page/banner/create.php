@@ -28,6 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<p class='text-red-500'>Error: Banner could not be created.</p>";
     }
 }
+
+ini_set('upload_max_filesize', '50M'); // or higher if needed
+ini_set('post_max_size', '50M');
+ini_set('max_execution_time', 300); // allow more time for large files
+
 ?>
 
 <!DOCTYPE html>
