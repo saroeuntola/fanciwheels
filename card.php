@@ -230,7 +230,7 @@
                         <div class="game-image" style="height: 210px;">
                             <?php if (!empty($g['image'])): ?>
                                 <img src="<?= './admin/page/game/' . htmlspecialchars($g['image']) ?>"
-                                     alt="<?= htmlspecialchars($g['meta_text']) ?>"
+                                     alt="<?= $g['meta_text']?>"
                                      style="width:100%; height: 100%; object-fit: cover;">
                             <?php else: ?>
                                 <div class="no-image-placeholder" style="height: 100%; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#9ca3af;">
@@ -249,8 +249,16 @@
                             <div class="game-category" style="color: #9ca3af; margin-bottom: 8px;">
                                 <?= isset($g['category_name']) ? htmlspecialchars($g['category_name']) : '' ?>
                             </div>
+                            <?php
+// Extract plain text (remove HTML tags)
+$plainText = strip_tags($g['description']);
+
+// Trim the plain text to 120 chars
+$trimmed_desc = mb_strimwidth($plainText, 0, 120, '...');
+?>
+
                             <div class="game-description" style="font-size: 14px; color: #e5e7eb;">
-                                <?= htmlspecialchars(mb_strimwidth($g['description'], 0, 120, '...')) ?>
+                                <?= $trimmed_desc ?>
                             </div>
                         </div>
                     </div>
