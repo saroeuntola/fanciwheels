@@ -5,7 +5,7 @@
     <nav class="sidebar" id="sidebar">
         <ul class="sidebar-menu">
             <li class="menu-item">
-                <a href="/" class="active">
+                <a href="<?php echo $baseURL; ?>/admin" class="active">
                     <span class="menu-icon">📊</span>
                     <span>Dashboard</span>
                 </a>
@@ -13,7 +13,7 @@
             
             <div class="menu-section">User Management</div>
             <li class="menu-item">
-                <a href="<?php echo $baseURL; ?>/admin/page/user/">
+                <a href="<?php echo $baseURL; ?>/admin/page/user">
                     <span class="menu-icon">👥</span>
                     <span>Users</span>
                 </a>
@@ -27,25 +27,25 @@
             
             <div class="menu-section">Content</div>
             <li class="menu-item">
-                <a href="<?php echo $baseURL; ?>/admin/page/game/">
+                <a href="<?php echo $baseURL; ?>/admin/page/game">
                     <span class="menu-icon">📝</span>
                     <span>Posts</span>
                 </a>
             </li>
             <li class="menu-item">
-                <a href="<?php echo $baseURL; ?>/admin/page/category/">
+                <a href="<?php echo $baseURL; ?>/admin/page/category">
                     <span class="menu-icon">📄</span>
                     <span>Category</span>
                 </a>
             </li>
             <li class="menu-item">
-                <a href="<?php echo $baseURL; ?>/admin/page/banner/">
+                <a href="<?php echo $baseURL; ?>/admin/page/banner">
                     <span class="menu-icon">💬</span>
                     <span>Banner</span>
                 </a>
             </li>
                 <li class="menu-item">
-                <a href="<?php echo $baseURL; ?>/admin/page/brand/">
+                <a href="<?php echo $baseURL; ?>/admin/page/brand">
                     <span class="menu-icon">💬</span>
                     <span>Brand</span>
                 </a>
