@@ -40,8 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Quill CSS & JS -->
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    
 
     <style>
         .ql-editor {
@@ -105,76 +104,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script>
         // Quill toolbars
-  const toolbarOptions = [
-    [{ 'font': [] }, { 'size': [] }],
-    ['bold', 'italic', 'underline', 'strike'],
-    [{ 'color': [] }, { 'background': [] }],
-    [{ 'script': 'sub' }, { 'script': 'super' }],
-    [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
-    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-    [{ 'align': [] }],
-    ['link', 'image', 'video'],
-    ['clean']
-];
+        const toolbarOptions = [
+            [{ 'font': [] }, { 'size': [] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'script': 'sub' }, { 'script': 'super' }],
+            [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'align': [] }],
+            ['link', 'image', 'video'],
+            ['clean']
+        ];
 
-      const descriptionEditor = new Quill('#description-editor', {
-    theme: 'snow',
-    modules: {
-        toolbar: {
-            container: toolbarOptions,
-            handlers: {
-                image: function() {
-                    selectLocalImage();
-                }
-            }
+        // Description Editor
+        const descriptionEditor = new Quill('#description-editor', {
+            theme: 'snow',
+            modules: { toolbar: toolbarOptions }
+        });
+        // On submit, sync Quill content to hidden inputs
+        function syncQuillContent() {
+            document.getElementById('description-input').value = descriptionEditor.root.innerHTML;
         }
-    }
-});
-
-function selectLocalImage() {
-    const input = document.createElement('input');
-    input.setAttribute('type', 'file');
-    input.setAttribute('accept', 'image/*');
-    input.click();
-
-    input.onchange = () => {
-        const file = input.files[0];
-        if (file) {
-            uploadImage(file);
-        }
-    };
-}
-
-function uploadImage(file) {
-    const formData = new FormData();
-    formData.append('image', file);
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'upload_image', true); // your upload PHP handler
-
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            // Successful upload, insert image URL into editor
-            const response = JSON.parse(xhr.responseText);
-            if (response.success) {
-                insertToEditor(response.url);
-            } else {
-                alert('Upload failed: ' + response.message);
-            }
-        } else {
-            alert('Image upload failed with status ' + xhr.status);
-        }
-    };
-
-    xhr.send(formData);
-}
-
-function insertToEditor(url) {
-    // Get current cursor position
-    const range = descriptionEditor.getSelection();
-    descriptionEditor.insertEmbed(range.index, 'image', url);
-}
-
     </script>
 </body>
 </html>
