@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = $_POST['description']; // HTML from Quill
     $game_link = $_POST['game_link']; 
     $categoryId = $_POST['category_id'];
-    $meta_text = $_POST['meta_text']; // HTML from Quill
+    $meta_text = $_POST['meta_text'];
 
     // Handle Image Upload
     $imagePath = "";
@@ -76,8 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!-- Meta Text -->
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Meta Text</label>
-                <div id="meta-editor" class="border rounded-md"></div>
-                <input type="hidden" name="meta_text" id="meta-input">
+                <div class="border rounded-md"></div>
+                <input type="text" name="meta_text">
             </div>
 
             <!-- Game Link -->
@@ -123,17 +123,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             theme: 'snow',
             modules: { toolbar: toolbarOptions }
         });
-
-        // Meta Text Editor
-        const metaEditor = new Quill('#meta-editor', {
-            theme: 'snow',
-            modules: { toolbar: toolbarOptions }
-        });
-
         // On submit, sync Quill content to hidden inputs
         function syncQuillContent() {
             document.getElementById('description-input').value = descriptionEditor.root.innerHTML;
-            document.getElementById('meta-input').value = metaEditor.root.innerHTML;
         }
     </script>
 </body>

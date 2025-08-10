@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div>
                 <label for="meta_text" class="block text-sm font-medium text-gray-700">Meta Text</label>
                 <div id="meta-editor" class="border rounded-md"><?= $productData['meta_text'] ?></div>
-                <input type="hidden" name="meta_text" id="meta-input">
+                <input type="text" name="meta_text">
             </div>
 
             <!-- Game Link -->
@@ -137,15 +137,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             theme: 'snow',
             modules: { toolbar: toolbarOptions }
         });
-
-        const metaEditor = new Quill('#meta-editor', {
-            theme: 'snow',
-            modules: { toolbar: toolbarOptions }
-        });
-
         function syncQuillContent() {
             document.getElementById('description-input').value = descriptionEditor.root.innerHTML;
-            document.getElementById('meta-input').value = metaEditor.root.innerHTML;
         }
     </script>
 </body>
