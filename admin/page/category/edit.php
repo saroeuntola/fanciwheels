@@ -61,11 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <!-- Category Image with Preview -->
-      <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-700">Category Image</label>
-        <img id="imagePreview" src="<?= htmlspecialchars($catData['cat_image']) ?>" class="h-20 w-20 object-cover rounded-md mb-2">
-        <input type="file" name="cat_image" accept="image/*" onchange="previewImage(event)" class="mt-2">
-      </div>
+      
 
       <!-- Submit Button -->
       <div class="flex items-center justify-center">

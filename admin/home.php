@@ -1,12 +1,3 @@
-<?php 
-include "../admin/page/library/checkroles.php";
-include('../admin/page/library/users_lib.php');
-protectPathAccess();  
-// $categoryCount = dbCount("categories");
-// $productCount = dbCount("games");
-// $userCount = dbCount("users");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

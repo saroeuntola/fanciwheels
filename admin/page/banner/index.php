@@ -1,116 +1,103 @@
 <?php
 include('../library/banner_lib.php');
 include('../library/users_lib.php');
-include('../library/checkroles.php');
-
-protectPathAccess();
+//include('../library/checkroles.php');
+include('../library/db.php');
+//protectPathAccess();
 $banner = new Banner();
 $banners = $banner->getBanner();
 ?>
-
-
-<!DOCTYPE html>
-<html>
-    <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Dashboard</title>
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-	<link rel="stylesheet" href="../assets/css/ready.css">
-	<link rel="stylesheet" href="../assets/css/demo.css">
-	<link rel="stylesheet" href="../assets/css/style.css">
-     <script src="https://cdn.tailwindcss.com"></script>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner Management</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+      <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body>
-    <div class="wrapper">
-        <div class="main-header">
-            <div class="logo-header">
-                <a href="#" class="logo">
-                    Dashboard
-                </a>
-                <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
+    <!-- Header -->
+        <?php
+            include '../include/header.php'
+        ?>
+    <!-- Sidebar -->
+ <?php
+            include '../include/sidebars.php'
+ ?>
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Dynamic Content Area -->
+        <div id="dynamicContent">
+            <!-- Content Sections -->
 
-            <!-- navbar -->
-            </div>
-            <!-- Corrected path for navbar.php -->
-            <?php include "../include/navbar.php"; ?>
-        </div>
+<div class="container mx-auto lg:p-10">
 
-        <!-- sidebar -->
-        <div class="sidebar">
-            <!-- Corrected path for sidebar.php -->
-            <?php include "../include/sidebar.php"; ?>
-        </div>
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-8">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-4 md:mb-0">Banner Management</h2>
+        <a href="create.php" 
+           class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out text-center">
+            + New Banner
+        </a>
+    </div>
 
-<!-- page content  -->
-        <div class="main-panel" id="content">
-             <div class="w-full max-w-6xl bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-center mb-6">Banner List</h2>
-
-        <!-- Create Product Button -->
-        <div class="flex justify-end mb-4">
-            <a href="create.php" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">+ Add Banner</a>
-        </div>
-
-        <!-- Product Table -->
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-                <thead>
-                    <tr class="text-left text-sm font-medium text-gray-600 bg-gray-50">
-                        <th class="px-4 py-3 border-b">Image</th>
-                        <th class="px-4 py-3 border-b">Title</th>
-                        <th class="px-4 py-3 border-b">Link</th>
-                        <th class="px-4 py-3 border-b">Created At</th>
-                        <th class="px-4 py-3 border-b">Actions</th>
+    <!-- Table -->
+    <div class="bg-white rounded-xl shadow-lg overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Image</th>
+                    <th scope="col" class="px-6 py-3">Title</th>
+                    <th scope="col" class="px-6 py-3">Link</th>
+                    <th scope="col" class="px-6 py-3 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if ($banners && count($banners) > 0): ?>
+                    <?php foreach ($banners as $item): ?>
+                        <tr class="bg-white border-b hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-medium text-gray-900">
+                                <img src="<?= htmlspecialchars($item['image']) ?>" alt="Game" class="h-12 w-12 object-cover rounded-md">
+                            </td>
+                            <td class="px-6 py-4">
+                                <?php echo htmlspecialchars($item['title']); ?>
+                            </td>
+                            <td class="px-6 py-4">
+                               <img src="<?= htmlspecialchars($item['image']) ?>" alt="<?php echo ($item['title']); ?>" class="h-12 w-12 object-cover rounded-md">
+                            </td>
+                            <td class="px-6 py-4">
+                                <?php echo htmlspecialchars($item['link']); ?>
+                            </td>
+                            <td class="px-6 py-4 flex justify-center space-x-3">
+                                <a href="edit?id=<?php echo $item['id']; ?>" 
+                                   class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                                    Edit
+                                </a>
+                                <a href="delete?id=<?php echo $item['id']; ?>" 
+                                   class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+                                   onclick="return confirm('Are you sure you want to delete this user?');">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="5" class="px-6 py-8 text-center text-gray-500 text-lg">
+                            No post found.
+                        </td>
                     </tr>
-                </thead>
-               <tbody>
-         <?php if (!empty($banners)): ?>
-    <?php foreach ($banners as $row): ?>
-        <tr class="text-gray-700 hover:bg-gray-50 transition">
-            <td class="px-4 py-3 border-b">
-                <img src="<?= htmlspecialchars($row['image']) ?>" alt="Banner" class="h-12 w-12 object-cover rounded-md">
-            </td>
-            <td class="px-4 py-3 border-b"><?= htmlspecialchars($row['title']) ?></td>
-            <td class="px-4 py-3 border-b"><?= htmlspecialchars($row['link']) ?></td>
-            <td class="px-4 py-3 border-b"><?= date("Y-m-d", strtotime($row['created_at'])) ?></td>
-            <td class="px-4 py-3 border-b">
-                <a href="edit?id=<?= $row['id'] ?>" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 mr-2">Edit</a>
-                <a href="delete?id=<?= $row['id'] ?>" class="bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700" onclick="return confirm('Are you sure you want to delete this banners?');">Delete</a>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-<?php else: ?>
-    <tr>
-        <td colspan="8" class="px-4 py-3 text-center text-gray-500">No banners found</td>
-    </tr>
-<?php endif; ?>
-
-</tbody>
-
-            </table>
-        </div>
+                <?php endif; ?>
+            </tbody>
+        </table>
     </div>
 
-    </div>
-
-            <!-- 
-            <footer class="footer">
-                
-            </footer> 
-            -->
-        </div>
-    </div>
 </div>
-</body>
+        </div>
+    </main>
 
-<!-- Corrected path for js.php -->
-<?php include "../include/js.php"; ?>
 
+   <script src="../assets/js/admin_script.js"></script>
 </body>
 </html>

@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php endif; ?>
 
         <!-- Edit Brand Form -->
-        <form action="edit.php?id=<?php echo $brandData['id']; ?>" method="POST" enctype="multipart/form-data">
+        <form action="edit?id=<?php echo $brandData['id']; ?>" method="POST" enctype="multipart/form-data">
             <!-- Brand Name -->
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Brand Name</label>

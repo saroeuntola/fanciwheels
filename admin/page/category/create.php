@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <!-- Category Image -->
-      <div class="mb-4">
+      <!-- <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700">Category Image</label>
         <input type="file" name="cat_image" id="cat_image" accept="image/*"
                class="mt-1 block w-full text-sm text-gray-700">
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <img id="preview" src="" alt="Image Preview"
                class="w-full h-48 object-cover rounded border border-gray-300 hidden">
         </div>
-      </div>
+      </div> -->
 
       <!-- Submit -->
       <div>

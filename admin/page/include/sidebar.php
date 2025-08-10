@@ -10,7 +10,6 @@ if (!$userId) {
     exit;
 }
 $user = $userLib->getUser($userId);
-
 ?>
 <div class="scrollbar-inner sidebar-wrapper">
     <!-- Profile Block -->
