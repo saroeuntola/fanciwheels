@@ -104,28 +104,73 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script>
-        // Quill toolbars
-        const toolbarOptions = [
-            [{ 'font': [] }, { 'size': [] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ 'color': [] }, { 'background': [] }],
-            [{ 'script': 'sub' }, { 'script': 'super' }],
-            [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
-            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-            [{ 'align': [] }],
-            ['link', 'image', 'video'],
-            ['clean']
-        ];
+       // Override image handler to upload image to server
+function uploadImage(file) {
+    const formData = new FormData();
+    formData.append('image', file);
 
-        // Description Editor
-        const descriptionEditor = new Quill('#description-editor', {
-            theme: 'snow',
-            modules: { toolbar: toolbarOptions }
-        });
-        // On submit, sync Quill content to hidden inputs
-        function syncQuillContent() {
-            document.getElementById('description-input').value = descriptionEditor.root.innerHTML;
+    return fetch('upload_image.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data && data.url) {
+            return data.url;
+        } else {
+            alert('Image upload failed');
+            return null;
         }
+    })
+    .catch(() => {
+        alert('Image upload failed');
+        return null;
+    });
+}
+
+const toolbarOptions = [
+    [{ 'font': [] }, { 'size': [] }],
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ 'color': [] }, { 'background': [] }],
+    [{ 'script': 'sub' }, { 'script': 'super' }],
+    [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+    [{ 'align': [] }],
+    ['link', 'image', 'video'],
+    ['clean']
+];
+
+const descriptionEditor = new Quill('#description-editor', {
+    theme: 'snow',
+    modules: { toolbar: toolbarOptions }
+});
+
+// Custom image handler
+descriptionEditor.getModule('toolbar').addHandler('image', () => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click();
+
+    input.onchange = async () => {
+        const file = input.files[0];
+        if (file) {
+            const range = descriptionEditor.getSelection(true);
+            // Upload image to server
+            const imageUrl = await uploadImage(file);
+            if (imageUrl) {
+                descriptionEditor.insertEmbed(range.index, 'image', imageUrl);
+                descriptionEditor.setSelection(range.index + 1);
+            }
+        }
+    };
+});
+
+// On submit, sync Quill content to hidden inputs
+function syncQuillContent() {
+    document.getElementById('description-input').value = descriptionEditor.root.innerHTML;
+}
+
     </script>
 </body>
 </html>
