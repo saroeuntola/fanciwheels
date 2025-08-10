@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <!-- Game Link -->
             <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1">Game Link</label>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Link</label>
                 <input type="text" name="game_link" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
             </div>
 

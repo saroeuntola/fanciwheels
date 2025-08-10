@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <!-- Game Link -->
             <div>
-                <label for="game_link" class="block text-sm font-medium text-gray-700">Game Link</label>
+                <label for="game_link" class="block text-sm font-medium text-gray-700">Link</label>
                 <input type="text" name="game_link" value="<?= htmlspecialchars($productData['game_link']) ?>"
                        class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
             </div>
