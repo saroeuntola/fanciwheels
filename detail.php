@@ -83,7 +83,7 @@ $metaText = $game['meta_text'] ?? 'Image';
           <?= htmlspecialchars($game['name'] ?? 'Unnamed Game') ?>
         </h1>
         <div class="text-gray-300 space-y-6 text-base leading-relaxed md:text-lg mb-10">
-          <?= nl2br($game['description'] ?? 'No description available.')?>
+          <?= $game['description'] ?? 'No description available.'?>
         </div>
       </div>
 
