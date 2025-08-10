@@ -28,14 +28,14 @@ $user = $userLib->getUser($userId);
             </div>
      
             <div class="user-menu">
-    <a href="<?php echo $baseURL; ?>/admin/page/user/profile.php" class="flex items-center space-x-3 p-2 rounded-full transition-colors duration-300">
+    <a href="<?php echo $baseURL; ?>/admin/page/user/profile.php">
     <?php if (!empty($user['profile'])): ?>
         <img src="<?php echo $baseURL; ?>/admin/page/user/user_image/<?php echo htmlspecialchars($user['profile']); ?>"
              alt="Avatar"
-             class="w-8 h-8 rounded-full object-cover shadow" />
+             />
     <?php else: ?>
-        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 text-gray-500 shadow">
-            <svg class="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <div class="">
+            <svg class="" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
             </svg>
         </div>
