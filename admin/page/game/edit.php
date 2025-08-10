@@ -88,8 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!-- Meta Text -->
             <div>
                 <label for="meta_text" class="block text-sm font-medium text-gray-700">Meta Text</label>
-                <div id="meta-editor" class="border rounded-md"><?= $productData['meta_text'] ?></div>
-                <input type="text" name="meta_text">
+                 <input type="text" name="game_link" value="<?= htmlspecialchars($productData['meta_text']) ?>"
+                       class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
             </div>
 
             <!-- Game Link -->
