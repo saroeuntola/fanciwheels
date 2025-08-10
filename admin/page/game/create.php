@@ -150,7 +150,7 @@ function uploadImage(file) {
     formData.append('image', file);
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'upload_image.php', true); // your upload PHP handler
+    xhr.open('POST', 'upload_image', true); // your upload PHP handler
 
     xhr.onload = () => {
         if (xhr.status === 200) {
