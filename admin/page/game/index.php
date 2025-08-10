@@ -1,9 +1,8 @@
 <?php
 include('../library/game_lib.php');
 include('../library/users_lib.php');
-include('../library/db.php');
-//include('../library/checkroles.php');
-//protectPathAccess();
+include('../library/checkroles.php');
+protectPathAccess();
 $product = new Games();
 $products = $product->getgames();
 ?>

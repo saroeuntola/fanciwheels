@@ -1,11 +1,10 @@
 <?php
 
 include('../library/category_lib.php');
-// include('../library/checkroles.php');
+ include('../library/checkroles.php');
 include('../library/users_lib.php');
-include('../library/db.php');
 $category = new Category();
-// protectPathAccess();
+protectPathAccess();
 $categories = $category->getCategories();
 
 

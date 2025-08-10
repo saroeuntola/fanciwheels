@@ -1,9 +1,8 @@
 <?php
 include('../library/brand_lib.php');
 include('../library/users_lib.php');
-include('../library/db.php');
-
-//protectPathAccess();
+include('../library/checkroles.php');
+protectPathAccess();
 $brand = new Brand();
 $brands = $brand->getBrand();
 ?>
