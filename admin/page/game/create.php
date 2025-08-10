@@ -10,10 +10,10 @@ $categories = $category->getCategories();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $gameName = $_POST['name'];
-    $description = $_POST['description']; // HTML from TinyMCE
+    $description = $_POST['description']; // HTML from Quill
     $game_link = $_POST['game_link']; 
     $categoryId = $_POST['category_id'];
-    $meta_text = $_POST['meta_text']; // HTML from TinyMCE
+    $meta_text = $_POST['meta_text']; // HTML from Quill
 
     // Handle Image Upload
     $imagePath = "";
@@ -39,24 +39,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Create Posts</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- TinyMCE -->
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-      tinymce.init({
-        selector: '.richtext',
-        height: 250,
-        menubar: false,
-        plugins: 'lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
-        toolbar: 'undo redo | formatselect | bold italic underline | fontsizeselect forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | preview code',
-        fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt'
-      });
-    </script>
+    <!-- Quill CSS & JS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+    <style>
+        .ql-editor {
+            min-height: 150px;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="w-full max-w-2xl bg-white p-8 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold text-center mb-6 text-indigo-700">Create Post</h2>
 
-        <form action="create" method="POST" enctype="multipart/form-data" class="space-y-5">
+        <form action="create" method="POST" enctype="multipart/form-data" class="space-y-5" onsubmit="syncQuillContent()">
             <!-- Product Name -->
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Title</label>
@@ -72,13 +69,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!-- Description -->
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
-                <textarea name="description" class="richtext w-full border rounded-md"></textarea>
+                <div id="description-editor" class="border rounded-md"></div>
+                <input type="hidden" name="description" id="description-input">
             </div>
 
             <!-- Meta Text -->
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Meta Text</label>
-                <textarea name="meta_text" class="richtext w-full border rounded-md"></textarea>
+                <div id="meta-editor" class="border rounded-md"></div>
+                <input type="hidden" name="meta_text" id="meta-input">
             </div>
 
             <!-- Game Link -->
@@ -104,5 +103,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </button>
         </form>
     </div>
+
+    <script>
+        // Quill toolbars
+        const toolbarOptions = [
+            [{ 'font': [] }, { 'size': [] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'script': 'sub' }, { 'script': 'super' }],
+            [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'align': [] }],
+            ['link', 'image', 'video'],
+            ['clean']
+        ];
+
+        // Description Editor
+        const descriptionEditor = new Quill('#description-editor', {
+            theme: 'snow',
+            modules: { toolbar: toolbarOptions }
+        });
+
+        // Meta Text Editor
+        const metaEditor = new Quill('#meta-editor', {
+            theme: 'snow',
+            modules: { toolbar: toolbarOptions }
+        });
+
+        // On submit, sync Quill content to hidden inputs
+        function syncQuillContent() {
+            document.getElementById('description-input').value = descriptionEditor.root.innerHTML;
+            document.getElementById('meta-input').value = metaEditor.root.innerHTML;
+        }
+    </script>
 </body>
 </html>
