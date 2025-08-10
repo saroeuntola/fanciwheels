@@ -76,14 +76,14 @@ $metaText = $game['meta_text'] ?? 'Image';
       <div class="bg-gray-800 rounded-2xl shadow-md p-6 md:p-8">
         <img
           src="<?= './admin/page/game/' . htmlspecialchars($gameImage) ?>"
-          alt="<?= htmlspecialchars($metaText) ?>"
+          alt="<?= $metaText ?>"
           class="w-full h-64 object-cover rounded-xl mb-6"
         />
         <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-snug break-words">
           <?= htmlspecialchars($game['name'] ?? 'Unnamed Game') ?>
         </h1>
         <div class="text-gray-300 space-y-6 text-base leading-relaxed md:text-lg mb-10">
-          <?= nl2br(htmlspecialchars($game['description'] ?? 'No description available.')) ?>
+          <?= nl2br($game['description'] ?? 'No description available.')?>
         </div>
       </div>
 
