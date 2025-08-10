@@ -56,15 +56,13 @@ $banners = $banner->getBanner();
                 <?php if ($banners && count($banners) > 0): ?>
                     <?php foreach ($banners as $item): ?>
                         <tr class="bg-white border-b hover:bg-gray-50 transition">
-                            <td class="px-6 py-4 font-medium text-gray-900">
-                                <img src="<?= htmlspecialchars($item['image']) ?>" alt="Game" class="h-12 w-12 object-cover rounded-md">
+                                 <td class="px-6 py-4">
+                               <img src="<?= htmlspecialchars($item['image']) ?>" alt="<?php echo ($item['title']); ?>" class="h-12 w-12 object-cover rounded-md">
                             </td>
                             <td class="px-6 py-4">
                                 <?php echo htmlspecialchars($item['title']); ?>
                             </td>
-                            <td class="px-6 py-4">
-                               <img src="<?= htmlspecialchars($item['image']) ?>" alt="<?php echo ($item['title']); ?>" class="h-12 w-12 object-cover rounded-md">
-                            </td>
+                    
                             <td class="px-6 py-4">
                                 <?php echo htmlspecialchars($item['link']); ?>
                             </td>

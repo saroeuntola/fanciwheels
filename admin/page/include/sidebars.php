@@ -54,7 +54,7 @@
             <div class="menu-section">System</div>
         
             <li class="menu-item">
-                <a href="<?php echo $baseURL; ?>/logout.php">
+                <a href="<?php echo $baseURL; ?>/logout">
                     <span class="menu-icon">🚪</span>
                     <span>Logout</span>
                 </a>
