@@ -15,7 +15,19 @@ if (!$game) {
     echo "Game not found.";
     exit;
 }
-
+function fixDescriptionImagePaths($html, $baseUrl) {
+    return preg_replace_callback('/<img[^>]+src="([^"]+)"[^>]*>/i', function ($matches) use ($baseUrl) {
+        $src = $matches[1];
+        // If src is already absolute or base64, do nothing
+        if (preg_match('/^(https?:|data:)/', $src)) {
+            return $matches[0];
+        }
+        // Prepend base URL if not absolute
+        $newSrc = rtrim($baseUrl, '/') . '/' . ltrim($src, '/');
+        return str_replace($src, $newSrc, $matches[0]);
+    }, $html);
+}
+$baseImageUrl = './admin/page/game';  // adjust if your images folder path is different
 $relatedGames = $gameObj->getRelatedGames($id, $game['category_id'], 6);
 $popularGames = $gameObj->getPopularGames(8);
 
@@ -82,9 +94,13 @@ $metaText = $game['meta_text'] ?? 'Image';
         <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-snug break-words">
           <?= htmlspecialchars($game['name'] ?? 'Unnamed Game') ?>
         </h1>
-        <div class="text-gray-300 space-y-6 text-base leading-relaxed md:text-lg mb-10">
-          <?= $game['description'] ?? 'No description available.'?>
-        </div>
+      <?php
+$fixedDescription = fixDescriptionImagePaths($game['description'] ?? '', $baseImageUrl);
+?>
+<div class="text-gray-300 space-y-6 text-base leading-relaxed md:text-lg mb-10">
+  <?= $fixedDescription ?: 'No description available.' ?>
+</div>
+
       </div>
 
       <!-- Related Games -->
