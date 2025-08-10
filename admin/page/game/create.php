@@ -104,31 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script>
-       // Override image handler to upload image to server
-function uploadImage(file) {
-    const formData = new FormData();
-    formData.append('image', file);
-
-    return fetch('upload_image.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if(data && data.url) {
-            return data.url;
-        } else {
-            alert('Image upload failed');
-            return null;
-        }
-    })
-    .catch(() => {
-        alert('Image upload failed');
-        return null;
-    });
-}
-
-const toolbarOptions = [
+        // Quill toolbars
+  const toolbarOptions = [
     [{ 'font': [] }, { 'size': [] }],
     ['bold', 'italic', 'underline', 'strike'],
     [{ 'color': [] }, { 'background': [] }],
@@ -140,35 +117,62 @@ const toolbarOptions = [
     ['clean']
 ];
 
-const descriptionEditor = new Quill('#description-editor', {
+      const descriptionEditor = new Quill('#description-editor', {
     theme: 'snow',
-    modules: { toolbar: toolbarOptions }
+    modules: {
+        toolbar: {
+            container: toolbarOptions,
+            handlers: {
+                image: function() {
+                    selectLocalImage();
+                }
+            }
+        }
+    }
 });
 
-// Custom image handler
-descriptionEditor.getModule('toolbar').addHandler('image', () => {
+function selectLocalImage() {
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
     input.setAttribute('accept', 'image/*');
     input.click();
 
-    input.onchange = async () => {
+    input.onchange = () => {
         const file = input.files[0];
         if (file) {
-            const range = descriptionEditor.getSelection(true);
-            // Upload image to server
-            const imageUrl = await uploadImage(file);
-            if (imageUrl) {
-                descriptionEditor.insertEmbed(range.index, 'image', imageUrl);
-                descriptionEditor.setSelection(range.index + 1);
-            }
+            uploadImage(file);
         }
     };
-});
+}
 
-// On submit, sync Quill content to hidden inputs
-function syncQuillContent() {
-    document.getElementById('description-input').value = descriptionEditor.root.innerHTML;
+function uploadImage(file) {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'upload_image.php', true); // your upload PHP handler
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            // Successful upload, insert image URL into editor
+            const response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                insertToEditor(response.url);
+            } else {
+                alert('Upload failed: ' + response.message);
+            }
+        } else {
+            alert('Image upload failed with status ' + xhr.status);
+        }
+    };
+
+    xhr.send(formData);
+}
+
+function insertToEditor(url) {
+    // Get current cursor position
+    const range = descriptionEditor.getSelection();
+    descriptionEditor.insertEmbed(range.index, 'image', url);
 }
 
     </script>
