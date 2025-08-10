@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="bg-white p-8 rounded-3xl shadow-xl w-full max-w-2xl">
         <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Edit Profile</h2>
 
-        <form action="edit_profile.php" method="POST" enctype="multipart/form-data" class="space-y-5">
+        <form action="edit_profile" method="POST" enctype="multipart/form-data" class="space-y-5">
 
             <!-- Username -->
             <div>

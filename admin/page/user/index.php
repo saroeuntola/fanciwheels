@@ -72,8 +72,8 @@ $users = $user -> getUsers();
     </span>
 </td>";
                 echo "<td class='px-6 py-4 border-b'>";
-                echo "<a href='edit.php?id={$userRow['id']}' class='text-white bg-blue-500 me-2 px-3 py-2 rounded-md text-sm'>Edit</a>";
-                echo "<a href='delete.php?id={$userRow['id']}' class='text-white bg-red-500 hover:text-red-800 px-3 py-2 rounded-md text-sm' onclick='return confirm(\"Are you sure you want to delete this user?\");'>Delete</a>";
+                echo "<a href='edit?id={$userRow['id']}' class='text-white bg-blue-500 me-2 px-3 py-2 rounded-md text-sm'>Edit</a>";
+                echo "<a href='delete?id={$userRow['id']}' class='text-white bg-red-500 hover:text-red-800 px-3 py-2 rounded-md text-sm' onclick='return confirm(\"Are you sure you want to delete this user?\");'>Delete</a>";
                 echo "</td>";
                 echo "</tr>";
             }

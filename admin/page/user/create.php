@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h2 class="text-2xl font-bold text-center mb-6">Register</h2>
 
         <!-- Registration Form -->
-        <form action="create.php" method="POST">
+        <form action="create" method="POST">
             <!-- Username -->
             <div class="mb-4">
                 <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
