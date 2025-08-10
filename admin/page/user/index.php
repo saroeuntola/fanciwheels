@@ -1,9 +1,9 @@
 <?php
 include('../library/users_lib.php');
-// include('../library/checkroles.php');
-include('../library/db.php');
+include('../library/checkroles.php');
+
 $user = new User();
-// protectPathAccess();
+protectPathAccess();
 $users = $user -> getUsers();
 ?>
     <!DOCTYPE html>
@@ -26,7 +26,7 @@ $users = $user -> getUsers();
  ?>
     <!-- Main Content -->
     <main class="main-content" id="mainContent">
-        
+
         <!-- Dynamic Content Area -->
         <div id="dynamicContent">
             <!-- Content Sections -->
