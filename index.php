@@ -49,10 +49,12 @@ if ($selectedCategory) {
   <meta name="twitter:description" content="Explore the best cities in Bangladesh for your next trip. Travel guides, tips, and more." />
   <meta name="twitter:image" content="https://fanciwheel.com" />
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
      <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <style>
@@ -170,7 +172,7 @@ if ($selectedCategory) {
 </div>
 
   <?php include 'footer.php'; ?>
-  <?php include 'spin-popup.php'; ?>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>

@@ -31,10 +31,10 @@ $games = $query ? $gameObj->searchgames($query) : [];
   </div>
 </section>
 
-<main class="container mx-auto px-4 py-12">
+<main class="container max-w-7xl mx-auto px-4 md:px-[25px] lg:px-[38px] py-12">
   <?php if ($query && count($games) > 0): ?>
     <!-- Game Results Grid -->
-    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
       <?php foreach ($games as $g): ?>
         <div class="group relative bg-gray-800 rounded-xl shadow-sm hover:shadow-xl border border-gray-700 hover:border-blue-500 transition-all duration-300 overflow-hidden">
           <!-- Image -->
@@ -68,10 +68,10 @@ $games = $query ? $gameObj->searchgames($query) : [];
       <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-700 rounded-full mb-4">
         <i class="fas fa-search text-gray-400 text-2xl"></i>
       </div>
-      <h2 class="text-xl font-semibold text-gray-300 mb-2">No games found</h2>
+      <h2 class="text-xl font-semibold text-gray-300 mb-2">No post found</h2>
       <p class="text-gray-500 mb-6">We couldn’t find any matches for "<strong><?= htmlspecialchars($query) ?></strong>".</p>
-      <a href="index.php" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
-        Back to Games
+      <a href="/" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
+        Back to Home
       </a>
     </div>
   <?php else: ?>

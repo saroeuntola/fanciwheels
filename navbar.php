@@ -1,5 +1,4 @@
 <?php
-session_start();
 include './admin/page/library/users_lib.php';
 include './admin/page/library/brand_lib.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
@@ -29,6 +28,7 @@ if (!file_exists($fullPath)) {
 }
 ?>
 
+<link rel="stylesheet" href="./admin/page/assets/css/navbar.css">
 <!-- Modern Navbar with Glassmorphism Effect -->
 <nav class="relative bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 backdrop-blur-md shadow-2xl border-b border-white/10">
   <!-- Background Pattern -->
@@ -68,20 +68,10 @@ if (!file_exists($fullPath)) {
         </a>
         <!-- Modern Search Bar -->
         <form action="search.php" method="GET" class="relative group">
-          <div class="relative">
-            <input type="text" name="q" placeholder="Search..."
-              class="w-64 px-4 py-2 pl-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 focus:w-72">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg class="h-5 w-5 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-              </svg>
+          <div class="search-bar">
+                <input type="text" name="q" placeholder="Search...">
+                <button type="submit" class="search-icon">🔍</button>
             </div>
-            <button type="submit" class="absolute inset-y-0 right-0 flex items-center pr-3 text-white/60 hover:text-white transition-colors duration-300">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-              </svg>
-            </button>
-          </div>
         </form>
         <!-- Desktop Profile -->
         <?php if ($userId): ?>
@@ -197,20 +187,10 @@ if (!file_exists($fullPath)) {
         <span>FAQ</span>
       </a>
       <form action="search.php" method="GET" class="relative group">
-          <div class="relative">
-            <input type="text" name="q" placeholder="Search..."
-              class="w-full px-4 py-2 pl-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg class="h-5 w-5 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-              </svg>
+        <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button type="submit" class="search-icon">🔍</button>
             </div>
-            <button type="submit" class="absolute inset-y-0 right-0 flex items-center pr-3 text-white/60 hover:text-white transition-colors duration-300">
-              <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-              </svg>
-            </button>
-          </div>
         </form>
     </div>
   </div>
