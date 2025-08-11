@@ -1,6 +1,6 @@
 <?php
 include './admin/page/library/game_lib.php';
-include './admin/page/library/category_lib.php'; 
+include './admin/page/library/category_lib.php';
 include './admin/page/library/db.php';
 $gameObj = new Games();
 $categoryObj = new Category();
@@ -13,32 +13,36 @@ $selectedCategory = isset($_GET['category']) ? $_GET['category'] : null;
 
 // Get games (filter if category is selected)
 if ($selectedCategory) {
-    $games = array_filter($gameObj->getgames(), function($g) use ($selectedCategory) {
-        return $g['category_id'] == $selectedCategory;
-    });
+  $games = array_filter($gameObj->getgames(), function ($g) use ($selectedCategory) {
+    return $g['category_id'] == $selectedCategory;
+  });
 } else {
-    $games = $gameObj->getgames();
+  $games = $gameObj->getgames();
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <!-- Title for search engines -->
   <title>Popular Cities in Bangladesh Tour - Explore Dhaka, Chittagong & More!</title>
 
   <!-- Meta description for Google -->
-  <meta name="description" content="Discover the most popular cities in Bangladesh. Explore Dhaka, Chittagong, Sylhet, and more with our comprehensive tour guides and travel tips. Plan your perfect trip today!">
+  <meta name="description"
+    content="Discover the most popular cities in Bangladesh. Explore Dhaka, Chittagong, Sylhet, and more with our comprehensive tour guides and travel tips. Plan your perfect trip today!">
 
-  <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845" type="image/png">
+  <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845"
+    type="image/png">
   <!-- Canonical URL -->
   <link rel="canonical" href="https://fanciwheel.com" />
 
   <!-- Open Graph (for Facebook, LinkedIn, etc.) -->
   <meta property="og:title" content="Popular Cities in Bangladesh Tour - Explore Top Destinations!" />
-  <meta property="og:description" content="Plan your Bangladesh tour with highlights on Dhaka, Chittagong, Sylhet, and other must-see cities. Get travel guides and tips now." />
+  <meta property="og:description"
+    content="Plan your Bangladesh tour with highlights on Dhaka, Chittagong, Sylhet, and other must-see cities. Get travel guides and tips now." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fanciwheel.com" />
   <meta property="og:image" content="https://fanciwheel.com/" />
@@ -46,15 +50,17 @@ if ($selectedCategory) {
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Popular Cities in Bangladesh Tour - Explore Top Destinations!" />
-  <meta name="twitter:description" content="Explore the best cities in Bangladesh for your next trip. Travel guides, tips, and more." />
+  <meta name="twitter:description"
+    content="Explore the best cities in Bangladesh for your next trip. Travel guides, tips, and more." />
   <meta name="twitter:image" content="https://fanciwheel.com" />
 
   <script src="https://cdn.tailwindcss.com"></script>
-     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <style>
@@ -65,7 +71,7 @@ if ($selectedCategory) {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -77,17 +83,17 @@ if ($selectedCategory) {
   select::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   select::-webkit-scrollbar-track {
     background: #f1f5f9;
     border-radius: 4px;
   }
-  
+
   select::-webkit-scrollbar-thumb {
     background: #cbd5e1;
     border-radius: 4px;
   }
-  
+
   select::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
   }
@@ -131,15 +137,20 @@ if ($selectedCategory) {
     0% {
       transform: translateX(-200%) skewX(-12deg);
     }
+
     100% {
       transform: translateX(200%) skewX(-12deg);
     }
   }
+
   /* Gradient animations */
   @keyframes gradient-x {
-    0%, 100% {
+
+    0%,
+    100% {
       background-position: 0% 50%;
     }
+
     50% {
       background-position: 100% 50%;
     }
@@ -150,31 +161,25 @@ if ($selectedCategory) {
     animation: gradient-x 3s ease infinite;
   }
 </style>
+
 <body class="bg-gray-900 text-white">
   <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
     <?php include 'navbar.php'; ?>
   </nav>
-
   <?php include 'loading.php'; ?>
   <?php include 'slideshow.php'; ?>
   <?php include 'scroll-top-button.php'; ?>
-
   <!-- Cards Section -->
   <div class="max-w-7xl mx-auto lg:px-[35px] md:px-[24px] mt-6">
     <?php include 'card.php'; ?>
   </div>
-
-    <div class="max-w-7xl mx-auto lg:px-[35px] md:px-[24px]">
-    <?php include 'games-grid.php'?>
+  <div class="max-w-7xl mx-auto lg:px-[35px] md:px-[24px]">
+    <?php include 'games-grid.php' ?>
   </div>
-<div class="mb-12">
-
-</div>
-
+  <div class="mb-12">
+  </div>
   <?php include 'footer.php'; ?>
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>

@@ -33,10 +33,10 @@ if (!file_exists($fullPath)) {
 <nav class="relative bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 backdrop-blur-md shadow-2xl border-b border-white/10">
   <!-- Background Pattern -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] bg-[size:20px_20px] opacity-20"></div>
-  
+
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
     <div class="flex justify-between items-center h-16">
-      
+
       <div class="flex-shrink-0">
         <a href="/" class="group relative">
           <span class="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105">
@@ -53,7 +53,7 @@ if (!file_exists($fullPath)) {
           <span class="relative z-10">Home</span>
           <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
         </a>
-         <a href="services" class="relative text-white/90 hover:text-white transition-all duration-300 group">
+        <a href="services" class="relative text-white/90 hover:text-white transition-all duration-300 group">
           <span class="relative z-10">Services</span>
           <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
         </a>
@@ -61,7 +61,7 @@ if (!file_exists($fullPath)) {
           <span class="relative z-10">About</span>
           <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
         </a>
-       
+
         <a href="faq" class="relative text-white/90 hover:text-white transition-all duration-300 group">
           <span class="relative z-10">FAQ</span>
           <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
@@ -69,9 +69,9 @@ if (!file_exists($fullPath)) {
         <!-- Modern Search Bar -->
         <form action="search.php" method="GET" class="relative group">
           <div class="search-bar">
-                <input type="text" name="q" placeholder="Search...">
-                <button type="submit" class="search-icon">🔍</button>
-            </div>
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit" class="search-icon">🔍</button>
+          </div>
         </form>
         <!-- Desktop Profile -->
         <?php if ($userId): ?>
@@ -83,21 +83,21 @@ if (!file_exists($fullPath)) {
                 class="w-8 h-8 object-cover rounded-full border-2 border-white/30 group-hover:border-white/60 transition-all duration-300">
               <span class="text-white/90 text-sm font-medium group-hover:text-white transition-colors duration-300"><?= htmlspecialchars(substr($username, 0, 8)) ?></span>
               <svg class="w-4 h-4 text-white/60 group-hover:text-white transition-all duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             <div id="profileDropdown" class="absolute right-0 mt-2 w-48 bg-slate-800/95 backdrop-blur-lg border border-slate-700/50 text-white rounded-xl shadow-2xl hidden z-[9999] overflow-hidden">
               <div class="py-1">
                 <a href="<?= $baseURL ?>/admin/page/user/profile.php" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-700/50 transition-all duration-200">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                   <span>Profile</span>
                 </a>
                 <div class="border-t border-slate-700/50 my-1"></div>
                 <a href="logout.php" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all duration-200">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                   </svg>
                   <span>Logout</span>
                 </a>
@@ -113,48 +113,48 @@ if (!file_exists($fullPath)) {
       </div>
 
       <!-- Mobile Toggle + Profile -->
-<div class="lg:hidden flex items-center gap-3 relative">
-  <?php if ($userId): ?>
-    <button id="mobileProfileBtn" class="relative p-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 focus:outline-none">
-      <img src="<?= $profilePath ?>" 
-        alt="Profile" 
-        title="<?= htmlspecialchars($username) ?>"
-        class="w-8 h-8 object-cover rounded-full border-2 border-white/30">
-    </button>
-    <!-- Mobile Profile Dropdown -->
-    <div id="mobileProfileDropdown" class="absolute right-12 top-12 w-48 bg-slate-800/95 backdrop-blur-lg border border-slate-700/50 text-white rounded-xl shadow-2xl hidden z-[9999] overflow-hidden">
-      <div class="py-1">
-        <a href="<?= $baseURL ?>/admin/page/user/profile.php" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-700/50 transition-all duration-200">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+      <div class="lg:hidden flex items-center gap-3 relative">
+        <?php if ($userId): ?>
+          <button id="mobileProfileBtn" class="relative p-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 focus:outline-none">
+            <img src="<?= $profilePath ?>"
+              alt="Profile"
+              title="<?= htmlspecialchars($username) ?>"
+              class="w-8 h-8 object-cover rounded-full border-2 border-white/30">
+          </button>
+          <!-- Mobile Profile Dropdown -->
+          <div id="mobileProfileDropdown" class="absolute right-12 top-12 w-48 bg-slate-800/95 backdrop-blur-lg border border-slate-700/50 text-white rounded-xl shadow-2xl hidden z-[9999] overflow-hidden">
+            <div class="py-1">
+              <a href="<?= $baseURL ?>/admin/page/user/profile.php" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-700/50 transition-all duration-200">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span>Profile</span>
+              </a>
+              <div class="border-t border-slate-700/50 my-1"></div>
+              <a href="logout.php" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all duration-200">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span>Logout</span>
+              </a>
+            </div>
+          </div>
+        <?php else: ?>
+          <a href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" class="p-2 text-white/90 hover:text-white rounded-full hover:bg-white/10 transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </a>
+        <?php endif; ?>
+        <!-- Modern Hamburger Toggle -->
+        <button onclick="toggleMenu()" class="relative p-2 text-white focus:outline-none group" aria-label="Toggle Menu">
+          <div class="absolute inset-0 bg-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+          <svg id="hamburgerIcon" class="w-6 h-6 relative z-10 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <span>Profile</span>
-        </a>
-        <div class="border-t border-slate-700/50 my-1"></div>
-        <a href="logout.php" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all duration-200">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-          </svg>
-          <span>Logout</span>
-        </a>
+        </button>
       </div>
-    </div>
-  <?php else: ?>
-    <a href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" class="p-2 text-white/90 hover:text-white rounded-full hover:bg-white/10 transition-all duration-300">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-      </svg>
-    </a>
-  <?php endif; ?>
-  <!-- Modern Hamburger Toggle -->
-  <button onclick="toggleMenu()" class="relative p-2 text-white focus:outline-none group" aria-label="Toggle Menu">
-    <div class="absolute inset-0 bg-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-    <svg id="hamburgerIcon" class="w-6 h-6 relative z-10 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2"
-         viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M4 6h16M4 12h16M4 18h16"/>
-    </svg>
-  </button>
-</div>
     </div>
   </div>
 
@@ -164,106 +164,116 @@ if (!file_exists($fullPath)) {
 
       <a href="/" class="flex items-center gap-3 px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
         </svg>
         <span>Home</span>
       </a>
-           <a href="services" class="flex items-center gap-3 px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
+      <a href="services" class="flex items-center gap-3 px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
         </svg>
         <span>Services</span>
       </a>
       <a href="about" class="flex items-center gap-3 px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         <span>About</span>
       </a>
       <a href="faq" class="flex items-center gap-3 px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
         <span>FAQ</span>
       </a>
       <form action="search.php" method="GET" class="relative group">
         <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <button type="submit" class="search-icon">🔍</button>
-            </div>
-        </form>
+          <input type="text" placeholder="Search...">
+          <button type="submit" class="search-icon">🔍</button>
+        </div>
+      </form>
     </div>
   </div>
 </nav>
 <!-- JavaScript for Navbar Interactions -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(function() {
-  // Toggle mobile menu with rotation animation on hamburger icon
-  $('#hamburgerIcon').on('click', function() {
-    $('#mobileMenu').stop(true, true).fadeToggle(250);
-    $(this).toggleClass('rotate-90');
-  });
+  $(function() {
+    // Toggle mobile menu with rotation animation on hamburger icon
+    $('#hamburgerIcon').on('click', function() {
+      $('#mobileMenu').stop(true, true).fadeToggle(250);
+      $(this).toggleClass('rotate-90');
+    });
 
-  // Function to close dropdown if clicking outside or on escape key
-  function setupDropdown(toggleBtnSelector, dropdownSelector) {
-    const $btn = $(toggleBtnSelector);
-    const $dropdown = $(dropdownSelector);
+    // Function to close dropdown if clicking outside or on escape key
+    function setupDropdown(toggleBtnSelector, dropdownSelector) {
+      const $btn = $(toggleBtnSelector);
+      const $dropdown = $(dropdownSelector);
 
-    if ($btn.length && $dropdown.length) {
-      $btn.on('click', function(e) {
-        e.stopPropagation();
-        $dropdown.stop(true, true).fadeToggle(200);
-      });
+      if ($btn.length && $dropdown.length) {
+        $btn.on('click', function(e) {
+          e.stopPropagation();
+          $dropdown.stop(true, true).fadeToggle(200);
+        });
 
-      // Click outside closes dropdown
-      $(document).on('click', function(e) {
-        if (!$btn.is(e.target) && $btn.has(e.target).length === 0 &&
+        // Click outside closes dropdown
+        $(document).on('click', function(e) {
+          if (!$btn.is(e.target) && $btn.has(e.target).length === 0 &&
             !$dropdown.is(e.target) && $dropdown.has(e.target).length === 0) {
-          $dropdown.stop(true, true).fadeOut(200);
-        }
-      });
+            $dropdown.stop(true, true).fadeOut(200);
+          }
+        });
 
-      // Escape key closes dropdown
-      $(document).on('keydown', function(e) {
-        if (e.key === 'Escape' && $dropdown.is(':visible')) {
-          $dropdown.stop(true, true).fadeOut(200);
-        }
-      });
+        // Escape key closes dropdown
+        $(document).on('keydown', function(e) {
+          if (e.key === 'Escape' && $dropdown.is(':visible')) {
+            $dropdown.stop(true, true).fadeOut(200);
+          }
+        });
+      }
     }
-  }
 
-  // Setup dropdowns
-  setupDropdown('#profileMenuBtn', '#profileDropdown');
-  setupDropdown('#mobileProfileBtn', '#mobileProfileDropdown');
+    // Setup dropdowns
+    setupDropdown('#profileMenuBtn', '#profileDropdown');
+    setupDropdown('#mobileProfileBtn', '#mobileProfileDropdown');
 
-  // Search input focus/blur ring effect
-  const $searchInput = $('input[name="q"]');
-  $searchInput.on('focus', function() {
-    $(this).parent().addClass('ring-2 ring-purple-500');
-  });
-  $searchInput.on('blur', function() {
-    $(this).parent().removeClass('ring-2 ring-purple-500');
-  });
+    // Search input focus/blur ring effect
+    const $searchInput = $('input[name="q"]');
+    $searchInput.on('focus', function() {
+      $(this).parent().addClass('ring-2 ring-purple-500');
+    });
+    $searchInput.on('blur', function() {
+      $(this).parent().removeClass('ring-2 ring-purple-500');
+    });
 
-  // Smooth scroll for anchor links
-  $('a[href^="#"]').on('click', function(e) {
-    e.preventDefault();
-    const target = $($(this).attr('href'));
-    if (target.length) {
-      $('html, body').animate({ scrollTop: target.offset().top }, 500);
-    }
+    // Smooth scroll for anchor links
+    $('a[href^="#"]').on('click', function(e) {
+      e.preventDefault();
+      const target = $($(this).attr('href'));
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 500);
+      }
+    });
   });
-});
 </script>
 
 
 <style>
   /* Custom gradient animations */
   @keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   .animate-gradient {
@@ -294,6 +304,7 @@ $(function() {
     .backdrop-blur-md {
       background-color: rgba(30, 41, 59, 0.8);
     }
+
     .backdrop-blur-lg {
       background-color: rgba(30, 41, 59, 0.9);
     }
