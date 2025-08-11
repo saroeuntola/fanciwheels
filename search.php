@@ -19,8 +19,12 @@ $games = $query ? $gameObj->searchgames($query) : [];
 </head>
 <body class="bg-gray-900 font-sans text-gray-100">
 
-<?php include 'navbar.php'; ?>
-
+ <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
+    <?php include 'navbar.php'; ?>
+  </nav>
+<?php 
+include 'loading.php'
+?>
 <!-- Header Banner -->
 <section class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-16 text-center shadow-md">
   <div class="max-w-4xl mx-auto px-4">
