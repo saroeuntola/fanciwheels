@@ -1,7 +1,7 @@
 <?php
 include "../admin/page/library/protect-route.php";
 include('../admin/page/library/players_lib.php');
-require '/vendor/autoload.php';
+require './vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
