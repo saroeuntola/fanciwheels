@@ -176,11 +176,6 @@
 <div class="post-container">
     <div class="post-header">
         <h1 class="post-title">Popular Cities in Bangladesh</h1>
-        <!-- Sort dropdown -->
-        <select id="sortSelect">
-            <option value="asc" <?= isset($_GET['sort']) && $_GET['sort'] === 'asc' ? 'selected' : '' ?>>A–Z</option>
-            <option value="desc" <?= isset($_GET['sort']) && $_GET['sort'] === 'desc' ? 'selected' : '' ?>>Z–A</option>
-        </select>
     </div>
 
     <p class="post-subtitle mt-2">

@@ -78,43 +78,6 @@ include 'loading.php'
       </p>
     </section>
 
-    <!-- Gaming License & Payment Image -->
-    <section class="bg-gray-800 p-6 rounded-lg my-12">
-  <!-- Gaming License -->
-  <div class="mb-10">
-    <h2 class="text-2xl font-bold text-white mb-4">📜 Gaming License</h2>
-    <ul class="flex items-center">
-      <li>
-        <img 
-          src="https://img.f369w.com/fw/h5/assets/images/footer/white/license1.png?v=1753166904845&source=mcdsrc" 
-          alt="Gaming License Curacao" 
-          class="w-40 h-auto" 
-          loading="lazy" />
-      </li>
-    </ul>
-  </div>
-  <!-- Payment Methods -->
-  <div class="">
-    <h2 class="text-2xl font-bold text-white mb-4">💳 Payment Methods</h2>
-    <ul class="flex flex-wrap gap-4 items-center">
-      <li><img src="https://img.f369w.com/fw/h5/assets/images/footer/white/pay22.png?v=1753166904845&source=mcdsrc" alt="pay22" class="w-16 h-auto" loading="lazy" /></li>
-      <li><img src="https://img.f369w.com/fw/h5/assets/images/footer/white/pay34.png?v=1753166904845&source=mcdsrc" alt="pay34" class="w-16 h-auto" loading="lazy" /></li>
-      <li><img src="https://img.f369w.com/fw/h5/assets/images/footer/white/pay33.png?v=1753166904845&source=mcdsrc" alt="pay33" class="w-16 h-auto" loading="lazy" /></li>
-      <li><img src="https://img.f369w.com/fw/h5/assets/images/footer/white/pay45.png?v=1753166904845&source=mcdsrc" alt="pay45" class="w-16 h-auto" loading="lazy" /></li>
-      <li><img src="https://img.f369w.com/fw/h5/assets/images/footer/white/pay61.png?v=1753166904845&source=mcdsrc" alt="pay61" class="w-16 h-auto" loading="lazy" /></li>
-      <li><img src="https://img.f369w.com/fw/h5/assets/images/footer/white/pay59.png?v=1753166904845&source=mcdsrc" alt="pay59" class="w-16 h-auto" loading="lazy" /></li>
-      <li><img src="https://img.f369w.com/fw/h5/assets/images/footer/white/pay60.png?v=1753166904845&source=mcdsrc" alt="pay60" class="w-16 h-auto" loading="lazy" /></li>
-      <li><img src="https://img.f369w.com/fw/h5/assets/images/footer/white/pay8.png?v=1753166904845&source=mcdsrc" alt="pay8" class="w-16 h-auto" loading="lazy" /></li>
-      <li><img src="https://img.f369w.com/fw/h5/assets/images/footer/white/pay47.png?v=1753166904845&source=mcdsrc" alt="pay47" class="w-16 h-auto" loading="lazy" /></li>
-    </ul>
-  </div>
-</section>
-      <div class="flex justify-center mt-16 px-4">
-  <a href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank"
-     class="bg-yellow-400 hover:bg-yellow-500 text-black text-center text-lg sm:text-xl font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg transition-all duration-300 w-full max-w-xs sm:max-w-md">
-    🎯 Join Fancywin Now & Start Winning!
-  </a>
-</div>
   </main>
 <?php
  include 'footer.php'

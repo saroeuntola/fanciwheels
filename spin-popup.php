@@ -36,7 +36,7 @@
   }
 
   .popup {
-    background-image: url('image/Screenshot.png');
+    background-image: url('image/background1.jpg');
     padding: 70px;
     border-radius: 10px;
     text-align: center;
@@ -66,7 +66,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url('image/pngwing.com.png');
+    background-image: url('image/inner-sw.png');
     background-size: cover;
     background-position: center;
     z-index: 0;
@@ -74,17 +74,24 @@
   }
 #spinCountDisplay{
   margin-top: 100px;
+  color: wheat;
+  margin-bottom: 10px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 25px;
+  width: 50%;
 }
   #spinBtn {
     padding: 12px 30px;
     font-size: 18px;
     width: 100%;
     cursor: pointer;
-    background-color: #333;
+    background-color:#E3DC24;
+    border-radius: 25px;
   }
 
   /* Result Modal */
-  #popupOverlay {
+  #popupOverlay, #popupOverlay1{
     position: fixed;
     top: 0;
     left: 0;
@@ -97,7 +104,7 @@
 
   }
 
-  #popupOverlay .popup {
+  #popupOverlay .popup , #popupOverlay1 .popup {
     background: black;
     padding: 30px;
     border-radius: 10px;
@@ -107,7 +114,7 @@
     font-size: 20px;
   }
 
-  #popupOverlay .popup button {
+  #popupOverlay .popup button, #popupOverlay1 .popup button {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
@@ -159,7 +166,7 @@
         <div class="border-spin"></div>
         <div class="wheel" id="wheel"></div>
       </div>
-       <div id="spinCountDisplay" style="margin-top: 100px; margin-bottom: 10px; font-weight: bold; color: white;"></div>
+       <div id="spinCountDisplay"></div>
       <button id="spinBtn">SPIN</button>
       <button id="closeModalBtn" class="close-icon" aria-label="Close modal">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -168,7 +175,6 @@
         </svg>
       </button>
     </div>
-   
   </div>
 <!-- Result Popup -->
 <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
@@ -186,29 +192,41 @@
     <p id="popupMessage" class="text-center text-lg font-semibold mb-6"></p>
     <!-- Registration Form -->
     <form id="registerForm" class="space-y-6">
-      <h3 class="text-2xl font-bold text-yellow-400 text-center">Join now to claim your prize</h3>
+      <h3 class="text-sm font-bold text-yellow-400 text-center">Resigter Now! <br> New player get free 100$ to play game.</h3>
+<div>
+  <input
+    type="text"
+    id="name"
+    name="name"
+    required
+    placeholder="Name"
+    class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+  />
+</div>
 
-      <div>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          required
-          placeholder="Username"
-          class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
-        />
-      </div>
+<div>
+  <input
+    type="email"
+    id="gmail"
+    name="gmail"
+    required
+    placeholder="Email"
+    class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+  />
+</div>
 
-      <div>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          required
-          placeholder="Password"
-          class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
-        />
-      </div>
+<div>
+  <input
+    type="text"
+    id="phone"
+    name="phone"
+    placeholder="Phone"
+    class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+  />
+</div>
+
+
+
 
       <button
         type="submit"
@@ -216,19 +234,191 @@
       >
         Login
       </button>
-      <p>Do not have an account? <a href="#" class="text-red">Sign up </a> </p>
     </form>
   </div>
 </div>
 
+
+<div id="popupOverlay1" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+  <div class="popup bg-gray-900 rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
+    <!-- Close Button (X) -->
+    <button id="closePopup" aria-label="Close popup"
+      class="absolute top-4 right-4 text-yellow-400 hover:text-yellow-500 focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+    <!-- Registration Form -->
+    <form id="registerForm1" class="space-y-6">
+      <h3 class="text-sm font-bold text-yellow-400 text-center">Your Spin Time is Enough! Please Register to play game</h3>
+<div>
+  <input
+    type="text"
+    id="name"
+    name="name"
+    required
+    placeholder="Name"
+    class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+  />
+</div>
+
+<div>
+  <input
+    type="email"
+    id="gmail"
+    name="gmail"
+    required
+    placeholder="Email"
+    class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+  />
+</div>
+
+<div>
+  <input
+    type="text"
+    id="phone"
+    name="phone"
+    placeholder="Phone Number"
+    class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+  />
+</div>
+
+      <button
+        type="submit"
+        class="w-full bg-yellow-400 text-gray-900 font-semibold py-3 rounded-lg hover:bg-yellow-500 transition"
+      >
+        Login
+      </button>
+    
+    </form>
+  </div>
+</div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="module">
+ registerForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(registerForm);
+  const name = formData.get("name").trim();
+  const gmail = formData.get("gmail").trim();
+  const phone = formData.get("phone").trim();
+
+  if (!name || !gmail) {
+    Swal.fire({
+      icon: "warning",
+      title: "Missing Information",
+      text: "Please fill in Name and Gmail."
+    });
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost/fanciwheel/admin/page/api/create_player", {
+      method: "POST",
+      body: new URLSearchParams({ name, gmail, phone }),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    if (!response.ok) throw new Error("Network response was not ok");
+
+    const data = await response.json();
+
+    if (data.success) {
+      Swal.fire({
+        icon: "success",
+        title: `Welcome, ${data.player.name}!`,
+        text: "Registration successful.",
+      }).then(() => {
+        window.location.href = "spin.php";
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: data.message || "Failed to register."
+      });
+    }
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Server Error",
+      text: "An error occurred during registration. Please try again later."
+    });
+    console.error(error);
+  }
+});
+
+
+
+
+registerForm1.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(registerForm);
+  const name = formData.get("name").trim();
+  const gmail = formData.get("gmail").trim();
+  const phone = formData.get("phone").trim();
+
+  if (!name || !gmail) {
+    Swal.fire({
+      icon: "warning",
+      title: "Missing Information",
+      text: "Please fill in Name and Gmail."
+    });
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost/fanciwheel/admin/page/api/create_player", {
+      method: "POST",
+      body: new URLSearchParams({ name, gmail, phone }),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    if (!response.ok) throw new Error("Network response was not ok");
+
+    const data = await response.json();
+
+    if (data.success) {
+      Swal.fire({
+        icon: "success",
+        title: `Welcome, ${data.player.name}!`,
+        text: "Registration successful.",
+      }).then(() => {
+        window.location.href = "spin.php";
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: data.message || "Failed to register."
+      });
+    }
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Server Error",
+      text: "An error occurred during registration. Please try again later."
+    });
+    console.error(error);
+  }
+});
+
+</script>
 
 <script>
   const wheel = document.getElementById("wheel");
   const spinBtn = document.getElementById("spinBtn");
   const popupOverlay = $("#popupOverlay");
+   const popupOverlay1 = $("#popupOverlay1");
   const popupMessage = $("#popupMessage");
   const closePopup = $("#closePopup");
   const closeModalBtn = document.getElementById("closeModalBtn");
@@ -245,11 +435,12 @@
   let winningIndex = 0;
 
   let spinCount = 0;      // Count spins done
-  const maxSpins = 3;     // Max allowed spins
+  const maxSpins = 1;     // Max allowed spins
   const spinCountDisplay = document.getElementById("spinCountDisplay");
 
   function updateSpinCountDisplay() {
-    spinCountDisplay.textContent = `Spins used: ${spinCount} / ${maxSpins}`;
+     spinCountDisplay.textContent = `Free spin: ${maxSpins}`;
+  spinCountDisplay.classList.add("spin-count");
   }
 
   function easeOutQuart(t) {
@@ -320,7 +511,7 @@
     if (spinBtn.disabled) return;
 
     if (spinCount >= maxSpins) {
-      alert("You have reached the maximum number of spins.");
+         popupOverlay1.hide().css("display", "flex").hide().slideDown(400);
       spinBtn.disabled = true;
       return;
     }
@@ -346,6 +537,9 @@
     popupOverlay.slideUp(400);
   });
 
+  closePopup.on("click", () => {
+    popupOverlay1.slideUp(400);
+  });
   closeModalBtn.addEventListener("click", () => {
     document.getElementById("spinWheelModal").style.display = "none";
   });

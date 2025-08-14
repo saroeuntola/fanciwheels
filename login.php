@@ -5,43 +5,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $remember = isset($_POST['remember']);
-   if ($auth->login($username, $password, $remember)) {
-    $result = dbSelect('users', 'role_id', "username=" . $auth->db->quote($username));
-    if ($result && count($result) > 0) {
-        $user = $result[0];
-        $redirect = ($user['role_id'] == 1) ? './admin/index.php' : './index.php';
-        echo "<script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Login Successful',
-                    text: 'Welcome back, {$username}!',
-                    confirmButtonColor: '#667eea',
-                    timer: 1500,
-                    showConfirmButton: false
-                }).then(() => {
-                    window.location.href = '{$redirect}';
-                });
-            });
-        </script>";
-        exit();
+    if ($auth->login($username, $password, $remember)) {
+        $result = dbSelect('users', 'role_id', "username=" . $auth->db->quote($username));
+        if ($result && count($result) > 0) {
+            $user = $result[0];
+            if ($user['role_id'] == 1) {
+                header('Location: ./admin/index.php');
+                exit();
+            } elseif ($user['role_id'] == 2) {
+                header('Location: ./index.php');
+                exit();
+            }
+            elseif ($user['role_id'] == 3) {
+                header('Location: ./index.php');
+                exit();
+            }
+        }
+    } else {
+        echo "<div class='error-message'><p>Invalid username or password!</p></div>";
     }
-    else {
-        echo "<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Login Failed',
-                text: 'Invalid username or password!',
-                confirmButtonColor: '#667eea',
-                background: 'rgba(255,255,255,0.95)',
-                color: '#333'
-            });
-        });
-    </script>";
-    }
-}
-
 }
 ?>
 <!DOCTYPE html>
@@ -343,5 +325,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </body>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
