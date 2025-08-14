@@ -317,7 +317,7 @@
   }
 
   try {
-    const response = await fetch("http://localhost/fanciwheel/admin/page/api/create_player", {
+    const response = await fetch("https://fanciwheel.com/admin/page/api/create_player", {
       method: "POST",
       body: new URLSearchParams({ name, gmail, phone }),
       headers: {
@@ -375,7 +375,7 @@ registerForm1.addEventListener("submit", async (e) => {
   }
 
   try {
-    const response = await fetch("http://localhost/fanciwheel/admin/page/api/create_player", {
+    const response = await fetch("https://fanciwheel.com/admin/page/api/create_player", {
       method: "POST",
       body: new URLSearchParams({ name, gmail, phone }),
       headers: {
