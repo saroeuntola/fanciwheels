@@ -155,6 +155,8 @@
       margin: 15px auto 0 auto;
       font-size: 20px;
     }
+
+
   }
 </style>
 
@@ -204,6 +206,8 @@
   />
 </div>
 
+
+
 <div>
   <input
     type="email"
@@ -217,16 +221,13 @@
 
 <div>
   <input
-    type="text"
+    type="tel"
     id="phone"
     name="phone"
-    placeholder="Phone"
+    placeholder="Phone Number"
     class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
   />
 </div>
-
-
-
 
       <button
         type="submit"
@@ -252,7 +253,7 @@
     </button>
     <!-- Registration Form -->
     <form id="registerForm1" class="space-y-6">
-      <h3 class="text-sm font-bold text-yellow-400 text-center">Your Spin Time is Enough! Please Register to play game</h3>
+      <h3 class="text-sm font-bold text-yellow-400 text-center">Your Spin Time is Enough! <br> Please Register to play game</h3>
 <div>
   <input
     type="text"
@@ -277,8 +278,8 @@
 
 <div>
   <input
-    type="text"
-    id="phone"
+    type="tel"
+    id="phone1"
     name="phone"
     placeholder="Phone Number"
     class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
@@ -298,6 +299,46 @@
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- intl-tel-input JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
+
+<script>
+const phoneInput = document.querySelector("#phone");
+const phoneInput1 = document.querySelector("#phone1");
+// Initialize intl-tel-input
+const iti = window.intlTelInput(phoneInput, {
+  initialCountry: "bd", // Default to Cambodia
+  preferredCountries: ["bd", "in", "vn", "cn"],
+  separateDialCode: true, // Show country code separately
+  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js"
+});
+
+
+
+// On form submit, replace phone value with full international format
+document.querySelector("#registerForm").addEventListener("submit", function(e) {
+  e.preventDefault(); // prevent default for testing
+  phoneInput.value = iti.getNumber(); // full format e.g. +85512345678
+  console.log("Full Phone:", phoneInput.value);
+  this.submit(); // submit the form normally
+});
+
+const itis = window.intlTelInput(phoneInput1, {
+  initialCountry: "bd", // Default to Cambodia
+  preferredCountries: ["bd", "in", "vn", "cn"],
+  separateDialCode: true, // Show country code separately
+  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js"
+});
+
+// On form submit, replace phone value with full international format
+document.querySelector("#registerForm1").addEventListener("submit", function(e) {
+  e.preventDefault(); // prevent default for testing
+  phoneInput.value = iti.getNumber(); // full format e.g. +85512345678
+  console.log("Full Phone:", phoneInput.value);
+  this.submit(); // submit the form normally
+});
+</script>
+
 <script type="module">
  registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -335,7 +376,7 @@
         title: `Welcome, ${data.player.name}!`,
         text: "Registration successful.",
       }).then(() => {
-        window.location.href = "spin.php";
+          window.open("spin.php", "_blank");
       });
     } else {
       Swal.fire({
@@ -425,7 +466,7 @@ registerForm1.addEventListener("submit", async (e) => {
     const closePopup1 = $("#closePopup1");
   const closeModalBtn = document.getElementById("closeModalBtn");
 
-  const segmentNumbers = ["Jackpot", "$100", "$150", "$200", "$250", "$300", "$350", "$400", "$450", "$500", "$600", "$700", "$800", "$900", "$1000", "$2000", "$3000", "$4000"];
+  const segmentNumbers = ["Blue", "orange", "Blue", "Yallow", "Purple", "Pink", "Green", "Yallow", "Orange", "Purple", "Pink", "$700", "Green", "Yallow", "Orange", "Blue", "yallow", "Green","Purple", "yallow", "Pink"];
   const segments = segmentNumbers.length;
   const segmentAngle = 360 / segments;
 
@@ -436,8 +477,8 @@ registerForm1.addEventListener("submit", async (e) => {
   let animationFrameId = null;
   let winningIndex = 0;
 
-  let spinCount = 0;      // Count spins done
-  const maxSpins = 1;     // Max allowed spins
+  let spinCount = 0; 
+  const maxSpins = 1;
   const spinCountDisplay = document.getElementById("spinCountDisplay");
 
   function updateSpinCountDisplay() {
