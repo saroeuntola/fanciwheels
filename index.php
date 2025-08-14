@@ -1,24 +1,9 @@
 <?php
 include './admin/page/library/game_lib.php';
-include './admin/page/library/category_lib.php';
 include './admin/page/library/db.php';
 $gameObj = new Games();
-$categoryObj = new Category();
+$games = $gameObj->getgames();
 
-// Get all categories
-$categories = $categoryObj->getCategories();
-
-// Check if a category is selected
-$selectedCategory = isset($_GET['category']) ? $_GET['category'] : null;
-
-// Get games (filter if category is selected)
-if ($selectedCategory) {
-  $games = array_filter($gameObj->getgames(), function ($g) use ($selectedCategory) {
-    return $g['category_id'] == $selectedCategory;
-  });
-} else {
-  $games = $gameObj->getgames();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">

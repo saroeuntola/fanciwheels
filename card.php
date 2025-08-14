@@ -146,7 +146,7 @@
     </p>
     <!-- Category Filter -->
     <div class="mt-4" id="hotspot">
-       <p class="bg-gray-600 p-2 rounded-2xl w-[77px]">Hotspot</p>
+       <p class="bg-gray-600 p-2 rounded-md w-[77px]">Hotspot</p>
     </div>
 
     <div class="relative">
@@ -159,14 +159,7 @@
         </button>
 
         <div class="post-grid">
-            <?php
-            if (isset($_GET['sort']) && in_array($_GET['sort'], ['asc', 'desc'])) {
-                usort($games, function ($a, $b) {
-                    $order = $_GET['sort'] === 'asc' ? 1 : -1;
-                    return $order * strcmp($a['name'], $b['name']);
-                });
-            }
-            ?>
+        
             <?php if (!empty($games)): ?>
                 <?php foreach ($games as $index => $g): ?>
                     <div class="game-card" onclick="window.location.href='detail?id=<?= $g['id'] ?>'">

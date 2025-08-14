@@ -80,16 +80,17 @@
   }
 #spinCountDisplay{
   color: wheat;
-  font-weight: bold;
     background-color:#E3DC24;
   border-radius: 50px;
-  width: 30%;
+  width: 50%;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;
   color: #333;
+  font-size: 15px;
+  
 }
   #spinBtn {
     padding: 12px 30px;
@@ -160,8 +161,13 @@
     width: 340px;
     height: 340px;
     }
-    
 
+#spinBtn{
+  margin-bottom: 30px;
+}
+#spinCountDisplay {
+  margin-top: 30px;
+}
     /* #spinBtn,
     #closeModalBtn {
       width: 80%;
@@ -458,7 +464,7 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
   const spinCountDisplay = document.getElementById("spinCountDisplay");
 
   function updateSpinCountDisplay() {
-     spinCountDisplay.textContent = `${spinCount}/${maxSpins}`;
+     spinCountDisplay.textContent = `Free Spin: ${spinCount}/${maxSpins}`;
   spinCountDisplay.classList.add("spin-count");
   }
 
