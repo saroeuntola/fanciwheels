@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit();
             }
             elseif ($user['role_id'] == 3) {
-                header('Location: ./index.php');
+                header('Location: ./admin/players_record');
                 exit();
             }
         }

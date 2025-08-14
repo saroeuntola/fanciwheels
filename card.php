@@ -184,20 +184,7 @@
     <!-- Category Filter -->
     <div class="mt-4 mb-4" id="category">
         <form method="GET" class="category-filter">
-            <select
-                id="category"
-                name="category"
-                class="custom-select"
-                onchange="this.form.submit()"
-            >
-                <option value="">All Categories</option>
-                <?php foreach ($categories as $cat): ?>
-                    <option value="<?php echo $cat['id']; ?>"
-                        <?php echo ($selectedCategory == $cat['id']) ? 'selected' : ''; ?>>
-                        <?php echo htmlspecialchars($cat['name']); ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+           <p>Hotspot</p>
         </form>
     </div>
 

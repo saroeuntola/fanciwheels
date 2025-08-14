@@ -44,10 +44,10 @@ $players = $playerObj->getPlayers()
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-8">
         <h2 class="text-3xl font-extrabold text-gray-900 mb-4 md:mb-0">Register Record</h2>
-        <a href="export_excel" 
+        <!-- <a href="export_excel" 
            class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out text-center">
             Export Excel
-        </a>
+        </a> -->
     </div>
 
     <!-- Table -->
