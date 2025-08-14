@@ -7,7 +7,7 @@ protectRouteAccess();
 $playerObj = new Player();
 $players = $playerObj->getPlayers();
 
-$filename = 'players_export_' . date('Ymd') . '.xls';
+$filename = 'register_records_' . date('Ymd') . '.xls';
 
 // Send headers
 header("Content-Type: application/vnd.ms-excel");
@@ -28,3 +28,6 @@ foreach ($players as $player) {
 
 echo "</table>";
 exit;
+
+
+

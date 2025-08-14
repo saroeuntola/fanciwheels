@@ -15,8 +15,9 @@ $players = $playerObj->getPlayers()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="./page/assets/css/styles.css">
-       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
            <script src="https://cdn.tailwindcss.com"></script>
+           
+      <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -44,10 +45,10 @@ $players = $playerObj->getPlayers()
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-8">
         <h2 class="text-3xl font-extrabold text-gray-900 mb-4 md:mb-0">Register Record</h2>
-        <!-- <a href="export_excel" 
-           class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out text-center">
-            Export Excel
-        </a> -->
+        <a href="export_excel.php" id="exportBtn"
+   class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out text-center">
+    Export Excel
+</a>
     </div>
 
     <!-- Table -->
@@ -100,5 +101,27 @@ $players = $playerObj->getPlayers()
     </main>
 
 <script src="./page/assets/js/admin_script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.getElementById('exportBtn').addEventListener('click', function(e) {
+    e.preventDefault(); // prevent immediate navigation
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Export Successful!',
+        text: 'Your Excel file is ready.',
+        confirmButtonText: 'Download'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Start download
+            window.location.href = this.href;
+
+            setTimeout(() => {
+                window.location.href = 'players_record';
+            }, 1000);
+        }
+    });
+});
+</script>
 </body>
 </html>
