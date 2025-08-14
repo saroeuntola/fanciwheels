@@ -77,50 +77,13 @@
         .post-subtitle {
             font-size: 13px;
         }
-        #category {
+        #hotspot {
             padding: 0 16px;
         }
+
     }
 
-    .category-filter {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin: 1rem 0;
-    }
-
-    .custom-select {
-        background-color: #1f2937;
-        color: #fff;
-        padding: 0.6rem 2.5rem 0.6rem 1rem;
-        font-size: 1rem;
-        border: 1px solid #374151;
-        border-radius: 0.5rem;
-        appearance: none;
-        cursor: pointer;
-        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20fill%3D'%23ffffff'%20height%3D'20'%20viewBox%3D'0%200%2024%2024'%20width%3D'20'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M7%2010l5%205%205-5z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 0.8rem center;
-        background-size: 1rem;
-        transition: all 0.3s ease;
-    }
-
-    .custom-select:hover {
-        color: red;
-    }
-
-    .custom-select:focus {
-        outline: none;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-    }
-
-    .custom-select option {
-        background-color: #1f2937;
-        color: #fff;
-        padding: 5px;
-    }
-
+   
     /* Arrow buttons styling */
     .arrow-btn {
         position: absolute;
@@ -182,10 +145,8 @@
         Discover the top popular cities in Bangladesh, ranked according to verified user reviews <br> and player ratings to guide you to the most loved locations.
     </p>
     <!-- Category Filter -->
-    <div class="mt-4 mb-4" id="category">
-        <form method="GET" class="category-filter">
-           <p>Hotspot</p>
-        </form>
+    <div class="mt-4" id="hotspot">
+       <p class="bg-gray-600 p-2 rounded-2xl w-[77px]">Hotspot</p>
     </div>
 
     <div class="relative">

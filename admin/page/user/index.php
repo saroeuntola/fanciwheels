@@ -51,7 +51,7 @@ $users = $user -> getUsers();
                     <th scope="col" class="px-6 py-3">Name</th>
                     <th scope="col" class="px-6 py-3">Username</th>
                     <th scope="col" class="px-6 py-3">Email</th>
-                    <th scope="col" class="px-6 py-3">Role</th>
+              
                     <th scope="col" class="px-6 py-3 text-center">Actions</th>
                 </tr>
             </thead>
@@ -71,9 +71,7 @@ $users = $user -> getUsers();
                             <td class="px-6 py-4">
                                 <?php echo htmlspecialchars($userRow['email']); ?>
                             </td>
-                              <td class="px-6 py-4">
-                                <?php echo htmlspecialchars($userRow['role']); ?>
-                            </td>
+                             
                             <td class="px-6 py-4 flex justify-center space-x-3">
                                 <a href="edit?id=<?php echo $userRow['id']; ?>" 
                                    class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
