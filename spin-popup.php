@@ -242,7 +242,7 @@
 <div id="popupOverlay1" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
   <div class="popup bg-gray-900 rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
     <!-- Close Button (X) -->
-    <button id="closePopup" aria-label="Close popup"
+    <button id="closePopup1" aria-label="Close popup"
       class="absolute top-4 right-4 text-yellow-400 hover:text-yellow-500 focus:outline-none">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -393,7 +393,8 @@ registerForm1.addEventListener("submit", async (e) => {
         title: `Welcome, ${data.player.name}!`,
         text: "Registration successful.",
       }).then(() => {
-        window.location.href = "spin.php";
+        //window.location.href = "spin.php";
+        window.open("spin.php", "_blank");
       });
     } else {
       Swal.fire({
@@ -421,6 +422,7 @@ registerForm1.addEventListener("submit", async (e) => {
    const popupOverlay1 = $("#popupOverlay1");
   const popupMessage = $("#popupMessage");
   const closePopup = $("#closePopup");
+    const closePopup1 = $("#closePopup1");
   const closeModalBtn = document.getElementById("closeModalBtn");
 
   const segmentNumbers = ["Jackpot", "$100", "$150", "$200", "$250", "$300", "$350", "$400", "$450", "$500", "$600", "$700", "$800", "$900", "$1000", "$2000", "$3000", "$4000"];
@@ -439,7 +441,7 @@ registerForm1.addEventListener("submit", async (e) => {
   const spinCountDisplay = document.getElementById("spinCountDisplay");
 
   function updateSpinCountDisplay() {
-     spinCountDisplay.textContent = `Free spin: ${maxSpins}`;
+     spinCountDisplay.textContent = `Free spin: ${spinCount}/${maxSpins}`;
   spinCountDisplay.classList.add("spin-count");
   }
 
@@ -537,7 +539,7 @@ registerForm1.addEventListener("submit", async (e) => {
     popupOverlay.slideUp(400);
   });
 
-  closePopup.on("click", () => {
+  closePopup1.on("click", () => {
     popupOverlay1.slideUp(400);
   });
   closeModalBtn.addEventListener("click", () => {
