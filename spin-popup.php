@@ -356,7 +356,7 @@ document.querySelector("#registerForm").addEventListener("submit", async (e) => 
         title: `Welcome, ${data.player.name}!`,
         text: "Registration successful.",
       }).then(() => {
-        window.open("spin.php", "_blank");
+        window.open("spin.php");
       });
     } else {
       Swal.fire({ icon: "error", title: "Registration Failed", text: data.message || "Failed to register." });
@@ -401,7 +401,7 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
         title: `Welcome, ${data.player.name}!`,
         text: "Registration successful.",
       }).then(() => {
-        window.open("spin.php", "_blank");
+        window.open("spin.php");
       });
     } else {
       Swal.fire({ icon: "error", title: "Registration Failed", text: data.message || "Failed to register." });
