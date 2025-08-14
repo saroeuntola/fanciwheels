@@ -1,4 +1,9 @@
 <style>
+
+  .iti__country-list{
+    background: black;
+    width: 300px;
+  }
   .popup {
     position: relative;
 
@@ -33,6 +38,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
+    padding: 50px;
   }
 
   .popup {
@@ -73,13 +79,17 @@
     transition: none;
   }
 #spinCountDisplay{
-  margin-top: 100px;
   color: wheat;
-  margin-bottom: 10px;
   font-weight: bold;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 25px;
-  width: 50%;
+    background-color:#E3DC24;
+  border-radius: 50px;
+  width: 30%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  color: #333;
 }
   #spinBtn {
     padding: 12px 30px;
@@ -88,6 +98,9 @@
     cursor: pointer;
     background-color:#E3DC24;
     border-radius: 25px;
+    margin-top: 80px;
+    color: #333;
+    font-weight: bold;
   }
 
   /* Result Modal */
@@ -143,18 +156,18 @@
   }
 
     .wheel-container {
-      width: 90vw;
-      /* scale wheel container for mobile */
-      height: 90vw;
-      /* keep it square */
+       
+    width: 340px;
+    height: 340px;
     }
+    
 
-    #spinBtn,
+    /* #spinBtn,
     #closeModalBtn {
       width: 80%;
       margin: 15px auto 0 auto;
       font-size: 20px;
-    }
+    } */
 
 
   }
@@ -164,12 +177,17 @@
   <!-- Spin Wheel Modal -->
   <div id="spinWheelModal">
     <div class="popup">
+        <div id="spinCountDisplay"></div>
       <div class="wheel-container">
         <div class="border-spin"></div>
         <div class="wheel" id="wheel"></div>
       </div>
-       <div id="spinCountDisplay"></div>
-      <button id="spinBtn">SPIN</button>
+  
+           <button id="spinBtn">SPIN</button>
+  
+   
+  
+   
       <button id="closeModalBtn" class="close-icon" aria-label="Close modal">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <line x1="18" y1="6" x2="6" y2="18" />
@@ -440,7 +458,7 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
   const spinCountDisplay = document.getElementById("spinCountDisplay");
 
   function updateSpinCountDisplay() {
-     spinCountDisplay.textContent = `Free spin: ${spinCount}/${maxSpins}`;
+     spinCountDisplay.textContent = `${spinCount}/${maxSpins}`;
   spinCountDisplay.classList.add("spin-count");
   }
 
