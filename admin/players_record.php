@@ -104,21 +104,29 @@ $players = $playerObj->getPlayers()
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.getElementById('exportBtn').addEventListener('click', function(e) {
-    e.preventDefault(); // prevent immediate navigation
+    e.preventDefault(); // Prevent immediate navigation
+
+    const exportUrl = this.href; // Save export link
 
     Swal.fire({
         icon: 'success',
         title: 'Export Successful!',
-        text: 'Your Excel file is ready.',
+        text: 'Click "Download" to get your Excel file.',
         confirmButtonText: 'Download'
     }).then((result) => {
         if (result.isConfirmed) {
-            // Start download
-            window.location.href = this.href;
+            // Create a temporary link to trigger download
+            const a = document.createElement('a');
+            a.href = exportUrl;
+            a.download = ''; // Let server set filename
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
 
+            // After short delay, navigate back
             setTimeout(() => {
                 window.location.href = 'players_record';
-            }, 1000);
+            }, 5000);
         }
     });
 });
