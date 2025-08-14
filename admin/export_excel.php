@@ -1,45 +1,30 @@
 <?php
 include "../admin/page/library/protect-route.php";
 include('../admin/page/library/players_lib.php');
-require './vendor/autoload.php';
-
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 protectRouteAccess();  
 
 $playerObj = new Player();
 $players = $playerObj->getPlayers();
 
-// Create new Spreadsheet
-$spreadsheet = new Spreadsheet();
-$sheet = $spreadsheet->getActiveSheet();
-$sheet->setTitle('Players');
+$filename = 'players_export_' . date('Ymd') . '.xls';
 
-// Set header row
-$sheet->setCellValue('A1', 'ID');
-$sheet->setCellValue('B1', 'Name');
-$sheet->setCellValue('C1', 'Phone');
-$sheet->setCellValue('D1', 'Email');
-$sheet->setCellValue('E1', 'Created At');
+// Send headers
+header("Content-Type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=\"$filename\"");
 
-// Fill data
-$row = 2;
+echo "<table border='1'>";
+echo "<tr><th>ID</th><th>Name</th><th>Phone</th><th>Email</th><th>Created At</th></tr>";
+
 foreach ($players as $player) {
-    $sheet->setCellValue('A' . $row, $player['id']);
-    $sheet->setCellValue('B' . $row, $player['name']);
-    $sheet->setCellValue('C' . $row, $player['phone']);
-    $sheet->setCellValue('D' . $row, $player['gmail']);
-    $sheet->setCellValue('E' . $row, date('Y/m/d', strtotime($player['created_at'])));
-    $row++;
+    echo "<tr>";
+    echo "<td>{$player['id']}</td>";
+    echo "<td>{$player['name']}</td>";
+    echo "<td>{$player['phone']}</td>";
+    echo "<td>{$player['gmail']}</td>";
+    echo "<td>" . date('Y/m/d', strtotime($player['created_at'])) . "</td>";
+    echo "</tr>";
 }
 
-// Output as Excel file
-$filename = 'players_export_' . date('Ymd') . '.xlsx';
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header("Content-Disposition: attachment; filename=\"$filename\"");
-header('Cache-Control: max-age=0');
-
-$writer = new Xlsx($spreadsheet);
-$writer->save('php://output');
+echo "</table>";
 exit;
