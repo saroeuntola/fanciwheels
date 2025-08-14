@@ -10,8 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $sex = $_POST['sex']; 
     $role_id = $_POST['role'];  
+
     $userAuth->register($username, $email, $password, $sex, $role_id);
-    
+   header('index.php');
 }
 ?>
 <!DOCTYPE html>

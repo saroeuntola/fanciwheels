@@ -8,6 +8,6 @@
     </title>
 </head>
 <body>
-    <p>You not have permission to acces this page</p>
+    <p>You not have permission to access this page</p>
 </body>
 </html>

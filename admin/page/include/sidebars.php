@@ -12,6 +12,12 @@
             </li>
             
             <div class="menu-section">User Management</div>
+                <li class="menu-item">
+                <a href="<?php echo $baseURL; ?>/admin/players_record">
+                    <span class="menu-icon">👥</span>
+                    <span>Resigter Records</span>
+                </a>
+            </li>
             <li class="menu-item">
                 <a href="<?php echo $baseURL; ?>/admin/page/user">
                     <span class="menu-icon">👥</span>
