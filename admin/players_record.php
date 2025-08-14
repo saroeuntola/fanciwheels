@@ -126,7 +126,7 @@ document.getElementById('exportBtn').addEventListener('click', function(e) {
             // After short delay, navigate back
             setTimeout(() => {
                 window.location.href = 'players_record';
-            }, 5000);
+            }, 1000);
         }
     });
 });
