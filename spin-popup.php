@@ -305,45 +305,30 @@
 <script>
 const phoneInput = document.querySelector("#phone");
 const phoneInput1 = document.querySelector("#phone1");
-// Initialize intl-tel-input
+
+// First phone input
 const iti = window.intlTelInput(phoneInput, {
-  initialCountry: "bd", // Default to Cambodia
+  initialCountry: "bd",
   preferredCountries: ["bd", "in", "vn", "cn"],
-  separateDialCode: true, // Show country code separately
+  separateDialCode: true,
   utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js"
 });
 
-
-
-// On form submit, replace phone value with full international format
-document.querySelector("#registerForm").addEventListener("submit", function(e) {
-  e.preventDefault(); // prevent default for testing
-  phoneInput.value = iti.getNumber(); // full format e.g. +85512345678
-  console.log("Full Phone:", phoneInput.value);
-  this.submit(); // submit the form normally
-});
-
-const itis = window.intlTelInput(phoneInput1, {
-  initialCountry: "bd", // Default to Cambodia
+// Second phone input
+const iti1 = window.intlTelInput(phoneInput1, {
+  initialCountry: "bd",
   preferredCountries: ["bd", "in", "vn", "cn"],
-  separateDialCode: true, // Show country code separately
+  separateDialCode: true,
   utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js"
 });
 
-// On form submit, replace phone value with full international format
-document.querySelector("#registerForm1").addEventListener("submit", function(e) {
-  e.preventDefault(); // prevent default for testing
-  phoneInput.value = iti.getNumber(); // full format e.g. +85512345678
-  console.log("Full Phone:", phoneInput.value);
-  this.submit(); // submit the form normally
-});
-</script>
-
-<script type="module">
- registerForm.addEventListener("submit", async (e) => {
+document.querySelector("#registerForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const formData = new FormData(registerForm);
+  // Replace phone field with full format
+  phoneInput.value = iti.getNumber();
+
+  const formData = new FormData(e.target);
   const name = formData.get("name").trim();
   const gmail = formData.get("gmail").trim();
   const phone = formData.get("phone").trim();
@@ -361,100 +346,73 @@ document.querySelector("#registerForm1").addEventListener("submit", function(e) 
     const response = await fetch("https://fanciwheel.com/admin/page/api/create_player", {
       method: "POST",
       body: new URLSearchParams({ name, gmail, phone }),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }
     });
 
-    if (!response.ok) throw new Error("Network response was not ok");
-
     const data = await response.json();
-
     if (data.success) {
       Swal.fire({
         icon: "success",
         title: `Welcome, ${data.player.name}!`,
         text: "Registration successful.",
       }).then(() => {
-          window.open("spin.php", "_blank");
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Registration Failed",
-        text: data.message || "Failed to register."
-      });
-    }
-  } catch (error) {
-    Swal.fire({
-      icon: "error",
-      title: "Server Error",
-      text: "An error occurred during registration. Please try again later."
-    });
-    console.error(error);
-  }
-});
-
-
-
-
-registerForm1.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(registerForm);
-  const name = formData.get("name").trim();
-  const gmail = formData.get("gmail").trim();
-  const phone = formData.get("phone").trim();
-
-  if (!name || !gmail) {
-    Swal.fire({
-      icon: "warning",
-      title: "Missing Information",
-      text: "Please fill in Name and Gmail."
-    });
-    return;
-  }
-
-  try {
-    const response = await fetch("https://fanciwheel.com/admin/page/api/create_player", {
-      method: "POST",
-      body: new URLSearchParams({ name, gmail, phone }),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    });
-
-    if (!response.ok) throw new Error("Network response was not ok");
-
-    const data = await response.json();
-
-    if (data.success) {
-      Swal.fire({
-        icon: "success",
-        title: `Welcome, ${data.player.name}!`,
-        text: "Registration successful.",
-      }).then(() => {
-        //window.location.href = "spin.php";
         window.open("spin.php", "_blank");
       });
     } else {
-      Swal.fire({
-        icon: "error",
-        title: "Registration Failed",
-        text: data.message || "Failed to register."
-      });
+      Swal.fire({ icon: "error", title: "Registration Failed", text: data.message || "Failed to register." });
     }
   } catch (error) {
-    Swal.fire({
-      icon: "error",
-      title: "Server Error",
-      text: "An error occurred during registration. Please try again later."
-    });
+    Swal.fire({ icon: "error", title: "Server Error", text: "An error occurred during registration." });
     console.error(error);
   }
 });
 
+document.querySelector("#registerForm1").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Replace phone1 field with full format
+  phoneInput1.value = iti1.getNumber();
+
+  const formData = new FormData(e.target);
+  const name = formData.get("name").trim();
+  const gmail = formData.get("gmail").trim();
+  const phone = formData.get("phone1").trim(); // Notice phone1 here!
+
+  if (!name || !gmail) {
+    Swal.fire({
+      icon: "warning",
+      title: "Missing Information",
+      text: "Please fill in Name and Gmail."
+    });
+    return;
+  }
+
+  try {
+    const response = await fetch("https://fanciwheel.com/admin/page/api/create_player", {
+      method: "POST",
+      body: new URLSearchParams({ name, gmail, phone }),
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      Swal.fire({
+        icon: "success",
+        title: `Welcome, ${data.player.name}!`,
+        text: "Registration successful.",
+      }).then(() => {
+        window.open("spin.php", "_blank");
+      });
+    } else {
+      Swal.fire({ icon: "error", title: "Registration Failed", text: data.message || "Failed to register." });
+    }
+  } catch (error) {
+    Swal.fire({ icon: "error", title: "Server Error", text: "An error occurred during registration." });
+    console.error(error);
+  }
+});
 </script>
+
 
 <script>
   const wheel = document.getElementById("wheel");
