@@ -72,8 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php endforeach; ?>
     </select>
 </div>
-
-
             <!-- Submit Button -->
             <div class="flex items-center justify-center">
                 <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">

@@ -51,6 +51,7 @@
             flex: 0 0 calc((100% - 20px) / 2);
             max-width: 100%;
         }
+
         .post-title {
             font-size: 30px;
         }
@@ -65,25 +66,31 @@
             box-shadow: none;
             margin-top: 15px;
         }
+
         #sortSelect {
             padding: 5px 27px;
         }
-        .post-header, .post-subtitle {
+
+        .post-header,
+        .post-subtitle {
             padding: 0 16px;
         }
+
         .post-title {
             font-size: 18px;
         }
+
         .post-subtitle {
             font-size: 13px;
         }
+
         #hotspot {
             padding: 0 16px;
         }
 
     }
 
-   
+
     /* Arrow buttons styling */
     .arrow-btn {
         position: absolute;
@@ -146,33 +153,33 @@
     </p>
     <!-- Category Filter -->
     <div class="mt-4" id="hotspot">
-       <p class="bg-gray-600 p-2 rounded-md w-[77px]">Hotspot</p>
+        <p class="bg-gray-600 p-2 rounded-md w-[77px]">Hotspot</p>
     </div>
 
     <div class="relative">
         <!-- Left Arrow Button -->
         <button id="prev-btns" aria-label="Scroll Left" class="arrow-btn left-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
         </button>
 
         <div class="post-grid">
-        
+
             <?php if (!empty($games)): ?>
                 <?php foreach ($games as $index => $g): ?>
                     <div class="game-card" onclick="window.location.href='detail?id=<?= $g['id'] ?>'">
                         <div class="game-image" style="height: 210px;">
                             <?php if (!empty($g['image'])): ?>
                                 <img src="<?= './admin/page/game/' . htmlspecialchars($g['image']) ?>"
-                                     alt="<?= $g['meta_text']?>"
-                                     style="width:100%; height: 100%; object-fit: cover;">
+                                    alt="<?= $g['meta_text'] ?>"
+                                    style="width:100%; height: 100%; object-fit: cover;">
                             <?php else: ?>
                                 <div class="no-image-placeholder" style="height: 100%; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#9ca3af;">
                                     <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
                                     <span>No Image</span>
                                 </div>
@@ -186,13 +193,12 @@
                                 <?= isset($g['category_name']) ? htmlspecialchars($g['category_name']) : '' ?>
                             </div>
                             <?php
-// Extract plain text (remove HTML tags)
-$plainText = strip_tags($g['description']);
+                            // Extract plain text (remove HTML tags)
+                            $plainText = strip_tags($g['description']);
 
-// Trim the plain text to 120 chars
-$trimmed_desc = mb_strimwidth($plainText, 0, 120, '...');
-?>
-
+                            // Trim the plain text to 120 chars
+                            $trimmed_desc = mb_strimwidth($plainText, 0, 120, '...');
+                            ?>
                             <div class="game-description" style="font-size: 14px; color: #e5e7eb;">
                                 <?= $trimmed_desc ?>
                             </div>
@@ -203,7 +209,7 @@ $trimmed_desc = mb_strimwidth($plainText, 0, 120, '...');
                 <div class="empty-state" style="text-align:center; padding:80px 20px; color:#6b7280; grid-column: 1 / -1;">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:64px; height:64px; margin-bottom:16px; color:#4b5563;">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414a1 1 0 00-.707-.293H4"/>
+                            d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414a1 1 0 00-.707-.293H4" />
                     </svg>
                     <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">No Posts Found</h3>
                 </div>
@@ -213,11 +219,56 @@ $trimmed_desc = mb_strimwidth($plainText, 0, 120, '...');
         <!-- Right Arrow Button -->
         <button id="next-btns" aria-label="Scroll Right" class="arrow-btn right-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
         </button>
     </div>
 </div>
 
-<script src="js/script-card-post.js"></script>
+<script>
+    $(function () {
+  const $grid = $(".post-grid");
+  const scrollAmount = 390;
+
+  // Clone content before and after for infinite loop illusion
+  const originalContent = $grid.html();
+  $grid.prepend(originalContent);
+  $grid.append(originalContent);
+
+  // Scroll to the original items in the middle
+  const originalScrollLeft = $grid[0].scrollWidth / 3;
+  $grid.scrollLeft(originalScrollLeft);
+
+  // Handle scroll event to loop scroll position
+  $grid.on("scroll", function () {
+    const maxScrollLeft = $grid[0].scrollWidth;
+    const scrollLeft = $grid.scrollLeft();
+
+    if (scrollLeft <= 0) {
+      // Scrolled to (or past) left cloned content - jump to middle copy
+      $grid.scrollLeft(scrollLeft + (maxScrollLeft / 3));
+    } else if (scrollLeft >= (maxScrollLeft * 2) / 3) {
+      // Scrolled to (or past) right cloned content - jump back to middle copy
+      $grid.scrollLeft(scrollLeft - (maxScrollLeft / 3));
+    }
+  });
+
+  // Arrow buttons scroll with looping
+  $("#prev-btns").on("click", function () {
+    $grid.animate(
+      { scrollLeft: $grid.scrollLeft() - scrollAmount },
+      300
+    );
+  });
+
+  $("#next-btns").on("click", function () {
+    $grid.animate(
+      { scrollLeft: $grid.scrollLeft() + scrollAmount },
+      300
+    );
+  });
+
+  // Mouse wheel scroll horizontally
+});
+</script>

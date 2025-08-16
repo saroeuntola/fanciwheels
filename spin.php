@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['player_name'])) {
-    header("Location: register.php");
+    header("Location: register-form");
     exit;
 }
 $playerName = htmlspecialchars($_SESSION['player_name']);

@@ -489,10 +489,6 @@
         <div class="footer-bottom">
             &copy; <span class="current-year">2024</span> FancyWheel. All rights reserved. | Made with ❤️ for gamers worldwide
         </div>
-
-
-
-
         </div>
 
 

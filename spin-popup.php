@@ -42,7 +42,7 @@
   }
 
   .popup {
-    background-color: #F54927;
+    background-image: url(image/test3.png);
     padding: 70px;
     border-radius: 10px;
     text-align: center;
@@ -80,16 +80,17 @@
   }
 #spinCountDisplay{
   color: wheat;
-    background-color:#E3DC24;
+  background-color:#E3DC24;
   border-radius: 50px;
   width: 50%;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
   color: #333;
   font-size: 15px;
+    margin-top: 120px;
+    margin-left: 70px;
   
 }
   #spinBtn {
@@ -99,9 +100,15 @@
     cursor: pointer;
     background-color:#E3DC24;
     border-radius: 25px;
-    margin-top: 80px;
+  margin-top: 15px;
     color: #333;
     font-weight: bold;
+  }
+  #spinBtn:hover {
+     background-color: #1400AD;
+     transition: 500ms;
+     color: white;
+     
   }
 
   /* Result Modal */
@@ -166,7 +173,6 @@
   margin-bottom: 30px;
 }
 #spinCountDisplay {
-  margin-top: 30px;
 }
     /* #spinBtn,
     #closeModalBtn {
@@ -183,12 +189,12 @@
   <!-- Spin Wheel Modal -->
   <div id="spinWheelModal">
     <div class="popup">
-        <div id="spinCountDisplay"></div>
+       
       <div class="wheel-container">
         <div class="border-spin"></div>
         <div class="wheel" id="wheel"></div>
       </div>
-  
+   <div id="spinCountDisplay"></div>
            <button id="spinBtn">SPIN</button>
   
    
@@ -536,7 +542,7 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
     if (spinBtn.disabled) return;
 
     if (spinCount >= maxSpins) {
-         popupOverlay1.hide().css("display", "flex").hide().slideDown(400);
+      popupOverlay1.hide().css("display", "flex").hide().slideDown(400);
       spinBtn.disabled = true;
       return;
     }

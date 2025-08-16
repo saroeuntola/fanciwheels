@@ -70,11 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" required
                     class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
             </div>
-
-            <!-- Email -->
-         
-
-            <!-- Gender -->
             <div>
                 <label class="block mb-1 font-medium text-gray-700">Gender</label>
                 <div class="flex space-x-6 mt-2">
