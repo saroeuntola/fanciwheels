@@ -82,7 +82,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
           <img
             src="<?= './admin/page/game/' . htmlspecialchars($gameImage) ?>"
             alt="<?= htmlspecialchars($metaText) ?>"
-            class="w-full h-64 object-cover rounded-xl mb-6"
+            class="w-full h-[510px] object-cover rounded-xl mb-6"
           />
           <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-snug break-words">
             <?= htmlspecialchars($game['name'] ?? ($lang === 'en' ? 'Unnamed' : 'নামহীন')) ?>
@@ -145,9 +145,8 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
             <?php foreach (array_slice($popularGames, 0, 6) as $popular): ?>
               <?php
                 $popularImage = $popular['image'] ?? 'default.png';
-                $popularName = $popular['name'] ?? ($lang === 'en' ? 'Popular Game' : 'জনপ্রিয় গেম');
+                $popularName = $popular['name'] ?? ($lang === 'en' ? 'Popular Post' : 'জনপ্রিয় পোস্ট');
                 $popularDesc = $popular['description'] ?? '';
-                $popularCategory = $popular['category_name'] ?? ($lang === 'en' ? 'Uncategorized' : 'শ্রেণীবিহীন');
               ?>
               <div class="flex items-start space-x-3 group">
                 <div class="flex-shrink-0">
@@ -163,11 +162,9 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                       <?= htmlspecialchars($popularName) ?>
                     </h4>
                     <p class="text-xs text-gray-400 mt-1 line-clamp-2">
-                      <?= htmlspecialchars(substr(strip_tags($popularDesc), 0, 80)) . '...' ?>
+                      <?= htmlspecialchars(substr(strip_tags($popularDesc), 0, 80)) ?>
                     </p>
-                    <span class="text-xs text-blue-400 mt-1 inline-block">
-                      <?= htmlspecialchars($popularCategory) ?>
-                    </span>
+  
                   </a>
                 </div>
               </div>
