@@ -411,7 +411,6 @@ function showModal() {
 
 function closeModal() {
   $("#welcomeModal").addClass("hidden");
-  localStorage.setItem('welcomeModalShown', 'true');
 }
 
 $(window).on("load", function() {
