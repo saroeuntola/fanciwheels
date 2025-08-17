@@ -50,7 +50,7 @@ $annObj = $ann->getAnnouncements();
             <thead class="text-xs text-gray-700 uppercase bg-gray-100">
                 <tr>
                     <th scope="col" class="px-6 py-3">ID</th>
-                    <th scope="col" class="px-6 py-3">Massage</th>
+                    <th scope="col" class="px-6 py-3">Message</th>
                     <th scope="col" class="px-6 py-3 text-center">Actions</th>
                 </tr>
             </thead>
@@ -62,7 +62,7 @@ $annObj = $ann->getAnnouncements();
                                 <?php echo $item['id']; ?>
                             </td>
                             <td class="px-6 py-4">
-                                <?php echo htmlspecialchars($item['massage']); ?>
+                                <?php echo htmlspecialchars($item['message']); ?>
                             </td>
                             <td class="px-6 py-4 flex justify-center space-x-3">
                                 <a href="edit?id=<?php echo $item['id']; ?>" 
