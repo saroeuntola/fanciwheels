@@ -4,22 +4,22 @@
     const closeBtn = document.querySelector(".close-btn");
     const container = document.getElementById("gameGrid");
 
-    container.innerHTML = ""; // Clear existing cards
+    // container.innerHTML = ""; // Clear existing cards
 
-    games_item.forEach(game => {
-      const card = document.createElement("div");
-      card.className = "game-card mb-2 bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-200 flex flex-col snap-start";
+    // games_item.forEach(game => {
+    //   const card = document.createElement("div");
+    //   card.className = "game-card mb-2 bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-200 flex flex-col snap-start";
 
-      card.innerHTML = `
-        <img src="${baseURL}${game.image}" alt="${game.title}" class="w-full h-[206px] object-cover" />
-        <div class="game-content p-4 flex flex-col flex-grow">
-          <h2 class="game-title text-lg mb-2 text-pink-400">${game.title}</h2>
-          <p class="game-desc text-sm text-gray-300 flex-grow">${game.description}</p>
-          <a href="${game.link}" target="_blank" class="play-btn mt-4 p-2 text-center bg-purple-400 text-white rounded-lg font-bold hover:bg-pink-400 transition-colors duration-300">Play Now</a>
-        </div>
-      `;
-      container.appendChild(card);
-    });
+    //   card.innerHTML = `
+    //     <img src="${baseURL}${game.image}" alt="${game.title}" class="w-full h-[206px] object-cover" />
+    //     <div class="game-content p-4 flex flex-col flex-grow">
+    //       <h2 class="game-title text-lg mb-2 text-pink-400">${game.title}</h2>
+    //       <p class="game-desc text-sm text-gray-300 flex-grow">${game.description}</p>
+    //       <a href="${game.link}" target="_blank" class="play-btn mt-4 p-2 text-center bg-purple-400 text-white rounded-lg font-bold hover:bg-pink-400 transition-colors duration-300">Play Now</a>
+    //     </div>
+    //   `;
+    //   container.appendChild(card);
+    // });
 
     // Modal functionality
     const playButtons = document.querySelectorAll(".play-btn");

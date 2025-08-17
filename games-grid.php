@@ -1,5 +1,12 @@
+
 <?php 
 include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
+?>
+<?php
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
+
+$allGames = include './language/games-translate.php';
+$games_item = $allGames[$lang] ?? $allGames['en'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -160,7 +167,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
     <div class="flex flex-col items-center mb-5" id="games-header">
       <!-- Title -->
       <h1 class="text-yellow-400 text-4xl md:text-5xl font-bold mb-4 text-center">
-        <span class="animated-text" id="hot-games-title">Hot Games Play Free</span>
+        <span class="animated-text" id="hot-games-title"><?= $lang === 'en' ? 'Hot Games Play Free' : 'হট গেম বিনামূল্যে খেলুন' ?></span>
       </h1>
     </div>
   </div>
@@ -174,7 +181,20 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
 </button>
 
     <div id="gameGrid" class="game-grid flex overflow-x-auto snap-x snap-mandatory gap-5 p-0 m-0">
-      <!-- Game cards injected here -->
+     <?php foreach ($games_item as $game): ?>
+    <div class="game-card mb-2 bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-200 flex flex-col snap-start">
+       <img src="<?= $game['image'] ?>" alt="<?= htmlspecialchars($game['title']) ?>" class="w-full h-[206px] object-cover">
+    <div class="game-content p-4 flex flex-col flex-grow">
+
+      
+        <h3 class="text-lg font-bold mb-2"><?= htmlspecialchars($game['title']) ?></h3>
+        <p class="game-desc text-sm text-gray-300 flex-grow"><?= htmlspecialchars($game['description']) ?></p>
+        <a href="<?= $game['link'] ?>" class="play-btn p-2 text-center bg-purple-400 text-white rounded-lg font-bold hover:bg-pink-400 transition-colors duration-300 w-full"><?= $lang === 'en' ? 'Play Now' : 'খেলা লক' ?></a>
+      </div>
+    
+   
+    </div>
+  <?php endforeach; ?>
     </div>
 
     <!-- Right Arrow Button -->
@@ -189,44 +209,110 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
   <div id="comingSoonModal" class="modal hidden fixed inset-0 z-[1000] bg-black/60">
     <div class="modal-content bg-gray-800 text-gray-100 mx-auto mt-[15%] p-8 rounded-lg w-[90%] max-w-md text-center">
       <span class="close-btn text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-black">&times;</span>
-      <h2 class="text-xl mb-4">Game Locked</h2>
+      <h2 class="text-xl mb-4"> <?= $lang === 'en' ? 'Game Locked' : 'খেলা লক' ?>  </h2>
       <p>
         <a id="link" href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" rel="noopener noreferrer" class="text-cyan-400 font-bold underline">
-          Join now
+           <?= $lang === 'en' ? 'Join now' : 'এখন নিবন্ধন করুন' ?>
         </a> 
-        to unlock more games, enjoy exciting gameplay, and win big — safe, fun, and easy!
+         <?= $lang === 'en' ? ' to unlock more games, enjoy exciting gameplay, and win big — safe, fun, and easy!' : 'আরও গেম আনলক করতে, উত্তেজনাপূর্ণ গেমপ্লে উপভোগ করতে এবং বড় জয় পেতে — নিরাপদ, মজাদার এবং সহজ!' ?>
+       
       </p>
     </div>
   </div>
-  <script>
-      const baseURL = "<?= $baseURL ?>";
-    const games_item = [
-      {
-        title: "Crazy Time (Evo)",
-        description: "Arcade jumping fun — how high can you go?",
-        image: "./games/img/time.webp",
-        link: "#"
-      },
-      {
-        title: "Super Ace Jili Slot",
-        description: "Match fruits and feed the animals in this fun puzzle game.",
-        image: "./games/img/Super-Ace-Jili-Slot.jpg",
-        link: "#"
-      },
-      {
-        title: "Coin Toss (KM)",
-        description: "A fast-paced card game of strategy and sharp thinking.",
-        image: "./games/img/coin.webp",
-        link: "#"
-      },
-      {
-        title: "Spades",
-        description: "Classic Spades — play tricks, partner up, and win big.",
-        image: "./games/img/pg.png",
-        link: "#"
+ 
+  <!-- <script src="js/script-games-grid.js"></script> -->
+   <script>
+    
+
+   const modal = document.getElementById("comingSoonModal");
+    const closeBtn = document.querySelector(".close-btn");
+    const container = document.getElementById("gameGrid");
+
+    // container.innerHTML = ""; // Clear existing cards
+
+    // games_item.forEach(game => {
+    //   const card = document.createElement("div");
+    //   card.className = "game-card mb-2 bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-200 flex flex-col snap-start";
+
+    //   card.innerHTML = `
+    //     <img src="${baseURL}${game.image}" alt="${game.title}" class="w-full h-[206px] object-cover" />
+    //     <div class="game-content p-4 flex flex-col flex-grow">
+    //       <h2 class="game-title text-lg mb-2 text-pink-400">${game.title}</h2>
+    //       <p class="game-desc text-sm text-gray-300 flex-grow">${game.description}</p>
+    //       <a href="${game.link}" target="_blank" class="play-btn mt-4 p-2 text-center bg-purple-400 text-white rounded-lg font-bold hover:bg-pink-400 transition-colors duration-300">Play Now</a>
+    //     </div>
+    //   `;
+    //   container.appendChild(card);
+    // });
+
+    // Modal functionality
+    const playButtons = document.querySelectorAll(".play-btn");
+
+    playButtons.forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        const href = this.getAttribute("href");
+        if (href === "#") {
+          e.preventDefault();
+          modal.style.display = "block";
+        }
+      });
+    });
+
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
       }
-    ];
-  </script>
-  <script src="js/script-games-grid.js"></script>
+    });
+
+    // Drag to scroll horizontally and arrow button scroll
+$(function () {
+  const $grid = $("#gameGrid");
+  const scrollAmount = 390;
+
+  // Clone content before and after for infinite loop illusion
+  const originalContent = $grid.html();
+  $grid.prepend(originalContent);
+  $grid.append(originalContent);
+
+  // Scroll to the original items in the middle
+  const originalScrollLeft = $grid[0].scrollWidth / 3;
+  $grid.scrollLeft(originalScrollLeft);
+
+  // Handle scroll event to loop scroll position
+  $grid.on("scroll", function () {
+    const maxScrollLeft = $grid[0].scrollWidth;
+    const viewportWidth = $grid.outerWidth();
+    let scrollLeft = $grid.scrollLeft();
+
+    if (scrollLeft <= 0) {
+      // Scrolled to (or past) left cloned content - jump to middle copy
+      $grid.scrollLeft(scrollLeft + (maxScrollLeft / 3));
+    } else if (scrollLeft >= maxScrollLeft * 2 / 3) {
+      // Scrolled to (or past) right cloned content - jump back to middle copy
+      $grid.scrollLeft(scrollLeft - (maxScrollLeft / 3));
+    }
+  });
+
+  // Arrow buttons scroll with looping
+  $("#prev-btn").on("click", function () {
+    $grid.animate(
+      { scrollLeft: $grid.scrollLeft() - scrollAmount },
+      300
+    );
+  });
+
+  $("#next-btn").on("click", function () {
+    $grid.animate(
+      { scrollLeft: $grid.scrollLeft() + scrollAmount },
+      300
+    );
+  });
+
+});
+   </script>
 </body>
 </html>

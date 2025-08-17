@@ -28,9 +28,9 @@ include 'loading.php'
 <!-- Header Banner -->
 <section class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-16 text-center shadow-md">
   <div class="max-w-4xl mx-auto px-4">
-    <h1 class="text-4xl font-extrabold mb-2 tracking-tight">Search Results</h1>
+    <h1 class="text-4xl font-extrabold mb-2 tracking-tight"><?= $lang === 'en' ? 'Search Results' : 'তোমার স্পিন টাইম যথেষ্ট!' ?></h1>
     <p class="text-lg font-medium">
-      Showing results for: <span class="underline underline-offset-2"><?= htmlspecialchars($query) ?></span>
+      <?= $lang === 'en' ? 'Showing results for' : 'এর জন্য ফলাফল দেখানো হচ্ছে' ?> <span class="underline underline-offset-2"><?= htmlspecialchars($query) ?></span>
     </p>
   </div>
 </section>
@@ -42,7 +42,7 @@ include 'loading.php'
       <?php foreach ($games as $g): ?>
         <div class="group relative bg-gray-800 rounded-xl shadow-sm hover:shadow-xl border border-gray-700 hover:border-blue-500 transition-all duration-300 overflow-hidden">
           <!-- Image -->
-          <a href="detail.php?id=<?= $g['id'] ?>">
+          <a href="detail?id=<?= $g['id'] ?>">
             <?php if (!empty($g['image'])): ?>
               <img src="<?= './admin/page/game/' . htmlspecialchars($g['image']) ?>"
                    alt="<?= htmlspecialchars($g['name']) ?>"
@@ -81,7 +81,7 @@ include 'loading.php'
   <?php else: ?>
     <!-- No Query -->
     <div class="text-center py-20">
-      <p class="text-lg text-gray-400">Please enter a search term to see results.</p>
+      <p class="text-lg text-gray-400"><?= $lang === 'en' ? 'Please enter a search term to see results.' : 'ফলাফল দেখতে অনুগ্রহ করে একটি অনুসন্ধান শব্দ লিখুন।' ?></p>
     </div>
   <?php endif; ?>
 </main>

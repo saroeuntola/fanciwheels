@@ -1,3 +1,16 @@
+
+<?php
+$translations = [
+    'en' => [
+        'spinMessage' => 'Your Spin Time is Enough!',
+        'winMessage' => 'You won'
+    ],
+    'bn' => [
+        'spinMessage' => 'তোমার স্পিন টাইম যথেষ্ট!',
+        'winMessage' => 'তুমি জিতেছ'
+    ]
+];
+?>
 <style>
 
   .iti__country-list{
@@ -72,7 +85,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url('image/8_color_wheel3-removebg-preview.png');
+    background-image: url('image/fancywheel_4-removebg-preview.png');
     background-size: cover;
     background-position: center;
     z-index: 0;
@@ -90,7 +103,8 @@
   color: #333;
   font-size: 15px;
     margin-top: 120px;
-    margin-left: 70px;
+    margin-left: 72px;
+    padding: 10px 0px;
   
 }
   #spinBtn {
@@ -173,6 +187,7 @@
   margin-bottom: 30px;
 }
 #spinCountDisplay {
+ margin-left: 85px;
 }
     /* #spinBtn,
     #closeModalBtn {
@@ -195,10 +210,7 @@
         <div class="wheel" id="wheel"></div>
       </div>
    <div id="spinCountDisplay"></div>
-           <button id="spinBtn">SPIN</button>
-  
-   
-  
+           <button id="spinBtn"><?= $lang === 'en' ? 'SPIN' : 'স্পিন' ?></button>
    
       <button id="closeModalBtn" class="close-icon" aria-label="Close modal">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -224,14 +236,14 @@
     <p id="popupMessage" class="text-center text-lg font-semibold mb-6"></p>
     <!-- Registration Form -->
     <form id="registerForm" class="space-y-6">
-      <h3 class="text-sm font-bold text-yellow-400 text-center">Resigter Now! <br>New player free 100$ to play game.</h3>
+      <h3 class="text-sm font-bold text-yellow-400 text-center"><?= $lang === 'en' ? 'Resigter Now!' : 'এখন নিবন্ধন করুন!' ?> <br> <?= $lang === 'en' ? 'New player free 100$ to play game.' : 'নতুন খেলোয়াড়দের জন্য গেমটি খেলতে বিনামূল্যে ১০০ ডলার।' ?></h3>
 <div>
   <input
     type="text"
     id="name"
     name="name"
     required
-    placeholder="Name"
+    placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
     class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
   />
 </div>
@@ -244,7 +256,7 @@
     id="gmail"
     name="gmail"
     required
-    placeholder="Email"
+    placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
     class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
   />
 </div>
@@ -254,7 +266,7 @@
     type="tel"
     id="phone"
     name="phone"
-    placeholder="Phone Number"
+    placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
     class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
   />
 </div>
@@ -263,7 +275,7 @@
         type="submit"
         class="w-full bg-yellow-400 text-gray-900 font-semibold py-3 rounded-lg hover:bg-yellow-500 transition"
       >
-        Login
+      <?= $lang === 'en' ? 'Login' : 'লগইন করুন' ?>
       </button>
     </form>
   </div>
@@ -283,17 +295,19 @@
     </button>
     <!-- Registration Form -->
     <form id="registerForm1" class="space-y-6">
-      <h3 class="text-sm font-bold text-yellow-400 text-center">Your Spin Time is Enough! <br> Please Register to play game</h3>
+      <h3 class="text-sm font-bold text-yellow-400 text-center"> <?= $lang === 'en' ? 'Your Spin Time is Enough!' : 'তোমার স্পিন টাইম যথেষ্ট!' ?> <br><?= $lang === 'en' ? 'Please Register to play game.' : 'গেমটি খেলতে অনুগ্রহ করে নিবন্ধন করুন' ?></h3>
 <div>
   <input
     type="text"
     id="name"
     name="name"
     required
-    placeholder="Name"
+    placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
     class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
   />
 </div>
+
+
 
 <div>
   <input
@@ -301,7 +315,7 @@
     id="gmail"
     name="gmail"
     required
-    placeholder="Email"
+    placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
     class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
   />
 </div>
@@ -309,9 +323,9 @@
 <div>
   <input
     type="tel"
-    id="phone1"
+    id="phone"
     name="phone"
-    placeholder="Phone Number"
+    placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
     class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
   />
 </div>
@@ -320,9 +334,8 @@
         type="submit"
         class="w-full bg-yellow-400 text-gray-900 font-semibold py-3 rounded-lg hover:bg-yellow-500 transition"
       >
-        Login
+      <?= $lang === 'en' ? 'Login' : 'লগইন করুন' ?>
       </button>
-    
     </form>
   </div>
 </div>
@@ -465,14 +478,30 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
   let animationFrameId = null;
   let winningIndex = 0;
 
-  let spinCount = 0; 
-  const maxSpins = 1;
-  const spinCountDisplay = document.getElementById("spinCountDisplay");
+const lang = "<?= $lang ?>";
 
-  function updateSpinCountDisplay() {
-     spinCountDisplay.textContent = `Free Spin: ${spinCount}/${maxSpins}`;
-  spinCountDisplay.classList.add("spin-count");
+// Translation object
+const translations = {
+  en: {
+    freeSpin: "Free Spin",
+    winMessage: "🎉 You won"
+  },
+  bn: {
+    freeSpin: "ফ্রি স্পিন",
+    winMessage: "🎉 আপনি জিতেছেন"
   }
+};
+
+let spinCount = 0; 
+const maxSpins = 1;
+const spinCountDisplay = document.getElementById("spinCountDisplay");
+
+function updateSpinCountDisplay() {
+  const text = `${translations[lang].freeSpin}: ${spinCount}/${maxSpins}`;
+  spinCountDisplay.textContent = text;
+  spinCountDisplay.classList.add("spin-count");
+}
+
 
   function easeOutQuart(t) {
     return 1 - Math.pow(1 - t, 4);
@@ -510,7 +539,7 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
         winningIndex = (segments - (winningIndex % segments)) % segments;
 
         const winNumber = segmentNumbers[winningIndex];
-        popupMessage.text(`🎉 You won ${winNumber}!`);
+        popupMessage.text(`${translations[lang].winMessage} ${winNumber}!`);
 
         // Show popup with slide down animation
         popupOverlay.hide().css("display", "flex").hide().slideDown(400);

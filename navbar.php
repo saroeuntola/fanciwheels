@@ -17,21 +17,27 @@ if ($userId) {
   $user = $userLib->getUserByID($userId);
 }
 
-
-// Build profile image path
 $profileImage = isset($user['profile']) && !empty($user['profile']) ? $user['profile'] : 'default.png';
 $profilePath = $baseURL . '/admin/page/user/user_image/' . htmlspecialchars($profileImage);
 
-// Check if file exists on server
 $fullPath = $_SERVER['DOCUMENT_ROOT'] . '/admin/page/user/user_image/' . $profileImage;
 if (!file_exists($fullPath)) {
   $profilePath = $baseURL . '/admin/page/user/user_image/default.png';
 }
 
 $currentPage = basename($_SERVER['PHP_SELF']);
-$lang = isset($_GET['lang']) ? $_GET['lang'] : 'en';
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en','bn']) ? $_GET['lang'] : 'en';
 $currentId = isset($_GET['id']) ? intval($_GET['id']) : null;
+
+function buildLangUrl($langTarget, $currentPage, $currentId) {
+    $params = ['lang' => $langTarget];
+    if ($currentPage === 'detail.php' && $currentId) {
+        $params['id'] = $currentId;
+    }
+    return $currentPage . '?' . http_build_query($params);
+}
 ?>
+
 
 <link rel="stylesheet" href="./admin/page/assets/css/navbar.css">
 <!-- Modern Navbar with Glassmorphism Effect -->
@@ -72,38 +78,59 @@ $currentId = isset($_GET['id']) ? intval($_GET['id']) : null;
           <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
         </a> -->
 
-        <nav class="flex space-x-4">
-    <?= navLink('/', 'Home', $lang, $currentPage, $currentId) ?>
-    <?= navLink('services', 'Services', $lang, $currentPage, $currentId) ?>
-    <?= navLink('about', 'About', $lang, $currentPage, $currentId) ?>
-    <?= navLink('faq', 'FAQ', $lang, $currentPage, $currentId) ?>
+   <nav class="flex space-x-6">
+    <?php
+    if ($lang === 'en') {
+        echo navLink('/', 'Home', $lang, $currentPage, $currentId);
+        echo navLink('services', 'Services', $lang, $currentPage, $currentId);
+        echo navLink('about', 'About', $lang, $currentPage, $currentId);
+        echo navLink('faq', 'FAQ', $lang, $currentPage, $currentId);
+    } else {
+        echo navLink('/', 'হোমপেজ', $lang, $currentPage, $currentId);
+        echo navLink('services', 'সেবা', $lang, $currentPage, $currentId);
+        echo navLink('about', 'সম্পর্কে', $lang, $currentPage, $currentId);
+        echo navLink('faq', 'প্রশ্নোত্তর', $lang, $currentPage, $currentId);
+    }
+    ?>
 </nav>
+
         <!-- Modern Search Bar -->
         <form action="search.php" method="GET" class="relative group">
           <div class="search-bar">
-            <input type="text" name="q" placeholder="Search...">
+              <input type="hidden" name="lang" value="<?= htmlspecialchars($lang) ?>">
+            <input type="text" name="q" placeholder="<?= $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...' ?>" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
             <button type="submit" class="search-icon">🔍</button>
           </div>
         </form>
-       <div>
-    <select class="lang-select" onchange="window.location.href=this.value" 
-            style="padding:4px 8px; border-radius:4px; background:#111; color:white;">
-        <?php
-        // Build EN link
-        $enLink = ($currentPage === 'detail' && $currentId) 
-            ? "detail.php?id={$currentId}&lang=en" 
-            : "{$currentPage}?lang=en";
 
-        // Build BN link
-        $bnLink = ($currentPage === 'detail' && $currentId) 
-            ? "detail?id={$currentId}&lang=bn" 
-            : "{$currentPage}?lang=bn";
-        ?>
+        <div class="relative ml-auto">
+  <!-- Button showing current language -->
+  <button id="langBtn" class="flex items-center relative group px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+    <img id="currentFlag" src="<?= $lang==='en' ? 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg' : 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg' ?>" class="w-5 h-5 mr-2" alt="Flag">
+    <span id="currentLang"><?= strtoupper($lang) ?></span>
+    <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </button>
 
-        <option value="<?= $enLink ?>" <?= $lang === 'en' ? 'selected' : '' ?>>EN</option>
-        <option value="<?= $bnLink ?>" <?= $lang === 'bn' ? 'selected' : '' ?>>BN</option>
-    </select>
+  <!-- Dropdown menu -->
+  <div id="langMenu" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg w-32 z-50">
+    <a href="<?= buildLangUrl('en', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
+      <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" class="w-5 h-5 mr-2" alt="EN"> EN
+    </a>
+    <a href="<?= buildLangUrl('bn', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg" class="w-5 h-5 mr-2" alt="BN"> BN
+    </a>
+  </div>
 </div>
+<script>
+const langBtn = document.getElementById('langBtn');
+const langMenu = document.getElementById('langMenu');
+
+langBtn.addEventListener('click', () => {
+  langMenu.classList.toggle('hidden');
+});
+</script>
 
         <!-- Desktop Profile -->
         <?php if ($userId): ?>
@@ -138,7 +165,7 @@ $currentId = isset($_GET['id']) ? intval($_GET['id']) : null;
           </div>
         <?php else: ?>
           <a href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" class="relative group px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-            <span class="relative z-10 font-medium">Join Now</span>
+            <span class="relative z-10 font-medium"><?= $lang === 'en' ? 'Join Now' : 'যোগদান করুন'  ?></span>
             <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-20 blur transition-all duration-300"></div>
           </a>
         <?php endif; ?>
@@ -172,11 +199,45 @@ $currentId = isset($_GET['id']) ? intval($_GET['id']) : null;
             </div>
           </div>
         <?php else: ?>
-          <a href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" class="p-2 text-white/90 hover:text-white rounded-full hover:bg-white/10 transition-all duration-300">
+
+              <div class="relative ml-auto">
+  <!-- Button showing current language -->
+  <button id="langBtn1" class="flex items-center relative group px-4 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+    <img id="currentFlag" src="<?= $lang==='en' ? 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg' : 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg' ?>" class="w-5 h-5 mr-2" alt="Flag">
+    <span id="currentLang"><?= strtoupper($lang) ?></span>
+    <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+ 
+  </button>
+
+  <!-- Dropdown menu -->
+  <div id="langMenu1" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg w-32 z-50">
+    <a href="<?= buildLangUrl('en', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
+      <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" class="w-5 h-5 mr-2" alt="EN"> EN
+    </a>
+    <a href="<?= buildLangUrl('bn', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg" class="w-5 h-5 mr-2" alt="BN"> বাংলা
+    </a>
+  </div>
+</div>
+
+<script>
+const langBtn1 = document.getElementById('langBtn1');
+const langMenu1 = document.getElementById('langMenu1');
+
+langBtn1.addEventListener('click', () => {
+  langMenu1.classList.toggle('hidden');
+});
+</script>
+          <a href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" class="text-white/90 hover:text-white rounded-full hover:bg-white/10 transition-all duration-300">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
           </a>
+
+      
+
         <?php endif; ?>
         <!-- Modern Hamburger Toggle -->
         <button onclick="toggleMenu()" class="relative p-2 text-white focus:outline-none group" aria-label="Toggle Menu">
@@ -194,35 +255,25 @@ $currentId = isset($_GET['id']) ? intval($_GET['id']) : null;
   <div id="mobileMenu" class="lg:hidden hidden bg-slate-900/95 backdrop-blur-lg border-t border-white/10">
     <div class="px-4 py-6 space-y-3">
 
-      <a href="/" class="flex items-center gap-3 px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
-        <span>Home</span>
-      </a>
-      <a href="services" class="flex items-center gap-3 px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-        </svg>
-        <span>Services</span>
-      </a>
-      <a href="about" class="flex items-center gap-3 px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span>About</span>
-      </a>
-      <a href="faq" class="flex items-center gap-3 px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-        <span>FAQ</span>
-      </a>
+       <?php
+    if ($lang === 'en') {
+        echo navLink('/', 'Home', $lang, $currentPage, $currentId);
+        echo navLink('services', 'Services', $lang, $currentPage, $currentId);
+        echo navLink('about', 'About', $lang, $currentPage, $currentId);
+        echo navLink('faq', 'FAQ', $lang, $currentPage, $currentId);
+    } else {
+        echo navLink('/', 'হোমপেজ', $lang, $currentPage, $currentId);
+        echo navLink('services', 'সেবা', $lang, $currentPage, $currentId);
+        echo navLink('about', 'সম্পর্কে', $lang, $currentPage, $currentId);
+        echo navLink('faq', 'প্রশ্নোত্তর', $lang, $currentPage, $currentId);
+    }
+    ?>
       <form action="search.php" method="GET" class="relative group">
         <div class="search-bar">
-          <input type="text" placeholder="Search...">
-          <button type="submit" class="search-icon">🔍</button>
-        </div>
+              <input type="hidden" name="lang" value="<?= htmlspecialchars($lang) ?>">
+            <input type="text" name="q" placeholder="<?= $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...' ?>" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
+            <button type="submit" class="search-icon">🔍</button>
+          </div>
       </form>
     </div>
   </div>

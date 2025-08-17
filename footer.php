@@ -402,6 +402,27 @@
     }
     </style>
 </head>
+<?php
+$footerTexts = [
+    'en' => [
+        'quick_links' => 'Quick Links',
+        'support' => 'Support',
+        'connect' => 'Connect With Us',
+        'join' => 'Join Now',
+        'email_placeholder' => 'Enter your email',
+        'get_started' => 'Get Started'
+    ],
+    'bn' => [
+        'quick_links' => 'দ্রুত লিঙ্ক',
+        'support' => 'সহায়তা',
+        'connect' => 'আমাদের সাথে সংযুক্ত থাকুন',
+        'join' => 'এখন যোগ দিন',
+        'email_placeholder' => 'আপনার ইমেল লিখুন',
+        'get_started' => 'শুরু করুন'
+    ]
+];
+$texts = $footerTexts[$lang];
+?>
 
 <body id="footer">
     <footer class="footer">
@@ -412,78 +433,58 @@
         <div class="particle"></div>
 
         <div class="footer-content">
-            <!-- Logo & Description -->
-            <div class="footer-section logo-section">
-                <h2 class="logo glow">FancyWheel</h2>
-                <p class="footer-description">
-                    Explore, spin and play the most exciting games online.
-                    Fun starts here with a click. Join millions of gamers worldwide!
-                </p>
-            </div>
-            <!-- Navigation -->
-            <div class="footer-section">
-                <h3 class="footer-title">Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="services">Services</a></li>
-                    <li><a href="#games-grid">Games</a></li>
-                </ul>
-            </div>
+            
+          
+<!-- Logo & Description -->
+<div class="footer-section logo-section">
+    <h2 class="logo glow">FancyWheel</h2>
+    <p class="footer-description">
+        <?= $lang==='en' 
+            ? 'Explore, spin and play the most exciting games online. Fun starts here with a click. Join millions of gamers worldwide!' 
+            : 'সবচেয়ে উত্তেজনাপূর্ণ অনলাইন গেমগুলো আবিষ্কার, স্পিন এবং খেলুন। মজার শুরু একটি ক্লিকে। কোটি গেমারের সঙ্গে যোগ দিন!' ?>
+    </p>
+</div>
 
-            <!-- Resources -->
-            <div class="footer-section">
-                <h3 class="footer-title">Support</h3>
-                <ul class="footer-links">
-                    <li><a href="faq" id="faqLink">FAQs</a></li>
-                    <li><a href="#" id="helpCenterLink">Help Center</a></li>
-                    <li><a href="#" id="termsLink">Terms of Service</a></li>
-                    <li><a href="#" id="privacyLink">Privacy Policy</a></li>
-                </ul>
+<!-- Navigation -->
+<div class="footer-section">
+    <h3 class="footer-title"><?= $texts['quick_links'] ?></h3>
+    <ul class="footer-links">
+        <li><a href="/"><?= $lang==='en' ? 'Home' : 'হোমপেজ' ?></a></li>
+        <li><a href="about"><?= $lang==='en' ? 'About' : 'সম্পর্কে' ?></a></li>
+        <li><a href="services"><?= $lang==='en' ? 'Services' : 'সেবা' ?></a></li>
+        <li><a href="#games-grid"><?= $lang==='en' ? 'Games' : 'গেম' ?></a></li>
+    </ul>
+</div>
 
-            </div>
+<!-- Support -->
+<div class="footer-section">
+    <h3 class="footer-title"><?= $texts['support'] ?></h3>
+    <ul class="footer-links">
+        <li><a href="faq"><?= $lang==='en' ? 'FAQs' : 'প্রায়শই জিজ্ঞাসিত প্রশ্ন' ?></a></li>
+        <li><a href="#" id="helpCenterLink"><?= $lang==='en' ? 'Help Center' : 'হেল্প সেন্টার' ?></a></li>
+        <li><a href="#" id="termsLink"><?= $lang==='en' ? 'Terms of Service' : 'সেবার শর্তাবলী' ?></a></li>
+        <li><a href="#" id="privacyLink"><?= $lang==='en' ? 'Privacy Policy' : 'গোপনীয়তার নীতি' ?></a></li>
+    </ul>
+</div>
 
-            <!-- Social -->
-            <div class="footer-section">
-                <h3 class="footer-title">Connect With Us</h3>
-                <p class="footer-description" style="margin-bottom: 1rem;">
-                    Stay updated with the latest games and updates!
-                </p>
-                <div class="social-links">
-                    <a href="#" class="social-link" title="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-link" title="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link" title="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="social-link" title="YouTube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
+<!-- Join Now -->
+<div class="footer-section">
+    <h3 class="footer-title"><?= $texts['join'] ?></h3>
+    <p class="footer-description" style="margin-bottom: 1rem;">
+        <?= $lang==='en' 
+            ? 'Sign up to get exclusive access to new games, updates, and special offers!' 
+            : 'নতুন গেম, আপডেট এবং বিশেষ অফারের জন্য সাইন আপ করুন!' ?>
+    </p>
 
-            <div class="footer-section">
+    <input type="email" placeholder="<?= $texts['email_placeholder'] ?>" class="px-4 py-2 rounded-full bg-gray-800 text-white w-full mb-2" />
+    <ul class="footer-links">
+        <a href="https://fancywin.city" target="_blank" class="relative group px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            <span class="relative z-10 font-medium"><?= $texts['get_started'] ?></span>
+        </a>
+    </ul>
+</div>
 
-                <h3 class="footer-title">Join Now</h3>
-                <p class="footer-description" style="margin-bottom: 1rem;">
-                    Sign up to get exclusive access to new games, updates, and special offers!
-                </p>
-
-                <div>
-
-                </div>
-                <input type="email" placeholder="Enter your email" class="px-4 py-2 rounded-full bg-gray-800 text-white w-full mb-2" />
-                <ul class="footer-links">
-                    <a href="https://fancywin.city" target="_blank" class="relative group px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                        <span class="relative z-10 font-medium">Get Started</span>
-
-                    </a>
-
-                </ul>
-            </div>
+         
         </div>
 
         <div class="footer-bottom">

@@ -1,4 +1,32 @@
 <?php include './admin/page/library/db.php'?>
+
+
+<?php
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
+$servicesTexts = [
+    'en' => [
+        'title' => 'Fancywheel Casino Services',
+        'subtitle' => 'Trusted Online Gaming | Real Money Wins | 24/7 Support',
+        'games' => ['🎮 Variety of Casino Games', 'Fancywin offers an exciting collection of real-money games including slot machines, live dealer games, roulette, blackjack, baccarat, and poker. Our games are fair, fast, and compatible with both mobile and desktop.'],
+        'payments' => ['💳 Secure Payment Methods', 'We support fast, secure deposits and withdrawals through local wallets, bank transfers, and crypto (USDT). Every transaction is encrypted for your protection. Get your winnings instantly!'],
+        'support' => ['📞 24/7 Customer Support', 'Our dedicated support team is available 24/7 via live chat, email, and Telegram to help you resolve issues fast — whether it’s about gameplay, transactions, or your account.'],
+        'bonuses' => ['🎁 Exclusive Bonuses & Promotions', 'New players enjoy a generous welcome bonus, and regular promotions include free spins, cashback offers, and deposit matches. With Fancywin, every day is a chance to win more.'],
+        'withdrawals' => ['🔄 Instant Withdrawals', 'Fancywin ensures ultra-fast withdrawals with zero hassle. Your winnings are yours — request payouts anytime, and receive funds within minutes.']
+    ],
+    'bn' => [
+        'title' => 'ফ্যান্সিওয়েল ক্যাসিনো সেবা',
+        'subtitle' => 'নির্ভরযোগ্য অনলাইন গেমিং | রিয়েল মানি জিতুন | ২৪/৭ সাপোর্ট',
+        'games' => ['🎮 বিভিন্ন ধরণের ক্যাসিনো গেম', 'ফ্যান্সিওয়েল রিয়েল মানির গেমের একটি উত্তেজনাপূর্ণ সংগ্রহ প্রদান করে, যেমন স্লট মেশিন, লাইভ ডিলার, রুলেট, ব্ল্যাকজ্যাক, ব্যাকারাট এবং পোকার। আমাদের গেমগুলো দ্রুত, সুষ্ঠু এবং মোবাইল ও ডেস্কটপের সাথে সামঞ্জস্যপূর্ণ।'],
+        'payments' => ['💳 নিরাপদ পেমেন্ট পদ্ধতি', 'আমরা স্থানীয় ওয়ালেট, ব্যাংক ট্রান্সফার এবং ক্রিপ্টো (USDT) মাধ্যমে দ্রুত ও নিরাপদ জমা এবং উত্তোলন সমর্থন করি। প্রতিটি লেনদেন আপনার সুরক্ষার জন্য এনক্রিপ্ট করা হয়েছে। আপনার জয়কৃত অর্থ দ্রুত পান!'],
+        'support' => ['📞 ২৪/৭ গ্রাহক সহায়তা', 'আমাদের নিবেদিত সাপোর্ট দল লাইভ চ্যাট, ইমেল এবং টেলিগ্রামের মাধ্যমে ২৪/৭ উপলব্ধ, দ্রুত সমস্যা সমাধানে সাহায্য করতে।'],
+        'bonuses' => ['🎁 এক্সক্লুসিভ বোনাস এবং প্রমোশন', 'নতুন খেলোয়াড়রা উদার ওয়েলকাম বোনাস উপভোগ করেন, এবং নিয়মিত প্রমোশনগুলিতে ফ্রি স্পিন, ক্যাশব্যাক অফার এবং ডিপোজিট ম্যাচ অন্তর্ভুক্ত থাকে। ফ্যান্সিওয়েল-এ প্রতিটি দিন আরও জেতার সুযোগ।'],
+        'withdrawals' => ['🔄 তাৎক্ষণিক উত্তোলন', 'ফ্যান্সিওয়েল অত্যন্ত দ্রুত উত্তোলন নিশ্চিত করে, কোনো ঝামেলা ছাড়া। আপনার জয়কৃত অর্থ আপনারই — যে কোনো সময় অর্থ উত্তোলনের অনুরোধ করুন এবং মিনিটের মধ্যে পান।']
+    ]
+];
+
+$texts = $servicesTexts[$lang];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
  
@@ -38,47 +66,41 @@ include 'loading.php'
 ?>
   <main class="px-6 py-12 max-w-6xl mx-auto">
     <div class="mb-5">
-    <h1 class="text-4xl font-bold">Fancywheel Casino Services</h1>
-    <p class="text-lg mt-2">Trusted Online Gaming | Real Money Wins | 24/7 Support</p>
+        <h1 class="text-3xl font-bold text-red-600"><?= $texts['title'] ?></h1>
+        <p class="text-lg mt-2"><?= $texts['subtitle'] ?></p>
     </div>
+
     <!-- Games -->
     <section class="mb-5">
-      <h2 class="text-2xl font-semibold mb-4">🎮 Variety of Casino Games</h2>
-      <p class="text-gray-300">
-        Fancywin offers an exciting collection of real-money games including slot machines, live dealer games, roulette, blackjack, baccarat, and poker.
-        Our games are fair, fast, and compatible with both mobile and desktop.
-      </p>
-    </section>
-    <!-- Payments -->
-    <section class="mb-5">
-      <h2 class="text-2xl font-semibold mb-4">💳 Secure Payment Methods</h2>
-      <p class="text-gray-300">
-        We support fast, secure deposits and withdrawals through local wallets, bank transfers, and crypto (USDT). Every transaction is encrypted for your protection. Get your winnings instantly!
-      </p>
-    </section>
-    <!-- Support -->
-    <section class="mb-5">
-      <h2 class="text-2xl font-semibold mb-4">📞 24/7 Customer Support</h2>
-      <p class="text-gray-300">
-        Our dedicated support team is available 24/7 via live chat, email, and Telegram to help you resolve issues fast — whether it’s about gameplay, transactions, or your account.
-      </p>
-    </section>
-    <!-- Bonuses -->
-    <section class="mb-5">
-      <h2 class="text-2xl font-semibold mb-4">🎁 Exclusive Bonuses & Promotions</h2>
-      <p class="text-gray-300">
-        New players enjoy a generous welcome bonus, and regular promotions include free spins, cashback offers, and deposit matches. With Fancywin, every day is a chance to win more.
-      </p>
-    </section>
-    <!-- Withdrawals -->
-    <section class="mb-5">
-      <h2 class="text-2xl font-semibold mb-4">🔄 Instant Withdrawals</h2>
-      <p class="text-gray-300">
-        Fancywin ensures ultra-fast withdrawals with zero hassle. Your winnings are yours — request payouts anytime, and receive funds within minutes.
-      </p>
+        <h2 class="text-2xl font-semibold mb-4"><?= $texts['games'][0] ?></h2>
+        <p class="text-gray-300"><?= $texts['games'][1] ?></p>
     </section>
 
-  </main>
+    <!-- Payments -->
+    <section class="mb-5">
+        <h2 class="text-2xl font-semibold mb-4"><?= $texts['payments'][0] ?></h2>
+        <p class="text-gray-300"><?= $texts['payments'][1] ?></p>
+    </section>
+
+    <!-- Support -->
+    <section class="mb-5">
+        <h2 class="text-2xl font-semibold mb-4"><?= $texts['support'][0] ?></h2>
+        <p class="text-gray-300"><?= $texts['support'][1] ?></p>
+    </section>
+
+    <!-- Bonuses -->
+    <section class="mb-5">
+        <h2 class="text-2xl font-semibold mb-4"><?= $texts['bonuses'][0] ?></h2>
+        <p class="text-gray-300"><?= $texts['bonuses'][1] ?></p>
+    </section>
+
+    <!-- Withdrawals -->
+    <section class="mb-5">
+        <h2 class="text-2xl font-semibold mb-4"><?= $texts['withdrawals'][0] ?></h2>
+        <p class="text-gray-300"><?= $texts['withdrawals'][1] ?></p>
+    </section>
+</main>
+
 <?php
  include 'footer.php'
 ?>
