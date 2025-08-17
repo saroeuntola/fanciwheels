@@ -72,7 +72,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url('image/2-removebg-preview.png');
+    background-image: url('image/fancy_color_wheel-removebg-preview.png');
     background-size: cover;
     background-position: center;
     z-index: 0;
