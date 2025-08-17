@@ -62,7 +62,7 @@ $annObj = $ann->getAnnouncements();
                                 <?php echo $item['id']; ?>
                             </td>
                             <td class="px-6 py-4">
-                                <?php echo htmlspecialchars($item['name']); ?>
+                                <?php echo htmlspecialchars($item['massage']); ?>
                             </td>
                             <td class="px-6 py-4 flex justify-center space-x-3">
                                 <a href="edit?id=<?php echo $item['id']; ?>" 
