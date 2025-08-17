@@ -94,3 +94,13 @@ Options -Indexes
 # 8. Custom 404 Page
 # =========================================
 ErrorDocument 404 /404.php
+
+
+# Disable PHP version exposure
+<IfModule mod_php7.c>
+    php_flag expose_php Off
+</IfModule>
+
+<IfModule mod_php8.c>
+    php_flag expose_php Off
+</IfModule>
