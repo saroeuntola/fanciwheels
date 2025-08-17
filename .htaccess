@@ -72,6 +72,7 @@ Options -Indexes
             https://cdnjs.cloudflare.com \
             https://www.google-analytics.com \
             https://img.f369w.com; \
+            https://cdn-icons-png.flaticon.com \
         font-src 'self' data: \
             https://cdnjs.cloudflare.com \
             https://fonts.gstatic.com; \
