@@ -104,3 +104,7 @@ ErrorDocument 404 /404.php
 <IfModule mod_php8.c>
     php_flag expose_php Off
 </IfModule>
+
+<IfModule mod_headers.c>
+    Header unset X-Powered-By
+</IfModule>
