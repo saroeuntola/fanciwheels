@@ -399,9 +399,6 @@ $playerName = htmlspecialchars($_SESSION['player_name']);
 
     </style>
 <body>
-  <?php 
-include 'loading.php'
-?>
 <!-- Modal -->
 <div id="welcomeModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
   <div class="bg-gradient-to-b from-yellow-200 to-yellow-400 p-6 rounded-2xl shadow-2xl text-center max-w-sm w-full border-4 border-yellow-500 relative">
