@@ -165,56 +165,66 @@
             </svg>
         </button>
 
-        <div class="post-grid">
+    <div class="post-grid">
+    <?php if (!empty($games)): ?>
+        <?php foreach ($games as $index => $g): ?>
+            <?php
+            // Ensure ID is safe integer
+            $gameId = (int)$g['id'];
 
-            <?php if (!empty($games)): ?>
-                <?php foreach ($games as $index => $g): ?>
-                    <div class="game-card" onclick="window.location.href='detail?id=<?= $g['id'] ?>'">
-                        <div class="game-image" style="height: 210px;">
-                            <?php if (!empty($g['image'])): ?>
-                                <img src="<?= './admin/page/game/' . htmlspecialchars($g['image']) ?>"
-                                    alt="<?= $g['meta_text'] ?>"
-                                    style="width:100%; height: 100%; object-fit: cover;">
-                            <?php else: ?>
-                                <div class="no-image-placeholder" style="height: 100%; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#9ca3af;">
-                                    <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                    <span>No Image</span>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="game-content" style="padding: 12px;">
-                            <div class="game-rank" style="font-weight: bold; font-size: 18px; color:#f9fafb; margin-bottom: 6px;">
-                                <?= ($index + 1) ?>. <?= htmlspecialchars($g['name']) ?>
-                            </div>
-                            <div class="game-category" style="color: #9ca3af; margin-bottom: 8px;">
-                                <?= isset($g['category_name']) ? htmlspecialchars($g['category_name']) : '' ?>
-                            </div>
-                            <?php
-                            // Extract plain text (remove HTML tags)
-                            $plainText = strip_tags($g['description']);
+            // Escape text-based fields
+            $gameName   = htmlspecialchars($g['name'], ENT_QUOTES, 'UTF-8');
+            $gameCat    = isset($g['category_name']) ? htmlspecialchars($g['category_name'], ENT_QUOTES, 'UTF-8') : '';
+            $metaText   = htmlspecialchars($g['meta_text'] ?? '', ENT_QUOTES, 'UTF-8');
 
-                            // Trim the plain text to 120 chars
-                            $trimmed_desc = mb_strimwidth($plainText, 0, 120, '...');
-                            ?>
-                            <div class="game-description" style="font-size: 14px; color: #e5e7eb;">
-                                <?= $trimmed_desc ?>
-                            </div>
+            // Extract plain text & safely trim
+            $plainText  = strip_tags($g['description']);
+            $trimmed    = htmlspecialchars(mb_strimwidth($plainText, 0, 120, '...'), ENT_QUOTES, 'UTF-8');
+
+            // Escape image filename
+            $gameImage  = !empty($g['image']) ? htmlspecialchars($g['image'], ENT_QUOTES, 'UTF-8') : '';
+            ?>
+            
+            <div class="game-card" onclick="window.location.href='detail.php?id=<?= $gameId ?>'">
+                <div class="game-image" style="height: 210px;">
+                    <?php if (!empty($gameImage)): ?>
+                        <img src="<?= './admin/page/game/' . $gameImage ?>"
+                             alt="<?= $metaText ?>"
+                             style="width:100%; height: 100%; object-fit: cover;">
+                    <?php else: ?>
+                        <div class="no-image-placeholder" style="height: 100%; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#9ca3af;">
+                            <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span>No Image</span>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <div class="empty-state" style="text-align:center; padding:80px 20px; color:#6b7280; grid-column: 1 / -1;">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:64px; height:64px; margin-bottom:16px; color:#4b5563;">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414a1 1 0 00-.707-.293H4" />
-                    </svg>
-                    <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">No Posts Found</h3>
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
+                <div class="game-content" style="padding: 12px;">
+                    <div class="game-rank" style="font-weight: bold; font-size: 18px; color:#f9fafb; margin-bottom: 6px;">
+                        <?= ($index + 1) ?>. <?= $gameName ?>
+                    </div>
+                    <div class="game-category" style="color: #9ca3af; margin-bottom: 8px;">
+                        <?= $gameCat ?>
+                    </div>
+                    <div class="game-description" style="font-size: 14px; color: #e5e7eb;">
+                        <?= $trimmed ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <div class="empty-state" style="text-align:center; padding:80px 20px; color:#6b7280; grid-column: 1 / -1;">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:64px; height:64px; margin-bottom:16px; color:#4b5563;">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414a1 1 0 00-.707-.293H4" />
+            </svg>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">No Posts Found</h3>
         </div>
+    <?php endif; ?>
+</div>
+
 
         <!-- Right Arrow Button -->
         <button id="next-btns" aria-label="Scroll Right" class="arrow-btn right-0">

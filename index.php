@@ -159,6 +159,7 @@ $games = $gameObj->getgames();
   </nav>
   <?php include 'loading.php'; ?>
   <?php include 'slideshow.php'; ?>
+  <?php include 'key-frame.php'; ?>
   <?php include 'scroll-top-button.php'; ?>
   <!-- Cards Section -->
   <div class="max-w-7xl mx-auto lg:px-[35px] md:px-[24px] mt-6">
