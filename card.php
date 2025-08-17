@@ -205,19 +205,14 @@ $games = $gameObj->getgames($lang);
                 <?php if (!empty($games)): ?>
                     <?php foreach ($games as $index => $g): ?>
                         <?php
-                        // Ensure ID is safe integer
-                        $gameId = (int)$g['id'];
 
-                        // Escape text-based fields
+                        $gameId = (int)$g['id'];
                         $gameName   = htmlspecialchars($g['name'], ENT_QUOTES, 'UTF-8');
-                        $gameCat    = isset($g['category_name']) ? htmlspecialchars($g['category_name'], ENT_QUOTES, 'UTF-8') : '';
+                       
                         $metaText   = htmlspecialchars($g['meta_text'] ?? '', ENT_QUOTES, 'UTF-8');
 
-                        // Extract plain text & safely trim
                         $plainText  = strip_tags($g['description']);
                         $trimmed    = htmlspecialchars(mb_strimwidth($plainText, 0, 120, '...'), ENT_QUOTES, 'UTF-8');
-
-                        // Escape image filename
                         $gameImage  = !empty($g['image']) ? htmlspecialchars($g['image'], ENT_QUOTES, 'UTF-8') : '';
                         ?>
                         
@@ -240,9 +235,6 @@ $games = $gameObj->getgames($lang);
                             <div class="game-content" style="padding: 12px;">
                                 <div class="game-rank" style="font-weight: bold; font-size: 18px; color:#f9fafb; margin-bottom: 6px;">
                                     <?= ($index + 1) ?>. <?= $gameName ?>
-                                </div>
-                                <div class="game-category" style="color: #9ca3af; margin-bottom: 8px;">
-                                    <?= $gameCat ?>
                                 </div>
                                 <div class="game-description" style="font-size: 14px; color: #e5e7eb;">
                                     <?= $trimmed ?>
