@@ -82,7 +82,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
           <img
             src="<?= './admin/page/game/' . htmlspecialchars($gameImage) ?>"
             alt="<?= htmlspecialchars($metaText) ?>"
-            class="w-full h-[510px] object-cover rounded-xl mb-6"
+            class="w-full h-64 lg:h-[490px] object-cover rounded-xl mb-6"
           />
           <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-snug break-words">
             <?= htmlspecialchars($game['name'] ?? ($lang === 'en' ? 'Unnamed' : 'নামহীন')) ?>
