@@ -6,17 +6,40 @@ if (!isset($_SESSION['player_name'])) {
 }
 $playerName = htmlspecialchars($_SESSION['player_name']);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin Wheel Betting Game</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <title>Spin Wheel Game - Win Exciting Prizes</title>
 
-    <style>
+<!-- SEO Meta Tags -->
+<meta name="description" content="Play the Spin Wheel Game and win exciting prizes instantly! Try your luck and enjoy fun rewards online.">
+<meta name="keywords" content="Spin Wheel Game, Online Game, Win Prizes, Lucky Wheel, Fun Game">
+<meta name="author" content="FancyWheel">
+  <link rel="icon" href="./image/inner-sw.png"
+    type="image/png">
+<!-- Social Sharing / Open Graph -->
+<meta property="og:title" content="Spin Wheel Game - Win Exciting Prizes">
+<meta property="og:description" content="Play the Spin Wheel Game and win exciting prizes instantly!">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fanciwheel.com/spin">
+<meta property="og:image" content="https://fanciwheel.com/image/inner-sw.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Spin Wheel Game - Win Exciting Prizes">
+<meta name="twitter:description" content="Play the Spin Wheel Game and win exciting prizes instantly!">
+<meta name="twitter:image" content="https://https://fanciwheel.com//image/inner-sw.png">
+
+<!-- TailwindCSS and other libraries -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+   
+</head>
+ <style>
         * {
             margin: 0;
             padding: 0;
@@ -270,7 +293,7 @@ $playerName = htmlspecialchars($_SESSION['player_name']);
 
 .wheel {
   position: absolute;
-  background-image: url('./image/pngwing.com.png'); /* Your wheel image */
+  background-image: url('./image/inner-sw.png'); /* Your wheel image */
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -375,7 +398,6 @@ $playerName = htmlspecialchars($_SESSION['player_name']);
 }
 
     </style>
-</head>
 <body>
 
 <!-- Modal -->
@@ -400,39 +422,6 @@ $playerName = htmlspecialchars($_SESSION['player_name']);
     </button>
   </div>
 </div>
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-function showModal() {
-  $("#welcomeModal").removeClass("hidden");
-}
-
-function closeModal() {
-  $("#welcomeModal").addClass("hidden");
-}
-
-$(window).on("load", function() {
-  const isShown = localStorage.getItem('welcomeModalShown');
-  if (!isShown) {
-    setTimeout(() => {
-      $("#welcomeModal").removeClass("hidden").hide().fadeIn(300);
-    }, 300);
-  }
-});
-
-// Close when Start Playing button clicked
-$(document).on("click", "#closeBtn", function() {
-  closeModal();
-});
-
-// Close when X icon clicked
-$(document).on("click", ".absolute.top-3.right-3", function() {
-  closeModal();
-});
-
-</script>
 
 
 </script>
@@ -624,6 +613,31 @@ const itemEmojis = {
   'coin': '🪙',
   'crown': '👑'
 };
+
+function showModal() {
+  $("#welcomeModal").removeClass("hidden").hide().fadeIn(300);
+}
+
+function closeModal() {
+  $("#welcomeModal").fadeOut(200);
+}
+
+$(window).on("load", function() {
+  if (wallet != 0) {
+    setTimeout(showModal, 250);
+  }
+});
+
+
+// Close when Start Playing button clicked
+$(document).on("click", "#closeBtn", function() {
+  closeModal();
+});
+
+// Close when X icon clicked
+$(document).on("click", ".absolute.top-3.right-3", function() {
+  closeModal();
+});
 
 const parts = [
   <?php
