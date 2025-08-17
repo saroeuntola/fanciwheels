@@ -236,8 +236,8 @@ langBtn1.addEventListener('click', () => {
   <!-- Modern Mobile Menu -->
   <div id="mobileMenu" class="lg:hidden hidden bg-slate-900/95 backdrop-blur-lg border-t border-white/10">
     <div class="px-4 py-6 space-y-3">
-
-       <?php
+     <div class="flex flex-col gap-4 ms-4 mb-4">
+    <?php
     if ($lang === 'en') {
         echo navLink('/', 'Home', $lang, $currentPage, $currentId);
         echo navLink('services', 'Services', $lang, $currentPage, $currentId);
@@ -250,6 +250,8 @@ langBtn1.addEventListener('click', () => {
         echo navLink('faq', 'প্রশ্নোত্তর', $lang, $currentPage, $currentId);
     }
     ?>
+     </div>
+   
       <form action="search.php" method="GET" class="relative group">
         <div class="search-bar">
               <input type="hidden" name="lang" value="<?= htmlspecialchars($lang) ?>">
