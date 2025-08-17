@@ -88,7 +88,6 @@ include('./admin/page/library/announcement_lib.php');
 $announcementObj = new Announcement();
 $announcements = $announcementObj->getAnnouncements();
 ?>
-?>
 <main id="main">
     <div class="announcement-icon"><i class="fas fa-bullhorn"></i></div>
     <div class="container">

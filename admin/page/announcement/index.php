@@ -61,7 +61,7 @@ $annObj = $ann->getAnnouncements();
                             <td class="px-6 py-4 font-medium text-gray-900">
                                 <?php echo $item['id']; ?>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-wrap">
                                 <?php echo htmlspecialchars($item['message']); ?>
                             </td>
                             <td class="px-6 py-4 flex justify-center space-x-3">
