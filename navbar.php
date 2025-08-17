@@ -59,24 +59,6 @@ function buildLangUrl($langTarget, $currentPage, $currentId) {
 
       <!-- Desktop Menu -->
       <div class="hidden lg:flex items-center space-x-8">
-        <!-- Navigation Links -->
-        <!-- <a href="/" class="relative text-white/90 hover:text-white transition-all duration-300 group">
-          <span class="relative z-10">Home</span>
-          <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
-        </a>
-        <a href="services" class="relative text-white/90 hover:text-white transition-all duration-300 group">
-          <span class="relative z-10">Services</span>
-          <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
-        </a>
-        <a href="about" class="relative text-white/90 hover:text-white transition-all duration-300 group">
-          <span class="relative z-10">About</span>
-          <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
-        </a>
-
-        <a href="faq" class="relative text-white/90 hover:text-white transition-all duration-300 group">
-          <span class="relative z-10">FAQ</span>
-          <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
-        </a> -->
 
    <nav class="flex space-x-6">
     <?php
@@ -106,7 +88,7 @@ function buildLangUrl($langTarget, $currentPage, $currentId) {
         <div class="relative ml-auto">
   <!-- Button showing current language -->
   <button id="langBtn" class="flex items-center relative group px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-    <img id="currentFlag" src="<?= $lang==='en' ? 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg' : 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg' ?>" class="w-5 h-5 mr-2" alt="Flag">
+    <img id="currentFlag" src="<?= $lang==='en' ? './image/flag/en.svg' : './image/flag/bn.svg' ?>" class="w-5 h-5 mr-2" alt="Flag">
     <span id="currentLang"><?= strtoupper($lang) ?></span>
     <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -203,7 +185,7 @@ langBtn.addEventListener('click', () => {
               <div class="relative ml-auto">
   <!-- Button showing current language -->
   <button id="langBtn1" class="flex items-center relative group px-4 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-    <img id="currentFlag" src="<?= $lang==='en' ? 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg' : 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg' ?>" class="w-5 h-5 mr-2" alt="Flag">
+    <img id="currentFlag" src="<?= $lang==='en' ? './image/flag/en.svg' : './image/flag/bn.svg' ?>" class="w-5 h-5 mr-2" alt="Flag">
     <span id="currentLang"><?= strtoupper($lang) ?></span>
     <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -214,10 +196,10 @@ langBtn.addEventListener('click', () => {
   <!-- Dropdown menu -->
   <div id="langMenu1" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg w-32 z-50">
     <a href="<?= buildLangUrl('en', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
-      <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" class="w-5 h-5 mr-2" alt="EN"> EN
+      <img src="./image/flag/en.svg" class="w-5 h-5 mr-2" alt="EN"> EN
     </a>
     <a href="<?= buildLangUrl('bn', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg" class="w-5 h-5 mr-2" alt="BN"> বাংলা
+      <img src="./image/flag/bn.svg" class="w-5 h-5 mr-2" alt="BN"> বাংলা
     </a>
   </div>
 </div>
