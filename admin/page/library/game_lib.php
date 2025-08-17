@@ -1,52 +1,24 @@
+
 <?php
 class Games {
     public $db;
+
     public function __construct() {
         $this->db = dbConn(); 
     }
-    public function searchgames($query) {
-        $sql = "SELECT p.*, c.name AS category_name 
-                FROM games p
-                JOIN categories c ON p.category_id = c.id
-                WHERE p.name LIKE :query OR c.name LIKE :query";
-        $stmt = $this->db->prepare($sql); // ✅ Corrected here
-        $stmt->execute(['query' => '%' . $query . '%']);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    // Create a new product
-    public function createGames($name, $image, $description,$link, $category_id,$meta_text) {
-        $data = [
-            'name' => $name,
-            'image' => $image,
-            'description' => $description,
-            'game_link' => $link, 
-            'category_id' => $category_id,
-            'meta_text' => $meta_text
-        ];
-        return dbInsert('games', $data);
-    }
 
-    // Get related games by category, excluding the current one
-public function getRelatedGames($gameId, $categoryId, $limit = 4) {
-    $query = "SELECT * FROM games 
-              WHERE id != :id AND category_id = :category_id 
-              ORDER BY RAND() 
-              LIMIT :limit";
-    try {
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':id', $gameId, PDO::PARAM_INT);
-        $stmt->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
-        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        die("Error fetching related games: " . $e->getMessage());
-    }
-}
+    public function getgames($lang = 'en') {
+        // Validate language
+        $lang = in_array($lang, ['en', 'bn']) ? $lang : 'en';
+        
+        // Select language-specific fields
+        $name_field = $lang === 'en' ? 'name' : 'name_bn';
+        $description_field = $lang === 'en' ? 'description' : 'description_bn';
+        $meta_text_field = $lang === 'en' ? 'meta_text' : 'meta_text_bn';
 
-    // Get all games
-    public function getgames() {
-        $query = "SELECT p.*, c.name AS category_name 
+        $query = "SELECT p.id, p.$name_field AS name, p.image, p.$description_field AS description, 
+                         p.game_link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
+                         c.name AS category_name 
                   FROM games p
                   JOIN categories c ON p.category_id = c.id 
                   ORDER BY p.created_at DESC";
@@ -55,13 +27,23 @@ public function getRelatedGames($gameId, $categoryId, $limit = 4) {
             $stmt = $this->db->query($query);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die("Error fetching games: " . $e->getMessage());
+            error_log("Error fetching games: " . $e->getMessage());
+            return [];
         }
     }
 
-    // Get a single product by ID
-    public function getGameById($id) {
-        $query = "SELECT p.*, c.name AS category_name 
+    public function getGameById($id, $lang = 'en') {
+        // Validate language
+        $lang = in_array($lang, ['en', 'bn']) ? $lang : 'en';
+        
+        // Select language-specific fields
+        $name_field = $lang === 'en' ? 'name' : 'name_bn';
+        $description_field = $lang === 'en' ? 'description' : 'description_bn';
+        $meta_text_field = $lang === 'en' ? 'meta_text' : 'meta_text_bn';
+
+        $query = "SELECT p.id, p.$name_field AS name, p.image, p.$description_field AS description, 
+                         p.game_link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
+                         c.name AS category_name 
                   FROM games p
                   JOIN categories c ON p.category_id = c.id 
                   WHERE p.id = :id 
@@ -73,36 +55,53 @@ public function getRelatedGames($gameId, $categoryId, $limit = 4) {
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die("Error fetching product by ID: " . $e->getMessage());
+            error_log("Error fetching game by ID: " . $e->getMessage());
+            return false;
         }
     }
-    
 
-    // Update a product
-    public function updateGame($id, $name, $image, $description, $game_link, $category_id, $meta_text) {
-        if (!$this->getGameById($id)) {
-            return false; 
+    public function getRelatedGames($gameId, $categoryId, $limit = 4, $lang = 'en') {
+        // Validate language
+        $lang = in_array($lang, ['en', 'bn']) ? $lang : 'en';
+        
+        // Select language-specific fields
+        $name_field = $lang === 'en' ? 'name' : 'name_bn';
+        $description_field = $lang === 'en' ? 'description' : 'description_bn';
+        $meta_text_field = $lang === 'en' ? 'meta_text' : 'meta_text_bn';
+
+        $query = "SELECT p.id, p.$name_field AS name, p.image, p.$description_field AS description, 
+                         p.game_link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
+                         c.name AS category_name 
+                  FROM games p
+                  JOIN categories c ON p.category_id = c.id 
+                  WHERE p.id != :id AND p.category_id = :category_id 
+                  ORDER BY RAND() 
+                  LIMIT :limit";
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':id', $gameId, PDO::PARAM_INT);
+            $stmt->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Error fetching related games: " . $e->getMessage());
+            return [];
         }
-        $data = [
-            'name' => $name,
-            'image' => $image,
-            'description' => $description,
-            'game_link' => $game_link,
-            'category_id' => $category_id,
-            'meta_text' => $meta_text
-        ];
-        return dbUpdate('games', $data, "id=" . $this->db->quote($id));
-    }
-    
-
-    // Delete a product
-    public function deleteGame($id) {
-        return dbDelete('games', "id=" . $this->db->quote($id));
     }
 
-    // Get popular games (latest games for now - can be enhanced with view counts later)
-    public function getPopularGames($limit = 6) {
-        $query = "SELECT p.*, c.name AS category_name 
+    public function getPopularGames($limit = 6, $lang = 'en') {
+        // Validate language
+        $lang = in_array($lang, ['en', 'bn']) ? $lang : 'en';
+        
+        // Select language-specific fields
+        $name_field = $lang === 'en' ? 'name' : 'name_bn';
+        $description_field = $lang === 'en' ? 'description' : 'description_bn';
+        $meta_text_field = $lang === 'en' ? 'meta_text' : 'meta_text_bn';
+
+        $query = "SELECT p.id, p.$name_field AS name, p.image, p.$description_field AS description, 
+                         p.game_link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
+                         c.name AS category_name 
                   FROM games p
                   JOIN categories c ON p.category_id = c.id 
                   ORDER BY p.created_at DESC
@@ -113,9 +112,72 @@ public function getRelatedGames($gameId, $categoryId, $limit = 4) {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die("Error fetching popular games: " . $e->getMessage());
+            error_log("Error fetching popular games: " . $e->getMessage());
+            return [];
         }
     }
-    
+
+    public function searchgames($query, $lang = 'en') {
+        // Validate language
+        $lang = in_array($lang, ['en', 'bn']) ? $lang : 'en';
+        
+        // Select language-specific fields
+        $name_field = $lang === 'en' ? 'name' : 'name_bn';
+        $description_field = $lang === 'en' ? 'description' : 'description_bn';
+        $meta_text_field = $lang === 'en' ? 'meta_text' : 'meta_text_bn';
+
+        $sql = "SELECT p.id, p.$name_field AS name, p.image, p.$description_field AS description, 
+                       p.game_link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
+                       c.name AS category_name 
+                FROM games p
+                JOIN categories c ON p.category_id = c.id
+                WHERE p.$name_field LIKE :query OR c.name LIKE :query";
+        try {
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(['query' => '%' . $query . '%']);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Error searching games: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function createGames($name, $image, $description, $link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn) {
+        $data = [
+            'name' => $name,
+            'image' => $image,
+            'description' => $description,
+            'game_link' => $link,
+            'category_id' => $category_id,
+            'meta_text' => $meta_text,
+            'name_bn' => $name_bn,
+            'description_bn' => $description_bn,
+            'meta_text_bn' => $meta_text_bn
+        ];
+        return dbInsert('games', $data);
+    }
+
+    public function updateGame($id, $name, $image, $description, $game_link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn) {
+        if (!$this->getGameById($id)) {
+            return false; 
+        }
+        $data = [
+            'name' => $name,
+            'image' => $image,
+            'description' => $description,
+            'game_link' => $game_link,
+            'category_id' => $category_id,
+            'meta_text' => $meta_text,
+            'name_bn' => $name_bn,
+            'description_bn' => $description_bn,
+            'meta_text_bn' => $meta_text_bn
+        ];
+        return dbUpdate('games', $data, "id=" . $this->db->quote($id));
+    }
+
+    // Delete a product (unchanged)
+    public function deleteGame($id) {
+        return dbDelete('games', "id=" . $this->db->quote($id));
+    }
 }
 ?>

@@ -1,8 +1,5 @@
 <?php
-include './admin/page/library/game_lib.php';
 include './admin/page/library/db.php';
-$gameObj = new Games();
-$games = $gameObj->getgames();
 
 ?>
 <!DOCTYPE html>
