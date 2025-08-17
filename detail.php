@@ -162,7 +162,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                       <?= htmlspecialchars($popularName) ?>
                     </h4>
                     <p class="text-xs text-gray-400 mt-1 line-clamp-2">
-                      <?= htmlspecialchars(substr(strip_tags($popularDesc), 0, 80)) ?>
+                      <?= htmlspecialchars(substr(strip_tags($popularDesc), 0, 80)) . '...' ?>
                     </p>
   
                   </a>
