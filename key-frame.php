@@ -82,11 +82,27 @@
     }
 </style>
 
+<?php 
+include('./admin/page/library/announcement_lib.php');
 
+$announcementObj = new Announcement();
+$announcements = $announcementObj->getAnnouncements();
+?>
+?>
 <main id="main">
     <div class="announcement-icon"><i class="fas fa-bullhorn"></i></div>
     <div class="container">
         <!-- Sliding text -->
-        <div class="announcement">Breaking News: Buses are now heading to Chittagong. Plan your trip and catch the latest routes!</div>
+        <?php if (!empty($announcements)): ?>
+            <?php foreach ($announcements as $ann): ?>
+                <div class="announcement">
+                    <?php 
+                        echo htmlspecialchars($ann['message'], ENT_QUOTES);   
+                    ?>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="announcement">No announcements available.</div>
+        <?php endif; ?>
     </div>
 </main>

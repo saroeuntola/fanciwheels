@@ -50,6 +50,12 @@
                     <span>Banner</span>
                 </a>
             </li>
+                 <li class="menu-item">
+                <a href="<?php echo $baseURL; ?>/admin/page/announcement">
+                    <span class="menu-icon">💬</span>
+                    <span>Announcement</span>
+                </a>
+            </li>
                 <li class="menu-item">
                 <a href="<?php echo $baseURL; ?>/admin/page/brand">
                     <span class="menu-icon">💬</span>
