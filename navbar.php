@@ -116,10 +116,10 @@ function buildLangUrl($langTarget, $currentPage, $currentId) {
   <!-- Dropdown menu -->
   <div id="langMenu" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg w-32 z-50">
     <a href="<?= buildLangUrl('en', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
-      <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" class="w-5 h-5 mr-2" alt="EN"> EN
+      <img src="./image/flag/en.svg" class="w-5 h-5 mr-2" alt="EN"> EN
     </a>
     <a href="<?= buildLangUrl('bn', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg" class="w-5 h-5 mr-2" alt="BN"> BN
+      <img src="./image/flag/bn.svg" class="w-5 h-5 mr-2" alt="BN"> BN
     </a>
   </div>
 </div>
