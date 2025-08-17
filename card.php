@@ -177,12 +177,7 @@ $games = $gameObj->getgames($lang);
             <h1 class="post-title">
                 <?php echo $lang === 'en' ? 'Popular Cities in Bangladesh' : 'বাংলাদেশের জনপ্রিয় শহর'; ?>
             </h1>
-            <div>
-                <select class="lang-select" onchange="window.location.href='?lang=' + this.value">
-                    <option value="en" <?php echo $lang == 'en' ? 'selected' : ''; ?>>English</option>
-                    <option value="bn" <?php echo $lang == 'bn' ? 'selected' : ''; ?>>বাংলা</option>
-                </select>
-            </div>
+           
         </div>
 
         <p class="post-subtitle mt-2">

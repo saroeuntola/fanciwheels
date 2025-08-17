@@ -7,17 +7,18 @@ $announcement = new Announcement();
 
 // Get ID from URL
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-$existing = $announcement->getAnnouncementByID($id);
+$existing = $announcement->getAnnouncementByID($id, 'en'); // fetch full record, not lang-filtered
 
 if (!$existing) {
     die("<p class='text-red-500 text-center'>❌ Announcement not found.</p>");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $message = $_POST['message'];
-    $link = !empty($_POST['link']) ? $_POST['link'] : null;
+    $message    = $_POST['message'];      // English
+    $message_bn = $_POST['message_bn'];   // Bengali
+    $link       = !empty($_POST['link']) ? $_POST['link'] : null;
 
-    if ($announcement->updateAnnouncement($id, $message, $link)) {
+    if ($announcement->updateAnnouncement($id, $message, $message_bn, $link)) {
         header("Location: index.php");
         exit;
     } else {
@@ -42,12 +43,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Edit Form -->
     <form action="edit?id=<?= $id ?>" method="POST">
       
-      <!-- Message -->
+      <!-- English Message -->
       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-700">Message</label>
-        <textarea name="message" required rows="4"
+        <label class="block text-sm font-medium text-gray-700">Message (English)</label>
+        <textarea name="message" required rows="3"
           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
                  focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"><?= htmlspecialchars($existing['message'], ENT_QUOTES) ?></textarea>
+      </div>
+
+      <!-- Bengali Message -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Message (বাংলা)</label>
+        <textarea name="message_bn" rows="3"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"><?= htmlspecialchars($existing['message_bn'] ?? '', ENT_QUOTES) ?></textarea>
       </div>
 
       <!-- Link -->

@@ -8,43 +8,75 @@ class Announcement
         $this->db = dbConn(); 
     }
 
-    // CREATE a new announcement
-    public function createAnnouncement($message, $link = null)
+    // CREATE a new announcement (EN + BN)
+    public function createAnnouncement($message, $message_bn = null, $link = null)
     {
         $data = [
-            'message' => $message,
-            'link'    => $link
+            'message'    => $message,     // English
+            'message_bn' => $message_bn,  // Bengali
+            'link'       => $link,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ];
 
         return dbInsert('announcements', $data);
     }
 
-    // READ all announcements
-    public function getAnnouncements()
+    // READ all announcements (with language filter)
+    public function getAnnouncements($lang = 'en')
     {
-        return dbSelect('announcements', '*');
+        // Validate language
+        $lang = in_array($lang, ['en', 'bn']) ? $lang : 'en';
+
+        // Select language-specific field
+        $message_field = $lang === 'en' ? 'message' : 'message_bn';
+
+        $query = "SELECT id, $message_field AS message, link, created_at, updated_at
+                  FROM announcements
+                  ORDER BY created_at DESC";
+
+        try {
+            $stmt = $this->db->query($query);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Error fetching announcements: " . $e->getMessage());
+            return [];
+        }
     }
 
-    // READ a specific announcement by ID
-    public function getAnnouncementByID($id)
+    // READ a specific announcement by ID (with language filter)
+    public function getAnnouncementByID($id, $lang = 'en')
     {
-        $quotedId = $this->db->quote($id);
-        $result = dbSelect('announcements', '*', "id=$quotedId");
+        $lang = in_array($lang, ['en', 'bn']) ? $lang : 'en';
+        $message_field = $lang === 'en' ? 'message' : 'message_bn';
 
-        return ($result && count($result) > 0) ? $result[0] : null;
+        $query = "SELECT id, $message_field AS message, link, created_at, updated_at
+                  FROM announcements
+                  WHERE id = " . $this->db->quote($id);
+
+        try {
+            $stmt = $this->db->query($query);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result ?: null;
+        } catch (PDOException $e) {
+            error_log("Error fetching announcement by ID: " . $e->getMessage());
+            return null;
+        }
     }
 
-    // UPDATE an announcement
-    public function updateAnnouncement($id, $message, $link = null)
+    // UPDATE an announcement (EN + BN)
+    public function updateAnnouncement($id, $message, $message_bn = null, $link = null)
     {
-        $announcement = $this->getAnnouncementByID($id);
-        if (!$announcement) {
-            return false; // Announcement doesn't exist
+        // Ensure announcement exists
+        if (!$this->getAnnouncementByID($id)) {
+            return false;
         }
 
         $data = [
-            'message' => $message,
-            'link'    => $link
+            'message'    => $message,
+            'message_bn' => $message_bn,
+            'link'       => $link,
+            'updated_at' => date('Y-m-d H:i:s')
         ];
 
         return dbUpdate('announcements', $data, "id=" . $this->db->quote($id));
@@ -53,9 +85,9 @@ class Announcement
     // DELETE an announcement
     public function deleteAnnouncement($id)
     {
-        $announcement = $this->getAnnouncementByID($id);
-        if (!$announcement) {
-            return false; // Announcement doesn't exist
+        // Ensure announcement exists
+        if (!$this->getAnnouncementByID($id)) {
+            return false;
         }
 
         return dbDelete('announcements', "id=" . $this->db->quote($id));

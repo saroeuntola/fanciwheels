@@ -2,9 +2,9 @@
 include './admin/page/library/users_lib.php';
 include './admin/page/library/brand_lib.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
+include 'helpers.php'; 
 $auth = new User();
 $brand = new Brand();
-
 $username = $_SESSION['username'] ?? '';
 $userId = $_SESSION['user_id'] ?? null;
 
@@ -17,6 +17,7 @@ if ($userId) {
   $user = $userLib->getUserByID($userId);
 }
 
+
 // Build profile image path
 $profileImage = isset($user['profile']) && !empty($user['profile']) ? $user['profile'] : 'default.png';
 $profilePath = $baseURL . '/admin/page/user/user_image/' . htmlspecialchars($profileImage);
@@ -26,6 +27,10 @@ $fullPath = $_SERVER['DOCUMENT_ROOT'] . '/admin/page/user/user_image/' . $profil
 if (!file_exists($fullPath)) {
   $profilePath = $baseURL . '/admin/page/user/user_image/default.png';
 }
+
+$currentPage = basename($_SERVER['PHP_SELF']);
+$lang = isset($_GET['lang']) ? $_GET['lang'] : 'en';
+$currentId = isset($_GET['id']) ? intval($_GET['id']) : null;
 ?>
 
 <link rel="stylesheet" href="./admin/page/assets/css/navbar.css">
@@ -49,7 +54,7 @@ if (!file_exists($fullPath)) {
       <!-- Desktop Menu -->
       <div class="hidden lg:flex items-center space-x-8">
         <!-- Navigation Links -->
-        <a href="/" class="relative text-white/90 hover:text-white transition-all duration-300 group">
+        <!-- <a href="/" class="relative text-white/90 hover:text-white transition-all duration-300 group">
           <span class="relative z-10">Home</span>
           <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
         </a>
@@ -65,7 +70,14 @@ if (!file_exists($fullPath)) {
         <a href="faq" class="relative text-white/90 hover:text-white transition-all duration-300 group">
           <span class="relative z-10">FAQ</span>
           <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-lg transition-all duration-300"></div>
-        </a>
+        </a> -->
+
+        <nav class="flex space-x-4">
+    <?= navLink('/', 'Home', $lang, $currentPage, $currentId) ?>
+    <?= navLink('services', 'Services', $lang, $currentPage, $currentId) ?>
+    <?= navLink('about', 'About', $lang, $currentPage, $currentId) ?>
+    <?= navLink('faq', 'FAQ', $lang, $currentPage, $currentId) ?>
+</nav>
         <!-- Modern Search Bar -->
         <form action="search.php" method="GET" class="relative group">
           <div class="search-bar">
@@ -73,6 +85,26 @@ if (!file_exists($fullPath)) {
             <button type="submit" class="search-icon">🔍</button>
           </div>
         </form>
+       <div>
+    <select class="lang-select" onchange="window.location.href=this.value" 
+            style="padding:4px 8px; border-radius:4px; background:#111; color:white;">
+        <?php
+        // Build EN link
+        $enLink = ($currentPage === 'detail' && $currentId) 
+            ? "detail.php?id={$currentId}&lang=en" 
+            : "{$currentPage}?lang=en";
+
+        // Build BN link
+        $bnLink = ($currentPage === 'detail' && $currentId) 
+            ? "detail?id={$currentId}&lang=bn" 
+            : "{$currentPage}?lang=bn";
+        ?>
+
+        <option value="<?= $enLink ?>" <?= $lang === 'en' ? 'selected' : '' ?>>EN</option>
+        <option value="<?= $bnLink ?>" <?= $lang === 'bn' ? 'selected' : '' ?>>BN</option>
+    </select>
+</div>
+
         <!-- Desktop Profile -->
         <?php if ($userId): ?>
           <div class="relative">
