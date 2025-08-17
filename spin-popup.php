@@ -224,7 +224,7 @@
     <p id="popupMessage" class="text-center text-lg font-semibold mb-6"></p>
     <!-- Registration Form -->
     <form id="registerForm" class="space-y-6">
-      <h3 class="text-sm font-bold text-yellow-400 text-center">Resigter Now! <br> New player get free 100$ to play game.</h3>
+      <h3 class="text-sm font-bold text-yellow-400 text-center">Resigter Now! <br>New player free 100$ to play game.</h3>
 <div>
   <input
     type="text"
