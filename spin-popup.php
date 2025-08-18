@@ -323,7 +323,7 @@ $translations = [
 <div>
   <input
     type="tel"
-    id="phone"
+    id="phone1"
     name="phone"
     placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
     class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
@@ -419,7 +419,7 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
   const formData = new FormData(e.target);
   const name = formData.get("name").trim();
   const gmail = formData.get("gmail").trim();
-  const phone = formData.get("phone1").trim(); // Notice phone1 here!
+  const phone1 = formData.get("phone1").trim(); // Notice phone1 here!
 
   if (!name || !gmail) {
     Swal.fire({
@@ -433,7 +433,7 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
   try {
     const response = await fetch("https://fanciwheel.com/admin/page/api/create_player", {
       method: "POST",
-      body: new URLSearchParams({ name, gmail, phone }),
+      body: new URLSearchParams({ name, gmail, phone1 }),
       headers: { "Content-Type": "application/x-www-form-urlencoded" }
     });
 
