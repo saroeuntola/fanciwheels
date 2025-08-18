@@ -2,9 +2,29 @@
 session_start();
 header('Content-Type: application/json');
 
-include_once '../library/players_lib.php';
-include_once '../library/db.php';
+// Allowed domains
+$allowed_origins = [
+    "https://fanciwheel.com",
+];
 
+// Get the request origin or referer
+$origin = $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'] ?? '';
+
+$allowed = false;
+foreach ($allowed_origins as $allowed_origin) {
+    if (strpos($origin, $allowed_origin) === 0) {
+        $allowed = true;
+        break;
+    }
+}
+
+if (!$allowed) {
+    http_response_code(403);
+    echo json_encode(['success' => false, 'message' => 'Unauthorized - Invalid IP. Contact FancyWheel Developer for allowed IP']);
+    exit;
+}
+
+// Get POST data
 $name = $_POST['name'] ?? '';
 $gmail = $_POST['gmail'] ?? '';
 $phone = $_POST['phone'] ?? '';
@@ -14,11 +34,10 @@ if (!$name || !$gmail) {
     exit;
 }
 
+include_once '../library/players_lib.php';
 $playerObj = new Player();
 
-// Check if player already exists
-$existingPlayer = $playerObj->getPlayerByGmail($gmail);
-if ($existingPlayer) {
+if ($playerObj->getPlayerByGmail($gmail)) {
     echo json_encode(['success' => false, 'message' => 'Gmail already registered']);
     exit;
 }
@@ -27,20 +46,11 @@ $created = $playerObj->createPlayer($name, $phone, $gmail);
 
 if ($created) {
     $newPlayer = $playerObj->getPlayerByGmail($gmail);
-    if ($newPlayer) {
-        $_SESSION['player_id'] = $newPlayer['id'];
-        $_SESSION['player_name'] = $newPlayer['name'];
-        $_SESSION['player_gmail'] = $newPlayer['gmail'];
-        $_SESSION['player_balance'] = $newPlayer['balance'];
-
-        echo json_encode([
-            'success' => true,
-            'message' => 'Player created successfully',
-            'player' => $newPlayer,
-        ]);
-        exit;
-    }
-    echo json_encode(['success' => false, 'message' => 'Failed to retrieve player info']);
+    echo json_encode([
+        'success' => true,
+        'message' => 'Player created successfully',
+        'player' => $newPlayer
+    ]);
 } else {
     echo json_encode(['success' => false, 'message' => 'Player creation failed']);
 }
