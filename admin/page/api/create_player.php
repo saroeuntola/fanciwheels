@@ -2,18 +2,9 @@
 session_start();
 header('Content-Type: application/json');
 
-// Allowed domain
-$allowed_origin = "https://fanciwheel.com";
+include_once '../library/players_lib.php';
+include_once '../library/db.php';
 
-$origin = $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'] ?? '';
-
-if (strpos($origin, $allowed_origin) !== 0) {
-    http_response_code(403);
-    echo json_encode(['success' => false, 'message' => 'Unauthorized - Invalid IP. Contant FancyWheel Developer for allowed your IP']);
-    exit;
-}
-
-// Get POST data
 $name = $_POST['name'] ?? '';
 $gmail = $_POST['gmail'] ?? '';
 $phone = $_POST['phone'] ?? '';
@@ -23,11 +14,12 @@ if (!$name || !$gmail) {
     exit;
 }
 
-include_once '../library/players_lib.php';
 $playerObj = new Player();
 
-if ($playerObj->getPlayerByGmail($gmail)) {
-    echo json_encode(['success' => false, 'message' => 'Gmail already registered']);
+// Check if player already exists
+$existingPlayer = $playerObj->getPlayerByGmail($gmail);
+if ($existingPlayer) {
+    echo json_encode(['success' => false, 'message' => 'Email already registered']);
     exit;
 }
 
@@ -35,11 +27,20 @@ $created = $playerObj->createPlayer($name, $phone, $gmail);
 
 if ($created) {
     $newPlayer = $playerObj->getPlayerByGmail($gmail);
-    echo json_encode([
-        'success' => true,
-        'message' => 'Player created successfully',
-        'player' => $newPlayer
-    ]);
+    if ($newPlayer) {
+        $_SESSION['player_id'] = $newPlayer['id'];
+        $_SESSION['player_name'] = $newPlayer['name'];
+        $_SESSION['player_gmail'] = $newPlayer['gmail'];
+        $_SESSION['player_balance'] = $newPlayer['balance'];
+
+        echo json_encode([
+            'success' => true,
+            'message' => 'Player created successfully',
+            'player' => $newPlayer,
+        ]);
+        exit;
+    }
+    echo json_encode(['success' => false, 'message' => 'Failed to retrieve player info']);
 } else {
     echo json_encode(['success' => false, 'message' => 'Player creation failed']);
 }
