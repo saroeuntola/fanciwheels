@@ -419,7 +419,7 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
   const formData = new FormData(e.target);
   const name = formData.get("name").trim();
   const gmail = formData.get("gmail").trim();
-  const phone1 = formData.get("phone1").trim(); // Notice phone1 here!
+  const phone1 = formData.get("phone1").trim();
 
   if (!name || !gmail) {
     Swal.fire({

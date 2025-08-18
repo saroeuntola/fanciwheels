@@ -2,25 +2,14 @@
 session_start();
 header('Content-Type: application/json');
 
-// Allowed domains
-$allowed_origins = [
-    "https://fanciwheel.com",
-];
+// Allowed domain
+$allowed_origin = "https://fanciwheel.com";
 
-// Get the request origin or referer
 $origin = $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'] ?? '';
 
-$allowed = false;
-foreach ($allowed_origins as $allowed_origin) {
-    if (strpos($origin, $allowed_origin) === 0) {
-        $allowed = true;
-        break;
-    }
-}
-
-if (!$allowed) {
+if (strpos($origin, $allowed_origin) !== 0) {
     http_response_code(403);
-    echo json_encode(['success' => false, 'message' => 'Unauthorized - Invalid IP. Contact FancyWheel Developer for allowed IP']);
+    echo json_encode(['success' => false, 'message' => 'Unauthorized - Invalid IP. Contant FancyWheel Developer for allowed your IP']);
     exit;
 }
 
