@@ -3,7 +3,7 @@
 include './admin/page/library/game_lib.php';
 $gameObj = new Games();
 // Get selected language from GET parameter or default to 'en'
-$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 $games = $gameObj->getgames($lang);
 ?>
 <!DOCTYPE html>

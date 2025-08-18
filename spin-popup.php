@@ -85,7 +85,7 @@ $translations = [
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url('image/fancywheel_4-removebg-preview.png');
+    background-image: url('image/upscalemedia-transformed.png');
     background-size: cover;
     background-position: center;
     z-index: 0;

@@ -3,7 +3,7 @@
 include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
 ?>
 <?php
-$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 
 $allGames = include './language/games-translate.php';
 $games_item = $allGames[$lang] ?? $allGames['en'];
@@ -167,7 +167,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     <div class="flex flex-col items-center mb-5" id="games-header">
       <!-- Title -->
       <h1 class="text-yellow-400 text-4xl md:text-5xl font-bold mb-4 text-center">
-        <span class="animated-text" id="hot-games-title"><?= $lang === 'en' ? 'Hot Games Play Free' : 'হট গেম বিনামূল্যে খেলুন' ?></span>
+        <span class="animated-text" id="hot-games-title"><?= $lang === 'bn' ? 'হট গেম বিনামূল্যে খেলুন' : ' Hot Games Play Free' ?></span>
       </h1>
     </div>
   </div>

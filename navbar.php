@@ -26,7 +26,7 @@ if (!file_exists($fullPath)) {
 }
 
 $currentPage = basename($_SERVER['PHP_SELF']);
-$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en','bn']) ? $_GET['lang'] : 'en';
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en','bn']) ? $_GET['lang'] : 'bn';
 $currentId = isset($_GET['id']) ? intval($_GET['id']) : null;
 
 function buildLangUrl($langTarget, $currentPage, $currentId) {
@@ -36,6 +36,15 @@ function buildLangUrl($langTarget, $currentPage, $currentId) {
     }
     return $currentPage . '?' . http_build_query($params);
 }
+
+$menu = [
+    'home' => $lang === 'en' ? 'Home' : 'হোমপেজ',
+    'services' => $lang === 'en' ? 'Services' : 'সেবা',
+    'about' => $lang === 'en' ? 'About' : 'সম্পর্কে',
+    'faq' => $lang === 'en' ? 'FAQ' : 'প্রশ্নোত্তর',
+    'join' => $lang === 'en' ? 'Join Now' : 'যোগদান করুন',
+    'search' => $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...'
+];
 ?>
 
 
@@ -61,26 +70,19 @@ function buildLangUrl($langTarget, $currentPage, $currentId) {
       <div class="hidden lg:flex items-center space-x-8">
 
    <nav class="flex space-x-6">
-    <?php
-    if ($lang === 'en') {
-        echo navLink('/', 'Home', $lang, $currentPage, $currentId);
-        echo navLink('services', 'Services', $lang, $currentPage, $currentId);
-        echo navLink('about', 'About', $lang, $currentPage, $currentId);
-        echo navLink('faq', 'FAQ', $lang, $currentPage, $currentId);
-    } else {
-        echo navLink('/', 'হোমপেজ', $lang, $currentPage, $currentId);
-        echo navLink('services', 'সেবা', $lang, $currentPage, $currentId);
-        echo navLink('about', 'সম্পর্কে', $lang, $currentPage, $currentId);
-        echo navLink('faq', 'প্রশ্নোত্তর', $lang, $currentPage, $currentId);
-    }
-    ?>
+     <?php
+    echo navLink('/', $menu['home'], $lang, $currentPage, $currentId);
+    echo navLink('services', $menu['services'], $lang, $currentPage, $currentId);
+    echo navLink('about', $menu['about'], $lang, $currentPage, $currentId);
+    echo navLink('faq', $menu['faq'], $lang, $currentPage, $currentId);
+  ?>
 </nav>
 
         <!-- Modern Search Bar -->
         <form action="search.php" method="GET" class="relative group">
           <div class="search-bar">
               <input type="hidden" name="lang" value="<?= htmlspecialchars($lang) ?>">
-            <input type="text" name="q" placeholder="<?= $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...' ?>" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
+           <input type="text" name="q" placeholder="<?= $menu['search'] ?>" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
             <button type="submit" class="search-icon">🔍</button>
           </div>
         </form>
@@ -237,19 +239,13 @@ langBtn1.addEventListener('click', () => {
   <div id="mobileMenu" class="lg:hidden hidden bg-slate-900/95 backdrop-blur-lg border-t border-white/10">
     <div class="px-4 py-6 space-y-3">
      <div class="flex flex-col gap-4 ms-4 mb-4">
-    <?php
-    if ($lang === 'en') {
-        echo navLink('/', 'Home', $lang, $currentPage, $currentId);
-        echo navLink('services', 'Services', $lang, $currentPage, $currentId);
-        echo navLink('about', 'About', $lang, $currentPage, $currentId);
-        echo navLink('faq', 'FAQ', $lang, $currentPage, $currentId);
-    } else {
-        echo navLink('/', 'হোমপেজ', $lang, $currentPage, $currentId);
-        echo navLink('services', 'সেবা', $lang, $currentPage, $currentId);
-        echo navLink('about', 'সম্পর্কে', $lang, $currentPage, $currentId);
-        echo navLink('faq', 'প্রশ্নোত্তর', $lang, $currentPage, $currentId);
-    }
-    ?>
+        <?php
+    echo navLink('/', $menu['home'], $lang, $currentPage, $currentId);
+    echo navLink('services', $menu['services'], $lang, $currentPage, $currentId);
+    echo navLink('about', $menu['about'], $lang, $currentPage, $currentId);
+    echo navLink('faq', $menu['faq'], $lang, $currentPage, $currentId);
+  ?>
+    
      </div>
    
       <form action="search.php" method="GET" class="relative group">
