@@ -32,10 +32,11 @@ $texts = $servicesTexts[$lang];
  
 <head>
   <!-- Primary Meta Tags -->
-<title>Fancywheel - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support</title>
+<title><?php echo $lang === 'en' ? 'Fancywheel - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support' : 'ফ্যান্সিহুইল - বিশ্বস্ত অনলাইন ক্যাসিনো | বড় জয়, দ্রুত অর্থপ্রদান, 24/7 সহায়তা'; ?></title>
+
 <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
 <meta name="title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
-<meta name="description" content="Play at Fancywin – the trusted online casino with secure payments, instant withdrawals, exciting bonuses, and real money wins. Join now & start winning!">
+<meta name="description" content="<?php echo $lang === 'en' ? 'Play at Fancywin – the trusted online casino with secure payments, instant withdrawals, exciting bonuses, and real money wins. Join now & start winning!' : 'ফ্যান্সিউইন-এ খেলুন - নিরাপদ পেমেন্ট, তাৎক্ষণিক উত্তোলন, উত্তেজনাপূর্ণ বোনাস এবং আসল অর্থ জয়ের সাথে বিশ্বস্ত অনলাইন ক্যাসিনো। এখনই যোগদান করুন এবং জেতা শুরু করুন!'; ?>">
 <meta name="keywords" content="Fancywin, online casino, win real money, fast withdrawal, secure payments, casino bonuses, slots, live dealer, 24/7 support">
 <meta name="robots" content="index, follow">
 <meta name="language" content="English">

@@ -14,13 +14,13 @@ $currentFaqs = $faqData[$lang] ?? $faqData['en'];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Frequently Asked Questions | FancyWin</title>
+  <title><?php echo $lang === 'en' ? 'Frequently Asked Questions | FancyWin' : 'প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী | ফ্যান্সিউইন'; ?></title>
   
   <!-- Favicon -->
   <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Find answers to common questions about FancyWin, your trusted online casino and sportsbook platform.">
+  <meta name="description" content="<?php echo $lang === 'en' ? 'Find answers to common questions about FancyWin, your trusted online casino and sportsbook platform. ' : 'আপনার বিশ্বস্ত অনলাইন ক্যাসিনো এবং স্পোর্টসবুক প্ল্যাটফর্ম, ফ্যান্সিউইন সম্পর্কে সাধারণ প্রশ্নের উত্তর খুঁজুন।'; ?>">
   <meta name="keywords" content="FancyWin, FAQ, online casino, sportsbook, gambling, support, help">
   <meta name="author" content="FancyWin Team">
 

@@ -10,11 +10,11 @@ include './admin/page/library/db.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Title for search engines -->
-  <title>Popular Cities in Bangladesh Tour - Explore Dhaka, Chittagong & More!</title>
+  <title>Popular Cities in Bangladesh Tour - Explore Dhaka, Chittagong & More!  <?php echo $lang === 'en' ? 'Popular Cities in Bangladesh Tour - Explore Dhaka, Chittagong & More!' : 'বাংলাদেশের জনপ্রিয় শহর ভ্রমণ - ঢাকা, চট্টগ্রাম এবং আরও অনেক কিছু ঘুরে দেখুন!'; ?> </title>
 
   <!-- Meta description for Google -->
   <meta name="description"
-    content="Discover the most popular cities in Bangladesh. Explore Dhaka, Chittagong, Sylhet, and more with our comprehensive tour guides and travel tips. Plan your perfect trip today!">
+    content="<?php echo $lang === 'en' ? 'Discover the most popular cities in Bangladesh. Explore Dhaka, Chittagong, Sylhet, and more with our comprehensive tour guides and travel tips. Plan your perfect trip today!' : 'বাংলাদেশের সবচেয়ে জনপ্রিয় শহরগুলি আবিষ্কার করুন। আমাদের বিস্তৃত ট্যুর গাইড এবং ভ্রমণ টিপস সহ ঢাকা, চট্টগ্রাম, সিলেট এবং আরও অনেক কিছু ঘুরে দেখুন। আজই আপনার নিখুঁত ভ্রমণের পরিকল্পনা করুন!'; ?>">
 
   <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845"
     type="image/png">

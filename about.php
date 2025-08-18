@@ -14,7 +14,7 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
     <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About | Evo Hot Game & Lucky Spin</title>
+  <title><?php echo $lang === 'en' ? 'About | Evo Hot Game & Lucky Spin ' : 'ইভো হট গেম এবং লাকি স্পিন সম্পর্কে |'; ?></title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-900 text-white">
