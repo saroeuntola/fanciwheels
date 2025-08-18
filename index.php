@@ -10,7 +10,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Title for search engines -->
-  <title<?php echo $lang === 'en' ? 'FancyWheel | Popular Cities in Bangladesh Tour - Explore Dhaka, Chittagong & More!' : 'FancyWheel | বাংলাদেশের জনপ্রিয় শহর ভ্রমণ - ঢাকা, চট্টগ্রাম এবং আরও অনেক কিছু ঘুরে দেখুন!'; ?> </title>
+  <title> <?php echo $lang === 'en' ? 'FancyWheel | Popular Cities in Bangladesh Tour - Explore Dhaka, Chittagong & More!' : 'FancyWheel | বাংলাদেশের জনপ্রিয় শহর ভ্রমণ - ঢাকা, চট্টগ্রাম এবং আরও অনেক কিছু ঘুরে দেখুন!'; ?> </title>
 
   <!-- Meta description for Google -->
   <meta name="description"
