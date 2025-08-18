@@ -55,7 +55,7 @@ $translations = [
   }
 
   .popup {
-    background-image: url(image/1.jpg);
+    background-image: url('image/bg-image.jpg');
     padding: 70px;
     border-radius: 10px;
     text-align: center;
