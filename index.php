@@ -10,7 +10,7 @@ include './admin/page/library/db.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Title for search engines -->
-  <title>Popular Cities in Bangladesh Tour - Explore Dhaka, Chittagong & More!  <?php echo $lang === 'en' ? 'Popular Cities in Bangladesh Tour - Explore Dhaka, Chittagong & More!' : 'বাংলাদেশের জনপ্রিয় শহর ভ্রমণ - ঢাকা, চট্টগ্রাম এবং আরও অনেক কিছু ঘুরে দেখুন!'; ?> </title>
+  <title<?php echo $lang === 'en' ? 'Popular Cities in Bangladesh Tour - Explore Dhaka, Chittagong & More!' : 'বাংলাদেশের জনপ্রিয় শহর ভ্রমণ - ঢাকা, চট্টগ্রাম এবং আরও অনেক কিছু ঘুরে দেখুন!'; ?> </title>
 
   <!-- Meta description for Google -->
   <meta name="description"
