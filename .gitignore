@@ -1,3 +1,4 @@
 migrade.php
 seed.php
 /config/*
+/admin/page/library/db.php
