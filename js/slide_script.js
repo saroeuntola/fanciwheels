@@ -1,4 +1,4 @@
-   $(document).ready(function () {
+     $(document).ready(function () {
   let $slides = $(".slide-image");
   let $dotsContainer = $("#dots");
   let currentSlide = 0;

@@ -341,12 +341,7 @@ $translations = [
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- intl-tel-input JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
-
-<script type="module" src="js/script.js"></script>
-
-
+<script type="module" src="secure_js.php?file=script.js"></script>
 <script>
 const wheel = document.getElementById("wheel");
 const spinBtn = document.getElementById("spinBtn");

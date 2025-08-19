@@ -23,27 +23,6 @@ RewriteRule ^(.*)$ $1.php [L]
     Require all denied
 </FilesMatch>
 
-# ========================================
-# Deny external access to JS files, allow only specific sites
-# ========================================
-<FilesMatch "\.js$">
-    <RequireAll>
-        Require all denied
-
-        SetEnvIfNoCase Referer "^https?://(www\.)?fanciwheel\.com" allowed_ref
-
-        SetEnvIfNoCase Referer "^https?://localhost" allowed_ref
-        SetEnvIfNoCase Referer "^https?://127\.0\.0\.1" allowed_ref
-
-        Require env allowed_ref
-    </RequireAll>
-</FilesMatch>
-
-
-# Block WordPress xmlrpc.php if not needed
-<Files xmlrpc.php>
-    Require all denied
-</Files>
 
 # =========================================
 # 4. Prevent directory listing
