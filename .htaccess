@@ -19,7 +19,7 @@ RewriteRule ^(.*)$ $1.php [L]
 # =========================================
 # 3. Deny access to sensitive files
 # =========================================
-<FilesMatch "\.(env|ini|log|bak|sql|git|htaccess)$">
+<FilesMatch ".(env|ini|log|bak|sql|git|htaccess)$">
     Require all denied
 </FilesMatch>
 
@@ -48,6 +48,7 @@ Options -Indexes
 # 6. Strong Security Headers
 # =========================================
 <IfModule mod_headers.c>
+Header unset X-Powered-By
     Header always set X-Content-Type-Options "nosniff"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-XSS-Protection "1; mode=block"
@@ -106,6 +107,3 @@ ErrorDocument 404 /404.php
     php_flag expose_php Off
 </IfModule>
 
-<IfModule mod_headers.c>
-    Header unset X-Powered-By
-</IfModule>

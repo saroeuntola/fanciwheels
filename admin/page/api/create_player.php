@@ -16,7 +16,6 @@ if (!$name || !$gmail) {
 
 $playerObj = new Player();
 
-// Check if player already exists
 $existingPlayer = $playerObj->getPlayerByGmail($gmail);
 if ($existingPlayer) {
     echo json_encode(['success' => false, 'message' => 'Email already registered']);

@@ -169,8 +169,6 @@
 include('./admin/page/library/announcement_lib.php');
 
 $announcementObj = new Announcement();
-
-// detect language (from query ?lang=bn, default = en)
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en','bn']) ? $_GET['lang'] : 'bn';
 
 $announcements = $announcementObj->getAnnouncements($lang);
