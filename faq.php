@@ -1,11 +1,11 @@
 <?php include './admin/page/library/db.php'?>
 <?php
 
-$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 
 // Include FAQs
 $faqData = include './language/faqs-translate.php';
-$currentFaqs = $faqData[$lang] ?? $faqData['en'];
+$currentFaqs = $faqData[$lang] ?? $faqData['bn'];
 
 ?>
 
