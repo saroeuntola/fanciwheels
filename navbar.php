@@ -58,7 +58,7 @@ $menu = [
     <div class="flex justify-between items-center h-16">
 
       <div class="flex-shrink-0">
-        <a href="/" class="group relative">
+        <a href="<?= $lang==='en' ? '/?lang=en' : '/?lang=bn' ?>" class="group relative">
           <span class="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105">
             FancyWheel
           </span>
