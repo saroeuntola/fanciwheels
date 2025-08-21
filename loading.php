@@ -1,6 +1,6 @@
  <style>
     .loader {
-      border-top-color: #3b82f6; /* blue-500 */
+      border-top-color: #3b82f6;
       animation: spin 1s linear infinite;
     }
 

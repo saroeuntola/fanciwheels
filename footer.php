@@ -449,10 +449,10 @@ $texts = $footerTexts[$lang];
 <div class="footer-section">
     <h3 class="footer-title"><?= $texts['quick_links'] ?></h3>
     <ul class="footer-links">
-        <li><a href="/"><?= $lang==='en' ? 'Home' : 'হোমপেজ' ?></a></li>
-        <li><a href="about"><?= $lang==='en' ? 'About' : 'সম্পর্কে' ?></a></li>
-        <li><a href="services"><?= $lang==='en' ? 'Services' : 'সেবা' ?></a></li>
-        <li><a href="#games-grid"><?= $lang==='en' ? 'Games' : 'গেম' ?></a></li>
+        <li><a href="?lang=bn"><?= $lang==='en' ? 'Home' : 'হোমপেজ' ?></a></li>
+        <li><a href="about?lang=bn"><?= $lang==='en' ? 'About' : 'সম্পর্কে' ?></a></li>
+        <li><a href="services?lang=bn"><?= $lang==='en' ? 'Services' : 'সেবা' ?></a></li>
+        <li><a href="#games-grid?lang=bn"><?= $lang==='en' ? 'Games' : 'গেমস' ?></a></li>
     </ul>
 </div>
 
