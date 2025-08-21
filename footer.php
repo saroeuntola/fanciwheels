@@ -449,11 +449,14 @@ $texts = $footerTexts[$lang];
 <div class="footer-section">
     <h3 class="footer-title"><?= $texts['quick_links'] ?></h3>
     <ul class="footer-links">
-        <li><a href="/"><?= $lang==='en' ? 'Home' : 'হোমপেজ' ?></a></li>
-        <li><a href="about"><?= $lang==='en' ? 'About' : 'সম্পর্কে' ?></a></li>
-        <li><a href="services"><?= $lang==='en' ? 'Services' : 'সেবা' ?></a></li>
+     
+
+        <li> <?php echo navLink('/', $menu['home'], $lang, $currentPage, $currentId); ?></li>
+        <li><?php echo navLink('about', $menu['about'], $lang, $currentPage, $currentId); ?> </li>
+        <li><?php echo navLink('services', $menu['services'], $lang, $currentPage, $currentId); ?></li>
         <li><a href="#games-grid"><?= $lang==='en' ? 'Games' : 'গেমস' ?></a></li>
     </ul>
+
 </div>
 
 <!-- Support -->
