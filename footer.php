@@ -454,7 +454,7 @@ $texts = $footerTexts[$lang];
         <li> <?php echo navLink('/', $menu['home'], $lang, $currentPage, $currentId); ?></li>
         <li><?php echo navLink('about', $menu['about'], $lang, $currentPage, $currentId); ?> </li>
         <li><?php echo navLink('services', $menu['services'], $lang, $currentPage, $currentId); ?></li>
-        <li><a href="#games-grid"><?= $lang==='en' ? 'Games' : 'গেমস' ?></a></li>
+        <li><?php echo navLink('faq', $menu['faq'], $lang, $currentPage, $currentId); ?></li>
     </ul>
 
 </div>
@@ -463,7 +463,6 @@ $texts = $footerTexts[$lang];
 <div class="footer-section">
     <h3 class="footer-title"><?= $texts['support'] ?></h3>
     <ul class="footer-links">
-        <li><a href="faq"><?= $lang==='en' ? 'FAQs' : 'প্রায়শই জিজ্ঞাসিত প্রশ্ন' ?></a></li>
         <li><a href="#" id="helpCenterLink"><?= $lang==='en' ? 'Help Center' : 'হেল্প সেন্টার' ?></a></li>
         <li><a href="#" id="termsLink"><?= $lang==='en' ? 'Terms of Service' : 'সেবার শর্তাবলী' ?></a></li>
         <li><a href="#" id="privacyLink"><?= $lang==='en' ? 'Privacy Policy' : 'গোপনীয়তার নীতি' ?></a></li>

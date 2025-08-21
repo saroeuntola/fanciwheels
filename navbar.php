@@ -41,7 +41,7 @@ $menu = [
     'home' => $lang === 'en' ? 'Home' : 'হোমপেজ',
     'services' => $lang === 'en' ? 'Services' : 'সেবা',
     'about' => $lang === 'en' ? 'About' : 'সম্পর্কে',
-    'faq' => $lang === 'en' ? 'FAQ' : 'প্রশ্নোত্তর',
+    'faq' => $lang === 'en' ? 'FAQs' : 'FAQs',
     'join' => $lang === 'en' ? 'Join Now' : 'যোগদান করুন',
     'search' => $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...'
 ];
