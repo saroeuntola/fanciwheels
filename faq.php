@@ -96,7 +96,7 @@ include 'loading.php'
         icon.classList.toggle("rotate-180");
       });
     });
-  </>
+  </script>
 
 </body>
 </html>
