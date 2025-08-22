@@ -33,7 +33,7 @@
   <!-- Loader -->
   <div id="pageLoader" class="fixed inset-0 z-[9999] bg-gray-900 flex items-center justify-center transition-opacity duration-1000" aria-live="polite">
     <div class="relative h-20 w-20">
-      <div class="loader"></div>
+      <div class="loader inset-0 ease-linear"></div>
       <img src="./image/PWAicon-192px.png" alt="Logo" class="absolute inset-0 m-auto h-10 w-10 object-contain" />
     </div>
   </div>
@@ -42,14 +42,13 @@
   <script>
     $(document).ready(function() {
       const $loader = $("#pageLoader");
-      // Ensure loader is visible initially
       $loader.removeClass("opacity-0").css("opacity", "1");
       setTimeout(function() {
         $loader.addClass("opacity-0");
         setTimeout(function() {
           $loader.css("display", "none").attr("aria-hidden", "true");
-        }, 800);
-      }, 1000); 
+        }, 1000);
+      }, 1500); 
     });
   </script>
 </body>
