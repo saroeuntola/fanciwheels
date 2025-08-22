@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Gaming Footer</title>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     <style>
       #privacyModal{
@@ -401,7 +396,7 @@
      }
     }
     </style>
-</head>
+
 <?php
 $footerTexts = [
     'en' => [
@@ -424,7 +419,7 @@ $footerTexts = [
 $texts = $footerTexts[$lang];
 ?>
 
-<body id="footer">
+<main id="footer">
     <footer class="footer">
         <div class="footer-wave"></div>
         <div class="particle"></div>
@@ -610,7 +605,4 @@ $texts = $footerTexts[$lang];
             border-radius: 3px;
         }
     </style>
-
-</body>
-
-</html>
+</main>

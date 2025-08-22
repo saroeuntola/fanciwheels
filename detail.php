@@ -2,16 +2,15 @@
 include "./admin/page/library/db.php";
 include "./admin/page/library/game_lib.php";
 
-$currentPage = basename($_SERVER['PHP_SELF']); // e.g., detail.php
+$currentPage = basename($_SERVER['PHP_SELF']);
 
-// Detect current language (default: 'en')
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en','bn']) ? $_GET['lang'] : 'en';
 
 // Keep ID if on detail.php
 $currentId = isset($_GET['id']) ? intval($_GET['id']) : null;
 
 if (!isset($_GET['id'])) {
-    echo $lang === 'en' ? "Game ID not provided." : "গেম আইডি প্রদান করা হয়নি।";
+    echo $lang === 'en' ? "ID not provided." : "আইডি প্রদান করা হয়নি।";
     exit;
 }
 
@@ -20,7 +19,7 @@ $gameObj = new Games();
 $game = $gameObj->getGameById($id, $lang);
 
 if (!$game) {
-    echo $lang === 'en' ? "Game not found." : "গেম পাওয়া যায়নি।";
+    echo $lang === 'en' ? "not found." : "পাওয়া যায়নি।";
     exit;
 }
 
@@ -37,7 +36,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
   <title><?= htmlspecialchars($game['name'] ?? ($lang === 'en' ? 'Detail' : 'বিস্তারিত')) ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./dist/output.css" rel="stylesheet">
   <style>
     .line-clamp-2 {
       display: -webkit-box;

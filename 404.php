@@ -21,7 +21,7 @@
     <meta name="twitter:description" content="Oops! The page you are looking for does not exist. Return to our homepage.">
     <meta name="twitter:image" content="https://yourwebsite.com/images/404-image.png">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+      <link href="./dist/output.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
 

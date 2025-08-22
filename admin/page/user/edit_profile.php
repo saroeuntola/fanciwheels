@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Edit Profile</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+     <link href="/dist/output.css" rel="stylesheet">
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center min-h-screen">
 

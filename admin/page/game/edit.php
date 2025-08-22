@@ -4,18 +4,15 @@ include('../library/category_lib.php');
 include('../library/checkroles.php');
 
 protectPathAccess();
-
 $product = new Games();
 $category = new Category();
 
 if (isset($_GET['id'])) {
     $id = (int)$_GET['id'];
-    // Fetch game data with English fields (we'll handle both languages in the form)
     $productData = $product->getGameById($id, 'en');
     if (!$productData) {
         die("Game not found");
     }
-    // Fetch Bengali fields separately
     $productDataBn = $product->getGameById($id, 'bn');
 } else {
     die("No game ID provided");
@@ -65,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Post</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+     <link href="/dist/output.css" rel="stylesheet">
     <!-- Quill CSS & JS -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>

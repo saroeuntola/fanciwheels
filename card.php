@@ -2,15 +2,12 @@
 <?php
 include './admin/page/library/game_lib.php';
 $gameObj = new Games();
-// Get selected language from GET parameter or default to 'en'
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 $games = $gameObj->getgames($lang);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo htmlspecialchars($lang); ?>">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $lang === 'en' ? 'Popular Cities in Bangladesh' : 'বাংলাদেশের জনপ্রিয় শহর'; ?></title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>

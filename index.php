@@ -10,11 +10,11 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Title for search engines -->
-  <title> <?php echo $lang === 'en' ? 'FancyWheel | Popular Cities in Bangladesh Tour - Explore Dhaka, Chittagong & More!' : 'FancyWheel | বাংলাদেশের জনপ্রিয় শহর ভ্রমণ - ঢাকা, চট্টগ্রাম এবং আরও অনেক কিছু ঘুরে দেখুন!'; ?> </title>
+  <title> <?php echo $lang === 'en' ? 'FancyWheel | Popular Cities in Bangladesh Tour' : 'FancyWheel | বাংলাদেশের জনপ্রিয় শহর ভ্রমণ'; ?> </title>
 
   <!-- Meta description for Google -->
   <meta name="description"
-    content="<?php echo $lang === 'en' ? 'Discover the most popular cities in Bangladesh. Explore Dhaka, Chittagong, Sylhet, and more with our comprehensive tour guides and travel tips. Plan your perfect trip today!' : 'বাংলাদেশের সবচেয়ে জনপ্রিয় শহরগুলি আবিষ্কার করুন। আমাদের বিস্তৃত ট্যুর গাইড এবং ভ্রমণ টিপস সহ ঢাকা, চট্টগ্রাম, সিলেট এবং আরও অনেক কিছু ঘুরে দেখুন। আজই আপনার নিখুঁত ভ্রমণের পরিকল্পনা করুন!'; ?>">
+    content="<?php echo $lang === 'en' ? 'Discover the most popular cities in Bangladesh. Explore Dhaka, Chittagong, Sylhet' : 'বাংলাদেশের সবচেয়ে জনপ্রিয় শহরগুলি আবিষ্কার করুন। ঢাকা, চট্টগ্রাম, সিলেট ঘুরে দেখুন'; ?>">
 
   <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845"
     type="image/png">
@@ -35,8 +35,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <meta name="twitter:description"
     content="Explore the best cities in Bangladesh for your next trip. Travel guides, tips, and more." />
   <meta name="twitter:image" content="https://fanciwheel.com" />
-
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="./dist/output.css" rel="stylesheet">
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />

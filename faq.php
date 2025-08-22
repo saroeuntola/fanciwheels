@@ -38,7 +38,7 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
   <meta name="twitter:image" content="https://fanciwheel.com/image/PWAicon-192px.png">
 
   <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./dist/output.css" rel="stylesheet">
 
   <!-- Custom Styles -->
   <style>
@@ -96,7 +96,7 @@ include 'loading.php'
         icon.classList.toggle("rotate-180");
       });
     });
-  </script>
+  </>
 
 </body>
 </html>

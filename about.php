@@ -15,7 +15,7 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title><?php echo $lang === 'en' ? 'About | Evo Hot Game & Lucky Spin ' : 'ইভো হট গেম এবং লাকি স্পিন সম্পর্কে |'; ?></title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./dist/output.css" rel="stylesheet">
 </head>
 <body class="bg-gray-900 text-white">
  <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">

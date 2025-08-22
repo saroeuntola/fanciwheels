@@ -46,11 +46,16 @@ $menu = [
     'search' => $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...'
 ];
 ?>
-
+<style>
+  /* #header-bar {
+    background-color: #8F1FFF;
+  } */
+</style>
 
 <link rel="stylesheet" href="./admin/page/assets/css/navbar.css">
+  <link href="./dist/output.css" rel="stylesheet">
 <!-- Modern Navbar with Glassmorphism Effect -->
-<nav class="relative bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 backdrop-blur-md shadow-2xl border-b border-white/10">
+<nav id="header-bar" class="py-2 relative bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 backdrop-blur-md shadow-2xl border-b border-white/10">
   <!-- Background Pattern -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] bg-[size:20px_20px] opacity-20"></div>
 
