@@ -30,6 +30,8 @@ $texts = $servicesTexts[$lang];
 <html lang="en">
  
 <head>
+      <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Primary Meta Tags -->
 <title><?php echo $lang === 'en' ? 'Fancywheel - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support' : 'ফ্যান্সিহুইল - বিশ্বস্ত অনলাইন ক্যাসিনো | বড় জয়, দ্রুত অর্থপ্রদান, 24/7 সহায়তা'; ?></title>
 
@@ -52,7 +54,7 @@ $texts = $servicesTexts[$lang];
 <meta property="twitter:title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
 <meta property="twitter:description" content="Play real money games and withdraw instantly at Fancywin. Safe, licensed, and available 24/7.">
 <meta property="twitter:image" content="https://fancywheel.com/images/og-banner.jpg">
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="./dist/output.css">
 </head>
 
 <body class="bg-gray-900 text-white">
