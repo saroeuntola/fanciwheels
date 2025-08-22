@@ -15,11 +15,12 @@ $players = $playerObj->getPlayers()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="./page/assets/css/styles.css">
-            <link href="/dist/output.css" rel="stylesheet">
+    <link href="/dist/output.css" rel="stylesheet">
            
       <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
+    <?php include '../loading.php' ?>
     <!-- Header -->
     
 <?php 

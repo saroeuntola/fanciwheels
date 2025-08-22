@@ -20,6 +20,7 @@ $user = $userLib->getUser($userId);
     <title>User Profile</title>
      <link href="/dist/output.css" rel="stylesheet">
 </head>
+<?php include './loading.php' ?>
 <body class="bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center min-h-screen">
 
     <div class="bg-white rounded-3xl shadow-xl p-8 w-full max-w-xl">

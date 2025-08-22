@@ -27,7 +27,7 @@ $user = $userLib->getUser($userId);
                 <span class="search-icon">🔍</span>
             </div>
      
-     <div class="relative inline-block text-left">
+     <div class="relative inline-block text-right">
     <a href="<?= $baseURL; ?>/admin/page/user/profile.php" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 transition">
         
         <!-- Avatar -->

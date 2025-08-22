@@ -15,8 +15,11 @@ protectPathAccess();
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="./page/assets/css/styles.css">
        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link href="/dist/output.css" rel="stylesheet">
 </head>
 <body>
+
+<?php include '../loading.php' ?>
     <!-- Header -->
     
 <?php 

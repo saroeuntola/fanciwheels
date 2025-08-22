@@ -16,6 +16,7 @@ $products = $product->getgames();
        <link href="/dist/output.css" rel="stylesheet">
 </head>
 <body>
+    <?php include './loading.php' ?>
     <!-- Header -->
         <?php
             include '../include/header.php'

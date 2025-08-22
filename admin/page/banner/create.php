@@ -44,6 +44,7 @@ ini_set('max_execution_time', 300); // allow more time for large files
      <link href="/dist/output.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <?php include './loading.php' ?>
     <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold text-center mb-6">Create Banner</h2>
 
