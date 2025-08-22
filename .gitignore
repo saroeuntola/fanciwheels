@@ -1,4 +1,4 @@
-migrade.php
-seed.php
+./migrade.php
+./seeder.php
 /config/*
 /admin/page/library/db.php
