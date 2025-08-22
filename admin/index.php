@@ -19,7 +19,6 @@ protectPathAccess();
 </head>
 <body>
 
-<?php include '../loading.php' ?>
     <!-- Header -->
     
 <?php 
