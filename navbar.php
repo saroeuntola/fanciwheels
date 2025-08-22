@@ -45,6 +45,12 @@ $menu = [
     'join' => $lang === 'en' ? 'Join Now' : 'যোগদান করুন',
     'search' => $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...'
 ];
+
+$languageNames = [
+    'en' => 'English',
+    'bn' => 'বাংলা'
+];
+$fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 ?>
 <style>
   /* #header-bar {
@@ -96,7 +102,7 @@ $menu = [
   <!-- Button showing current language -->
   <button id="langBtn" class="flex items-center relative group px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
     <img id="currentFlag" src="<?= $lang==='en' ? './image/flag/en.svg' : './image/flag/bn.svg' ?>" class="w-5 h-5 mr-2" alt="Flag">
-    <span id="currentLang"><?= strtoupper($lang) ?></span>
+    <span id="currentLang"><?= htmlspecialchars($fullLangName) ?></span>
     <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
     </svg>
@@ -105,10 +111,10 @@ $menu = [
   <!-- Dropdown menu -->
   <div id="langMenu" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg w-32 z-50">
     <a href="<?= buildLangUrl('en', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
-      <img src="./image/flag/en.svg" class="w-5 h-5 mr-2" alt="EN"> EN
+      <img src="./image/flag/en.svg" class="w-5 h-5 mr-2" alt="EN"> English
     </a>
     <a href="<?= buildLangUrl('bn', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
-      <img src="./image/flag/bn.svg" class="w-5 h-5 mr-2" alt="BN"> BN
+      <img src="./image/flag/bn.svg" class="w-5 h-5 mr-2" alt="BN"> বাংলা
     </a>
   </div>
 </div>
@@ -203,7 +209,7 @@ langBtn.addEventListener('click', () => {
   <!-- Dropdown menu -->
   <div id="langMenu1" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg w-32 z-50">
     <a href="<?= buildLangUrl('en', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
-      <img src="./image/flag/en.svg" class="w-5 h-5 mr-2" alt="EN"> EN
+      <img src="./image/flag/en.svg" class="w-5 h-5 mr-2" alt="EN"> English
     </a>
     <a href="<?= buildLangUrl('bn', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
       <img src="./image/flag/bn.svg" class="w-5 h-5 mr-2" alt="BN"> বাংলা
