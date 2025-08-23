@@ -1,6 +1,6 @@
 <?php
 // Path to logs folder
-$csv_folder = './log/';
+$csv_folder = './log-visitor/';
 if (!is_dir($csv_folder)) mkdir($csv_folder, 0755, true);
 
 $csv_file = $csv_folder . 'visitors.csv';
