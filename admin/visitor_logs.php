@@ -6,7 +6,7 @@ protectPathAccess();
 
 <?php
 session_start();
-$csv_file = '../log/visitors.csv';
+$csv_file = __DIR__ . '/../log/visitors.csv';
 
 // Read CSV
 $rows = [];

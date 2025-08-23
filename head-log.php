@@ -3,7 +3,7 @@
 $csv_folder = './log/';
 if (!is_dir($csv_folder)) mkdir($csv_folder, 0755, true);
 
-$csv_file = $csv_folder . 'visitors.csv';
+$csv_file = __DIR__ . '/log/visitors.csv';
 
 // Create file with header if it doesn't exist
 if (!file_exists($csv_file)) {
