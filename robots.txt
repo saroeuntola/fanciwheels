@@ -1,22 +1,17 @@
-# Sitemap location
+# Sitemap
 Sitemap: https://fanciwheel.com/sitemap.xml
 
-# =========================================
 # Default rules for all crawlers
-# =========================================
 User-agent: *
-# Allow main pages
 Allow: /
 
-# Disallow sensitive or unnecessary directories
+# Block sensitive directories & files
 Disallow: /admin/
 Disallow: /cache/
 Disallow: /config/
 Disallow: /includes/
 Disallow: /vendor/
 Disallow: /clear_cache.php
-
-# Disallow hidden or backend files
 Disallow: *.php$
 Disallow: *.ini$
 Disallow: *.log$
@@ -24,12 +19,10 @@ Disallow: *.bak$
 Disallow: *.sql$
 Disallow: *.env$
 
-# Optional: slow down aggressive bots
+# Crawl-delay to reduce server load
 Crawl-delay: 5
 
-# =========================================
-# Specific bots rules
-# =========================================
+# Specific bots
 User-agent: Googlebot
 Allow: /
 
