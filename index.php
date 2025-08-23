@@ -8,7 +8,9 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<?php 
+   include 'header.php'
+?>
   <!-- Title for search engines -->
   <title> <?php echo $lang === 'en' ? 'FancyWheel | Popular Cities in Bangladesh Tour' : 'FancyWheel | বাংলাদেশের জনপ্রিয় শহর ভ্রমণ'; ?> </title>
 
