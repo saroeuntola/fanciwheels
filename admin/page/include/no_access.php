@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Access Denied</title>
+    <title>403 - Access Forbidden</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
@@ -22,187 +22,110 @@
             position: relative;
         }
 
-        /* Animated background particles */
-        .bg-particles {
+        .background-animation {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
+            z-index: 1;
         }
 
-        .particle {
+        .floating-shape {
             position: absolute;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
 
-        .particle:nth-child(1) {
+        .shape-1 {
             width: 80px;
             height: 80px;
+            top: 20%;
             left: 10%;
             animation-delay: 0s;
         }
 
-        .particle:nth-child(2) {
-            width: 60px;
-            height: 60px;
-            left: 20%;
+        .shape-2 {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
             animation-delay: 2s;
         }
 
-        .particle:nth-child(3) {
-            width: 40px;
-            height: 40px;
+        .shape-3 {
+            width: 60px;
+            height: 60px;
+            top: 80%;
             left: 70%;
             animation-delay: 4s;
-        }
-
-        .particle:nth-child(4) {
-            width: 120px;
-            height: 120px;
-            left: 80%;
-            animation-delay: 1s;
         }
 
         @keyframes float {
             0%, 100% {
                 transform: translateY(0px) rotate(0deg);
-                opacity: 0.5;
             }
             50% {
-                transform: translateY(-100px) rotate(180deg);
-                opacity: 0.8;
+                transform: translateY(-20px) rotate(180deg);
             }
         }
 
-        .container {
+        .error-container {
             text-align: center;
             color: white;
             z-index: 10;
             position: relative;
-            max-width: 600px;
-            padding: 3rem;
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 60px 40px;
             box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-            animation: slideUp 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+            width: 90%;
+            animation: slideIn 1s ease-out;
         }
 
-        @keyframes slideUp {
+        @keyframes slideIn {
             0% {
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(50px) scale(0.9);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
         .error-code {
             font-size: 8rem;
             font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d9de0);
+            background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
+            animation: gradientShift 3s ease infinite;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
         }
 
-        @keyframes glow {
-            from {
-                filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.5));
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
             }
-            to {
-                filter: drop-shadow(0 0 40px rgba(255, 107, 107, 0.8));
+            50% {
+                background-position: 100% 50%;
             }
         }
 
-        .error-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .error-message {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.875rem 2rem;
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: 2px solid transparent;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #5a6fd8, #6a4190);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .icon {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            stroke-width: 2;
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        /* Lock icon animation */
         .lock-icon {
             font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0.7;
-            animation: shake 3s ease-in-out infinite;
+            margin-bottom: 30px;
+            animation: shake 2s ease-in-out infinite;
+            display: inline-block;
         }
 
         @keyframes shake {
@@ -211,142 +134,219 @@
             75% { transform: rotate(5deg); }
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .container {
-                margin: 1rem;
-                padding: 2rem;
-            }
+        .error-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
 
+        .error-message {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .glitch {
+            position: relative;
+            animation: glitchAnimation 3s infinite;
+        }
+
+        @keyframes glitchAnimation {
+            0%, 90%, 100% {
+                transform: translate(0);
+            }
+            10% {
+                transform: translate(-2px, 1px);
+            }
+            20% {
+                transform: translate(2px, -1px);
+            }
+            30% {
+                transform: translate(-1px, 2px);
+            }
+            40% {
+                transform: translate(1px, -2px);
+            }
+            50% {
+                transform: translate(-2px, 1px);
+            }
+            60% {
+                transform: translate(2px, -1px);
+            }
+            70% {
+                transform: translate(-1px, 2px);
+            }
+            80% {
+                transform: translate(1px, -1px);
+            }
+        }
+
+        @media (max-width: 768px) {
             .error-code {
                 font-size: 6rem;
             }
-
             .error-title {
                 font-size: 2rem;
             }
-
-            .error-message {
-                font-size: 1rem;
+            .error-container {
+                padding: 40px 30px;
             }
-
             .action-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-
             .btn {
                 width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .error-code {
-                font-size: 4rem;
-            }
-
-            .error-title {
-                font-size: 1.5rem;
+                max-width: 250px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+    <div class="background-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
     </div>
 
-    <div class="container">
+    <div class="error-container">
         <div class="lock-icon">🔒</div>
-        <div class="error-code">403</div>
-        <h1 class="error-title">Access Denied</h1>
+        <div class="error-code glitch">403</div>
+        <h1 class="error-title">Access Forbidden</h1>
         <p class="error-message">
-            You don't have permission to access this page. This area is restricted and requires proper authorization.
+            Sorry, you don't have permission to access this resource. 
+            This could be due to insufficient privileges or restricted content.
         </p>
         
         <div class="action-buttons">
-            <button class="btn btn-primary" onclick="window.history.back()">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="m12 19-7-7 7-7"/>
-                    <path d="M19 12H5"/>
-                </svg>
-                Go Back
+            <button class="btn btn-primary" onclick="goBack()">
+                ← Go Back
             </button>
-            <a href="/" class="btn btn-secondary">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9,22 9,12 15,12 15,22"/>
-                </svg>
-                Home Page
-            </a>
+            <button class="btn btn-secondary" onclick="goHome()">
+                🏠 Home Page
+            </button>
         </div>
     </div>
 
     <script>
-        // Add some interactive sparkle effects
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() < 0.1) {
-                createSparkle(e.clientX, e.clientY);
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
             }
+        }
+
+        function goHome() {
+            window.location.href = '/';
+        }
+
+        // Add some interactive sparkle effects on mouse movement
+        document.addEventListener('mousemove', function(e) {
+            createSparkle(e.clientX, e.clientY);
         });
 
         function createSparkle(x, y) {
             const sparkle = document.createElement('div');
-            sparkle.style.position = 'fixed';
+            sparkle.style.position = 'absolute';
             sparkle.style.left = x + 'px';
             sparkle.style.top = y + 'px';
-            sparkle.style.width = '6px';
-            sparkle.style.height = '6px';
+            sparkle.style.width = '4px';
+            sparkle.style.height = '4px';
             sparkle.style.background = 'rgba(255, 255, 255, 0.8)';
             sparkle.style.borderRadius = '50%';
             sparkle.style.pointerEvents = 'none';
-            sparkle.style.zIndex = '1000';
-            sparkle.style.animation = 'sparkleAnim 0.6s ease-out forwards';
+            sparkle.style.zIndex = '5';
+            sparkle.style.animation = 'sparkleAnimation 1s ease-out forwards';
             
             document.body.appendChild(sparkle);
             
             setTimeout(() => {
-                sparkle.remove();
-            }, 600);
+                if (sparkle.parentNode) {
+                    sparkle.parentNode.removeChild(sparkle);
+                }
+            }, 1000);
         }
 
         // Add sparkle animation
         const style = document.createElement('style');
         style.textContent = `
-            @keyframes sparkleAnim {
+            @keyframes sparkleAnimation {
                 0% {
-                    transform: scale(0) rotate(0deg);
                     opacity: 1;
+                    transform: scale(0) rotate(0deg);
                 }
                 50% {
-                    transform: scale(1) rotate(180deg);
                     opacity: 1;
+                    transform: scale(1) rotate(180deg);
                 }
                 100% {
-                    transform: scale(0) rotate(360deg);
                     opacity: 0;
+                    transform: scale(0) rotate(360deg);
                 }
             }
         `;
         document.head.appendChild(style);
 
-        // Add subtle page animations
-        setTimeout(() => {
-            document.querySelector('.error-code').style.animation += ', pulse 2s ease-in-out infinite';
-        }, 1000);
-
-        const pulseStyle = document.createElement('style');
-        pulseStyle.textContent = `
-            @keyframes pulse {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-            }
-        `;
-        document.head.appendChild(pulseStyle);
+        // Add breathing effect to the lock icon
+        const lockIcon = document.querySelector('.lock-icon');
+        setInterval(() => {
+            lockIcon.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                lockIcon.style.transform = 'scale(1)';
+            }, 1000);
+        }, 2000);
     </script>
 </body>
 </html>

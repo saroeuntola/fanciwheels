@@ -368,8 +368,6 @@ let animationFrameId = null;
 let winningIndex = 0;
 
 const lang = "<?= $lang ?>";
-
-// Translation object
 const translations = {
     en: {
         freeSpin: "Free Spin",
