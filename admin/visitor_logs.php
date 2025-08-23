@@ -5,7 +5,6 @@ error_reporting(E_ALL);
 
 $root = $_SERVER['DOCUMENT_ROOT'];
 include $root . "/admin/page/library/checkroles.php";
-include $root . "/admin/page/library/db.php";
 protectPathAccess();
 
 
