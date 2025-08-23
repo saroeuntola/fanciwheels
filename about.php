@@ -11,6 +11,7 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php include 'head-log.php' ?>
     <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>

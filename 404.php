@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 Page Not Found</title>
-    
+      <?php include 'head-log.php' ?>
     <!-- SEO Meta Tags -->
     <meta name="description" content="Oops! The page you are looking for does not exist. Return to our homepage and try again.">
     <meta name="robots" content="noindex, follow">

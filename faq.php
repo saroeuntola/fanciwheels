@@ -12,6 +12,7 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php include 'head-log.php' ?>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo $lang === 'en' ? 'Frequently Asked Questions | FancyWin' : 'প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী | ফ্যান্সিউইন'; ?></title>
