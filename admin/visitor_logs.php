@@ -1,11 +1,10 @@
-<?php 
-include "../admin/page/library/checkroles.php";
-include('../admin/page/library/db.php');
-protectPathAccess();  
-?>
 
 <?php
+
 session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $csv_file = __DIR__ . '/../log/visitors.csv';
 
 // Read CSV
