@@ -65,8 +65,8 @@
             
             <div class="menu-section">System</div>
             <li class="menu-item">
-                <a href="<?php echo $baseURL; ?>/admin/visitor_logs">
-                    <span class="menu-icon">🚪</span>
+                <a href="<?php echo $baseURL; ?>/admin/visitor_logs" target="_blank" >
+                    <span class="menu-icon">📄</span>
                     <span>Visitor Logs</span>
                 </a>
             </li>
