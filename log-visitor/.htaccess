@@ -1,6 +1,0 @@
-# Deny direct access
-Order allow,deny
-Deny from all
-
-# Deny direct access (Apache 2.4+)
-Require all denied

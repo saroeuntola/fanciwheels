@@ -74,22 +74,3 @@ Options -Indexes
 # =========================================
 ErrorDocument 404 /404.php
 
-# =========================================
-# 9. Disable PHP version exposure
-# =========================================
-<IfModule mod_php7.c>
-    php_flag expose_php Off
-    php_flag display_errors Off
-    php_flag log_errors On
-</IfModule>
-
-<IfModule mod_php8.c>
-    php_flag expose_php Off
-    php_flag display_errors Off
-    php_flag log_errors On
-</IfModule>
-
-# =========================================
-# 10. Rename PHP session cookie
-# =========================================
-php_value session.name SECSESS
