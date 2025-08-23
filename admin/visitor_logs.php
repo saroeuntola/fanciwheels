@@ -1,13 +1,13 @@
-<?php 
-include "../admin/page/library/checkroles.php";
-include('../admin/page/library/db.php');
-protectPathAccess();
-?>
-
 <?php
 ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-session_start();
+
+$root = $_SERVER['DOCUMENT_ROOT'];
+include $root . "/admin/page/library/checkroles.php";
+include $root . "/admin/page/library/db.php";
+protectPathAccess();
+
 
 $csv_file = __DIR__ . '/../log/visitors.csv';
 
