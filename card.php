@@ -179,9 +179,11 @@ $games = $gameObj->getgames($lang);
         </div>
 
         <p class="post-subtitle mt-2">
-            <?php echo $lang === 'en'
-                ? 'Discover the top popular cities in Bangladesh, ranked according to verified user reviews <br> and player ratings to guide you to the most loved locations.'
-                : 'বাংলাদেশের শীর্ষ জনপ্রিয় শহরগুলি আবিষ্কার করুন, যাচাইকৃত ব্যবহারকারী পর্যালোচনা এবং খেলোয়াড় রেটিং অনুযায়ী স্থান পেয়েছে।'; ?>
+            <?php 
+echo $lang === 'en' 
+    ? 'Explore Bangladesh with FancyWheel! Discover popular cities, natural places, tourist attractions, cultural and historical sites, and top destinations for sightseeing and adventure travel. Plan your perfect Bangladesh tour with FancyWheel today.' 
+    : 'ফ্যান্সিওয়েলের সাথে বাংলাদেশ ঘুরে দেখুন! জনপ্রিয় শহর, প্রাকৃতিক স্থান, পর্যটন আকর্ষণ, সাংস্কৃতিক এবং ঐতিহাসিক স্থান, এবং সাইটসিয়িং ও অ্যাডভেঞ্চার ট্রাভেলের জন্য শীর্ষ গন্তব্য আবিষ্কার করুন। আজই আপনার পারফেক্ট বাংলাদেশ ট্যুর প্ল্যান করুন।';
+?>
         </p>
         <!-- Category Filter -->
         <div class="mt-4" id="hotspot">

@@ -14,11 +14,21 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   include 'header.php'
   ?>
   <!-- Title for search engines -->
-  <title> <?php echo $lang === 'en' ? 'FancyWheel | Popular Cities in Bangladesh Tour' : 'FancyWheel | বাংলাদেশের জনপ্রিয় শহর ভ্রমণ'; ?> </title>
+  <title>
+<?php 
+echo $lang === 'en' 
+    ? 'FancyWheel | Explore Popular Cities & Tourist Attractions in Bangladesh' 
+    : 'ফ্যান্সিওয়েল | বাংলাদেশে জনপ্রিয় শহর ও পর্যটন আকর্ষণ আবিষ্কার করুন'; 
+?>
+</title>
 
+  <meta name="keywords" content="fancywheel, fancywin, fanciwheel, popular cities in Bangladesh, Bangladesh Tour, natural places in Bangladesh, Bangladesh travel guide, tourist attractions in Bangladesh, famous landmarks in Bangladesh, Bangladesh sightseeing, Bangladesh tourism, top destinations in Bangladesh, cultural places in Bangladesh, historical sites in Bangladesh, adventure travel Bangladesh, nature trips Bangladesh, weekend trips Bangladesh">
   <!-- Meta description for Google -->
-  <meta name="description"
-    content="<?php echo $lang === 'en' ? 'Discover the most popular cities in Bangladesh. Explore Dhaka, Chittagong, Sylhet' : 'বাংলাদেশের সবচেয়ে জনপ্রিয় শহরগুলি আবিষ্কার করুন। ঢাকা, চট্টগ্রাম, সিলেট ঘুরে দেখুন'; ?>">
+  <meta name="description" content="<?php 
+echo $lang === 'en' 
+    ? 'Explore Bangladesh with FancyWheel! Discover popular cities, natural places, tourist attractions, cultural and historical sites, and top destinations for sightseeing and adventure travel. Plan your perfect Bangladesh tour with FancyWheel today.' 
+    : 'ফ্যান্সিওয়েলের সাথে বাংলাদেশ ঘুরে দেখুন! জনপ্রিয় শহর, প্রাকৃতিক স্থান, পর্যটন আকর্ষণ, সাংস্কৃতিক এবং ঐতিহাসিক স্থান, এবং সাইটসিয়িং ও অ্যাডভেঞ্চার ট্রাভেলের জন্য শীর্ষ গন্তব্য আবিষ্কার করুন। আজই আপনার পারফেক্ট বাংলাদেশ ট্যুর প্ল্যান করুন।';
+?>">
 
   <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845"
     type="image/png">
