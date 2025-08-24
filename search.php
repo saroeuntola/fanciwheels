@@ -21,7 +21,7 @@ $games = $query ? $gameObj->searchgames($query) : [];
 </head>
 
 <body class="bg-gray-900 font-sans text-gray-100">
-
+ <?php include 'scroll-top-button.php'; ?>
   <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
     <?php include 'navbar.php'; ?>
   </nav>

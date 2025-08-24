@@ -7,20 +7,12 @@ Allow: /
 
 # Block sensitive directories & files
 Disallow: /admin/
-Disallow: /cache/
 Disallow: /config/
-Disallow: /includes/
-Disallow: /vendor/
 Disallow: /clear_cache.php
-Disallow: *.php$
-Disallow: *.ini$
-Disallow: *.log$
-Disallow: *.bak$
-Disallow: *.sql$
-Disallow: *.env$
-
-# Crawl-delay to reduce server load
-Crawl-delay: 5
+Disallow: /.env
+Disallow: /*.log$
+Disallow: /*.bak$
+Disallow: /*.sql$
 
 # Specific bots
 User-agent: Googlebot
@@ -28,3 +20,4 @@ Allow: /
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 5

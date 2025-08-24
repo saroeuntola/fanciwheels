@@ -29,7 +29,7 @@ RewriteRule ^(.*)$ $1.php [L]
 Options -Indexes
 
 # =========================================
-# 5. Block common exploit patterns
+# 5. Block common exploit patterns (Safe for Googlebot)
 # =========================================
 <IfModule mod_rewrite.c>
     RewriteCond %{QUERY_STRING} (\.\./|\.\.\\) [NC,OR]
@@ -46,12 +46,14 @@ Options -Indexes
     # Spoof backend as React JS
     Header set X-Powered-By "React JS"
 
+    # Security headers
     Header always set X-Content-Type-Options "nosniff"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains; preload"
 
+    # Content Security Policy (CSP)
     Header always set Content-Security-Policy "default-src 'self'; \
         script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://code.jquery.com https://cdn.quilljs.com https://www.google-analytics.com/analytics.js; \
         style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://cdn.quilljs.com https://fonts.googleapis.com; \
@@ -59,6 +61,7 @@ Options -Indexes
         font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; \
         object-src 'none'; frame-ancestors 'self'; base-uri 'self';"
 
+    # Permissions policy
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
 </IfModule>
 
@@ -70,7 +73,18 @@ Options -Indexes
 </IfModule>
 
 # =========================================
-# 8. Custom 404 Page
+# 8. SEO-Friendly Robots and Sitemap
+# =========================================
+# Ensure robots.txt exists in root
+# Googlebot allowed to crawl all pages by default
+
+# Optional: Force canonical URLs (prevents duplicate content)
+<IfModule mod_rewrite.c>
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^\s]+)\.php [NC]
+    RewriteRule ^ %1 [R=301,L]
+</IfModule>
+
+# =========================================
+# 9. Custom 404 Page
 # =========================================
 ErrorDocument 404 /404.php
-

@@ -35,6 +35,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
 <head>
   <meta charset="UTF-8" />
   <?php include 'head-log.php' ?>
+  <meta name="robots" content="index, follow">
   <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
   <title><?= htmlspecialchars($game['name'] ?? ($lang === 'en' ? 'Detail' : 'বিস্তারিত')) ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -30,6 +30,7 @@ $texts = $servicesTexts[$lang];
 <html lang="en">
  
 <head>
+    <meta name="robots" content="index, follow">
       <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Primary Meta Tags -->
@@ -66,6 +67,7 @@ $texts = $servicesTexts[$lang];
   <?php 
 include 'loading.php'
 ?>
+ <?php include 'scroll-top-button.php'; ?>
   <main class="px-6 py-12 max-w-6xl mx-auto">
     <div class="mb-5">
         <h1 class="text-3xl font-bold text-red-600"><?= $texts['title'] ?></h1>

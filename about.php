@@ -13,6 +13,7 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
 
 <head>
   <?php include 'head-log.php' ?>
+    <meta name="robots" content="index, follow">
   <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,6 +28,7 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
   <?php
   include 'loading.php'
   ?>
+   <?php include 'scroll-top-button.php'; ?>
   <div class="max-w-4xl mx-auto px-4 py-12">
     <h1 class="text-2xl font-bold text-red-600"><?php echo $currentTexts['heading']; ?></h1>
 

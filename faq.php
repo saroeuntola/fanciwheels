@@ -14,6 +14,7 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
 
 <head>
   <?php include 'head-log.php' ?>
+  <meta name="robots" content="index, follow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo $lang === 'en' ? 'Frequently Asked Questions | FancyWin' : 'প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী | ফ্যান্সিউইন'; ?></title>
@@ -59,7 +60,7 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
   <?php
   include 'loading.php'
   ?>
-
+ <?php include 'scroll-top-button.php'; ?>
   <section class="py-10 px-4 max-w-4xl mx-auto" id="faq">
     <div class="mb-8">
       <h2 class="text-3xl font-bold">
