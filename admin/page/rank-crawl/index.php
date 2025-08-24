@@ -1,4 +1,5 @@
 <?php
+include('../library/KeywordRank_lib.php');
 include('../library/checkroles.php');
 protectPathAccess();
 
