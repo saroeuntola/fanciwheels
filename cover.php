@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Epic Gaming - Ultimate Gaming Experience</title>
     <style>
-  
-        .cover{
+        .cover {
             font-family: 'Arial', sans-serif;
             color: white;
             overflow-x: hidden;
@@ -28,7 +28,7 @@
             right: 0;
             width: 60%;
             height: 100%;
-            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
             border-radius: 50% 0 0 50%;
         }
 
@@ -149,7 +149,7 @@
             background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
             border-radius: 30px;
             position: relative;
-            box-shadow: 
+            box-shadow:
                 0 20px 40px rgba(0, 0, 0, 0.5),
                 inset 0 2px 10px rgba(255, 255, 255, 0.1);
             animation: float 4s ease-in-out infinite;
@@ -301,6 +301,7 @@
                 opacity: 0;
                 transform: translateX(-50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -312,6 +313,7 @@
                 opacity: 0;
                 transform: translateX(50px) perspective(1000px) rotateX(15deg) rotateY(-15deg);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0) perspective(1000px) rotateX(15deg) rotateY(-15deg);
@@ -319,19 +321,25 @@
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px);
             }
+
             50% {
                 transform: translateY(-10px);
             }
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 opacity: 1;
             }
+
             50% {
                 transform: scale(1.1);
                 opacity: 0.8;
@@ -339,10 +347,13 @@
         }
 
         @keyframes particleFloat {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px);
                 opacity: 0.3;
             }
+
             50% {
                 transform: translateY(-30px);
                 opacity: 1;
@@ -350,9 +361,12 @@
         }
 
         @keyframes orbitFloat {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: rotate(0deg) translateX(50px) rotate(0deg);
             }
+
             50% {
                 transform: rotate(180deg) translateX(50px) rotate(-180deg);
             }
@@ -395,6 +409,7 @@
         }
     </style>
 </head>
+
 <body class="cover">
     <section class="hero-section">
         <div class="floating-elements">
@@ -402,21 +417,21 @@
             <div class="floating-circle circle-2"></div>
             <div class="floating-circle circle-3"></div>
         </div>
-        
+
         <div class="container_cover">
             <div class="hero-content">
                 <h1 class="hero-title">Welcome<br>Spin and Win</h1>
                 <h2 class="hero-subtitle">Ultimate Gaming Experience</h2>
                 <p class="hero-description">
-                    Immerse yourself in breathtaking worlds, epic adventures, and heart-pounding action. 
-                    Join millions of players worldwide and discover your next gaming obsession with 
+                    Immerse yourself in breathtaking worlds, epic adventures, and heart-pounding action.
+                    Join millions of players worldwide and discover your next gaming obsession with
                     cutting-edge graphics and innovative gameplay.
                 </p>
                 <a href="https://fwsuperace.xyz/kh/en" class="cta-buttons">
                     <button class="cta-button cta-primary">GET STARTED</button>
                 </a>
             </div>
-            
+
             <div class="hero-visual">
                 <div class="game-controller">
                     <div class="controller-body">
@@ -436,4 +451,5 @@
         </div>
     </section>
 </body>
+
 </html>

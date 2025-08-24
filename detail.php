@@ -4,14 +4,14 @@ include "./admin/page/library/game_lib.php";
 
 $currentPage = basename($_SERVER['PHP_SELF']);
 
-$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en','bn']) ? $_GET['lang'] : 'en';
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
 
 // Keep ID if on detail.php
 $currentId = isset($_GET['id']) ? intval($_GET['id']) : null;
 
 if (!isset($_GET['id'])) {
-    echo $lang === 'en' ? "ID not provided." : "আইডি প্রদান করা হয়নি।";
-    exit;
+  echo $lang === 'en' ? "ID not provided." : "আইডি প্রদান করা হয়নি।";
+  exit;
 }
 
 $id = intval($_GET['id']);
@@ -19,8 +19,8 @@ $gameObj = new Games();
 $game = $gameObj->getGameById($id, $lang);
 
 if (!$game) {
-    echo $lang === 'en' ? "not found." : "পাওয়া যায়নি।";
-    exit;
+  echo $lang === 'en' ? "not found." : "পাওয়া যায়নি।";
+  exit;
 }
 
 $relatedGames = $gameObj->getRelatedGames($id, $game['category_id'], 6, $lang);
@@ -31,13 +31,14 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo htmlspecialchars($lang); ?>">
+
 <head>
   <meta charset="UTF-8" />
-    <?php include 'head-log.php' ?>
+  <?php include 'head-log.php' ?>
   <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
   <title><?= htmlspecialchars($game['name'] ?? ($lang === 'en' ? 'Detail' : 'বিস্তারিত')) ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./dist/output.css" rel="stylesheet">
+  <link href="./dist/output.css" rel="stylesheet">
   <style>
     .line-clamp-2 {
       display: -webkit-box;
@@ -45,20 +46,32 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+
     .line-clamp-3 {
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .group:hover .group-hover\:opacity-80 { opacity: 0.8; }
-    .group:hover .group-hover\:text-blue-400 { color: rgb(96 165 250); }
-    .group:hover .group-hover\:scale-105 { transform: scale(1.05); }
+
+    .group:hover .group-hover\:opacity-80 {
+      opacity: 0.8;
+    }
+
+    .group:hover .group-hover\:text-blue-400 {
+      color: rgb(96 165 250);
+    }
+
+    .group:hover .group-hover\:scale-105 {
+      transform: scale(1.05);
+    }
+
     @media (max-width: 1024px) {
       .detail-page {
         padding: 25px;
       }
     }
+
     @media (max-width: 768px) {
       .detail-page {
         padding: 16px;
@@ -66,6 +79,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     }
   </style>
 </head>
+
 <body class="bg-gray-900 text-white">
   <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
     <?php include 'navbar.php'; ?>
@@ -82,8 +96,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
           <img
             src="<?= './admin/page/game/' . htmlspecialchars($gameImage) ?>"
             alt="<?= htmlspecialchars($metaText) ?>"
-            class="w-full h-64 md:h-[310px] lg:h-[450px] object-cover rounded-xl mb-6"
-          />
+            class="w-full h-64 md:h-[310px] lg:h-[450px] object-cover rounded-xl mb-6" />
           <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-snug break-words">
             <?= htmlspecialchars($game['name'] ?? ($lang === 'en' ? 'Unnamed' : 'নামহীন')) ?>
           </h1>
@@ -104,8 +117,8 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <?php foreach ($relatedGames as $related): ?>
                 <?php
-                  $relatedImage = $related['image'] ?? 'default.png';
-                  $relatedMeta = $related['meta_text'] ?? ($lang === 'en' ? 'No image' : 'কোনো ছবি নেই');
+                $relatedImage = $related['image'] ?? 'default.png';
+                $relatedMeta = $related['meta_text'] ?? ($lang === 'en' ? 'No image' : 'কোনো ছবি নেই');
                 ?>
                 <div class="group bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
                   <a href="detail.php?id=<?= $related['id'] ?>&lang=<?= $lang ?>" class="block">
@@ -113,8 +126,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                       <img
                         src="<?= './admin/page/game/' . htmlspecialchars($relatedImage) ?>"
                         alt="<?= htmlspecialchars($relatedMeta) ?>"
-                        class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
+                        class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300" />
                     </div>
                     <div class="p-4">
                       <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors duration-200">
@@ -144,17 +156,16 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
           <div class="space-y-4">
             <?php foreach (array_slice($popularGames, 0, 6) as $popular): ?>
               <?php
-                $popularImage = $popular['image'] ?? 'default.png';
-                $popularName = $popular['name'] ?? ($lang === 'en' ? 'Popular Post' : 'জনপ্রিয় পোস্ট');
-                $popularDesc = $popular['description'] ?? '';
+              $popularImage = $popular['image'] ?? 'default.png';
+              $popularName = $popular['name'] ?? ($lang === 'en' ? 'Popular Post' : 'জনপ্রিয় পোস্ট');
+              $popularDesc = $popular['description'] ?? '';
               ?>
               <div class="flex items-start space-x-3 group">
                 <div class="flex-shrink-0">
                   <img
                     src="<?= './admin/page/game/' . htmlspecialchars($popularImage) ?>"
                     alt="<?= htmlspecialchars($popularName) ?>"
-                    class="w-16 h-16 object-cover rounded-lg group-hover:opacity-80 transition-opacity duration-200"
-                  />
+                    class="w-16 h-16 object-cover rounded-lg group-hover:opacity-80 transition-opacity duration-200" />
                 </div>
                 <div class="flex-1 min-w-0">
                   <a href="detail.php?id=<?= $popular['id'] ?>&lang=<?= $lang ?>" class="block group-hover:text-blue-400 transition-colors duration-200">
@@ -164,7 +175,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                     <p class="text-xs text-gray-400 mt-1 line-clamp-2">
                       <?= htmlspecialchars(substr(strip_tags($popularDesc), 0, 80)) . '...' ?>
                     </p>
-  
+
                   </a>
                 </div>
               </div>
@@ -177,4 +188,5 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
 
   <?php include 'footer.php'; ?>
 </body>
+
 </html>

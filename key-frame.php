@@ -40,6 +40,7 @@
         0% {
             transform: translateX(1210px);
         }
+
         100% {
             transform: translateX(-100%);
         }
@@ -50,13 +51,16 @@
         #main {
             width: 95%;
         }
+
         .announcement {
             animation: slideLeftToRightTablet 18s linear infinite;
         }
+
         @keyframes slideLeftToRightTablet {
             0% {
                 transform: translateX(768px);
             }
+
             100% {
                 transform: translateX(-100%);
             }
@@ -68,13 +72,16 @@
         #main {
             width: 92%;
         }
+
         .announcement {
             animation: slideLeftToRightMobile 15s linear infinite;
         }
+
         @keyframes slideLeftToRightMobile {
             0% {
                 transform: translateX(400px);
             }
+
             100% {
                 transform: translateX(-100%);
             }
@@ -123,6 +130,7 @@
         0% {
             transform: translateX(1210px);
         }
+
         100% {
             transform: translateX(-100%);
         }
@@ -133,13 +141,16 @@
         #main {
             width: 95%;
         }
+
         .announcement {
             animation: slideLeftToRightTablet 18s linear infinite;
         }
+
         @keyframes slideLeftToRightTablet {
             0% {
                 transform: translateX(768px);
             }
+
             100% {
                 transform: translateX(-100%);
             }
@@ -151,13 +162,16 @@
         #main {
             width: 92%;
         }
+
         .announcement {
             animation: slideLeftToRightMobile 15s linear infinite;
         }
+
         @keyframes slideLeftToRightMobile {
             0% {
                 transform: translateX(400px);
             }
+
             100% {
                 transform: translateX(-100%);
             }
@@ -165,11 +179,11 @@
     }
 </style>
 
-<?php 
+<?php
 include('./admin/page/library/announcement_lib.php');
 
 $announcementObj = new Announcement();
-$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en','bn']) ? $_GET['lang'] : 'bn';
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 
 $announcements = $announcementObj->getAnnouncements($lang);
 ?>

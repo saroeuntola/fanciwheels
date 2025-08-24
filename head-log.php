@@ -20,4 +20,3 @@ if ($fp) {
     fputcsv($fp, $fields);
     fclose($fp);
 }
-?>

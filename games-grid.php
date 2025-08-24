@@ -1,5 +1,4 @@
-
-<?php 
+<?php
 include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
 ?>
 <?php
@@ -10,6 +9,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <style>
     :root {
@@ -19,22 +19,29 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
       --candy-green: #22c55e;
       --candy-purple: #a78bfa;
     }
-/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
-.game-grid::-webkit-scrollbar {
-  display: none;
-}
-.post-grid::-webkit-scrollbar {
-  display: none;
-}
-/* Hide scrollbar for Firefox */
-.game-grid, .post-grid{
-  scrollbar-width: none; /* Firefox */
-}
 
-/* Hide scrollbar for IE, Edge */
-.game-grid, .post-grid {
-  -ms-overflow-style: none; /* IE and Edge */
-}
+    /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+    .game-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .post-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for Firefox */
+    .game-grid,
+    .post-grid {
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    /* Hide scrollbar for IE, Edge */
+    .game-grid,
+    .post-grid {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+    }
 
     .animated-text {
       background: linear-gradient(90deg, #facc15, #fb923c, #a78bfa, #22c55e, #f472b6);
@@ -49,9 +56,17 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     }
 
     @keyframes glowText {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     .game-grid::-webkit-scrollbar {
@@ -67,52 +82,62 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     .game-card {
       flex-shrink: 0;
       flex-grow: 0;
-      flex-basis: calc((100% - 40px) / 3); /* 3 items with 20px gap */
-      min-width: 390px; /* prevent cards from getting too narrow */
-       overflow-x: auto;
+      flex-basis: calc((100% - 40px) / 3);
+      /* 3 items with 20px gap */
+      min-width: 390px;
+      /* prevent cards from getting too narrow */
+      overflow-x: auto;
     }
 
-    #hot-games-title{
+    #hot-games-title {
       font-size: 40px;
       margin-bottom: 15px;
     }
+
     #games-header {
       margin-top: 50px;
     }
 
     @media (max-width: 1024px) {
       .game-card {
-        flex-basis: calc((100% - 20px) / 2); /* 2 items on medium screens */
+        flex-basis: calc((100% - 20px) / 2);
+        /* 2 items on medium screens */
       }
-      #hot-games-title{
+
+      #hot-games-title {
         font-size: 30px;
       }
     }
 
     @media (max-width: 480px) {
       .game-card {
-        flex-basis: 100%; /* 1 item full width on small/mobile */
+        flex-basis: 100%;
+        /* 1 item full width on small/mobile */
         min-width: 100vw;
         padding: 0px 15px;
       }
-      #hot-games-title{
+
+      #hot-games-title {
         font-size: 25px;
         margin: 0;
         padding: 0;
       }
+
       #games-header {
         padding: 0 20px;
       }
-      .text-scroll{
+
+      .text-scroll {
         padding: 0 18px;
       }
+
       .game-card {
         background: none;
         border: none;
       }
     }
 
-    .text-scroll{
+    .text-scroll {
       color: darkred;
     }
 
@@ -133,7 +158,8 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
       align-items: center;
       justify-content: center;
       user-select: none;
-      left: unset; /* reset for animation */
+      left: unset;
+      /* reset for animation */
       right: unset;
       top: 50%;
       transform: translateY(-50%);
@@ -155,6 +181,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     }
   </style>
 </head>
+
 <body class="bg-gray-900" id="games-grid">
 
   <div>
@@ -168,56 +195,54 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
 
   <div class="relative">
     <!-- Left Arrow Button -->
-   <button id="prev-btn" aria-label="Scroll Left" class="arrow-btn left-0">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-  </svg>
-</button>
+    <button id="prev-btn" aria-label="Scroll Left" class="arrow-btn left-0">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
 
     <div id="gameGrid" class="game-grid flex overflow-x-auto snap-x snap-mandatory gap-5 p-0 m-0">
-     <?php foreach ($games_item as $game): ?>
-    <div class="game-card mb-2 bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-200 flex flex-col snap-start">
-       <img src="<?= $game['image'] ?>" alt="<?= htmlspecialchars($game['title']) ?>" class="w-full h-[206px] object-cover">
-    <div class="game-content p-4 flex flex-col flex-grow">
+      <?php foreach ($games_item as $game): ?>
+        <div class="game-card mb-2 bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-200 flex flex-col snap-start">
+          <img src="<?= $game['image'] ?>" alt="<?= htmlspecialchars($game['title']) ?>" class="w-full h-[206px] object-cover">
+          <div class="game-content p-4 flex flex-col flex-grow">
 
-      
-        <h3 class="text-lg font-bold mb-2"><?= htmlspecialchars($game['title']) ?></h3>
-        <p class="game-desc text-sm text-gray-300 flex-grow"><?= htmlspecialchars($game['description']) ?></p>
-        <a href="<?= $game['link'] ?>" class="play-btn p-2 text-center bg-purple-400 text-white rounded-lg font-bold hover:bg-pink-400 transition-colors duration-300 w-full"><?= $lang === 'en' ? 'Play Now' : 'খেলা লক' ?></a>
-      </div>
-    
-   
-    </div>
-  <?php endforeach; ?>
+
+            <h3 class="text-lg font-bold mb-2"><?= htmlspecialchars($game['title']) ?></h3>
+            <p class="game-desc text-sm text-gray-300 flex-grow"><?= htmlspecialchars($game['description']) ?></p>
+            <a href="<?= $game['link'] ?>" class="play-btn p-2 text-center bg-purple-400 text-white rounded-lg font-bold hover:bg-pink-400 transition-colors duration-300 w-full"><?= $lang === 'en' ? 'Play Now' : 'খেলা লক' ?></a>
+          </div>
+
+
+        </div>
+      <?php endforeach; ?>
     </div>
 
     <!-- Right Arrow Button -->
     <button id="next-btn" aria-label="Scroll Right" class="arrow-btn right-0">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-  </svg>
-</button>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
   </div>
 
   <!-- Modal -->
   <div id="comingSoonModal" class="modal hidden fixed inset-0 z-[1000] bg-black/60">
     <div class="modal-content bg-gray-800 text-gray-100 mx-auto mt-[15%] p-8 rounded-lg w-[90%] max-w-md text-center">
       <span class="close-btn text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-black">&times;</span>
-      <h2 class="text-xl mb-4"> <?= $lang === 'en' ? 'Game Locked' : 'খেলা লক' ?>  </h2>
+      <h2 class="text-xl mb-4"> <?= $lang === 'en' ? 'Game Locked' : 'খেলা লক' ?> </h2>
       <p>
         <a id="link" href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" rel="noopener noreferrer" class="text-cyan-400 font-bold underline">
-           <?= $lang === 'en' ? 'Join now' : 'এখন নিবন্ধন করুন' ?>
-        </a> 
-         <?= $lang === 'en' ? ' to unlock more games, enjoy exciting gameplay, and win big — safe, fun, and easy!' : 'আরও গেম আনলক করতে, উত্তেজনাপূর্ণ গেমপ্লে উপভোগ করতে এবং বড় জয় পেতে — নিরাপদ, মজাদার এবং সহজ!' ?>
-       
+          <?= $lang === 'en' ? 'Join now' : 'এখন নিবন্ধন করুন' ?>
+        </a>
+        <?= $lang === 'en' ? ' to unlock more games, enjoy exciting gameplay, and win big — safe, fun, and easy!' : 'আরও গেম আনলক করতে, উত্তেজনাপূর্ণ গেমপ্লে উপভোগ করতে এবং বড় জয় পেতে — নিরাপদ, মজাদার এবং সহজ!' ?>
+
       </p>
     </div>
   </div>
- 
-   <script>
-    
 
-   const modal = document.getElementById("comingSoonModal");
+  <script>
+    const modal = document.getElementById("comingSoonModal");
     const closeBtn = document.querySelector(".close-btn");
     const container = document.getElementById("gameGrid");
 
@@ -246,48 +271,51 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     });
 
 
-$(function () {
-  const $grid = $("#gameGrid");
-  const scrollAmount = 390;
+    $(function() {
+      const $grid = $("#gameGrid");
+      const scrollAmount = 390;
 
-  const originalContent = $grid.html();
-  $grid.prepend(originalContent);
-  $grid.append(originalContent);
+      const originalContent = $grid.html();
+      $grid.prepend(originalContent);
+      $grid.append(originalContent);
 
-  // Scroll to the original items in the middle
-  const originalScrollLeft = $grid[0].scrollWidth / 3;
-  $grid.scrollLeft(originalScrollLeft);
+      // Scroll to the original items in the middle
+      const originalScrollLeft = $grid[0].scrollWidth / 3;
+      $grid.scrollLeft(originalScrollLeft);
 
-  // Handle scroll event to loop scroll position
-  $grid.on("scroll", function () {
-    const maxScrollLeft = $grid[0].scrollWidth;
-    const viewportWidth = $grid.outerWidth();
-    let scrollLeft = $grid.scrollLeft();
+      // Handle scroll event to loop scroll position
+      $grid.on("scroll", function() {
+        const maxScrollLeft = $grid[0].scrollWidth;
+        const viewportWidth = $grid.outerWidth();
+        let scrollLeft = $grid.scrollLeft();
 
-    if (scrollLeft <= 0) {
-      $grid.scrollLeft(scrollLeft + (maxScrollLeft / 3));
-    } else if (scrollLeft >= maxScrollLeft * 2 / 3) {
-    
-      $grid.scrollLeft(scrollLeft - (maxScrollLeft / 3));
-    }
-  });
+        if (scrollLeft <= 0) {
+          $grid.scrollLeft(scrollLeft + (maxScrollLeft / 3));
+        } else if (scrollLeft >= maxScrollLeft * 2 / 3) {
 
-  // Arrow buttons scroll with looping
-  $("#prev-btn").on("click", function () {
-    $grid.animate(
-      { scrollLeft: $grid.scrollLeft() - scrollAmount },
-      300
-    );
-  });
+          $grid.scrollLeft(scrollLeft - (maxScrollLeft / 3));
+        }
+      });
 
-  $("#next-btn").on("click", function () {
-    $grid.animate(
-      { scrollLeft: $grid.scrollLeft() + scrollAmount },
-      300
-    );
-  });
+      // Arrow buttons scroll with looping
+      $("#prev-btn").on("click", function() {
+        $grid.animate({
+            scrollLeft: $grid.scrollLeft() - scrollAmount
+          },
+          300
+        );
+      });
 
-});
-   </script>
+      $("#next-btn").on("click", function() {
+        $grid.animate({
+            scrollLeft: $grid.scrollLeft() + scrollAmount
+          },
+          300
+        );
+      });
+
+    });
+  </script>
 </body>
+
 </html>

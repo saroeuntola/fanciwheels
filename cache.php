@@ -1,5 +1,8 @@
 <?php
-if (function_exists('opcache_reset')) { opcache_reset(); echo "✅ OPcache cleared<br>"; }
+if (function_exists('opcache_reset')) {
+    opcache_reset();
+    echo "✅ OPcache cleared<br>";
+}
 session_start();
 session_unset();
 session_destroy();

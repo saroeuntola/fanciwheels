@@ -1,4 +1,4 @@
-<?php include './admin/page/library/db.php'?>
+<?php include './admin/page/library/db.php' ?>
 <?php
 
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
@@ -11,12 +11,13 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <?php include 'head-log.php' ?>
+  <?php include 'head-log.php' ?>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo $lang === 'en' ? 'Frequently Asked Questions | FancyWin' : 'প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী | ফ্যান্সিউইন'; ?></title>
-  
+
   <!-- Favicon -->
   <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
 
@@ -39,7 +40,7 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
   <meta name="twitter:image" content="https://fanciwheel.com/image/PWAicon-192px.png">
 
   <!-- Tailwind CSS -->
-    <link href="./dist/output.css" rel="stylesheet">
+  <link href="./dist/output.css" rel="stylesheet">
 
   <!-- Custom Styles -->
   <style>
@@ -48,42 +49,43 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
     }
   </style>
 </head>
+
 <body class="bg-gray-900 text-gray-300">
-<nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
-    <?php 
+  <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
+    <?php
     include 'navbar.php';
     ?>
   </nav>
-  <?php 
-include 'loading.php'
-?>
+  <?php
+  include 'loading.php'
+  ?>
 
-<section class="py-10 px-4 max-w-4xl mx-auto" id="faq">
+  <section class="py-10 px-4 max-w-4xl mx-auto" id="faq">
     <div class="mb-8">
-        <h2 class="text-3xl font-bold">
-            <?= $lang === 'en' ? 'Frequently Asked Questions' : 'প্রায়শই জিজ্ঞাসিত প্রশ্ন' ?>
-        </h2>
+      <h2 class="text-3xl font-bold">
+        <?= $lang === 'en' ? 'Frequently Asked Questions' : 'প্রায়শই জিজ্ঞাসিত প্রশ্ন' ?>
+      </h2>
     </div>
 
     <div class="space-y-4">
-        <?php foreach ($currentFaqs as $faq): ?>
-            <div class="border border-gray-200 rounded-md bg-gray-800">
-                <button class="w-full flex justify-between items-center p-4 text-left faq-toggle">
-                    <span class="font-medium text-white"><?= $faq['question'] ?></span>
-                    <svg class="w-5 h-5 text-white transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div class="faq-content px-4 pb-4 hidden text-white">
-                    <p><?= $faq['answer'] ?></p>
-                </div>
-            </div>
-        <?php endforeach; ?>
+      <?php foreach ($currentFaqs as $faq): ?>
+        <div class="border border-gray-200 rounded-md bg-gray-800">
+          <button class="w-full flex justify-between items-center p-4 text-left faq-toggle">
+            <span class="font-medium text-white"><?= $faq['question'] ?></span>
+            <svg class="w-5 h-5 text-white transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-content px-4 pb-4 hidden text-white">
+            <p><?= $faq['answer'] ?></p>
+          </div>
+        </div>
+      <?php endforeach; ?>
     </div>
-</section>
+  </section>
 
-  <?php 
-   include 'footer.php';
+  <?php
+  include 'footer.php';
   ?>
 
   <!-- JS Accordion Toggle -->
@@ -100,4 +102,5 @@ include 'loading.php'
   </script>
 
 </body>
+
 </html>

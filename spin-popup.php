@@ -11,176 +11,14 @@ $translations = [
 ];
 ?>
 <style>
-.iti__country-list {
-    background: black;
-    width: 300px;
-}
+    .iti__country-list {
+        background: black;
+        width: 300px;
+    }
 
-.popup {
-    position: relative;
+    .popup {
+        position: relative;
 
-}
-
-.close-icon {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    line-height: 0;
-    color: #333;
-    transition: color 0.3s ease;
-}
-
-.close-icon:hover {
-    color: #f00;
-}
-
-/* Spin Wheel Modal (no background color) */
-#spinWheelModal {
-    position: fixed;
-    top: 0%;
-    left: 0%;
-    width: 100%;
-    height: 100%;
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 50px;
-}
-
-.popup {
-    background-image: url('image/bg-image.jpg');
-    padding: 70px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    font-size: 20px;
-}
-
-.wheel-container {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
-}
-
-.wheel {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url('image/test23-removebg-preview.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 0;
-}
-
-.small-wheel {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url('image/test1.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 1;
-}
-
-.border-spin {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('image/Frame1_1.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 2;
-    pointer-events: none;
-}
-
-#spinCountDisplay {
-    color: wheat;
-    background-color: #E3DC24;
-    border-radius: 50px;
-    width: 50%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #333;
-    font-size: 15px;
-    margin-top: 120px;
-    margin-left: 72px;
-    padding: 10px 0px;
-
-}
-
-#spinBtn {
-    padding: 12px 30px;
-    font-size: 18px;
-    width: 100%;
-    cursor: pointer;
-    background-color: #E3DC24;
-    border-radius: 25px;
-    margin-top: 15px;
-    color: #333;
-    font-weight: bold;
-}
-
-#spinBtn:hover {
-    background-color: #1400AD;
-    transition: 500ms;
-    color: white;
-
-}
-
-/* Result Modal */
-#popupOverlay,
-#popupOverlay1 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-}
-
-#popupOverlay .popup,
-#popupOverlay1 .popup {
-    background: black;
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 90%;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    font-size: 20px;
-}
-
-#popupOverlay .popup button,
-#popupOverlay1 .popup button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-}
-
-@media (max-width: 600px) {
-    #spinWheelModal .popup {
-        /* full viewport height */
-        border-radius: 0;
-        /* remove rounded corners for full screen */
-        padding: 20px;
-        /* smaller padding for mobile */
     }
 
     .close-icon {
@@ -196,21 +34,183 @@ $translations = [
         transition: color 0.3s ease;
     }
 
-    .wheel-container {
-
-        width: 340px;
-        height: 340px;
+    .close-icon:hover {
+        color: #f00;
     }
 
-    #spinBtn {
-        margin-bottom: 30px;
+    /* Spin Wheel Modal (no background color) */
+    #spinWheelModal {
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 50px;
+    }
+
+    .popup {
+        background-image: url('image/bg-image.jpg');
+        padding: 70px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        font-size: 20px;
+    }
+
+    .wheel-container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+    }
+
+    .wheel {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url('image/test23-removebg-preview.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 0;
+    }
+
+    .small-wheel {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url('image/test1.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 1;
+    }
+
+    .border-spin {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('image/Frame1_1.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 2;
+        pointer-events: none;
     }
 
     #spinCountDisplay {
-        margin-left: 85px;
+        color: wheat;
+        background-color: #E3DC24;
+        border-radius: 50px;
+        width: 50%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #333;
+        font-size: 15px;
+        margin-top: 120px;
+        margin-left: 72px;
+        padding: 10px 0px;
+
     }
 
-    /* #spinBtn,
+    #spinBtn {
+        padding: 12px 30px;
+        font-size: 18px;
+        width: 100%;
+        cursor: pointer;
+        background-color: #E3DC24;
+        border-radius: 25px;
+        margin-top: 15px;
+        color: #333;
+        font-weight: bold;
+    }
+
+    #spinBtn:hover {
+        background-color: #1400AD;
+        transition: 500ms;
+        color: white;
+
+    }
+
+    /* Result Modal */
+    #popupOverlay,
+    #popupOverlay1 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    #popupOverlay .popup,
+    #popupOverlay1 .popup {
+        background: black;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 90%;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        font-size: 20px;
+    }
+
+    #popupOverlay .popup button,
+    #popupOverlay1 .popup button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    @media (max-width: 600px) {
+        #spinWheelModal .popup {
+            /* full viewport height */
+            border-radius: 0;
+            /* remove rounded corners for full screen */
+            padding: 20px;
+            /* smaller padding for mobile */
+        }
+
+        .close-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            line-height: 0;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .wheel-container {
+
+            width: 340px;
+            height: 340px;
+        }
+
+        #spinBtn {
+            margin-bottom: 30px;
+        }
+
+        #spinCountDisplay {
+            margin-left: 85px;
+        }
+
+        /* #spinBtn,
     #closeModalBtn {
       width: 80%;
       margin: 15px auto 0 auto;
@@ -218,7 +218,7 @@ $translations = [
     } */
 
 
-}
+    }
 </style>
 
 <body>
@@ -343,158 +343,158 @@ $translations = [
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="module" src="secure_js.php?file=script.js"></script>
 <script>
-const wheel = document.getElementById("wheel");
-const spinBtn = document.getElementById("spinBtn");
-const popupOverlay = $("#popupOverlay");
-const popupOverlay1 = $("#popupOverlay1");
-const popupMessage = $("#popupMessage");
-const closePopup = $("#closePopup");
-const closePopup1 = $("#closePopup1");
-const closeModalBtn = document.getElementById("closeModalBtn");
+    const wheel = document.getElementById("wheel");
+    const spinBtn = document.getElementById("spinBtn");
+    const popupOverlay = $("#popupOverlay");
+    const popupOverlay1 = $("#popupOverlay1");
+    const popupMessage = $("#popupMessage");
+    const closePopup = $("#closePopup");
+    const closePopup1 = $("#closePopup1");
+    const closeModalBtn = document.getElementById("closeModalBtn");
 
-const segmentNumbers = [
+    const segmentNumbers = [
 
-    "Red", "yallow", "Blue", "Yallow", "blue", "yallow", "red", "Yallow", "blue", "yallow", "blue", "yallow",
-    "red", "Yallow", "blue", "yallow"
-];
-const segments = segmentNumbers.length;
-const segmentAngle = 360 / segments;
+        "Red", "yallow", "Blue", "Yallow", "blue", "yallow", "red", "Yallow", "blue", "yallow", "blue", "yallow",
+        "red", "Yallow", "blue", "yallow"
+    ];
+    const segments = segmentNumbers.length;
+    const segmentAngle = 360 / segments;
 
-let startTimestamp = null;
-let duration = 8000;
-let startRotation = 0;
-let targetRotation = 0;
-let animationFrameId = null;
-let winningIndex = 0;
+    let startTimestamp = null;
+    let duration = 8000;
+    let startRotation = 0;
+    let targetRotation = 0;
+    let animationFrameId = null;
+    let winningIndex = 0;
 
-const lang = "<?= $lang ?>";
-const translations = {
-    en: {
-        freeSpin: "Free Spin",
-        winMessage: "🎉 You won"
-    },
-    bn: {
-        freeSpin: "ফ্রি স্পিন",
-        winMessage: "🎉 আপনি জিতেছেন"
+    const lang = "<?= $lang ?>";
+    const translations = {
+        en: {
+            freeSpin: "Free Spin",
+            winMessage: "🎉 You won"
+        },
+        bn: {
+            freeSpin: "ফ্রি স্পিন",
+            winMessage: "🎉 আপনি জিতেছেন"
+        }
+    };
+
+    let spinCount = 0;
+    const maxSpins = 1;
+    const spinCountDisplay = document.getElementById("spinCountDisplay");
+
+    function updateSpinCountDisplay() {
+        const text = `${translations[lang].freeSpin}: ${spinCount}/${maxSpins}`;
+        spinCountDisplay.textContent = text;
+        spinCountDisplay.classList.add("spin-count");
     }
-};
-
-let spinCount = 0;
-const maxSpins = 1;
-const spinCountDisplay = document.getElementById("spinCountDisplay");
-
-function updateSpinCountDisplay() {
-    const text = `${translations[lang].freeSpin}: ${spinCount}/${maxSpins}`;
-    spinCountDisplay.textContent = text;
-    spinCountDisplay.classList.add("spin-count");
-}
 
 
-function easeOutQuart(t) {
-    return 1 - Math.pow(1 - t, 4);
-}
-
-function animate(timestamp) {
-    if (!startTimestamp) startTimestamp = timestamp;
-    const elapsed = timestamp - startTimestamp;
-    let progress = elapsed / duration;
-    if (progress > 1) progress = 1;
-
-    const easedProgress = easeOutQuart(progress);
-    const currentRotation = startRotation + easedProgress * (targetRotation - startRotation);
-    wheel.style.transform = `rotate(${currentRotation}deg)`;
-
-    if (progress < 1) {
-        animationFrameId = requestAnimationFrame(animate);
-    } else {
-        performWobble(currentRotation);
+    function easeOutQuart(t) {
+        return 1 - Math.pow(1 - t, 4);
     }
-}
 
-function performWobble(baseRotation) {
-    const wobbleSequence = [-5, 4, -3, 2, -1, 1, -0.5, 0];
-    let index = 0;
+    function animate(timestamp) {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const elapsed = timestamp - startTimestamp;
+        let progress = elapsed / duration;
+        if (progress > 1) progress = 1;
 
-    function doWobble() {
-        if (index >= wobbleSequence.length) {
-            spinBtn.disabled = false;
+        const easedProgress = easeOutQuart(progress);
+        const currentRotation = startRotation + easedProgress * (targetRotation - startRotation);
+        wheel.style.transform = `rotate(${currentRotation}deg)`;
 
-            const finalRotation = baseRotation + wobbleSequence[wobbleSequence.length - 1];
-            const normalizedRotation = finalRotation % 360;
-            const adjustedRotation = (normalizedRotation + segmentAngle / 2) % 360;
-            winningIndex = Math.floor(adjustedRotation / segmentAngle);
-            winningIndex = (segments - (winningIndex % segments)) % segments;
+        if (progress < 1) {
+            animationFrameId = requestAnimationFrame(animate);
+        } else {
+            performWobble(currentRotation);
+        }
+    }
 
-            const winNumber = segmentNumbers[winningIndex];
-            popupMessage.text(`${translations[lang].winMessage} ${winNumber}!`);
+    function performWobble(baseRotation) {
+        const wobbleSequence = [-5, 4, -3, 2, -1, 1, -0.5, 0];
+        let index = 0;
 
-            // Show popup with slide down animation
-            popupOverlay.hide().css("display", "flex").hide().slideDown(400);
+        function doWobble() {
+            if (index >= wobbleSequence.length) {
+                spinBtn.disabled = false;
+
+                const finalRotation = baseRotation + wobbleSequence[wobbleSequence.length - 1];
+                const normalizedRotation = finalRotation % 360;
+                const adjustedRotation = (normalizedRotation + segmentAngle / 2) % 360;
+                winningIndex = Math.floor(adjustedRotation / segmentAngle);
+                winningIndex = (segments - (winningIndex % segments)) % segments;
+
+                const winNumber = segmentNumbers[winningIndex];
+                popupMessage.text(`${translations[lang].winMessage} ${winNumber}!`);
+
+                // Show popup with slide down animation
+                popupOverlay.hide().css("display", "flex").hide().slideDown(400);
+                return;
+            }
+
+            const currentWobbleRotation = baseRotation + wobbleSequence[index];
+            wheel.style.transition = "transform 0.3s ease-in-out";
+            wheel.style.transform = `rotate(${currentWobbleRotation}deg)`;
+            index++;
+            setTimeout(doWobble, 200);
+        }
+
+        doWobble();
+    }
+
+    function getCurrentRotation() {
+        const style = window.getComputedStyle(wheel);
+        const transform = style.getPropertyValue("transform");
+        if (transform === "none") return 0;
+        const values = transform.match(/matrix\(([^)]+)\)/)[1].split(", ");
+        const a = parseFloat(values[0]);
+        const b = parseFloat(values[1]);
+        let angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+        return angle < 0 ? angle + 360 : angle;
+    }
+
+    spinBtn.addEventListener("click", () => {
+        if (spinBtn.disabled) return;
+
+        if (spinCount >= maxSpins) {
+            popupOverlay1.hide().css("display", "flex").hide().slideDown(400);
+            spinBtn.disabled = true;
             return;
         }
 
-        const currentWobbleRotation = baseRotation + wobbleSequence[index];
-        wheel.style.transition = "transform 0.3s ease-in-out";
-        wheel.style.transform = `rotate(${currentWobbleRotation}deg)`;
-        index++;
-        setTimeout(doWobble, 200);
-    }
+        spinCount++; // Increment spin count
+        updateSpinCountDisplay(); // Update UI
 
-    doWobble();
-}
-
-function getCurrentRotation() {
-    const style = window.getComputedStyle(wheel);
-    const transform = style.getPropertyValue("transform");
-    if (transform === "none") return 0;
-    const values = transform.match(/matrix\(([^)]+)\)/)[1].split(", ");
-    const a = parseFloat(values[0]);
-    const b = parseFloat(values[1]);
-    let angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
-    return angle < 0 ? angle + 360 : angle;
-}
-
-spinBtn.addEventListener("click", () => {
-    if (spinBtn.disabled) return;
-
-    if (spinCount >= maxSpins) {
-        popupOverlay1.hide().css("display", "flex").hide().slideDown(400);
         spinBtn.disabled = true;
-        return;
-    }
+        cancelAnimationFrame(animationFrameId);
 
-    spinCount++; // Increment spin count
-    updateSpinCountDisplay(); // Update UI
+        startTimestamp = null;
+        startRotation = getCurrentRotation();
 
-    spinBtn.disabled = true;
-    cancelAnimationFrame(animationFrameId);
+        const spins = 4; // Number of rotations per spin
+        winningIndex = Math.floor(Math.random() * segments);
+        targetRotation = startRotation + spins * 360 + winningIndex * segmentAngle;
 
-    startTimestamp = null;
-    startRotation = getCurrentRotation();
+        wheel.style.transition = "none";
+        animationFrameId = requestAnimationFrame(animate);
+    });
 
-    const spins = 4; // Number of rotations per spin
-    winningIndex = Math.floor(Math.random() * segments);
-    targetRotation = startRotation + spins * 360 + winningIndex * segmentAngle;
+    closePopup.on("click", () => {
+        popupOverlay.slideUp(400);
+    });
 
-    wheel.style.transition = "none";
-    animationFrameId = requestAnimationFrame(animate);
-});
+    closePopup1.on("click", () => {
+        popupOverlay1.slideUp(400);
+    });
+    closeModalBtn.addEventListener("click", () => {
+        document.getElementById("spinWheelModal").style.display = "none";
+    });
 
-closePopup.on("click", () => {
-    popupOverlay.slideUp(400);
-});
-
-closePopup1.on("click", () => {
-    popupOverlay1.slideUp(400);
-});
-closeModalBtn.addEventListener("click", () => {
-    document.getElementById("spinWheelModal").style.display = "none";
-});
-
-// Show modal on page load
-window.addEventListener("load", () => {
-    document.getElementById("spinWheelModal").style.display = "flex";
-    wheel.style.transform = "rotate(0deg)";
-    updateSpinCountDisplay(); // initialize display
-});
+    // Show modal on page load
+    window.addEventListener("load", () => {
+        document.getElementById("spinWheelModal").style.display = "flex";
+        wheel.style.transform = "rotate(0deg)";
+        updateSpinCountDisplay(); // initialize display
+    });
 </script>

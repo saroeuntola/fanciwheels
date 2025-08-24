@@ -1,4 +1,3 @@
-
 <?php
 include './admin/page/library/game_lib.php';
 $gameObj = new Games();
@@ -7,6 +6,7 @@ $games = $gameObj->getgames($lang);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo htmlspecialchars($lang); ?>">
+
 <head>
     <title><?php echo $lang === 'en' ? 'Popular Cities in Bangladesh' : 'বাংলাদেশের জনপ্রিয় শহর'; ?></title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -168,17 +168,18 @@ $games = $gameObj->getgames($lang);
         }
     </style>
 </head>
+
 <body>
     <div class="post-container">
         <div class="post-header">
             <h1 class="post-title">
                 <?php echo $lang === 'en' ? 'Popular Cities in Bangladesh' : 'বাংলাদেশের জনপ্রিয় শহর'; ?>
             </h1>
-           
+
         </div>
 
         <p class="post-subtitle mt-2">
-            <?php echo $lang === 'en' 
+            <?php echo $lang === 'en'
                 ? 'Discover the top popular cities in Bangladesh, ranked according to verified user reviews <br> and player ratings to guide you to the most loved locations.'
                 : 'বাংলাদেশের শীর্ষ জনপ্রিয় শহরগুলি আবিষ্কার করুন, যাচাইকৃত ব্যবহারকারী পর্যালোচনা এবং খেলোয়াড় রেটিং অনুযায়ী স্থান পেয়েছে।'; ?>
         </p>
@@ -205,25 +206,25 @@ $games = $gameObj->getgames($lang);
 
                         $gameId = (int)$g['id'];
                         $gameName   = htmlspecialchars($g['name'], ENT_QUOTES, 'UTF-8');
-                       
+
                         $metaText   = htmlspecialchars($g['meta_text'] ?? '', ENT_QUOTES, 'UTF-8');
 
                         $plainText  = strip_tags($g['description']);
                         $trimmed    = htmlspecialchars(mb_strimwidth($plainText, 0, 120, '...'), ENT_QUOTES, 'UTF-8');
                         $gameImage  = !empty($g['image']) ? htmlspecialchars($g['image'], ENT_QUOTES, 'UTF-8') : '';
                         ?>
-                        
+
                         <div class="game-card" onclick="window.location.href='detail.php?id=<?= $gameId ?>&lang=<?= $lang ?>'">
                             <div class="game-image" style="height: 210px;">
                                 <?php if (!empty($gameImage)): ?>
                                     <img src="<?= './admin/page/game/' . $gameImage ?>"
-                                         alt="<?= $metaText ?>"
-                                         style="width:100%; height: 100%; object-fit: cover;">
+                                        alt="<?= $metaText ?>"
+                                        style="width:100%; height: 100%; object-fit: cover;">
                                 <?php else: ?>
                                     <div class="no-image-placeholder" style="height: 100%; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#9ca3af;">
                                         <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
                                         <span><?php echo $lang === 'en' ? 'No Image' : 'কোনো ছবি নেই'; ?></span>
                                     </div>
@@ -243,7 +244,7 @@ $games = $gameObj->getgames($lang);
                     <div class="empty-state" style="text-align:center; padding:80px 20px; color:#6b7280; grid-column: 1 / -1;">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:64px; height:64px; margin-bottom:16px; color:#4b5563;">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414a1 1 0 00-.707-.293H4" />
+                                d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414a1 1 0 00-.707-.293H4" />
                         </svg>
                         <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">
                             <?php echo $lang === 'en' ? 'No Posts Found' : 'কোনো পোস্ট পাওয়া যায়নি'; ?>
@@ -263,7 +264,7 @@ $games = $gameObj->getgames($lang);
     </div>
 
     <script>
-        $(function () {
+        $(function() {
             const $grid = $(".post-grid");
             const scrollAmount = 390;
 
@@ -277,7 +278,7 @@ $games = $gameObj->getgames($lang);
             $grid.scrollLeft(originalScrollLeft);
 
             // Handle scroll event to loop scroll position
-            $grid.on("scroll", function () {
+            $grid.on("scroll", function() {
                 const maxScrollLeft = $grid[0].scrollWidth;
                 const scrollLeft = $grid.scrollLeft();
 
@@ -289,14 +290,19 @@ $games = $gameObj->getgames($lang);
             });
 
             // Arrow buttons scroll with looping
-            $("#prev-btns").on("click", function () {
-                $grid.animate({ scrollLeft: $grid.scrollLeft() - scrollAmount }, 300);
+            $("#prev-btns").on("click", function() {
+                $grid.animate({
+                    scrollLeft: $grid.scrollLeft() - scrollAmount
+                }, 300);
             });
 
-            $("#next-btns").on("click", function () {
-                $grid.animate({ scrollLeft: $grid.scrollLeft() + scrollAmount }, 300);
+            $("#next-btns").on("click", function() {
+                $grid.animate({
+                    scrollLeft: $grid.scrollLeft() + scrollAmount
+                }, 300);
             });
         });
     </script>
 </body>
+
 </html>

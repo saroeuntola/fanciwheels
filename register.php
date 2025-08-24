@@ -3,62 +3,82 @@ include('./admin/page/library/auth.php');
 $userAuth = new Auth();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $sex = $_POST['sex'];
-    
-    // Decode Base64 role_id
-    $role_id_encoded = $_POST['role_id'];
-    $role_id = base64_decode($role_id_encoded);
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $sex = $_POST['sex'];
 
-    if ($userAuth->register($username, $email, $password, $sex, $role_id)) {
-        echo "<div class='success-message'><p>Registration successful!</p></div>";
-        header("Location: login.php");
-        exit;
-    } else {
-        echo "<div class='error-message'><p>Error occurred during registration.</p></div>";
-    }
+  // Decode Base64 role_id
+  $role_id_encoded = $_POST['role_id'];
+  $role_id = base64_decode($role_id_encoded);
+
+  if ($userAuth->register($username, $email, $password, $sex, $role_id)) {
+    echo "<div class='success-message'><p>Registration successful!</p></div>";
+    header("Location: login.php");
+    exit;
+  } else {
+    echo "<div class='error-message'><p>Error occurred during registration.</p></div>";
+  }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <?php include 'head-log.php' ?>
+  <?php include 'head-log.php' ?>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Register - Join Us</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    * { font-family: 'Inter', sans-serif; }
+
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+
     .gradient-bg {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
       position: relative;
       overflow: hidden;
     }
+
     .gradient-bg::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
       opacity: 0.1;
     }
+
     @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
     }
+
     .glass-card {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     }
+
     .input-field {
       width: 100%;
       padding: 1rem 1.25rem;
@@ -69,19 +89,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       font-size: 1rem;
       backdrop-filter: blur(10px);
     }
+
     .input-field:focus {
       outline: none;
       border-color: #60a5fa;
       background: rgba(255, 255, 255, 0.15);
     }
+
     .input-field::placeholder {
       color: rgba(255, 255, 255, 0.6);
     }
+
     .radio-group {
       display: flex;
       gap: 1.5rem;
       margin-top: 0.5rem;
     }
+
     .radio-option {
       display: flex;
       align-items: center;
@@ -92,6 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       flex: 1;
       justify-content: center;
     }
+
     .radio-option input[type="radio"] {
       appearance: none;
       width: 1.25rem;
@@ -102,20 +127,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       margin-right: 0.75rem;
       position: relative;
     }
+
     .radio-option input[type="radio"]:checked {
       border-color: #60a5fa;
       background: rgba(96, 165, 250, 0.2);
     }
+
     .radio-option input[type="radio"]:checked::after {
       content: '';
       position: absolute;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       width: 0.5rem;
       height: 0.5rem;
       border-radius: 50%;
       background: #60a5fa;
     }
+
     .btn-primary {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       padding: 1rem 2rem;
@@ -126,33 +155,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       width: 100%;
       transition: all 0.3s ease;
     }
-    .success-message, .error-message {
+
+    .success-message,
+    .error-message {
       margin-top: 1rem;
       padding: 1rem;
       border-radius: 12px;
       backdrop-filter: blur(10px);
     }
+
     .success-message {
       background: rgba(34, 197, 94, 0.1);
       border: 1px solid rgba(34, 197, 94, 0.3);
       color: #86efac;
     }
+
     .error-message {
       background: rgba(239, 68, 68, 0.1);
       border: 1px solid rgba(239, 68, 68, 0.3);
       color: #fca5a5;
     }
+
     .title-text {
       font-size: 2.5rem;
       font-weight: 700;
       color: white;
     }
+
     .subtitle-text {
       color: rgba(255, 255, 255, 0.8);
       margin-bottom: 2rem;
     }
   </style>
 </head>
+
 <body class="gradient-bg">
   <div class="flex items-center justify-center min-h-screen px-4">
     <div class="w-full max-w-lg">
@@ -202,8 +238,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </div>
 
   <script>
-
-    document.getElementById('registerForm').addEventListener('submit', function (e) {
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
       const password = document.getElementById('password').value;
       const confirm = document.getElementById('confirm_password').value;
 
@@ -219,4 +254,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     });
   </script>
 </body>
+
 </html>
