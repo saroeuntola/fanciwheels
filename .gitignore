@@ -1,4 +1,5 @@
-./migrade.php
-./seeder.php
+/migrade.php
+/seeder.php
 /config/*
 /admin/page/library/db.php
+/log/*.csv
