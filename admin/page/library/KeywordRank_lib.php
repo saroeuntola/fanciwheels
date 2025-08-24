@@ -1,7 +1,4 @@
 <?php
-
-include 'db.php';
-
 class KeywordRank
 {
     public $db;
