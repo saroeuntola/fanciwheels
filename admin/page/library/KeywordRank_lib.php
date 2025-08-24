@@ -19,29 +19,23 @@ class KeywordRank
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Crawl Google for a single keyword (private)
-    private function crawlKeyword($keyword, $siteURL)
+    // Crawl Google for a single keyword
+    public function crawlKeyword($keyword, $siteURL)
     {
-        $userAgents = [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15",
-            "Mozilla/5.0 (X11; Linux x86_64) Gecko/20100101 Firefox/119.0",
-            "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
-            "Mozilla/5.0 (Linux; Android 14; Pixel 8 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0 Mobile Safari/537.36"
-        ];
-
-        $randomUA = $userAgents[array_rand($userAgents)];
         $searchEngine = "https://www.google.com/search?q=" . urlencode($keyword);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $searchEngine);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERAGENT, $randomUA);
+        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible; KeywordRankBot/1.0; +http://".$siteURL.")");
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
         $result = curl_exec($ch);
-        if (curl_errno($ch)) { curl_close($ch); return 0; }
+        if (curl_errno($ch)) { 
+            curl_close($ch); 
+            return 0; 
+        }
         curl_close($ch);
 
         if (empty($result)) return 0;
@@ -61,33 +55,38 @@ class KeywordRank
         return $position;
     }
 
-    // Log rank in database (private)
-    private function logRank($keywordId, $rank)
+    // Log rank in database (only once per day)
+    public function logRank($keywordId, $rank)
     {
-        $stmt = $this->db->prepare("INSERT INTO rank_logs (keyword_id, rank_value) VALUES (:keyword_id, :rank_value)");
+        // Delete old logs for this keyword
+        $stmt = $this->db->prepare("DELETE FROM rank_logs WHERE keyword_id = :kid");
+        $stmt->execute([':kid' => $keywordId]);
+
+        // Insert new log
+        $stmt = $this->db->prepare("INSERT INTO rank_logs (keyword_id, rank_value, log_date) VALUES (:kid, :rank, NOW())");
         $stmt->execute([
-            ':keyword_id' => $keywordId,
-            ':rank_value' => $rank
+            ':kid' => $keywordId,
+            ':rank' => $rank
         ]);
     }
 
-    // Crawl all keywords (public)
+    // Crawl all keywords
     public function crawlAll()
     {
         $keywords = $this->getKeywords();
         $status = [];
         foreach ($keywords as $kw) {
             $rank = $this->crawlKeyword($kw['keyword'], $kw['site_url']);
-            $this->logRank($kw['id'], $rank);
+            $this->logRank($kw['id'], $rank); // old logs removed, only 1 entry per keyword
             $status[] = [
                 'keyword' => $kw['keyword'],
                 'rank' => $rank
             ];
         }
-        return $status; // Return array for status display
+        return $status;
     }
 
-    // Crawl a single keyword (public wrapper)
+    // Crawl a single keyword
     public function crawlSingleKeyword($keywordId)
     {
         $kw = $this->db->prepare("SELECT * FROM keywords WHERE id = :id");
@@ -96,7 +95,7 @@ class KeywordRank
         if (!$kw) return null;
 
         $rank = $this->crawlKeyword($kw['keyword'], $kw['site_url']);
-        $this->logRank($kw['id'], $rank);
+        $this->logRank($kw['id'], $rank); // old log removed
         return ['keyword' => $kw['keyword'], 'rank' => $rank];
     }
 
