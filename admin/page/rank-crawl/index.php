@@ -1,6 +1,7 @@
 <?php
 require_once "../library/KeywordRank_lib.php";
-require_once "../library/db.php";
+include('../library/checkroles.php');
+protectPathAccess();
 $rankBot = new KeywordRank();
 $message = '';
 $status = [];

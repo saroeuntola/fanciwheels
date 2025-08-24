@@ -70,6 +70,12 @@
                     <span>Visitor Logs</span>
                 </a>
             </li>
+             <li class="menu-item">
+                <a href="<?php echo $baseURL; ?>/admin/page/rank-crawl" target="_blank" >
+                    <span class="menu-icon">📊</span>
+                    <span>Keyword Crawl</span>
+                </a>
+            </li>
             <li class="menu-item">
                 <a href="<?php echo $baseURL; ?>/logout">
                     <span class="menu-icon">🚪</span>
