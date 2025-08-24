@@ -1,5 +1,4 @@
 <?php
-include('../admin/page/library/db.php');
 include('../admin/page/library/checkroles.php');
 protectPathAccess();
 
