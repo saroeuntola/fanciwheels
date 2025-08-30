@@ -19,7 +19,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <?php
     echo $lang === 'en'
       ? 'Fancy Wheel | Most Beautiful Places in Bangladesh to Visit'
-      : 'Fancy Wheel | বাংলাদেশের সবচেয়ে সুন্দর স্থানগুলি দেখার জন্য';
+      : 'Fancy Wheel | Most Beautiful Places in Bangladesh to Visit';
     ?>
   </title>
 
@@ -27,14 +27,14 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <meta name="description" content="<?php
                                     echo $lang === 'en'
                                       ? 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.'
-                                      : 'বাংলাদেশের সবচেয়ে সুন্দর স্থানগুলি দেখুন, যার মধ্যে রয়েছে কক্সবাজার, সুন্দরবন, সেন্ট মার্টিন দ্বীপ, সাজেক ভ্যালি, রাঙ্গামাটি, বান্দরবান এবং কুয়াকাটা।';
+                                      : 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.';
                                     ?>">
 
   <!-- Optional minimal keywords (safe, not overstuffed) -->
   <meta name="keywords" content="<?php
                                   echo $lang === 'en'
-                                    ? 'Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island'
-                                    : 'বাংলাদেশ ভ্রমণ, পর্যটন স্থান, কক্সবাজার, সুন্দরবন, সাজেক ভ্যালি, সেন্ট মার্টিন দ্বীপ';
+                                    ? 'most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island'
+                                    : 'most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island';
                                   ?>">
 
   <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845"
@@ -70,7 +70,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "Blog post",
       "name": "Fancy Wheel",
       "url": "https://fanciwheel.com",
       "logo": "https://fanciwheel.com/image/PWAicon-192px.png"

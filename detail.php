@@ -34,52 +34,94 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
 
 <head>
   <meta charset="UTF-8" />
-  <?php include 'head-log.php' ?>
+  <?php include 'head-log.php'; ?>
+
+  <!-- Dynamic Title -->
+  <title><?= htmlspecialchars($game['name']) ?></title>
+
+  <!-- Meta Description -->
+  <meta name="description" content="<?= htmlspecialchars($game['description']) ?>">
   <meta name="robots" content="index, follow">
-  <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
-  <title><?= htmlspecialchars($game['name'] ?? ($lang === 'en' ? 'Detail' : 'বিস্তারিত')) ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Dynamic Favicon -->
+  <?php if (!empty($gameImage)): ?>
+    <link rel="icon" href="<?= htmlspecialchars('https://fanciwheel.com' . '/admin/page/game/' . $gameImage) ?>" type="image/png">
+    <link rel="shortcut icon" href="<?= htmlspecialchars('https://fanciwheel.com' . '/admin/page/game/' . $gameImage) ?>" type="image/png">
+  <?php else: ?>
+    <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
+    <link rel="shortcut icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
+  <?php endif; ?>
+
+  <!-- CSS -->
   <link href="./dist/output.css" rel="stylesheet">
-  <style>
-    .line-clamp-2 {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
 
-    .line-clamp-3 {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
+  <meta property="og:description" content="<?= htmlspecialchars($game['description'] ?? 'Check out detail') ?>" />
+  <meta property="og:image" content="<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
+  <meta property="og:url" content="https://fanciwheel.com" />
+  <meta property="og:type" content="website" />
 
-    .group:hover .group-hover\:opacity-80 {
-      opacity: 0.8;
-    }
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
+  <meta name="twitter:description" content="<?= htmlspecialchars($game['description'] ?? 'Check out this detail') ?>" />
+  <meta name="twitter:image" content="<?= htmlspecialchars(!empty($gameImage) ? 'https://' . $_SERVER['HTTP_HOST'] . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
 
-    .group:hover .group-hover\:text-blue-400 {
-      color: rgb(96 165 250);
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "<?= htmlspecialchars($game['name'] ?? 'Detail') ?>",
+      "description": "<?= htmlspecialchars($game['description'] ?? 'Check out this detail') ?>",
+      "image": "<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>",
+      "url": "https://fanciwheel.com"
     }
-
-    .group:hover .group-hover\:scale-105 {
-      transform: scale(1.05);
-    }
-
-    @media (max-width: 1024px) {
-      .detail-page {
-        padding: 25px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .detail-page {
-        padding: 16px;
-      }
-    }
-  </style>
+  </script>
 </head>
+
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .group:hover .group-hover\:opacity-80 {
+    opacity: 0.8;
+  }
+
+  .group:hover .group-hover\:text-blue-400 {
+    color: rgb(96 165 250);
+  }
+
+  .group:hover .group-hover\:scale-105 {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 1024px) {
+    .detail-page {
+      padding: 25px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .detail-page {
+      padding: 16px;
+    }
+  }
+</style>
 
 <body class="bg-gray-900 text-white">
   <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
