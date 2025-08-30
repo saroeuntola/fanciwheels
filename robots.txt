@@ -1,6 +1,11 @@
+# Sitemap
 Sitemap: https://fanciwheel.com/sitemap.xml
+
+# Allow all crawlers
 User-agent: *
 Allow: /
+
+# Block sensitive directories & files
 Disallow: /admin/
 Disallow: /config/
 Disallow: /clear_cache.php
@@ -8,11 +13,3 @@ Disallow: /.env
 Disallow: /*.log$
 Disallow: /*.bak$
 Disallow: /*.sql$
-
-# Specific bots
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 5
