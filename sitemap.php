@@ -1,8 +1,8 @@
 <?php
 header("Content-Type: application/xml; charset=UTF-8");
 
-// Define pages and their multilingual URLs
-$pages = [
+// Example static pages
+$staticPages = [
     [
         'loc' => 'https://fanciwheel.com/',
         'langs' => [
@@ -30,36 +30,39 @@ $pages = [
         'changefreq' => 'weekly',
         'priority' => '0.8'
     ],
+];
+
+// Example dynamic game pages (replace this with real DB fetch)
+$games = [
     [
-        'loc' => 'https://fanciwheel.com/detail?id=15',
+        'id' => 15,
         'langs' => [
             'en' => 'https://fanciwheel.com/detail?id=15&lang=en',
             'bn' => 'https://fanciwheel.com/detail?id=15&lang=bn'
-        ],
-        'changefreq' => 'weekly',
-        'priority' => '0.8'
+        ]
     ],
     [
-        'loc' => 'https://fanciwheel.com/detail?id=11',
+        'id' => 11,
         'langs' => [
             'en' => 'https://fanciwheel.com/detail?id=11&lang=en',
             'bn' => 'https://fanciwheel.com/detail?id=11&lang=bn'
-        ],
-        'changefreq' => 'weekly',
-        'priority' => '0.8'
+        ]
     ],
 ];
 
+// Merge all pages
+$allPages = array_merge($staticPages, $games);
+
 echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xhtml="https://www.w3.org/1999/xhtml">
-    <?php foreach ($pages as $page): ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <?php foreach ($allPages as $page): ?>
         <url>
             <loc><?= htmlspecialchars(current($page['langs'])) ?></loc>
             <lastmod><?= date('Y-m-d') ?></lastmod>
-            <changefreq><?= $page['changefreq'] ?></changefreq>
-            <priority><?= $page['priority'] ?></priority>
+            <changefreq><?= $page['changefreq'] ?? 'weekly' ?></changefreq>
+            <priority><?= $page['priority'] ?? '0.8' ?></priority>
 
             <?php foreach ($page['langs'] as $lang => $url): ?>
                 <!-- Self-referencing and alternate language -->
