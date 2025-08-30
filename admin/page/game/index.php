@@ -5,7 +5,10 @@ include('../library/checkroles.php');
 protectPathAccess();
 $product = new Games();
 $products = $product->getgames();
-?>
+             
+
+                ?>
+
     <!DOCTYPE html>
 <html lang="en">
 <head>

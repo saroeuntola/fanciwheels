@@ -9,7 +9,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <meta name="robots" content="index, follow">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google-site-verification" content="KQ_ffol2MIoJcfrqSEKOfToxbgsEPcFj3STGCvUen5U"/>
+  <meta name="google-site-verification" content="KQ_ffol2MIoJcfrqSEKOfToxbgsEPcFj3STGCvUen5U" />
   <?php include 'head-log.php' ?>
   <?php
   include 'header.php'
@@ -23,7 +23,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     ?>
   </title>
 
-  <meta name="keywords" content="Fancy Wheel, Fanci Wheel, fancywheel, fancywin, fanciwheel, popular cities in Bangladesh, Bangladesh Tour, natural places in Bangladesh, Bangladesh travel guide, tourist attractions in Bangladesh, famous landmarks in Bangladesh, Bangladesh sightseeing, Bangladesh tourism, top destinations in Bangladesh, cultural places in Bangladesh, historical sites in Bangladesh, adventure travel Bangladesh, nature trips Bangladesh, weekend trips Bangladesh, ফ্যান্সিহুইল, ফ্যান্সিউইন, ফ্যান্সিহুইল, বাংলাদেশের জনপ্রিয় শহর, বাংলাদেশ ভ্রমণ, বাংলাদেশের প্রাকৃতিক স্থান, বাংলাদেশ ভ্রমণ নির্দেশিকা, বাংলাদেশের পর্যটন আকর্ষণ, বাংলাদেশের বিখ্যাত ল্যান্ডমার্ক, বাংলাদেশের দর্শনীয় স্থান, বাংলাদেশ পর্যটন, বাংলাদেশের শীর্ষ গন্তব্যস্থল, বাংলাদেশের সাংস্কৃতিক স্থান, বাংলাদেশের ঐতিহাসিক স্থান, অ্যাডভেঞ্চার ভ্রমণ বাংলাদেশ, প্রকৃতি ভ্রমণ বাংলাদেশ, সপ্তাহান্তে ভ্রমণ বাংলাদেশ">
+  <meta name="keywords" content="best place for tour in bangladesh, bus in bangladesh price, bus, chittagong, dhaka, best places to visit in bangladesh, top 10 tourist places in bangladesh, most beautiful place in bangladesh, natural place in bangladesh, Natural Place, Spin our free random wheel, Picker Wheel, Spin the Wheel, Wheel of Names, Fancy Wheel, Fanci Wheel, fancywheel, fancywin, fanciwheel, popular cities in Bangladesh, Bangladesh Tour, natural places in Bangladesh, Bangladesh travel guide, tourist attractions in Bangladesh, famous landmarks in Bangladesh, Bangladesh sightseeing, Bangladesh tourism, top destinations in Bangladesh, cultural places in Bangladesh, historical sites in Bangladesh, adventure travel Bangladesh, nature trips Bangladesh, weekend trips Bangladesh, ফ্যান্সিহুইল, ফ্যান্সিউইন, ফ্যান্সিহুইল, বাংলাদেশের জনপ্রিয় শহর, বাংলাদেশ ভ্রমণ, বাংলাদেশের প্রাকৃতিক স্থান, বাংলাদেশ ভ্রমণ নির্দেশিকা, বাংলাদেশের পর্যটন আকর্ষণ, বাংলাদেশের বিখ্যাত ল্যান্ডমার্ক, বাংলাদেশের দর্শনীয় স্থান, বাংলাদেশ পর্যটন, বাংলাদেশের শীর্ষ গন্তব্যস্থল, বাংলাদেশের সাংস্কৃতিক স্থান, বাংলাদেশের ঐতিহাসিক স্থান, অ্যাডভেঞ্চার ভ্রমণ বাংলাদেশ, প্রকৃতি ভ্রমণ বাংলাদেশ, সপ্তাহান্তে ভ্রমণ বাংলাদেশ">
   <!-- Meta description for Google -->
   <meta name="description" content="<?php
                                     echo $lang === 'en'
