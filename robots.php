@@ -32,3 +32,4 @@ foreach ($disallow_paths as $path) {
 foreach ($disallow_extensions as $ext) {
     echo "Disallow: $ext\n";
 }
+
