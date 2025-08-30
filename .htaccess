@@ -24,6 +24,10 @@ RewriteRule ^(.*)$ $1.php [L]
     Require all denied
 </FilesMatch>
 
+<Files "robots.txt">
+    ForceType text/plain
+</Files>
+
 # =========================================
 # 4. Prevent directory listing
 # =========================================

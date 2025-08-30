@@ -1,12 +1,7 @@
-# robots.txt - Minimal SEO Blocking
-
 User-agent: *
-# Block sensitive pages
 Disallow: /admin
 Disallow: /login
 Disallow: /register
-
 Allow: /
 
-# Sitemap for SEO
 Sitemap: https://fanciwheel.com/sitemap.xml
