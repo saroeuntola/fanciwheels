@@ -18,18 +18,24 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <title>
     <?php
     echo $lang === 'en'
-      ? 'Fancy Wheel - Explore Popular Cities & Tourist Attractions in Bangladesh'
-      : 'Fancy Wheel - বাংলাদেশে জনপ্রিয় শহর ও পর্যটন আকর্ষণ আবিষ্কার করুন';
+      ? 'Fancy Wheel | Most Beautiful Places in Bangladesh to Visit'
+      : 'Fancy Wheel | বাংলাদেশের সবচেয়ে সুন্দর স্থানগুলি দেখার জন্য';
     ?>
   </title>
 
-  <meta name="keywords" content="best place for tour in bangladesh, bus in bangladesh price, bus, chittagong, dhaka, best places to visit in bangladesh, top 10 tourist places in bangladesh, most beautiful place in bangladesh, natural place in bangladesh, Natural Place, Spin our free random wheel, Picker Wheel, Spin the Wheel, Wheel of Names, Fancy Wheel, Fanci Wheel, fancywheel, fancywin, fanciwheel, popular cities in Bangladesh, Bangladesh Tour, natural places in Bangladesh, Bangladesh travel guide, tourist attractions in Bangladesh, famous landmarks in Bangladesh, Bangladesh sightseeing, Bangladesh tourism, top destinations in Bangladesh, cultural places in Bangladesh, historical sites in Bangladesh, adventure travel Bangladesh, nature trips Bangladesh, weekend trips Bangladesh, ফ্যান্সিহুইল, ফ্যান্সিউইন, ফ্যান্সিহুইল, বাংলাদেশের জনপ্রিয় শহর, বাংলাদেশ ভ্রমণ, বাংলাদেশের প্রাকৃতিক স্থান, বাংলাদেশ ভ্রমণ নির্দেশিকা, বাংলাদেশের পর্যটন আকর্ষণ, বাংলাদেশের বিখ্যাত ল্যান্ডমার্ক, বাংলাদেশের দর্শনীয় স্থান, বাংলাদেশ পর্যটন, বাংলাদেশের শীর্ষ গন্তব্যস্থল, বাংলাদেশের সাংস্কৃতিক স্থান, বাংলাদেশের ঐতিহাসিক স্থান, অ্যাডভেঞ্চার ভ্রমণ বাংলাদেশ, প্রকৃতি ভ্রমণ বাংলাদেশ, সপ্তাহান্তে ভ্রমণ বাংলাদেশ">
-  <!-- Meta description for Google -->
+  <!-- Meta Description for SEO -->
   <meta name="description" content="<?php
                                     echo $lang === 'en'
-                                      ? 'Explore Bangladesh with FancyWheel! Discover popular cities, natural places, tourist attractions, cultural and historical sites, and top destinations for sightseeing and adventure travel. Plan your perfect Bangladesh tour with FancyWheel today.'
-                                      : 'ফ্যান্সিওয়েলের সাথে বাংলাদেশ ঘুরে দেখুন! জনপ্রিয় শহর, প্রাকৃতিক স্থান, পর্যটন আকর্ষণ, সাংস্কৃতিক এবং ঐতিহাসিক স্থান, এবং সাইটসিয়িং ও অ্যাডভেঞ্চার ট্রাভেলের জন্য শীর্ষ গন্তব্য আবিষ্কার করুন। আজই আপনার পারফেক্ট বাংলাদেশ ট্যুর প্ল্যান করুন।';
+                                      ? 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.'
+                                      : 'বাংলাদেশের সবচেয়ে সুন্দর স্থানগুলি দেখুন, যার মধ্যে রয়েছে কক্সবাজার, সুন্দরবন, সেন্ট মার্টিন দ্বীপ, সাজেক ভ্যালি, রাঙ্গামাটি, বান্দরবান এবং কুয়াকাটা।';
                                     ?>">
+
+  <!-- Optional minimal keywords (safe, not overstuffed) -->
+  <meta name="keywords" content="<?php
+                                  echo $lang === 'en'
+                                    ? 'Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island'
+                                    : 'বাংলাদেশ ভ্রমণ, পর্যটন স্থান, কক্সবাজার, সুন্দরবন, সাজেক ভ্যালি, সেন্ট মার্টিন দ্বীপ';
+                                  ?>">
 
   <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845"
     type="image/png">
