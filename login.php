@@ -10,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result && count($result) > 0) {
             $user = $result[0];
             if ($user['role_id'] == 1) {
-                header('Location: ./admin/index.php');
+                header('Location: ./admin');
                 exit();
             } elseif ($user['role_id'] == 2) {
-                header('Location: ./index.php');
+                header('Location: ./');
                 exit();
             } elseif ($user['role_id'] == 3) {
                 header('Location: ./admin/players_record');

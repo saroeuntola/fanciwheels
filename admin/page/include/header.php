@@ -1,8 +1,5 @@
 
 
-<?php 
-include $_SERVER['DOCUMENT_ROOT'] . 'config/baseURL.php';
-?>
 <?php
 $userLib = new User();
 $userId = $_SESSION['user_id'] ?? null;
@@ -28,12 +25,12 @@ $user = $userLib->getUser($userId);
             </div>
      
      <div class="relative inline-block text-right">
-    <a href="<?= $baseURL; ?>/admin/page/user/profile.php" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 transition">
+    <a href="/admin/page/user/profile.php" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 transition">
         
         <!-- Avatar -->
         <?php if (!empty($user['profile'])): ?>
             <img 
-                src="<?= $baseURL; ?>/admin/page/user/user_image/<?= htmlspecialchars($user['profile']); ?>" 
+                src="/admin/page/user/user_image/<?= htmlspecialchars($user['profile']); ?>" 
                 alt="Avatar" 
                 class="w-10 h-10 rounded-full object-cover border-2 border-white"
             />

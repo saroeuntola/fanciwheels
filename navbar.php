@@ -1,7 +1,6 @@
 <?php
 include './admin/page/library/users_lib.php';
 include './admin/page/library/brand_lib.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/fanciwheel/config/baseURL.php';
 include 'helpers.php'; 
 $auth = new User();
 $brand = new Brand();
@@ -18,11 +17,11 @@ if ($userId) {
 }
 
 $profileImage = isset($user['profile']) && !empty($user['profile']) ? $user['profile'] : 'default.png';
-$profilePath = $baseURL . '/admin/page/user/user_image/' . htmlspecialchars($profileImage);
+$profilePath = '/admin/page/user/user_image/' . htmlspecialchars($profileImage);
 
-$fullPath = $_SERVER['DOCUMENT_ROOT'] . '/admin/page/user/user_image/' . $profileImage;
+$fullPath = '/admin/page/user/user_image/' . $profileImage;
 if (!file_exists($fullPath)) {
-  $profilePath = $baseURL . '/admin/page/user/user_image/default.png';
+  $profilePath = '/admin/page/user/user_image/default.png';
 }
 
 $currentPage = basename($_SERVER['PHP_SELF']);

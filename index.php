@@ -17,8 +17,8 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <title>
     <?php
     echo $lang === 'en'
-      ? 'FancyWheel | Explore Popular Cities & Tourist Attractions in Bangladesh'
-      : 'ফ্যান্সিওয়েল | বাংলাদেশে জনপ্রিয় শহর ও পর্যটন আকর্ষণ আবিষ্কার করুন';
+      ? 'Fancy Wheel - Explore Popular Cities & Tourist Attractions in Bangladesh'
+      : 'Fancy Wheel - বাংলাদেশে জনপ্রিয় শহর ও পর্যটন আকর্ষণ আবিষ্কার করুন';
     ?>
   </title>
 
