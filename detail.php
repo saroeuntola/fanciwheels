@@ -52,7 +52,17 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
     <link rel="shortcut icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
   <?php endif; ?>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-98CRLK26X1');
+  </script>
   <!-- CSS -->
   <link href="./dist/output.css" rel="stylesheet">
 
