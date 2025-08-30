@@ -3,3 +3,6 @@
 /config/*
 /admin/page/library/db.php
 /log/*.csv
+
+/admin/page/game/game_image/
+/admin/page/banner/banner_image/
