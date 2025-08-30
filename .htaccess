@@ -9,6 +9,7 @@ RewriteEngine On
 # Redirect /file.php → /file
 RewriteCond %{THE_REQUEST} \s([^\s]+)\.php[\s?] [NC]
 RewriteRule ^ %1 [R=301,L]
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
 # Internally map /file → /file.php (if exists)
 RewriteCond %{REQUEST_FILENAME} !-f
