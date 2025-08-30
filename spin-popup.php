@@ -185,14 +185,14 @@ $translations = [
 
         .close-icon {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 5px;
+            right: 5px;
             background: transparent;
             border: none;
             cursor: pointer;
             padding: 0;
             line-height: 0;
-            color: #333;
+            color: white;
             transition: color 0.3s ease;
         }
 
