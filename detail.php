@@ -7,23 +7,19 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
 
 // Keep ID if on detail.php
-$currentId = isset($_GET['id']) ? intval($_GET['id']) : null;
+$slug = isset($_GET['slug']) ? trim($_GET['slug']) : null;
 
-if (!isset($_GET['id'])) {
-  echo $lang === 'en' ? "ID not provided." : "আইডি প্রদান করা হয়নি।";
+if (!isset($_GET['slug'])) {
+  echo $lang === 'en' ? "slug not provided." : "আইডি প্রদান করা হয়নি।";
   exit;
 }
 
-$id = intval($_GET['id']);
+$slug = trim($_GET['slug']);
 $gameObj = new Games();
-$game = $gameObj->getGameById($id, $lang);
+$game = $gameObj->getGameBySlug($slug, $lang);
 
-if (!$game) {
-  echo $lang === 'en' ? "not found." : "পাওয়া যায়নি।";
-  exit;
-}
 
-$relatedGames = $gameObj->getRelatedGames($id, $game['category_id'], 6, $lang);
+$relatedGames = $gameObj->getRelatedGames($slug, $game['category_id'], 6, $lang);
 $popularGames = $gameObj->getPopularGames(8, $lang);
 
 $gameImage = $game['image'] ?? 'default.png';
@@ -124,12 +120,31 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     .detail-page {
       padding: 25px;
     }
+
   }
 
   @media (max-width: 768px) {
     .detail-page {
       padding: 16px;
     }
+
+    #relate-img {
+
+      height: 185px !important;
+    }
+  }
+
+  @media (max-width: 468px) {
+
+    #relate-img {
+
+      height: 185px !important;
+    }
+  }
+
+  #relate-img {
+    width: 100%;
+    height: 140px;
   }
 </style>
 
@@ -146,7 +161,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
       <div class="lg:col-span-2 space-y-8">
         <!-- post Detail -->
         <div class="bg-gray-800 rounded-2xl shadow-md p-4">
-          <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-snug break-words">
+          <h1 class="text-lg lg:text-2xl sm:text-3xl font-bold text-white mb-3 leading-snug break-words">
             <?= htmlspecialchars($game['name'] ?? ($lang === 'en' ? 'Unnamed' : 'নামহীন')) ?>
           </h1>
           <img
@@ -154,7 +169,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
             alt="<?= htmlspecialchars($metaText) ?>"
             class="w-full h-64 md:h-[310px] lg:h-[450px] object-cover rounded-xl mb-6" />
 
-          <div class="text-gray-300 space-y-4 text-base leading-relaxed md:text-lg mb-10">
+          <div class="text-gray-300 space-y-4 text-base leading-relaxed md:text-lg">
             <?= $game['description'] ?? ($lang === 'en' ? 'No description available.' : 'কোনো বিবরণ নেই।') ?>
           </div>
         </div>
@@ -162,28 +177,28 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
         <!-- Related Games -->
         <?php if (!empty($relatedGames)): ?>
           <div class="bg-gray-800 rounded-2xl shadow-md p-4">
-            <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
+            <h2 class="text-lg lg:text-2xl sm:text-3xl font-bold text-white mb-6 flex items-center">
               <svg class="w-6 h-6 mr-3 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 102 0zm-1 4a1 1 0 100-2 1 1 0 000 2zm0 2a1 1 0 000 2h.01a1 1 0 100-2H10z" clip-rule="evenodd" />
               </svg>
               <?= $lang === 'en' ? 'Related Content' : 'সম্পর্কিত বিষয়বস্তু' ?>
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
               <?php foreach ($relatedGames as $related): ?>
                 <?php
                 $relatedImage = $related['image'] ?? 'default.png';
                 $relatedMeta = $related['meta_text'] ?? ($lang === 'en' ? 'No image' : 'কোনো ছবি নেই');
                 ?>
-                <div class="group bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                  <a href="detail.php?id=<?= $related['id'] ?>&lang=<?= $lang ?>" class="block">
+                <div class="group rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                  <a href="detail?slug=<?= $related['slug'] ?>&lang=<?= $lang ?>" class="block">
                     <div class="relative overflow-hidden">
                       <img
                         src="<?= './admin/page/game/' . htmlspecialchars($relatedImage) ?>"
                         alt="<?= htmlspecialchars($relatedMeta) ?>"
-                        class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300" />
+                        class="object-cover group-hover:scale-105 transition-transform duration-300" id="relate-img" />
                     </div>
-                    <div class="p-4">
-                      <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors duration-200">
+                    <div class="p-2">
+                      <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-200">
                         <?= htmlspecialchars($related['name'] ?? ($lang === 'en' ? 'No Name' : 'কোনো নাম নেই')) ?>
                       </h3>
                       <p class="text-gray-300 text-sm line-clamp-3">
@@ -201,7 +216,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
       <!-- Sidebar -->
       <div class="lg:col-span-1 space-y-8">
         <div class="bg-gray-800 rounded-2xl shadow-sm p-4">
-          <h3 class="text-xl font-bold text-white mb-6 flex items-center">
+          <h3 class="text-lg lg:text-2xl sm:text-3xl font-bold text-white mb-6 flex items-center">
             <svg class="w-5 h-5 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2 5a2 2 0 012-2h2.586a1 1 0 01.707.293l1.414 1.414A2 2 0 0010 5h6a2 2 0 012 2v8a2 2 0 01-2 2h-6a2 2 0 00-1.293.293l-1.414 1.414A1 1 0 015.586 19H4a2 2 0 01-2-2V5z" />
             </svg>

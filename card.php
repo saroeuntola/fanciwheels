@@ -207,6 +207,7 @@ echo $lang === 'en'
                         <?php
 
                         $gameId = (int)$g['id'];
+                        $slug = htmlspecialchars($g['slug']);
                         $gameName   = htmlspecialchars($g['name'], ENT_QUOTES, 'UTF-8');
 
                         $metaText   = htmlspecialchars($g['meta_text'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -216,7 +217,7 @@ echo $lang === 'en'
                         $gameImage  = !empty($g['image']) ? htmlspecialchars($g['image'], ENT_QUOTES, 'UTF-8') : '';
                         ?>
 
-                        <div class="game-card" onclick="window.location.href='detail.php?id=<?= $gameId ?>&lang=<?= $lang ?>'">
+                        <div class="game-card" onclick="window.location.href='detail?slug=<?= $slug ?>&lang=<?= $lang ?>'">
                             <div class="game-image" style="height: 210px;">
                                 <?php if (!empty($gameImage)): ?>
                                     <img src="<?= './admin/page/game/' . $gameImage ?>"

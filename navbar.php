@@ -1,7 +1,7 @@
 <?php
 include './admin/page/library/users_lib.php';
 include './admin/page/library/brand_lib.php';
-include 'helpers.php'; 
+include 'helpers.php';
 $auth = new User();
 $brand = new Brand();
 $username = $_SESSION['username'] ?? '';
@@ -25,29 +25,31 @@ if (!file_exists($fullPath)) {
 }
 
 $currentPage = basename($_SERVER['PHP_SELF']);
-$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en','bn']) ? $_GET['lang'] : 'bn';
-$currentId = isset($_GET['id']) ? intval($_GET['id']) : null;
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 
-function buildLangUrl($langTarget, $currentPage, $currentId) {
-    $params = ['lang' => $langTarget];
-    if ($currentPage === 'detail.php' && $currentId) {
-        $params['id'] = $currentId;
-    }
-    return $currentPage . '?' . http_build_query($params);
+$currentId = isset($_GET['slug']) ? trim($_GET['slug']) : null;
+$currentId = isset($_GET['slug']) ? trim($_GET['slug']) : null;
+function buildLangUrl($langTarget, $currentPage, $currentId)
+{
+  $params = ['lang' => $langTarget];
+  if ($currentPage === 'detail.php' && $currentId) {
+    $params['slug'] = $currentId;
+  }
+  return $currentPage . '?' . http_build_query($params);
 }
 
 $menu = [
-    'home' => $lang === 'en' ? 'Home' : 'হোমপেজ',
-    'services' => $lang === 'en' ? 'Services' : 'সেবা',
-    'about' => $lang === 'en' ? 'About' : 'সম্পর্কে',
-    'faq' => $lang === 'en' ? 'FAQs' : 'FAQs',
-    'join' => $lang === 'en' ? 'Join Now' : 'যোগদান করুন',
-    'search' => $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...'
+  'home' => $lang === 'en' ? 'Home' : 'হোমপেজ',
+  'services' => $lang === 'en' ? 'Services' : 'সেবা',
+  'about' => $lang === 'en' ? 'About' : 'সম্পর্কে',
+  'faq' => $lang === 'en' ? 'FAQs' : 'FAQs',
+  'join' => $lang === 'en' ? 'Join Now' : 'যোগদান করুন',
+  'search' => $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...'
 ];
 
 $languageNames = [
-    'en' => 'English',
-    'bn' => 'বাংলা'
+  'en' => 'English',
+  'bn' => 'বাংলা'
 ];
 $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 ?>
@@ -58,7 +60,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 </style>
 
 <link rel="stylesheet" href="./admin/page/assets/css/navbar.css">
-  <link href="./dist/output.css" rel="stylesheet">
+<link href="./dist/output.css" rel="stylesheet">
 <!-- Modern Navbar with Glassmorphism Effect -->
 <nav id="header-bar" class="py-2 relative bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 backdrop-blur-md shadow-2xl border-b border-white/10">
   <!-- Background Pattern -->
@@ -68,7 +70,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     <div class="flex justify-between items-center h-16">
 
       <div class="flex-shrink-0">
-        <a href="<?= $lang==='en' ? '/?lang=en' : '/?lang=bn' ?>" class="group relative">
+        <a href="<?= $lang === 'en' ? '/?lang=en' : '/?lang=bn' ?>" class="group relative">
           <span class="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105">
             FancyWheel
           </span>
@@ -79,52 +81,52 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
       <!-- Desktop Menu -->
       <div class="hidden lg:flex items-center space-x-8">
 
-   <nav class="flex space-x-6">
-     <?php
-    echo navLink('/', $menu['home'], $lang, $currentPage, $currentId);
-    echo navLink('services', $menu['services'], $lang, $currentPage, $currentId);
-    echo navLink('about', $menu['about'], $lang, $currentPage, $currentId);
-    echo navLink('faq', $menu['faq'], $lang, $currentPage, $currentId);
-  ?>
-</nav>
+        <nav class="flex space-x-6">
+          <?php
+          echo navLink('/', $menu['home'], $lang, $currentPage, $currentId);
+          echo navLink('services', $menu['services'], $lang, $currentPage, $currentId);
+          echo navLink('about', $menu['about'], $lang, $currentPage, $currentId);
+          echo navLink('faq', $menu['faq'], $lang, $currentPage, $currentId);
+          ?>
+        </nav>
 
         <!-- Modern Search Bar -->
         <form action="search.php" method="GET" class="relative group">
           <div class="search-bar">
-              <input type="hidden" name="lang" value="<?= htmlspecialchars($lang) ?>">
-           <input type="text" name="q" placeholder="<?= $menu['search'] ?>" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
+            <input type="hidden" name="lang" value="<?= htmlspecialchars($lang) ?>">
+            <input type="text" name="q" placeholder="<?= $menu['search'] ?>" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
             <button type="submit" class="search-icon">🔍</button>
           </div>
         </form>
 
         <div class="relative ml-auto">
-  <!-- Button showing current language -->
-  <button id="langBtn" class="flex items-center relative group px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-    <img id="currentFlag" src="<?= $lang==='en' ? './image/flag/en.svg' : './image/flag/bn.svg' ?>" class="w-5 h-5 mr-2" alt="Flag">
-    <span id="currentLang"><?= htmlspecialchars($fullLangName) ?></span>
-    <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-    </svg>
-  </button>
+          <!-- Button showing current language -->
+          <button id="langBtn" class="flex items-center relative group px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            <img id="currentFlag" src="<?= $lang === 'en' ? './image/flag/en.svg' : './image/flag/bn.svg' ?>" class="w-5 h-5 mr-2" alt="Flag">
+            <span id="currentLang"><?= htmlspecialchars($fullLangName) ?></span>
+            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
 
-  <!-- Dropdown menu -->
-  <div id="langMenu" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg w-32 z-50">
-    <a href="<?= buildLangUrl('en', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
-      <img src="./image/flag/en.svg" class="w-5 h-5 mr-2" alt="EN"> English
-    </a>
-    <a href="<?= buildLangUrl('bn', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
-      <img src="./image/flag/bn.svg" class="w-5 h-5 mr-2" alt="BN"> বাংলা
-    </a>
-  </div>
-</div>
-<script>
-const langBtn = document.getElementById('langBtn');
-const langMenu = document.getElementById('langMenu');
+          <!-- Dropdown menu -->
+          <div id="langMenu" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg w-32 z-50">
+            <a href="<?= buildLangUrl('en', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
+              <img src="./image/flag/en.svg" class="w-5 h-5 mr-2" alt="EN"> English
+            </a>
+            <a href="<?= buildLangUrl('bn', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
+              <img src="./image/flag/bn.svg" class="w-5 h-5 mr-2" alt="BN"> বাংলা
+            </a>
+          </div>
+        </div>
+        <script>
+          const langBtn = document.getElementById('langBtn');
+          const langMenu = document.getElementById('langMenu');
 
-langBtn.addEventListener('click', () => {
-  langMenu.classList.toggle('hidden');
-});
-</script>
+          langBtn.addEventListener('click', () => {
+            langMenu.classList.toggle('hidden');
+          });
+        </script>
 
         <!-- Desktop Profile -->
         <?php if ($userId): ?>
@@ -194,43 +196,43 @@ langBtn.addEventListener('click', () => {
           </div>
         <?php else: ?>
 
-              <div class="relative ml-auto">
-  <!-- Button showing current language -->
-  <button id="langBtn1" class="flex items-center relative group px-4 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-    <img id="currentFlag" src="<?= $lang==='en' ? './image/flag/en.svg' : './image/flag/bn.svg' ?>" class="w-5 h-5 mr-2" alt="Flag">
-    <span id="currentLang"><?= strtoupper($lang) ?></span>
-    <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-    </svg>
- 
-  </button>
+          <div class="relative ml-auto">
+            <!-- Button showing current language -->
+            <button id="langBtn1" class="flex items-center relative group px-4 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              <img id="currentFlag" src="<?= $lang === 'en' ? './image/flag/en.svg' : './image/flag/bn.svg' ?>" class="w-5 h-5 mr-2" alt="Flag">
+              <span id="currentLang"><?= strtoupper($lang) ?></span>
+              <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
 
-  <!-- Dropdown menu -->
-  <div id="langMenu1" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg w-32 z-50">
-    <a href="<?= buildLangUrl('en', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
-      <img src="./image/flag/en.svg" class="w-5 h-5 mr-2" alt="EN"> English
-    </a>
-    <a href="<?= buildLangUrl('bn', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
-      <img src="./image/flag/bn.svg" class="w-5 h-5 mr-2" alt="BN"> বাংলা
-    </a>
-  </div>
-</div>
+            </button>
 
-<script>
-const langBtn1 = document.getElementById('langBtn1');
-const langMenu1 = document.getElementById('langMenu1');
+            <!-- Dropdown menu -->
+            <div id="langMenu1" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg w-32 z-50">
+              <a href="<?= buildLangUrl('en', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
+                <img src="./image/flag/en.svg" class="w-5 h-5 mr-2" alt="EN"> English
+              </a>
+              <a href="<?= buildLangUrl('bn', $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 hover:bg-gray-700">
+                <img src="./image/flag/bn.svg" class="w-5 h-5 mr-2" alt="BN"> বাংলা
+              </a>
+            </div>
+          </div>
 
-langBtn1.addEventListener('click', () => {
-  langMenu1.classList.toggle('hidden');
-});
-</script>
+          <script>
+            const langBtn1 = document.getElementById('langBtn1');
+            const langMenu1 = document.getElementById('langMenu1');
+
+            langBtn1.addEventListener('click', () => {
+              langMenu1.classList.toggle('hidden');
+            });
+          </script>
           <a href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" class="text-white/90 hover:text-white rounded-full hover:bg-white/10 transition-all duration-300">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
           </a>
 
-      
+
 
         <?php endif; ?>
         <!-- Modern Hamburger Toggle -->
@@ -248,22 +250,22 @@ langBtn1.addEventListener('click', () => {
   <!-- Modern Mobile Menu -->
   <div id="mobileMenu" class="lg:hidden hidden bg-slate-900/95 backdrop-blur-lg border-t border-white/10">
     <div class="px-4 py-6 space-y-3">
-     <div class="flex flex-col gap-4 ms-4 mb-4">
+      <div class="flex flex-col gap-4 ms-4 mb-4">
         <?php
-    echo navLink('/', $menu['home'], $lang, $currentPage, $currentId);
-    echo navLink('services', $menu['services'], $lang, $currentPage, $currentId);
-    echo navLink('about', $menu['about'], $lang, $currentPage, $currentId);
-    echo navLink('faq', $menu['faq'], $lang, $currentPage, $currentId);
-  ?>
-    
-     </div>
-   
+        echo navLink('/', $menu['home'], $lang, $currentPage, $currentId);
+        echo navLink('services', $menu['services'], $lang, $currentPage, $currentId);
+        echo navLink('about', $menu['about'], $lang, $currentPage, $currentId);
+        echo navLink('faq', $menu['faq'], $lang, $currentPage, $currentId);
+        ?>
+
+      </div>
+
       <form action="search.php" method="GET" class="relative group">
         <div class="search-bar">
-              <input type="hidden" name="lang" value="<?= htmlspecialchars($lang) ?>">
-            <input type="text" name="q" placeholder="<?= $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...' ?>" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
-            <button type="submit" class="search-icon">🔍</button>
-          </div>
+          <input type="hidden" name="lang" value="<?= htmlspecialchars($lang) ?>">
+          <input type="text" name="q" placeholder="<?= $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...' ?>" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
+          <button type="submit" class="search-icon">🔍</button>
+        </div>
       </form>
     </div>
   </div>

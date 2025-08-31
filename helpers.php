@@ -4,7 +4,7 @@ function navLink($page, $label, $lang, $currentPage, $currentId) {
     $params = [];
 
     if ($currentPage === 'detail.php' && $currentId) {
-        $params['id'] = $currentId;
+        $params['slug'] = $currentId;
     }
 
     $params['lang'] = $lang;
