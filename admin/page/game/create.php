@@ -209,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     formData.append('image', file);
 
                     // Send image to server
-                    const res = await fetch('http://fancywheel:8080/admin/page/game/upload_image', {
+                    const res = await fetch('https://fanciwheel.com/admin/page/game/upload_image', {
                         method: 'POST',
                         body: formData
                     });
