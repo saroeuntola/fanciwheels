@@ -240,12 +240,12 @@ $games = $gameObj->getgames($lang);
                                 <?php endif; ?>
                             </div>
                             <div class="game-content" style="padding: 12px;">
-                                <div class="game-rank" style="font-weight: bold; font-size: 18px; color:#f9fafb; margin-bottom: 6px;">
+                                <h1 class="game-rank" style="font-weight: bold; font-size: 18px; color:#f9fafb; margin-bottom: 6px;">
                                     <?= $gameName ?>
-                                </div>
-                                <div class="game-description" style="font-size: 14px; color: #e5e7eb;">
+                                </h1>
+                                <p class="game-description" style="font-size: 14px; color: #e5e7eb;">
                                     <?= $trimmed ?>
-                                </div>
+                                </p>
                             </div>
                         </div>
                     <?php endforeach; ?>

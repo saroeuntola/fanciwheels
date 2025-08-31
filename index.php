@@ -11,9 +11,6 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="KQ_ffol2MIoJcfrqSEKOfToxbgsEPcFj3STGCvUen5U" />
   <?php include 'head-log.php' ?>
-  <?php
-  include 'header.php'
-  ?>
   <!-- Title for search engines -->
   <title>
     <?php
@@ -25,17 +22,17 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 
   <!-- Meta Description for SEO -->
   <meta name="description" content="<?php
-                                    echo $lang === 'en'
-                                      ? 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.'
-                                      : 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.';
-                                    ?>">
+  echo $lang === 'en'
+  ? 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.'
+  : 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.';
+  ?>">
 
   <!-- Optional minimal keywords (safe, not overstuffed) -->
   <meta name="keywords" content="<?php
-                                  echo $lang === 'en'
-                                    ? 'most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island'
-                                    : 'most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island';
-                                  ?>">
+    echo $lang === 'en'
+    ? 'most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island'
+    : 'most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island';
+    ?>">
 
   <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845"
     type="image/png">
