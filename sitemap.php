@@ -35,17 +35,17 @@ $staticPages = [
 // Example dynamic game pages (replace this with real DB fetch)
 $games = [
     [
-        'id' => 15,
+        'slug' => 'dhaka',
         'langs' => [
-            'en' => 'https://fanciwheel.com/detail?id=15&lang=en',
-            'bn' => 'https://fanciwheel.com/detail?id=15&lang=bn'
+            'en' => 'https://fanciwheel.com/detail?slug=dhaka&lang=en',
+            'bn' => 'https://fanciwheel.com/detail?slug=dhaka&lang=bn'
         ]
     ],
     [
-        'id' => 11,
+        'slug' => 'sundarbans',
         'langs' => [
-            'en' => 'https://fanciwheel.com/detail?id=11&lang=en',
-            'bn' => 'https://fanciwheel.com/detail?id=11&lang=bn'
+            'en' => 'https://fanciwheel.com/detail?slug=sundarbans&lang=en',
+            'bn' => 'https://fanciwheel.com/detail?slug=sundarbans&lang=bn'
         ]
     ],
 ];

@@ -189,7 +189,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                 $relatedImage = $related['image'] ?? 'default.png';
                 $relatedMeta = $related['meta_text'] ?? ($lang === 'en' ? 'No image' : 'কোনো ছবি নেই');
                 ?>
-                <div class="group rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                <div class="group overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
                   <a href="detail?slug=<?= $related['slug'] ?>&lang=<?= $lang ?>" class="block">
                     <div class="relative overflow-hidden">
                       <img
@@ -197,7 +197,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                         alt="<?= htmlspecialchars($relatedMeta) ?>"
                         class="object-cover group-hover:scale-105 transition-transform duration-300" id="relate-img" />
                     </div>
-                    <div class="">
+                    <div class="mt-2">
                       <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-200">
                         <?= htmlspecialchars($related['name'] ?? ($lang === 'en' ? 'No Name' : 'কোনো নাম নেই')) ?>
                       </h3>
