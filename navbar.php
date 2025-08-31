@@ -205,7 +205,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
             <img src="<?= $profilePath ?>"
               alt="Profile"
               title="<?= htmlspecialchars($username) ?>"
-              class="w-8 h-8 object-cover rounded-full border-2 border-white/30">
+              class="w-8 h-8 object-cover rounded-full border-2 border-white/30" loading="lazy">
           </button>
           <!-- Mobile Profile Dropdown -->
           <div id="mobileProfileDropdown" class="absolute right-12 top-12 w-48 bg-slate-800/95 backdrop-blur-lg border border-slate-700/50 text-white rounded-xl shadow-2xl hidden z-[9999] overflow-hidden">

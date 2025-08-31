@@ -227,6 +227,7 @@ $games = $gameObj->getgames($lang);
                             <div class="game-image" style="height: 210px;">
                                 <?php if (!empty($gameImage)): ?>
                                     <img src="<?= './admin/page/game/' . $gameImage ?>"
+                                    loading="lazy"
                                         alt="<?= $metaText ?>"
                                         style="width:100%; height: 100%; object-fit: cover;">
                                 <?php else: ?>

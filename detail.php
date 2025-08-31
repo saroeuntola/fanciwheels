@@ -194,6 +194,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                     <div class="relative overflow-hidden">
                       <img
                         src="<?= './admin/page/game/' . htmlspecialchars($relatedImage) ?>"
+                        loading="lazy"
                         alt="<?= htmlspecialchars($relatedMeta) ?>"
                         class="object-cover group-hover:scale-105 transition-transform duration-300" id="relate-img" />
                     </div>
@@ -233,11 +234,12 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                 <div class="flex-shrink-0">
                   <img
                     src="<?= './admin/page/game/' . htmlspecialchars($popularImage) ?>"
+                    loading="lazy"
                     alt="<?= htmlspecialchars($popularName) ?>"
                     class="w-16 h-16 object-cover rounded-lg group-hover:opacity-80 transition-opacity duration-200" />
                 </div>
                 <div class="flex-1 min-w-0">
-                  <a href="detail.php?id=<?= $popular['id'] ?>&lang=<?= $lang ?>" class="block group-hover:text-blue-400 transition-colors duration-200">
+                  <a href="detail?slug=<?= $popular['slug'] ?>&lang=<?= $lang ?>" class="block group-hover:text-blue-400 transition-colors duration-200">
                     <h4 class="text-sm font-semibold text-white truncate">
                       <?= htmlspecialchars($popularName) ?>
                     </h4>

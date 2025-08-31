@@ -209,7 +209,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     <div id="gameGrid" class="game-grid flex overflow-x-auto snap-x snap-mandatory gap-5 p-0 m-0">
       <?php foreach ($games_item as $game): ?>
         <div class="game-card mb-2 bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-200 flex flex-col snap-start">
-          <img src="<?= $game['image'] ?>" alt="<?= htmlspecialchars($game['title']) ?>" class="w-full h-[206px] object-cover">
+          <img src="<?= $game['image'] ?>" alt="<?= htmlspecialchars($game['title']) ?>" class="w-full h-[206px] object-cover" loading="lazy">
           <div class="game-content p-4 flex flex-col flex-grow">
 
 
