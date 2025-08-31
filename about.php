@@ -13,12 +13,24 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
 
 <head>
   <?php include 'head-log.php' ?>
-    <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow">
   <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?php echo $lang === 'en' ? 'About | Evo Hot Game & Lucky Spin ' : 'ইভো হট গেম এবং লাকি স্পিন সম্পর্কে |'; ?></title>
   <link href="./dist/output.css" rel="stylesheet">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-98CRLK26X1');
+  </script>
 </head>
 
 <body class="bg-gray-900 text-white">
@@ -28,7 +40,7 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
   <?php
   include 'loading.php'
   ?>
-   <?php include 'scroll-top-button.php'; ?>
+  <?php include 'scroll-top-button.php'; ?>
   <div class="max-w-4xl mx-auto px-4 py-12">
     <h1 class="text-2xl font-bold text-red-600"><?php echo $currentTexts['heading']; ?></h1>
 

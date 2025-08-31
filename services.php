@@ -1,4 +1,4 @@
-<?php include './admin/page/library/db.php'?>
+<?php include './admin/page/library/db.php' ?>
 
 <?php
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
@@ -28,85 +28,98 @@ $texts = $servicesTexts[$lang];
 
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <head>
     <meta name="robots" content="index, follow">
-      <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Primary Meta Tags -->
-<title><?php echo $lang === 'en' ? 'Fancywheel - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support' : 'ফ্যান্সিহুইল - বিশ্বস্ত অনলাইন ক্যাসিনো | বড় জয়, দ্রুত অর্থপ্রদান, 24/7 সহায়তা'; ?></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Primary Meta Tags -->
+    <title><?php echo $lang === 'en' ? 'Fancywheel - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support' : 'ফ্যান্সিহুইল - বিশ্বস্ত অনলাইন ক্যাসিনো | বড় জয়, দ্রুত অর্থপ্রদান, 24/7 সহায়তা'; ?></title>
 
-<link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
-<meta name="title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
-<meta name="description" content="<?php echo $lang === 'en' ? 'Play at Fancywin – the trusted online casino with secure payments, instant withdrawals, exciting bonuses, and real money wins. Join now & start winning!' : 'ফ্যান্সিউইন-এ খেলুন - নিরাপদ পেমেন্ট, তাৎক্ষণিক উত্তোলন, উত্তেজনাপূর্ণ বোনাস এবং আসল অর্থ জয়ের সাথে বিশ্বস্ত অনলাইন ক্যাসিনো। এখনই যোগদান করুন এবং জেতা শুরু করুন!'; ?>">
-<meta name="keywords" content="Fancywin, online casino, win real money, fast withdrawal, secure payments, casino bonuses, slots, live dealer, 24/7 support">
-<meta name="robots" content="index, follow">
-<meta name="language" content="English">
-<meta name="author" content="Fancywin">
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://fanciwheel.com/">
-<meta property="og:title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
-<meta property="og:description" content="Join Fancywin today and enjoy secure online gaming, fast payouts, and 24/7 customer support.">
-<meta property="og:image" content="https://fancywheel.com/images/og-banner.jpg">
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://fancywheel.com/">
-<meta property="twitter:title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
-<meta property="twitter:description" content="Play real money games and withdraw instantly at Fancywin. Safe, licensed, and available 24/7.">
-<meta property="twitter:image" content="https://fancywheel.com/images/og-banner.jpg">
-<link rel="stylesheet" href="./dist/output.css">
+    <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
+    <meta name="title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
+    <meta name="description" content="<?php echo $lang === 'en' ? 'Play at Fancywin – the trusted online casino with secure payments, instant withdrawals, exciting bonuses, and real money wins. Join now & start winning!' : 'ফ্যান্সিউইন-এ খেলুন - নিরাপদ পেমেন্ট, তাৎক্ষণিক উত্তোলন, উত্তেজনাপূর্ণ বোনাস এবং আসল অর্থ জয়ের সাথে বিশ্বস্ত অনলাইন ক্যাসিনো। এখনই যোগদান করুন এবং জেতা শুরু করুন!'; ?>">
+    <meta name="keywords" content="Fancywin, online casino, win real money, fast withdrawal, secure payments, casino bonuses, slots, live dealer, 24/7 support">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="author" content="Fancywin">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fanciwheel.com/">
+    <meta property="og:title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
+    <meta property="og:description" content="Join Fancywin today and enjoy secure online gaming, fast payouts, and 24/7 customer support.">
+    <meta property="og:image" content="https://fancywheel.com/images/og-banner.jpg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://fancywheel.com/">
+    <meta property="twitter:title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
+    <meta property="twitter:description" content="Play real money games and withdraw instantly at Fancywin. Safe, licensed, and available 24/7.">
+    <meta property="twitter:image" content="https://fancywheel.com/images/og-banner.jpg">
+    <link rel="stylesheet" href="./dist/output.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-98CRLK26X1');
+    </script>
 </head>
 
 <body class="bg-gray-900 text-white">
-<nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
-    <?php 
-    include 'navbar.php';
+    <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
+        <?php
+        include 'navbar.php';
+        ?>
+    </nav>
+    <?php
+    include 'loading.php'
     ?>
-  </nav>
-  <?php 
-include 'loading.php'
-?>
- <?php include 'scroll-top-button.php'; ?>
-  <main class="px-6 py-12 max-w-6xl mx-auto">
-    <div class="mb-5">
-        <h1 class="text-3xl font-bold text-red-600"><?= $texts['title'] ?></h1>
-        <p class="text-lg mt-2"><?= $texts['subtitle'] ?></p>
-    </div>
+    <?php include 'scroll-top-button.php'; ?>
+    <main class="px-6 py-12 max-w-6xl mx-auto">
+        <div class="mb-5">
+            <h1 class="text-3xl font-bold text-red-600"><?= $texts['title'] ?></h1>
+            <p class="text-lg mt-2"><?= $texts['subtitle'] ?></p>
+        </div>
 
-    <!-- Games -->
-    <section class="mb-5">
-        <h2 class="text-2xl font-semibold mb-4"><?= $texts['games'][0] ?></h2>
-        <p class="text-gray-300"><?= $texts['games'][1] ?></p>
-    </section>
+        <!-- Games -->
+        <section class="mb-5">
+            <h2 class="text-2xl font-semibold mb-4"><?= $texts['games'][0] ?></h2>
+            <p class="text-gray-300"><?= $texts['games'][1] ?></p>
+        </section>
 
-    <!-- Payments -->
-    <section class="mb-5">
-        <h2 class="text-2xl font-semibold mb-4"><?= $texts['payments'][0] ?></h2>
-        <p class="text-gray-300"><?= $texts['payments'][1] ?></p>
-    </section>
+        <!-- Payments -->
+        <section class="mb-5">
+            <h2 class="text-2xl font-semibold mb-4"><?= $texts['payments'][0] ?></h2>
+            <p class="text-gray-300"><?= $texts['payments'][1] ?></p>
+        </section>
 
-    <!-- Support -->
-    <section class="mb-5">
-        <h2 class="text-2xl font-semibold mb-4"><?= $texts['support'][0] ?></h2>
-        <p class="text-gray-300"><?= $texts['support'][1] ?></p>
-    </section>
+        <!-- Support -->
+        <section class="mb-5">
+            <h2 class="text-2xl font-semibold mb-4"><?= $texts['support'][0] ?></h2>
+            <p class="text-gray-300"><?= $texts['support'][1] ?></p>
+        </section>
 
-    <!-- Bonuses -->
-    <section class="mb-5">
-        <h2 class="text-2xl font-semibold mb-4"><?= $texts['bonuses'][0] ?></h2>
-        <p class="text-gray-300"><?= $texts['bonuses'][1] ?></p>
-    </section>
+        <!-- Bonuses -->
+        <section class="mb-5">
+            <h2 class="text-2xl font-semibold mb-4"><?= $texts['bonuses'][0] ?></h2>
+            <p class="text-gray-300"><?= $texts['bonuses'][1] ?></p>
+        </section>
 
-    <!-- Withdrawals -->
-    <section class="mb-5">
-        <h2 class="text-2xl font-semibold mb-4"><?= $texts['withdrawals'][0] ?></h2>
-        <p class="text-gray-300"><?= $texts['withdrawals'][1] ?></p>
-    </section>
-</main>
+        <!-- Withdrawals -->
+        <section class="mb-5">
+            <h2 class="text-2xl font-semibold mb-4"><?= $texts['withdrawals'][0] ?></h2>
+            <p class="text-gray-300"><?= $texts['withdrawals'][1] ?></p>
+        </section>
+    </main>
 
-<?php
- include 'footer.php'
-?>
+    <?php
+    include 'footer.php'
+    ?>
 </body>
+
 </html>

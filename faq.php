@@ -39,7 +39,18 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
   <meta name="twitter:title" content="Frequently Asked Questions | FancyWin">
   <meta name="twitter:description" content="Explore the most common questions and answers about FancyWin’s platform, games, and security.">
   <meta name="twitter:image" content="https://fanciwheel.com/image/PWAicon-192px.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-98CRLK26X1');
+  </script>
   <!-- Tailwind CSS -->
   <link href="./dist/output.css" rel="stylesheet">
 
@@ -60,7 +71,7 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
   <?php
   include 'loading.php'
   ?>
- <?php include 'scroll-top-button.php'; ?>
+  <?php include 'scroll-top-button.php'; ?>
   <section class="py-10 px-4 max-w-4xl mx-auto" id="faq">
     <div class="mb-8">
       <h2 class="text-3xl font-bold">
