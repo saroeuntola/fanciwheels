@@ -22,7 +22,7 @@ $banners = $bannerObj->getBanner();
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    margin-top: 105px;
+    margin-top: 100px;
   }
 
   .slide-image {

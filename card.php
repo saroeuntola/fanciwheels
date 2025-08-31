@@ -51,6 +51,12 @@ $games = $gameObj->getgames($lang);
             appearance: none;
         }
 
+        #hotspot p {
+        
+          background-color: #992717;
+         
+        }
+
         .post-title {
             color: red;
             font-weight: bold;
@@ -179,15 +185,15 @@ $games = $gameObj->getgames($lang);
         </div>
 
         <p class="post-subtitle mt-2">
-            <?php 
-echo $lang === 'en' 
-    ? 'Explore Bangladesh with FancyWheel! Discover popular cities, natural places, tourist attractions, cultural and historical sites, and top destinations for sightseeing and adventure travel. Plan your perfect Bangladesh tour with FancyWheel today.' 
-    : 'ফ্যান্সিওয়েলের সাথে বাংলাদেশ ঘুরে দেখুন! জনপ্রিয় শহর, প্রাকৃতিক স্থান, পর্যটন আকর্ষণ, সাংস্কৃতিক এবং ঐতিহাসিক স্থান, এবং সাইটসিয়িং ও অ্যাডভেঞ্চার ট্রাভেলের জন্য শীর্ষ গন্তব্য আবিষ্কার করুন। আজই আপনার পারফেক্ট বাংলাদেশ ট্যুর প্ল্যান করুন।';
-?>
+            <?php
+            echo $lang === 'en'
+                ? 'Explore Bangladesh with FancyWheel! Discover popular cities, natural places, tourist attractions, cultural and historical sites, and top destinations for sightseeing and adventure travel. Plan your perfect Bangladesh tour with FancyWheel today.'
+                : 'ফ্যান্সিওয়েলের সাথে বাংলাদেশ ঘুরে দেখুন! জনপ্রিয় শহর, প্রাকৃতিক স্থান, পর্যটন আকর্ষণ, সাংস্কৃতিক এবং ঐতিহাসিক স্থান, এবং সাইটসিয়িং ও অ্যাডভেঞ্চার ট্রাভেলের জন্য শীর্ষ গন্তব্য আবিষ্কার করুন। আজই আপনার পারফেক্ট বাংলাদেশ ট্যুর প্ল্যান করুন।';
+            ?>
         </p>
-        <!-- Category Filter -->
+
         <div class="mt-4" id="hotspot">
-            <p class="bg-gray-600 p-2 rounded-md w-[77px]">
+            <p class="p-2 rounded-md w-[77px]">
                 <?php echo $lang === 'en' ? 'Hotspot' : 'হটস্পট'; ?>
             </p>
         </div>
