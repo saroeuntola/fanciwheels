@@ -42,9 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .ql-editor {
             min-height: 150px;
         }
+
         .form-section {
             border-bottom: 1px solid #e5e7eb;
             padding-bottom: 1.5rem;
@@ -64,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     </style>
 </head>
+
 <body class="bg-gray-100 flex items-center justify-center min-h-screen w-full">
     <div class="w-full max-w-2xl bg-white p-8 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold text-center mb-6 text-indigo-700">Create Post</h2>
@@ -142,30 +146,88 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script>
-        // Quill toolbars
         const toolbarOptions = [
-            [{ 'font': [] }, { 'size': [] }],
+            [{
+                'font': []
+            }, {
+                'size': []
+            }],
             ['bold', 'italic', 'underline', 'strike'],
-            [{ 'color': [] }, { 'background': [] }],
-            [{ 'script': 'sub' }, { 'script': 'super' }],
-            [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
-            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-            [{ 'align': [] }],
+            [{
+                'color': []
+            }, {
+                'background': []
+            }],
+            [{
+                'script': 'sub'
+            }, {
+                'script': 'super'
+            }],
+            [{
+                'header': '1'
+            }, {
+                'header': '2'
+            }, 'blockquote', 'code-block'],
+            [{
+                'list': 'ordered'
+            }, {
+                'list': 'bullet'
+            }],
+            [{
+                'align': []
+            }],
             ['link', 'image', 'video'],
             ['clean']
         ];
 
-        // Description Editor (English)
+        // Initialize Quill editors
         const descriptionEditor = new Quill('#description-editor', {
             theme: 'snow',
-            modules: { toolbar: toolbarOptions }
+            modules: {
+                toolbar: toolbarOptions
+            }
         });
 
-        // Description Editor (Bengali)
         const descriptionBnEditor = new Quill('#description-bn-editor', {
             theme: 'snow',
-            modules: { toolbar: toolbarOptions }
+            modules: {
+                toolbar: toolbarOptions
+            }
         });
+
+        // Intercept image uploads
+        function imageHandler() {
+            const input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+            input.click();
+
+            input.onchange = async () => {
+                const file = input.files[0];
+                if (file) {
+                    const formData = new FormData();
+                    formData.append('image', file);
+
+                    // Send image to server
+                    const res = await fetch('http://fancywheel:8080/admin/page/game/upload_image', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await res.json();
+
+                    if (data.success) {
+                        const range = this.quill.getSelection();
+                        this.quill.insertEmbed(range.index, 'image', data.url);
+                    } else {
+                        alert('Image upload failed');
+                    }
+                }
+            };
+        }
+
+        // Add image handler to both editors
+        descriptionEditor.getModule('toolbar').addHandler('image', imageHandler);
+        descriptionBnEditor.getModule('toolbar').addHandler('image', imageHandler);
 
         // Sync Quill content to hidden inputs
         function syncQuillContent() {
@@ -173,5 +235,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             document.getElementById('description-bn-input').value = descriptionBnEditor.root.innerHTML;
         }
     </script>
+
 </body>
+
 </html>

@@ -58,11 +58,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Post</title>
-     <link href="/dist/output.css" rel="stylesheet">
+    <link href="/dist/output.css" rel="stylesheet">
     <!-- Quill CSS & JS -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
@@ -70,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .ql-editor {
             min-height: 150px;
         }
+
         .form-section {
             border-bottom: 1px solid #e5e7eb;
             padding-bottom: 1.5rem;
@@ -77,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     </style>
 </head>
+
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="w-full max-w-2xl bg-white p-8 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold text-center mb-6 text-indigo-700">Edit Post</h2>
@@ -89,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700">Title (English)</label>
                     <input type="text" name="name" value="<?= htmlspecialchars($productData['name']) ?>" required
-                           class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                        class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
                 <!-- Description (English) -->
                 <div class="mt-4">
@@ -101,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="mt-4">
                     <label for="meta_text" class="block text-sm font-medium text-gray-700">Meta Text (English)</label>
                     <input type="text" name="meta_text" value="<?= htmlspecialchars($productData['meta_text']) ?>"
-                           class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                        class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
             </div>
 
@@ -112,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div>
                     <label for="name_bn" class="block text-sm font-medium text-gray-700">Title (Bengali)</label>
                     <input type="text" name="name_bn" value="<?= htmlspecialchars($productDataBn['name']) ?>"
-                           class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                        class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
                 <!-- Description (Bengali) -->
                 <div class="mt-4">
@@ -124,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="mt-4">
                     <label for="meta_text_bn" class="block text-sm font-medium text-gray-700">Meta Text (Bengali)</label>
                     <input type="text" name="meta_text_bn" value="<?= htmlspecialchars($productDataBn['meta_text']) ?>"
-                           class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                        class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
             </div>
 
@@ -143,14 +146,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div>
                 <label for="game_link" class="block text-sm font-medium text-gray-700">Link</label>
                 <input type="text" name="game_link" value="<?= htmlspecialchars($productData['game_link']) ?>"
-                       class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                    class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
             </div>
 
             <!-- Category -->
             <div>
                 <label for="category_id" class="block text-sm font-medium text-gray-700">Category</label>
                 <select name="category_id" required
-                        class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                    class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                     <option value="">Select Category</option>
                     <?php foreach ($categories as $cat): ?>
                         <option value="<?= htmlspecialchars($cat['id']) ?>" <?= ($cat['id'] == $productData['category_id']) ? 'selected' : '' ?>>
@@ -162,36 +165,94 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <!-- Submit Button -->
             <button type="submit"
-                    class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md text-lg font-semibold hover:bg-indigo-700 transition-all">
+                class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md text-lg font-semibold hover:bg-indigo-700 transition-all">
                 Update
             </button>
         </form>
     </div>
-
     <script>
         const toolbarOptions = [
-            [{ 'font': [] }, { 'size': [] }],
+            [{
+                'font': []
+            }, {
+                'size': []
+            }],
             ['bold', 'italic', 'underline', 'strike'],
-            [{ 'color': [] }, { 'background': [] }],
-            [{ 'script': 'sub' }, { 'script': 'super' }],
-            [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
-            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-            [{ 'align': [] }],
+            [{
+                'color': []
+            }, {
+                'background': []
+            }],
+            [{
+                'script': 'sub'
+            }, {
+                'script': 'super'
+            }],
+            [{
+                'header': '1'
+            }, {
+                'header': '2'
+            }, 'blockquote', 'code-block'],
+            [{
+                'list': 'ordered'
+            }, {
+                'list': 'bullet'
+            }],
+            [{
+                'align': []
+            }],
             ['link', 'image', 'video'],
             ['clean']
         ];
 
-        // Description Editor (English)
+        // Initialize Quill editors
         const descriptionEditor = new Quill('#description-editor', {
             theme: 'snow',
-            modules: { toolbar: toolbarOptions }
+            modules: {
+                toolbar: toolbarOptions
+            }
         });
 
-        // Description Editor (Bengali)
         const descriptionBnEditor = new Quill('#description-bn-editor', {
             theme: 'snow',
-            modules: { toolbar: toolbarOptions }
+            modules: {
+                toolbar: toolbarOptions
+            }
         });
+
+        // Intercept image uploads
+        function imageHandler() {
+            const input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+            input.click();
+
+            input.onchange = async () => {
+                const file = input.files[0];
+                if (file) {
+                    const formData = new FormData();
+                    formData.append('image', file);
+
+                    // Send image to server
+                    const res = await fetch('http://fancywheel:8080/admin/page/game/upload_image', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await res.json();
+
+                    if (data.success) {
+                        const range = this.quill.getSelection();
+                        this.quill.insertEmbed(range.index, 'image', data.url);
+                    } else {
+                        alert('Image upload failed');
+                    }
+                }
+            };
+        }
+
+        // Add image handler to both editors
+        descriptionEditor.getModule('toolbar').addHandler('image', imageHandler);
+        descriptionBnEditor.getModule('toolbar').addHandler('image', imageHandler);
 
         // Sync Quill content to hidden inputs
         function syncQuillContent() {
@@ -200,4 +261,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     </script>
 </body>
+
 </html>

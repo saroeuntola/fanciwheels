@@ -83,6 +83,7 @@ $products = $product->getgames();
                                     Delete
                                 </a>
                             </td>
+                            
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
