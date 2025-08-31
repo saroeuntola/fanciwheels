@@ -54,15 +54,42 @@ $languageNames = [
 $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 ?>
 <style>
-  /* #header-bar {
-    background-color: #8F1FFF;
-  } */
+ #header-bar{
+   background-color: #992717;
+ }
+
+  .nav-link {
+    position: relative;
+    text-decoration: none;
+  }
+
+  /* Hover underline */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899);
+    transition: width 0.3s ease;
+  }
+
+  /* On hover, expand underline */
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Active link underline */
+  .nav-link.active::after {
+    width: 100%;
+  }
 </style>
 
 <link rel="stylesheet" href="./admin/page/assets/css/navbar.css">
 <link href="./dist/output.css" rel="stylesheet">
 <!-- Modern Navbar with Glassmorphism Effect -->
-<nav id="header-bar" class="py-2 relative bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 backdrop-blur-md shadow-2xl border-b border-white/10">
+<nav id="header-bar" class="py-2 relative backdrop-blur-md shadow-2xl border-b border-white/10">
   <!-- Background Pattern -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] bg-[size:20px_20px] opacity-20"></div>
 
@@ -71,10 +98,10 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 
       <div class="flex-shrink-0">
         <a href="<?= $lang === 'en' ? '/?lang=en' : '/?lang=bn' ?>" class="group relative">
-          <span class="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105">
-            FancyWheel
+          <span class="text-2xl font-bold text-white text-transparent transition-all duration-300 group-hover:scale-105">
+            Fancy Wheel
           </span>
-          <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg opacity-0 group-hover:opacity-20 blur transition-all duration-300"></div>
+          <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 rounded-lg opacity-0 group-hover:opacity-20 blur transition-all duration-300"></div>
         </a>
       </div>
 

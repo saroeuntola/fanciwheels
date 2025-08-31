@@ -176,6 +176,14 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
       background-color: rgba(255, 255, 255, 0.8);
       color: black;
     }
+
+    .play-btn {
+      background-color: #992717;
+    }
+
+    .play-btn:hover {
+      background-color: #104FB2;
+    }
   </style>
 </head>
 
@@ -207,7 +215,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
 
             <h3 class="text-lg font-bold mb-2"><?= htmlspecialchars($game['title']) ?></h3>
             <p class="game-desc text-sm text-gray-300 flex-grow"><?= htmlspecialchars($game['description']) ?></p>
-            <a href="<?= $game['link'] ?>" class="play-btn p-2 text-center bg-purple-400 text-white rounded-lg font-bold hover:bg-pink-400 transition-colors duration-300 w-full"><?= $lang === 'en' ? 'Play Now' : 'খেলা লক' ?></a>
+            <a href="<?= $game['link'] ?>" class="play-btn p-2 text-center text-white rounded-lg font-bold transition-colors duration-300 w-full"><?= $lang === 'en' ? 'Play Now' : 'খেলা লক' ?></a>
           </div>
 
 

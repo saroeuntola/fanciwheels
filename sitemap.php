@@ -1,7 +1,6 @@
 <?php
 header("Content-Type: application/xml; charset=UTF-8");
 
-// Example static pages
 $staticPages = [
     [
         'loc' => 'https://fanciwheel.com/',
@@ -32,7 +31,6 @@ $staticPages = [
     ],
 ];
 
-// Example dynamic game pages (replace this with real DB fetch)
 $games = [
     [
         'slug' => 'dhaka',
