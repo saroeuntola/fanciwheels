@@ -197,7 +197,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                         alt="<?= htmlspecialchars($relatedMeta) ?>"
                         class="object-cover group-hover:scale-105 transition-transform duration-300" id="relate-img" />
                     </div>
-                    <div class="p-2">
+                    <div class="">
                       <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-200">
                         <?= htmlspecialchars($related['name'] ?? ($lang === 'en' ? 'No Name' : 'কোনো নাম নেই')) ?>
                       </h3>
