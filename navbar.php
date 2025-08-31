@@ -54,9 +54,9 @@ $languageNames = [
 $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 ?>
 <style>
- #header-bar{
-   background-color: #992717;
- }
+  #header-bar {
+    background-color: #992717;
+  }
 
   .nav-link {
     position: relative;
@@ -83,6 +83,10 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
   /* Active link underline */
   .nav-link.active::after {
     width: 100%;
+  }
+
+  #mobileMenu {
+    background-color: #992717;
   }
 </style>
 
@@ -275,7 +279,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
   </div>
 
   <!-- Modern Mobile Menu -->
-  <div id="mobileMenu" class="lg:hidden hidden bg-slate-900/95 backdrop-blur-lg border-t border-white/10">
+  <div id="mobileMenu" class="lg:hidden hidden backdrop-blur-lg border-t border-white/10">
     <div class="px-4 py-6 space-y-3">
       <div class="flex flex-col gap-4 ms-4 mb-4">
         <?php
