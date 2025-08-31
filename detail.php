@@ -77,7 +77,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
   <meta name="twitter:description" content="<?= htmlspecialchars($game['description'] ?? 'Check out this detail') ?>" />
-  <meta name="twitter:image" content="<?= htmlspecialchars(!empty($gameImage) ? 'https://' . $_SERVER['HTTP_HOST'] . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
+  <meta name="twitter:image" content="<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -144,23 +144,24 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <!-- Main Content -->
       <div class="lg:col-span-2 space-y-8">
-        <!-- Game Detail -->
-        <div class="bg-gray-800 rounded-2xl shadow-md p-6 md:p-8">
+        <!-- post Detail -->
+        <div class="bg-gray-800 rounded-2xl shadow-md p-4">
+          <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-snug break-words">
+            <?= htmlspecialchars($game['name'] ?? ($lang === 'en' ? 'Unnamed' : 'নামহীন')) ?>
+          </h1>
           <img
             src="<?= './admin/page/game/' . htmlspecialchars($gameImage) ?>"
             alt="<?= htmlspecialchars($metaText) ?>"
             class="w-full h-64 md:h-[310px] lg:h-[450px] object-cover rounded-xl mb-6" />
-          <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-snug break-words">
-            <?= htmlspecialchars($game['name'] ?? ($lang === 'en' ? 'Unnamed' : 'নামহীন')) ?>
-          </h1>
-          <div class="text-gray-300 space-y-6 text-base leading-relaxed md:text-lg mb-10">
+
+          <div class="text-gray-300 space-y-4 text-base leading-relaxed md:text-lg mb-10">
             <?= $game['description'] ?? ($lang === 'en' ? 'No description available.' : 'কোনো বিবরণ নেই।') ?>
           </div>
         </div>
 
         <!-- Related Games -->
         <?php if (!empty($relatedGames)): ?>
-          <div class="bg-gray-800 rounded-2xl shadow-md p-6 md:p-8">
+          <div class="bg-gray-800 rounded-2xl shadow-md p-4">
             <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
               <svg class="w-6 h-6 mr-3 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 102 0zm-1 4a1 1 0 100-2 1 1 0 000 2zm0 2a1 1 0 000 2h.01a1 1 0 100-2H10z" clip-rule="evenodd" />
@@ -199,7 +200,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
 
       <!-- Sidebar -->
       <div class="lg:col-span-1 space-y-8">
-        <div class="bg-gray-800 rounded-2xl shadow-sm p-6">
+        <div class="bg-gray-800 rounded-2xl shadow-sm p-4">
           <h3 class="text-xl font-bold text-white mb-6 flex items-center">
             <svg class="w-5 h-5 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2 5a2 2 0 012-2h2.586a1 1 0 01.707.293l1.414 1.414A2 2 0 0010 5h6a2 2 0 012 2v8a2 2 0 01-2 2h-6a2 2 0 00-1.293.293l-1.414 1.414A1 1 0 015.586 19H4a2 2 0 01-2-2V5z" />
