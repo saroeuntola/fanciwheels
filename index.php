@@ -30,8 +30,8 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <!-- Optional minimal keywords (safe, not overstuffed) -->
   <meta name="keywords" content="<?php
     echo $lang === 'en'
-    ? 'most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island'
-    : 'most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island';
+    ? 'fancy wheel,fanci wheel, fanciwheel most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island'
+    : 'fancy Wheel, fanci wheel,fanciwheel most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island';
     ?>">
 
   <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845"
