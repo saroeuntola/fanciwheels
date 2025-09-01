@@ -291,7 +291,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
         return;
       }
 
-      $.getJSON('http://fancywheel:8080/admin/page/api/search_api.php', {
+      $.getJSON('https://fanciwheel.com/admin/page/api/search_api.php', {
         q: query,
         lang: '<?= $lang ?>'
       }, function(data) {
