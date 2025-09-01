@@ -176,10 +176,8 @@ $translations = [
 
     @media (max-width: 600px) {
         #spinWheelModal .popup {
-            /* full viewport height */
-            border-radius: 0;
-            /* remove rounded corners for full screen */
-            padding: 20px;
+   
+            padding: 10px;
             /* smaller padding for mobile */
         }
 

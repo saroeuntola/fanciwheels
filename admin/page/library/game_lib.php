@@ -128,22 +128,24 @@ class Games {
 
 
 
-    public function getPopularGames($limit = 6, $lang = 'en') {
+    public function getPopularGames($limit = 6, $lang = 'en')
+    {
         // Validate language
         $lang = in_array($lang, ['en', 'bn']) ? $lang : 'en';
-        
+
         // Select language-specific fields
         $name_field = $lang === 'en' ? 'name' : 'name_bn';
         $description_field = $lang === 'en' ? 'description' : 'description_bn';
         $meta_text_field = $lang === 'en' ? 'meta_text' : 'meta_text_bn';
 
         $query = "SELECT p.id, p.$name_field AS name, p.image, p.$description_field AS description, 
-                         p.game_link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
-                         c.name AS category_name 
-                  FROM games p
-                  JOIN categories c ON p.category_id = c.id 
-                  ORDER BY p.created_at DESC
-                  LIMIT :limit";
+                     p.game_link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
+                     p.slug, 
+                     c.name AS category_name 
+              FROM games p
+              JOIN categories c ON p.category_id = c.id 
+              ORDER BY p.created_at DESC
+              LIMIT :limit";
         try {
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
@@ -154,6 +156,7 @@ class Games {
             return [];
         }
     }
+
 
     public function searchgames($query, $lang = 'en') {
         // Validate language
