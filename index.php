@@ -22,17 +22,17 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 
   <!-- Meta Description for SEO -->
   <meta name="description" content="<?php
-  echo $lang === 'en'
-  ? 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.'
-  : 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.';
-  ?>">
+                                    echo $lang === 'en'
+                                      ? 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.'
+                                      : 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.';
+                                    ?>">
 
   <!-- Optional minimal keywords (safe, not overstuffed) -->
   <meta name="keywords" content="<?php
-    echo $lang === 'en'
-    ? 'fancy wheel,fanci wheel, fanciwheel most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island'
-    : 'fancy Wheel, fanci wheel,fanciwheel most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island';
-    ?>">
+                                  echo $lang === 'en'
+                                    ? 'fancy wheel,fanci wheel, fanciwheel most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island'
+                                    : 'fancy Wheel, fanci wheel,fanciwheel most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island';
+                                  ?>">
 
   <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845"
     type="image/png">
@@ -211,6 +211,8 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+
 </body>
 
 </html>

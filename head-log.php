@@ -8,6 +8,7 @@ if (!file_exists($csv_file)) {
     file_put_contents($csv_file, "Date,IP,Page,Referrer,User Agent\n");
 }
 
+date_default_timezone_set('Asia/Phnom_Penh');
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN';
 $uri = $_SERVER['REQUEST_URI'] ?? '';
 $referrer = $_SERVER['HTTP_REFERER'] ?? 'Direct';
