@@ -299,7 +299,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
           if (data.length > 0) {
             let html = '';
             data.forEach(item => {
-              html += `<a href="detail.php?slug=${item.slug}&lang=<?= $lang ?>" class="flex flex-col items-center bg-gray-800 p-2 rounded hover:shadow-lg transition">
+              html += `<a href="detail.php?slug=${item.slug}&lang=<?= $lang ?>" class="flex flex-col items-center bg-gray-800 rounded hover:shadow-lg transition">
                   <img src="/admin/page/game/${item.image}" alt="${item.title}" class="w-full h-40 object-cover rounded mb-2" loading="lazy">
                   <span class="text-sm font-medium">${item.title}</span>
                 </a>`;
