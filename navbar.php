@@ -220,16 +220,14 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 
     <!-- Search Input -->
     <div class="mt-4">
-      <input type="text" id="search-box" placeholder="<?= $lang === 'en' ? 'Search...' : 'অনুসন্ধান...' ?>"
+      <input type="text" id="search-box" placeholder="<?= $lang === 'en' ? 'Type to search...' : 'অনুসন্ধান করতে টাইপ করুন...' ?>"
         class="w-full px-4 py-3 rounded-md border focus:outline-none focus:ring-2 focus:ring-green-500 text-black">
     </div>
 
     <!-- Loading Indicator -->
     <div id="search-loading" class="hidden mt-2 text-white"><?= $lang === 'en' ? 'Loading...' : 'লোড হচ্ছে...' ?></div>
-
     <!-- Search Results Grid -->
     <div id="search-results" class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="text-white col-span-full"><?= $lang === 'en' ? 'Type to search...' : 'অনুসন্ধান করতে টাইপ করুন...' ?></div>
     </div>
   </div>
 </div>
@@ -287,8 +285,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     // ===== AJAX Search =====
     function performSearch(query) {
       if (query.length < 2) {
-        $searchResults.html('<div class="text-white col-span-full"><?= $lang === "en" ? "Type to search..." : "অনুসন্ধান করতে টাইপ করুন..." ?></div>');
-        $('#search-loading').addClass('hidden'); 
+        $('#search-loading').addClass('hidden');
         return;
       }
 
