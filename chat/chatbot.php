@@ -1,7 +1,10 @@
 <?php
-$apiKey = "AIzaSyA3LXARd-gsRCHkb6YmAz4a3oEi6mMdLIw";
-$userMessage = "Explain how AI works in a few words";
+// chatbot.php
 
+$apiKey = "AIzaSyA3LXARd-gsRCHkb6YmAz4a3oEi6mMdLIw";
+$userMessage = $_POST['q'] ?? "Hello";
+
+// Gemini API endpoint
 $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
 $data = [
@@ -20,9 +23,10 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 
-// Optional: SSL settings for shared hosts
+// SSL fix for localhost / shared server
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 
 $response = curl_exec($ch);
 
@@ -33,6 +37,13 @@ if (curl_errno($ch)) {
 
 curl_close($ch);
 
-echo "<pre>";
-print_r(json_decode($response, true));
-echo "</pre>";
+$result = json_decode($response, true);
+
+// Output only the bot’s text
+if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
+    echo $result['candidates'][0]['content']['parts'][0]['text'];
+} elseif (isset($result['error'])) {
+    echo "API Error: " . $result['error']['message'];
+} else {
+    echo "Unexpected API response";
+}
