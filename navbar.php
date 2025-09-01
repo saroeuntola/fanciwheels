@@ -288,26 +288,36 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     function performSearch(query) {
       if (query.length < 2) {
         $searchResults.html('<div class="text-white col-span-full"><?= $lang === "en" ? "Type to search..." : "অনুসন্ধান করতে টাইপ করুন..." ?></div>');
+        $('#search-loading').addClass('hidden'); 
         return;
       }
 
-      $.getJSON('https://fanciwheel.com/admin/page/api/search_api.php', {
-        q: query,
-        lang: '<?= $lang ?>'
-      }, function(data) {
-        if (data.length > 0) {
-          let html = '';
-          data.forEach(item => {
-            html += `<a href="detail.php?slug=${item.slug}&lang=<?= $lang ?>" class="flex flex-col items-center border p-2 rounded hover:shadow-lg transition">
-                      <img src="/admin/page/game/${item.image}" alt="${item.title}" class="w-full h-40 object-cover rounded mb-2" loading="lazy">
-                      <span class="text-sm font-medium">${item.title}</span>
-                    </a>`;
-          });
-          $searchResults.html(html);
-        } else {
-          $searchResults.html('<div class="text-center text-gray-300 col-span-full"> <?= $lang === "en" ? "No results found" : "কোন ফলাফল পাওয়া যায়নি" ?></div>');
-        }
-      });
+      $('#search-loading').removeClass('hidden');
+
+      $.getJSON('https://fanciwheel.com/admin/page/api/search_api', {
+          q: query,
+          lang: '<?= $lang ?>'
+        })
+        .done(function(data) {
+          if (data.length > 0) {
+            let html = '';
+            data.forEach(item => {
+              html += `<a href="detail.php?slug=${item.slug}&lang=<?= $lang ?>" class="flex flex-col items-center border p-2 rounded hover:shadow-lg transition">
+                  <img src="/admin/page/game/${item.image}" alt="${item.title}" class="w-full h-40 object-cover rounded mb-2" loading="lazy">
+                  <span class="text-sm font-medium">${item.title}</span>
+                </a>`;
+            });
+            $searchResults.html(html);
+          } else {
+            $searchResults.html('<div class="text-center text-gray-300 col-span-full"> <?= $lang === "en" ? "No results found" : "কোন ফলাফল পাওয়া যায়নি" ?></div>');
+          }
+        })
+        .fail(function() {
+          $searchResults.html('<div class="text-center text-red-400 col-span-full">Error loading results</div>');
+        })
+        .always(function() {
+          $('#search-loading').addClass('hidden');
+        });
     }
 
     // Desktop search input
