@@ -226,10 +226,10 @@ $games = $gameObj->getgames($lang);
                         <div class="game-card" onclick="window.location.href='detail?slug=<?= $slug ?>&lang=<?= $lang ?>'">
                             <div class="game-image" style="height: 210px;">
                                 <?php if (!empty($gameImage)): ?>
-                                    <div class="relative w-full h-full overflow-hidden bg-gray-100">
+                                    <div class="relative w-full h-full overflow-hidden bg-gray-500">
                                         <!-- Spinner Overlay -->
-                                        <div class="absolute inset-0 flex items-center justify-center bg-gray-100 z-10" id="spinner">
-                                            <svg class="animate-spin h-8 w-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        <div class="absolute inset-0 flex items-center justify-center bg-gray-500 z-10" id="spinner">
+                                            <svg class="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24">
                                                 <circle class="opacity-25" cx="12" cy="12" r="10"
                                                     stroke="currentColor" stroke-width="4"></circle>
