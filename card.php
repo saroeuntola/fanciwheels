@@ -52,9 +52,9 @@ $games = $gameObj->getgames($lang);
         }
 
         #hotspot p {
-        
-          background-color: #992717;
-         
+
+            background-color: #992717;
+
         }
 
         .post-title {
@@ -226,10 +226,27 @@ $games = $gameObj->getgames($lang);
                         <div class="game-card" onclick="window.location.href='detail?slug=<?= $slug ?>&lang=<?= $lang ?>'">
                             <div class="game-image" style="height: 210px;">
                                 <?php if (!empty($gameImage)): ?>
-                                    <img src="<?= './admin/page/game/' . $gameImage ?>"
-                                    loading="lazy"
-                                        alt="<?= $metaText ?>"
-                                        style="width:100%; height: 100%; object-fit: cover;">
+                                    <div class="relative w-full h-full overflow-hidden bg-gray-100">
+                                        <!-- Spinner Overlay -->
+                                        <div class="absolute inset-0 flex items-center justify-center bg-gray-100 z-10" id="spinner">
+                                            <svg class="animate-spin h-8 w-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10"
+                                                    stroke="currentColor" stroke-width="4"></circle>
+                                                <path class="opacity-75" fill="currentColor"
+                                                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                            </svg>
+                                        </div>
+
+                                        <!-- Lazy Image -->
+                                        <img src="<?= './admin/page/game/' . $gameImage ?>"
+                                            loading="lazy"
+                                            alt="<?= $metaText ?>"
+                                            class="w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                                            onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove();">
+                                    </div>
+
+
                                 <?php else: ?>
                                     <div class="no-image-placeholder" style="height: 100%; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#9ca3af;">
                                         <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
