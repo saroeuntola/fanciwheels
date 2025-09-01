@@ -1,5 +1,5 @@
 <?php
-// index.php - simple chatbot UI
+// index.php - ChatGPT-style UI
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,77 +8,162 @@
     <meta charset="UTF-8">
     <title>Gemini PHP Chatbot</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            padding: 20px;
+        /* Reset and base styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        #chatbox {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h2 {
+            margin: 20px 0;
+            color: #333;
+        }
+
+        /* Chat container */
+        #chatContainer {
+            display: flex;
+            flex-direction: column;
             width: 100%;
-            max-width: 600px;
-            height: 400px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            overflow-y: scroll;
-            margin: 0 auto 10px;
+            max-width: 700px;
+            height: 80%;
             background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Chat messages area */
+        #chatbox {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .msg {
-            margin: 5px 0;
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            line-height: 1.4;
         }
 
         .user {
-            color: blue;
+            align-self: flex-end;
+            background: #DCF8C6;
+            color: #000;
+            border-bottom-right-radius: 0;
         }
 
         .bot {
-            color: green;
+            align-self: flex-start;
+            background: #ECECEC;
+            color: #000;
+            border-bottom-left-radius: 0;
         }
 
+        /* Input area */
         #inputArea {
-            max-width: 600px;
-            margin: 0 auto;
             display: flex;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background: #fafafa;
         }
 
         #message {
             flex: 1;
-            padding: 10px;
+            padding: 12px 15px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 16px;
         }
 
-        button {
-            padding: 10px 20px;
+        #sendBtn {
+            padding: 0 20px;
+            margin-left: 10px;
+            border: none;
+            background: #4CAF50;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #sendBtn:hover {
+            background: #45a049;
+        }
+
+        /* Scrollbar styling */
+        #chatbox::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #chatbox::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        #chatbox::-webkit-scrollbar-track {
+            background: transparent;
         }
     </style>
 </head>
 
 <body>
-    <h2 style="text-align:center;">💬 Gemini PHP Chatbot</h2>
-    <div id="chatbox"></div>
 
-    <div id="inputArea">
-        <input type="text" id="message" placeholder="Type your message...">
-        <button onclick="sendMessage()">Send</button>
+    <h2>💬 Gemini ChatGPT-style Bot</h2>
+
+    <div id="chatContainer">
+        <div id="chatbox"></div>
+        <div id="inputArea">
+            <input type="text" id="message" placeholder="Type your message..." onkeydown="if(event.key==='Enter'){ sendMessage(); }">
+            <button id="sendBtn" onclick="sendMessage()">Send</button>
+        </div>
     </div>
 
     <script>
+        const chatbox = document.getElementById("chatbox");
+        const messageInput = document.getElementById("message");
+
         function sendMessage() {
-            const msg = document.getElementById("message").value.trim();
+            const msg = messageInput.value.trim();
             if (!msg) return;
 
-            const chatbox = document.getElementById("chatbox");
-            chatbox.innerHTML += `<div class="msg user"><b>You:</b> ${msg}</div>`;
-            document.getElementById("message").value = "";
+            // Display user message
+            const userDiv = document.createElement("div");
+            userDiv.classList.add("msg", "user");
+            userDiv.innerHTML = `<b>You:</b> ${msg}`;
+            chatbox.appendChild(userDiv);
+            chatbox.scrollTop = chatbox.scrollHeight;
+            messageInput.value = "";
 
-            // AJAX request to chatbot.php
+            // Display loading bot message
+            const botDiv = document.createElement("div");
+            botDiv.classList.add("msg", "bot");
+            botDiv.innerHTML = `<b>Bot:</b> ...`;
+            chatbox.appendChild(botDiv);
+            chatbox.scrollTop = chatbox.scrollHeight;
+
+            // AJAX to chatbot.php
             const xhr = new XMLHttpRequest();
             xhr.open("POST", "https://fanciwheel.com/chat/chatbot", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    chatbox.innerHTML += `<div class="msg bot"><b>Bot:</b> ${xhr.responseText}</div>`;
+                    botDiv.innerHTML = `<b>Bot:</b> ${xhr.responseText}`;
                     chatbox.scrollTop = chatbox.scrollHeight;
                 }
             };
