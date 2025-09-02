@@ -78,18 +78,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">English Content</h3>
                 <!-- Title (English) -->
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Title (English)</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Title* (English)</label>
                     <input type="text" name="name" required class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
                 <!-- Description (English) -->
                 <div class="mt-4">
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description (English)</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description* (English)</label>
                     <div id="description-editor" class="border rounded-md"></div>
                     <input type="hidden" name="description" id="description-input">
                 </div>
                 <!-- Meta Text (English) -->
                 <div class="mt-4">
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Meta Text (English)</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Alt image* (English)</label>
                     <input type="text" name="meta_text" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
             </div>
@@ -99,18 +99,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Bengali Content</h3>
                 <!-- Title (Bengali) -->
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Title (Bengali)</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Title* (Bengali)</label>
                     <input type="text" name="name_bn" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
                 <!-- Description (Bengali) -->
                 <div class="mt-4">
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description (Bengali)</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description* (Bengali)</label>
                     <div id="description-bn-editor" class="border rounded-md"></div>
                     <input type="hidden" name="description_bn" id="description-bn-input">
                 </div>
                 <!-- Meta Text (Bengali) -->
                 <div class="mt-4">
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Meta Text (Bengali)</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Alt image* (Bengali)</label>
                     <input type="text" name="meta_text_bn" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
             </div>

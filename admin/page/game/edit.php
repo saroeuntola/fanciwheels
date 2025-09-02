@@ -90,19 +90,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">English Content</h3>
                 <!-- Title (English) -->
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">Title (English)</label>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Title* (English)</label>
                     <input type="text" name="name" value="<?= htmlspecialchars($productData['name']) ?>" required
                         class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
                 <!-- Description (English) -->
                 <div class="mt-4">
-                    <label for="description" class="block text-sm font-medium text-gray-700">Description (English)</label>
+                    <label for="description" class="block text-sm font-medium text-gray-700">Description* (English)</label>
                     <div id="description-editor" class="border rounded-md"><?= $productData['description'] ?></div>
                     <input type="hidden" name="description" id="description-input">
                 </div>
                 <!-- Meta Text (English) -->
                 <div class="mt-4">
-                    <label for="meta_text" class="block text-sm font-medium text-gray-700">Meta Text (English)</label>
+                    <label for="meta_text" class="block text-sm font-medium text-gray-700">Alt image* (English)</label>
                     <input type="text" name="meta_text" value="<?= htmlspecialchars($productData['meta_text']) ?>"
                         class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
@@ -113,19 +113,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Bengali Content</h3>
                 <!-- Title (Bengali) -->
                 <div>
-                    <label for="name_bn" class="block text-sm font-medium text-gray-700">Title (Bengali)</label>
+                    <label for="name_bn" class="block text-sm font-medium text-gray-700">Title* (Bengali)</label>
                     <input type="text" name="name_bn" value="<?= htmlspecialchars($productDataBn['name']) ?>"
                         class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
                 <!-- Description (Bengali) -->
                 <div class="mt-4">
-                    <label for="description_bn" class="block text-sm font-medium text-gray-700">Description (Bengali)</label>
+                    <label for="description_bn" class="block text-sm font-medium text-gray-700">Description* (Bengali)</label>
                     <div id="description-bn-editor" class="border rounded-md"><?= $productDataBn['description'] ?></div>
                     <input type="hidden" name="description_bn" id="description-bn-input">
                 </div>
                 <!-- Meta Text (Bengali) -->
                 <div class="mt-4">
-                    <label for="meta_text_bn" class="block text-sm font-medium text-gray-700">Meta Text (Bengali)</label>
+                    <label for="meta_text_bn" class="block text-sm font-medium text-gray-700">Alt image* (Bengali)</label>
                     <input type="text" name="meta_text_bn" value="<?= htmlspecialchars($productDataBn['meta_text']) ?>"
                         class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none">
                 </div>
