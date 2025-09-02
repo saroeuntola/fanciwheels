@@ -291,7 +291,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 
       $('#search-loading').removeClass('hidden');
 
-      $.getJSON('https://fanciwheel.com/admin/page/api/search_api', {
+      $.getJSON('http://fancywheel:8080/admin/page/api/search_api', {
           q: query,
           lang: '<?= $lang ?>'
         })
@@ -299,8 +299,17 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
           if (data.length > 0) {
             let html = '';
             data.forEach(item => {
-              html += `<a href="detail.php?slug=${item.slug}&lang=<?= $lang ?>" class="flex flex-col items-center bg-gray-800 rounded hover:shadow-lg transition">
-                  <img src="/admin/page/game/${item.image}" alt="${item.title}" class="w-full h-40 object-cover rounded mb-2" loading="lazy">
+              html += `<a href="detail?slug=${item.slug}&lang=<?= $lang ?>" class="flex flex-col items-center bg-gray-800 rounded hover:shadow-lg transition relative">
+                                        <div class="absolute inset-0 flex items-center justify-center bg-gray-500 z-10" id="spinner">
+                                            <svg class="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10"
+                                                    stroke="currentColor" stroke-width="4"></circle>
+                                                <path class="opacity-75" fill="currentColor"
+                                                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                            </svg>
+                                        </div>
+                  <img src="/admin/page/game/${item.image}" alt="${item.title}" class="w-full h-40 object-cover rounded mb-2 opacity-0 transition-opacity duration-500" loading="lazy" onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove();">
                   <span class="text-sm font-medium mb-2">${item.title}</span>
                 </a>`;
             });

@@ -6,7 +6,6 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
 
-// Keep ID if on detail.php
 $slug = isset($_GET['slug']) ? trim($_GET['slug']) : null;
 
 if (!isset($_GET['slug'])) {
@@ -164,9 +163,11 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
           <h1 class="text-lg lg:text-2xl sm:text-3xl font-bold text-white mb-3 leading-snug break-words">
             <?= htmlspecialchars($game['name'] ?? ($lang === 'en' ? 'Unnamed' : 'নামহীন')) ?>
           </h1>
+
           <img
             src="<?= './admin/page/game/' . htmlspecialchars($gameImage) ?>"
             alt="<?= htmlspecialchars($metaText) ?>"
+            loading="lazy"
             class="w-full h-64 md:h-[310px] lg:h-[450px] object-cover rounded-xl mb-6" />
 
           <div class="text-gray-300 space-y-4 text-base leading-relaxed md:text-lg">
@@ -192,13 +193,23 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                 <div class="group overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
                   <a href="detail?slug=<?= $related['slug'] ?>&lang=<?= $lang ?>" class="block">
                     <div class="relative overflow-hidden">
+                      <!-- Spinner Overlay -->
+                      <div class="absolute inset-0 flex items-center justify-center bg-gray-500 z-10" id="spinner">
+                        <svg class="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                          viewBox="0 0 24 24">
+                          <circle class="opacity-25" cx="12" cy="12" r="10"
+                            stroke="currentColor" stroke-width="4"></circle>
+                          <path class="opacity-75" fill="currentColor"
+                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                        </svg>
+                      </div>
                       <img
                         src="<?= './admin/page/game/' . htmlspecialchars($relatedImage) ?>"
                         loading="lazy"
                         alt="<?= htmlspecialchars($relatedMeta) ?>"
-                        class="object-cover group-hover:scale-105 transition-transform duration-300" id="relate-img" />
+                        class="object-cover group-hover:scale-105 opacity-0 transition-opacity duration-500" id="relate-img" onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove()" />
                     </div>
-                    <div class="mt-2">
+                    <div class=" mt-2">
                       <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-200">
                         <?= htmlspecialchars($related['name'] ?? ($lang === 'en' ? 'No Name' : 'কোনো নাম নেই')) ?>
                       </h3>
@@ -231,14 +242,27 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
               $popularDesc = $popular['description'] ?? '';
               ?>
               <div class="flex items-start space-x-3 group">
-                <div class="flex-shrink-0">
+                <div class="flex-shrink-0 relative">
+                  <!-- Spinner Overlay -->
+                  <div class="absolute inset-0 flex items-center justify-center bg-gray-500 z-10" id="spinner">
+                    <svg class="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                      viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10"
+                        stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                    </svg>
+                  </div>
                   <img
                     src="<?= './admin/page/game/' . htmlspecialchars($popularImage) ?>"
                     loading="lazy"
                     alt="<?= htmlspecialchars($popularName) ?>"
-                    class="w-16 h-16 object-cover rounded-lg group-hover:opacity-80 transition-opacity duration-200" />
+                    class="w-16 h-16 object-cover rounded-lg group-hover:opacity-80 opacity-0 transition-opacity duration-500"
+                    onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove()"
+                    />
+
                 </div>
-                <div class="flex-1 min-w-0">
+                <div class=" flex-1 min-w-0">
                   <a href="detail?slug=<?= $popular['slug'] ?>&lang=<?= $lang ?>" class="block group-hover:text-blue-400 transition-colors duration-200">
                     <h4 class="text-sm font-semibold text-white truncate">
                       <?= htmlspecialchars($popularName) ?>

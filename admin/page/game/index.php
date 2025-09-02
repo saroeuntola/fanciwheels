@@ -61,7 +61,7 @@ $products = $product->getgames();
                     <?php foreach ($products as $item): ?>
                         <tr class="bg-white border-b hover:bg-gray-50 transition">
                             <td class="px-6 py-4 font-medium text-gray-900">
-                                <img src="<?= htmlspecialchars($item['image']) ?>" alt="Game" class="h-12 w-12 object-cover rounded-md">
+                                <img src="<?= htmlspecialchars($item['image']) ?>" alt="Game" class="h-12 w-12 object-cover rounded-md" loading="lazy">
                             </td>
                             <td class="px-6 py-4">
                                 <?php echo htmlspecialchars($item['name']); ?>
