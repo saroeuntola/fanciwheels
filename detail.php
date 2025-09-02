@@ -175,7 +175,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
           </div>
         </div>
 
-        <!-- Related Games -->
+        <!-- Related -->
         <?php if (!empty($relatedGames)): ?>
           <div class="bg-gray-800 rounded-2xl shadow-md p-4">
             <h2 class="text-lg lg:text-2xl sm:text-3xl font-bold text-white mb-6 flex items-center">
@@ -238,7 +238,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
             <?php foreach (array_slice($popularGames, 0, 6) as $popular): ?>
               <?php
               $popularImage = $popular['image'] ?? 'default.png';
-              $popularName = $popular['name'] ?? ($lang === 'en' ? 'Popular Post' : 'জনপ্রিয় পোস্ট');
+              $popularName = $popular['name'] ?? ($lang === 'en' ? 'Latest Posts' : 'শেষ পোস্ট');
               $popularDesc = $popular['description'] ?? '';
               ?>
               <div class="flex items-start space-x-3 group">
