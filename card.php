@@ -179,18 +179,20 @@ $games = $gameObj->getgames($lang);
     <div class="post-container">
         <div class="post-header">
             <h1 class="post-title">
-                <?php echo $lang === 'en' ? 'Popular Cities in Bangladesh' : 'বাংলাদেশের জনপ্রিয় শহর'; ?>
+                <?php echo $lang === 'en'
+                    ? 'Milktea & Bus Services in Chittagong'
+                    : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস'; ?>
             </h1>
-
         </div>
 
         <p class="post-subtitle mt-2">
             <?php
             echo $lang === 'en'
-                ? 'Explore Bangladesh with FancyWheel! Discover popular cities, natural places, tourist attractions, cultural and historical sites, and top destinations for sightseeing and adventure travel. Plan your perfect Bangladesh tour with FancyWheel today.'
-                : 'ফ্যান্সিওয়েলের সাথে বাংলাদেশ ঘুরে দেখুন! জনপ্রিয় শহর, প্রাকৃতিক স্থান, পর্যটন আকর্ষণ, সাংস্কৃতিক এবং ঐতিহাসিক স্থান, এবং সাইটসিয়িং ও অ্যাডভেঞ্চার ট্রাভেলের জন্য শীর্ষ গন্তব্য আবিষ্কার করুন। আজই আপনার পারফেক্ট বাংলাদেশ ট্যুর প্ল্যান করুন।';
+                ? 'Enjoy fresh Milktea with a variety of flavors and reliable bus services across Chittagong. Experience high-quality drinks, safe and comfortable travel, and excellent customer support with FancyWheel today.'
+                : 'চট্টগ্রামে বিভিন্ন স্বাদের তাজা মিল্কটি এবং নির্ভরযোগ্য বাস সার্ভিস উপভোগ করুন। উচ্চমানের পানীয়, নিরাপদ ও আরামদায়ক যাত্রা এবং চমৎকার গ্রাহক সাপোর্ট উপভোগ করুন ফ্যান্সিওয়েলের সাথে।';
             ?>
         </p>
+
 
         <div class="mt-4" id="hotspot">
             <p class="p-2 rounded-md w-[77px]">

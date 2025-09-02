@@ -6,75 +6,93 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 <html lang="en">
 
 <head>
-  <meta name="robots" content="index, follow">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
   <meta name="google-site-verification" content="KQ_ffol2MIoJcfrqSEKOfToxbgsEPcFj3STGCvUen5U" />
-  <?php include 'head-log.php' ?>
-  <!-- Title for search engines -->
+
+  <?php include 'head-log.php'; ?>
+
+  <!-- Title -->
   <title>
     <?php
     echo $lang === 'en'
-      ? 'Fancy Wheel | Most Beautiful Places in Bangladesh to Visit'
-      : 'Fancy Wheel | Most Beautiful Places in Bangladesh to Visit';
+      ? 'Milktea & Bus Services in Chittagong | Fancy Wheel'
+      : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস | ফ্যানসি হুইল';
     ?>
   </title>
 
-  <!-- Meta Description for SEO -->
+  <!-- Meta Description -->
   <meta name="description" content="<?php
                                     echo $lang === 'en'
-                                      ? 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.'
-                                      : 'Explore the most beautiful places in Bangladesh, including Cox\'s Bazar, Sundarbans, Saint Martin\'s Island, Sajek Valley, Rangamati, Bandarban, and Kuakata.';
+                                      ? 'Enjoy fresh Milktea and reliable bus services in Chittagong. Delicious flavors, high-quality ingredients, and safe, comfortable travel around the city.'
+                                      : 'চট্টগ্রামে তাজা মিল্কটি এবং নির্ভরযোগ্য বাস সার্ভিস উপভোগ করুন। সুস্বাদু স্বাদ, উচ্চমানের উপাদান এবং নিরাপদ, আরামদায়ক যাত্রা।';
                                     ?>">
 
-  <!-- Optional minimal keywords (safe, not overstuffed) -->
+  <!-- Keywords -->
   <meta name="keywords" content="<?php
                                   echo $lang === 'en'
-                                    ? 'fancy wheel,fanci wheel, fanciwheel most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island'
-                                    : 'fancy Wheel, fanci wheel,fanciwheel most beautiful places in Bangladesh, Bangladesh travel, tourist places, Cox\'s Bazar, Sundarbans, Sajek Valley, Saint Martin\'s Island';
+                                    ? 'Milktea, Chittagong bus service, fresh milk tea, best Milktea, safe bus rides, Bangladesh travel'
+                                    : 'মিল্কটি, চট্টগ্রাম বাস সার্ভিস, তাজা মিল্কটি, সেরা মিল্কটি, নিরাপদ বাস যাত্রা, বাংলাদেশ ভ্রমণ';
                                   ?>">
 
-  <link rel="icon" href="https://img.f369w.com/fw/h5/assets/images/icons/PWAicon-192px.png?v=1753166904845"
-    type="image/png">
+  <!-- Favicon -->
+  <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
+
   <!-- Canonical URL -->
   <link rel="canonical" href="https://fanciwheel.com" />
 
-  <!-- Open Graph (for Facebook, LinkedIn, etc.) -->
-  <meta property="og:title" content="Popular Cities in Bangladesh Tour - Explore Top Destinations!" />
-  <meta property="og:description"
-    content="Plan your Bangladesh tour with highlights on Dhaka, Chittagong, Sylhet, and other must-see cities. Get travel guides and tips now." />
+  <!-- Open Graph (Facebook, LinkedIn, etc.) -->
+  <meta property="og:title" content="<?php echo $lang === 'en' ? 'Milktea & Bus Services in Chittagong | Fancy Wheel' : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস | ফ্যানসি হুইল'; ?>" />
+  <meta property="og:description" content="<?php echo $lang === 'en' ? 'Enjoy fresh Milktea and reliable bus services in Chittagong. Delicious flavors, high-quality ingredients, and safe, comfortable travel.' : 'চট্টগ্রামে তাজা মিল্কটি এবং নির্ভরযোগ্য বাস সার্ভিস উপভোগ করুন। সুস্বাদু স্বাদ, উচ্চমানের উপাদান এবং নিরাপদ, আরামদায়ক যাত্রা।'; ?>" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fanciwheel.com" />
-  <meta property="og:image" content="https://fanciwheel.com/" />
+  <meta property="og:image" content="https://fanciwheel.com/image/PWAicon-192px.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Popular Cities in Bangladesh Tour - Explore Top Destinations!" />
-  <meta name="twitter:description"
-    content="Explore the best cities in Bangladesh for your next trip. Travel guides, tips, and more." />
-  <meta name="twitter:image" content="https://fanciwheel.com" />
+  <meta name="twitter:title" content="<?php echo $lang === 'en' ? 'Milktea & Bus Services in Chittagong | Fancy Wheel' : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস | ফ্যানসি হুইল'; ?>" />
+  <meta name="twitter:description" content="<?php echo $lang === 'en' ? 'Fresh Milktea and safe bus services in Chittagong. Enjoy high-quality flavors and comfortable rides.' : 'চট্টগ্রামে তাজা মিল্কটি এবং নিরাপদ বাস সার্ভিস। উচ্চমানের স্বাদ এবং আরামদায়ক যাত্রা উপভোগ করুন।'; ?>" />
+  <meta name="twitter:image" content="https://fanciwheel.com/image/PWAicon-192px.png" />
+
+  <!-- Tailwind CSS -->
   <link href="./dist/output.css" rel="stylesheet">
+
+  <!-- Quill Editor (if needed) -->
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- SweetAlert2 -->
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+
+  <!-- IntlTelInput CSS/JS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Blog post",
+      "@type": "Organization",
       "name": "Fancy Wheel",
       "url": "https://fanciwheel.com",
-      "logo": "https://fanciwheel.com/image/PWAicon-192px.png"
+      "logo": "https://fanciwheel.com/image/PWAicon-192px.png",
+      "sameAs": [
+        "https://www.facebook.com/fanciwheel",
+        "https://twitter.com/fanciwheel",
+        "https://www.instagram.com/fanciwheel/"
+      ]
     }
   </script>
 
-  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics / gtag.js -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -83,12 +101,10 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-
     gtag('config', 'G-98CRLK26X1');
   </script>
-
-
 </head>
+
 
 <style>
   /* Line clamp utilities */
@@ -211,7 +227,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
+
 
 </body>
 

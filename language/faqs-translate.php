@@ -3,86 +3,86 @@
 return [
     'en' => [
         [
-            'question' => 'What is FancyWin?',
-            'answer' => 'FancyWin is a leading online sportsbook and casino offering a wide range of sports betting options, casino games, and promotions.'
+            'question' => 'What is our Milktea shop?',
+            'answer' => 'We serve a variety of fresh Milktea flavors in Bangladesh, including classic milk tea, brown sugar, matcha, fruit teas, and cheese foam specials. Every cup is made with high-quality ingredients.'
         ],
         [
-            'question' => 'Is FancyWin secure and reliable?',
-            'answer' => 'Yes, FancyWin is fully licensed and uses advanced encryption to protect user data and transactions.'
+            'question' => 'Are your Milktea drinks fresh and safe?',
+            'answer' => 'Yes! We use organic tea leaves, fresh milk, and natural flavors to ensure a healthy and delicious experience.'
         ],
         [
-            'question' => 'How do I create an account?',
-            'answer' => 'Click the "Sign Up" button on our homepage, fill in your details, and follow the instructions to activate your account.'
+            'question' => 'Where are your Milktea stores located?',
+            'answer' => 'Our Milktea shop is located in Chittagong, Bangladesh, and we provide delivery services across the city.'
         ],
         [
-            'question' => 'How can I deposit money?',
-            'answer' => 'Log into your account, go to the cashier section, and choose from our secure payment methods to deposit funds.'
+            'question' => 'What bus services do you offer in Chittagong?',
+            'answer' => 'We provide comfortable, safe, and reliable bus services covering popular routes like Agrabad, GEC Circle, New Market, Bahaddarhat, and inter-district terminals.'
         ],
         [
-            'question' => 'How do I withdraw my winnings?',
-            'answer' => 'You can withdraw your winnings through bank transfers, e-wallets, or other supported methods in your region.'
+            'question' => 'How do I book a bus ticket?',
+            'answer' => 'Tickets can be booked online through our website, via phone, WhatsApp, or at our ticket counters in Chittagong.'
         ],
         [
-            'question' => 'Are there any bonuses for new users?',
-            'answer' => 'Yes! New users get a welcome bonus after registering and making their first deposit. Check the promotions page for details.'
+            'question' => 'Do you offer delivery for Milktea?',
+            'answer' => 'Yes, we provide fast and convenient Milktea delivery within Chittagong city.'
         ],
         [
-            'question' => 'Can I play FancyWin games on mobile?',
-            'answer' => 'Absolutely! Our website is mobile-optimized and works on all modern smartphones and tablets.'
+            'question' => 'How can I contact customer support?',
+            'answer' => 'Our support team is available via phone, WhatsApp, and Facebook Messenger for any Milktea or bus ticket inquiries.'
         ],
         [
-            'question' => 'What games are available?',
-            'answer' => 'We offer slots, live casino, sports betting, fishing games, and many more categories from top game providers.'
+            'question' => 'Are your buses safe for long-distance travel?',
+            'answer' => 'Absolutely! Our buses are well-maintained, fully insured, and driven by experienced drivers to ensure safe journeys.'
         ],
         [
-            'question' => 'How do I contact support?',
-            'answer' => 'You can reach our 24/7 support team through live chat, email, or Telegram for quick assistance.'
+            'question' => 'Do you offer special promotions?',
+            'answer' => 'Yes, we frequently offer discounts on Milktea combos and bus tickets. Check our website or social media for current offers.'
         ],
         [
-            'question' => 'Is there a VIP program?',
-            'answer' => 'Yes, FancyWin offers a VIP program with exclusive rewards, cashback offers, and priority customer service for loyal users.'
+            'question' => 'Can I order Milktea and book bus tickets at the same time?',
+            'answer' => 'Yes! You can place Milktea orders and book bus tickets through our website or app seamlessly.'
         ],
     ],
     'bn' => [
         [
-            'question' => 'FancyWin কি?',
-            'answer' => 'FancyWin একটি প্রধান অনলাইন স্পোর্টসবুক এবং ক্যাসিনো যা বিস্তৃত স্পোর্টস বেটিং অপশন, ক্যাসিনো গেম এবং প্রোমোশন অফার করে।'
+            'question' => 'আমাদের মিল্ক টি শপ কি?',
+            'answer' => 'বাংলাদেশে আমরা বিভিন্ন ধরণের তাজা মিল্ক টি সরবরাহ করি, যেমন ক্লাসিক মিল্ক টি, ব্রাউন সুগার, ম্যাচা, ফলের চা এবং চিজ ফোম স্পেশাল। প্রতিটি কাপ মানসম্মত উপাদানে তৈরি।'
         ],
         [
-            'question' => 'FancyWin কি নিরাপদ এবং নির্ভরযোগ্য?',
-            'answer' => 'হ্যাঁ, FancyWin সম্পূর্ণভাবে লাইসেন্সপ্রাপ্ত এবং ব্যবহারকারীর তথ্য ও লেনদেন সুরক্ষিত রাখতে উন্নত এনক্রিপশন ব্যবহার করে।'
+            'question' => 'আপনার মিল্ক টি পানীয় কি তাজা ও নিরাপদ?',
+            'answer' => 'হ্যাঁ! আমরা অর্গানিক চা পাতা, তাজা দুধ এবং প্রাকৃতিক ফ্লেভার ব্যবহার করি, যাতে প্রতিটি পানীয় স্বাস্থ্যকর ও সুস্বাদু হয়।'
         ],
         [
-            'question' => 'কিভাবে আমি একটি অ্যাকাউন্ট তৈরি করব?',
-            'answer' => 'আমাদের হোমপেজে "সাইন আপ" বাটনে ক্লিক করুন, আপনার তথ্য পূরণ করুন এবং অ্যাকাউন্ট সক্রিয় করতে নির্দেশাবলী অনুসরণ করুন।'
+            'question' => 'আপনার মিল্ক টি শপ কোথায় অবস্থিত?',
+            'answer' => 'আমাদের মিল্ক টি শপ চট্টগ্রামে, বাংলাদেশে অবস্থিত এবং আমরা শহরের বিভিন্ন স্থানে ডেলিভারি প্রদান করি।'
         ],
         [
-            'question' => 'আমি কিভাবে টাকা জমা করতে পারি?',
-            'answer' => 'আপনার অ্যাকাউন্টে লগইন করুন, ক্যাশিয়ার বিভাগে যান এবং আমাদের নিরাপদ পেমেন্ট পদ্ধতি থেকে নির্বাচন করুন।'
+            'question' => 'চট্টগ্রামে আপনার বাস সার্ভিস কী ধরনের?',
+            'answer' => 'আমরা আরামদায়ক, নিরাপদ এবং নির্ভরযোগ্য বাস সার্ভিস প্রদান করি। প্রধান রুটগুলোর মধ্যে রয়েছে আগ্রাবাদ, জিইসি মোড়, নিউ মার্কেট, বহদ্দারহাট এবং আন্তঃজেলা টার্মিনাল।'
         ],
         [
-            'question' => 'আমি কিভাবে আমার জেতা টাকা তুলব?',
-            'answer' => 'আপনি আপনার জেতা টাকা ব্যাঙ্ক ট্রান্সফার, ই-ওয়ালেট বা আপনার অঞ্চলের অন্যান্য সমর্থিত পদ্ধতির মাধ্যমে উত্তোলন করতে পারেন।'
+            'question' => 'আমি কিভাবে বাসের টিকিট বুক করব?',
+            'answer' => 'টিকিট অনলাইনে আমাদের ওয়েবসাইট, ফোন, হোয়াটসঅ্যাপ অথবা চট্টগ্রামের টিকিট কাউন্টারে বুক করা যায়।'
         ],
         [
-            'question' => 'নতুন ব্যবহারকারীদের জন্য কোনো বোনাস আছে কি?',
-            'answer' => 'হ্যাঁ! নতুন ব্যবহারকারীরা রেজিস্ট্রেশন এবং প্রথম জমার পর ওয়েলকাম বোনাস পায়। বিস্তারিত জন্য প্রোমোশন পেজ দেখুন।'
+            'question' => 'আপনারা কি মিল্ক টি ডেলিভারি করেন?',
+            'answer' => 'হ্যাঁ, আমরা চট্টগ্রাম শহরে দ্রুত এবং সুবিধাজনক মিল্ক টি ডেলিভারি প্রদান করি।'
         ],
         [
-            'question' => 'আমি কি মোবাইলে FancyWin গেম খেলতে পারি?',
-            'answer' => 'অবশ্যই! আমাদের ওয়েবসাইট মোবাইল-অপ্টিমাইজড এবং সকল আধুনিক স্মার্টফোন এবং ট্যাবলেটে কাজ করে।'
+            'question' => 'আমি কিভাবে গ্রাহক সাপোর্টের সাথে যোগাযোগ করব?',
+            'answer' => 'মিল্ক টি অর্ডার বা বাস টিকিট সংক্রান্ত যেকোনো প্রশ্নের জন্য আমাদের সাপোর্ট টিম ফোন, হোয়াটসঅ্যাপ এবং ফেসবুক মেসেঞ্জারের মাধ্যমে উপলব্ধ।'
         ],
         [
-            'question' => 'কোন কোন গেম উপলব্ধ?',
-            'answer' => 'আমরা স্লট, লাইভ ক্যাসিনো, স্পোর্টস বেটিং, ফিশিং গেম এবং শীর্ষ গেম প্রদানকারীদের আরও অনেক ক্যাটাগরি অফার করি।'
+            'question' => 'দূরপাল্লার যাত্রার জন্য আপনার বাস কি নিরাপদ?',
+            'answer' => 'অবশ্যই! আমাদের বাসগুলো ভালভাবে রক্ষণাবেক্ষণ করা, সম্পূর্ণ বীমা আছে এবং অভিজ্ঞ ড্রাইভার দ্বারা চালিত, যাতে নিরাপদ যাত্রা নিশ্চিত হয়।'
         ],
         [
-            'question' => 'আমি কিভাবে সাপোর্টের সাথে যোগাযোগ করব?',
-            'answer' => 'আপনি দ্রুত সহায়তার জন্য আমাদের ২৪/৭ সাপোর্ট টিমের সাথে লাইভ চ্যাট, ইমেইল বা টেলিগ্রামের মাধ্যমে যোগাযোগ করতে পারেন।'
+            'question' => 'আপনারা কি বিশেষ প্রোমোশন অফার করেন?',
+            'answer' => 'হ্যাঁ, আমরা নিয়মিত মিল্ক টি কম্বো এবং বাস টিকিটে ডিসকাউন্ট অফার করি। বর্তমান অফারের জন্য আমাদের ওয়েবসাইট বা সোশ্যাল মিডিয়া দেখুন।'
         ],
         [
-            'question' => 'কি কি ভিআইপি প্রোগ্রাম আছে?',
-            'answer' => 'হ্যাঁ, FancyWin একটি ভিআইপি প্রোগ্রাম অফার করে যার মধ্যে রয়েছে এক্সক্লুসিভ রিওয়ার্ড, ক্যাশব্যাক অফার এবং বিশ্বস্ত ব্যবহারকারীদের জন্য অগ্রাধিকার সাপোর্ট।'
+            'question' => 'আমি কি একসাথে মিল্ক টি অর্ডার এবং বাস টিকিট বুক করতে পারি?',
+            'answer' => 'হ্যাঁ! আপনি আমাদের ওয়েবসাইট বা অ্যাপের মাধ্যমে মিল্ক টি অর্ডার এবং বাস টিকিট Seamlessly বুক করতে পারেন।'
         ],
     ]
 ];

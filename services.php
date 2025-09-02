@@ -2,26 +2,69 @@
 
 <?php
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
+
 $servicesTexts = [
     'en' => [
-        'title' => 'Fancywheel Casino Services',
-        'subtitle' => 'Trusted Online Gaming | Real Money Wins | 24/7 Support',
-        'games' => ['🎮 Variety of Casino Games', 'Fancywin offers an exciting collection of real-money games including slot machines, live dealer games, roulette, blackjack, baccarat, and poker. Our games are fair, fast, and compatible with both mobile and desktop.'],
-        'payments' => ['💳 Secure Payment Methods', 'We support fast, secure deposits and withdrawals through local wallets, bank transfers, and crypto (USDT). Every transaction is encrypted for your protection. Get your winnings instantly!'],
-        'support' => ['📞 24/7 Customer Support', 'Our dedicated support team is available 24/7 via live chat, email, and Telegram to help you resolve issues fast — whether it’s about gameplay, transactions, or your account.'],
-        'bonuses' => ['🎁 Exclusive Bonuses & Promotions', 'New players enjoy a generous welcome bonus, and regular promotions include free spins, cashback offers, and deposit matches. With Fancywin, every day is a chance to win more.'],
-        'withdrawals' => ['🔄 Instant Withdrawals', 'Fancywin ensures ultra-fast withdrawals with zero hassle. Your winnings are yours — request payouts anytime, and receive funds within minutes.']
+        'title' => 'Milktea & Chittagong Bus Services',
+        'subtitle' => 'Fresh Milktea in Bangladesh | Comfortable Bus Rides in Chittagong',
+
+        'milktea' => [
+            '🧋 Delicious Milktea Flavors',
+            'Our Milktea shop in Bangladesh serves a variety of refreshing flavors like classic milk tea, brown sugar, matcha, fruit teas, and cheese foam specials. Every cup is made fresh with high-quality ingredients.'
+        ],
+
+        'quality' => [
+            '🌱 Fresh & Premium Ingredients',
+            'We use organic tea leaves, fresh milk, and natural flavors to ensure a healthy and delicious experience. No compromise on taste and quality.'
+        ],
+
+        'bus_services' => [
+            '🚌 Comfortable Bus Services in Chittagong',
+            'Our buses in Chittagong provide reliable, safe, and affordable transportation. Whether you are traveling to the city center, nearby towns, or long-distance routes, our buses are on time and comfortable.'
+        ],
+
+        'routes' => [
+            '📍 Popular Routes',
+            'Our Chittagong bus routes cover major destinations including Agrabad, GEC Circle, New Market, Bahaddarhat, and the Inter-District terminals.'
+        ],
+
+        'support' => [
+            '📞 Customer Support',
+            'For both Milktea orders and Bus ticket inquiries, our support team is available via phone, WhatsApp, and Facebook Messenger.'
+        ]
     ],
+
     'bn' => [
-        'title' => 'ফ্যান্সিওয়েল ক্যাসিনো সেবা',
-        'subtitle' => 'নির্ভরযোগ্য অনলাইন গেমিং | রিয়েল মানি জিতুন | ২৪/৭ সাপোর্ট',
-        'games' => ['🎮 বিভিন্ন ধরণের ক্যাসিনো গেম', 'ফ্যান্সিওয়েল রিয়েল মানির গেমের একটি উত্তেজনাপূর্ণ সংগ্রহ প্রদান করে, যেমন স্লট মেশিন, লাইভ ডিলার, রুলেট, ব্ল্যাকজ্যাক, ব্যাকারাট এবং পোকার। আমাদের গেমগুলো দ্রুত, সুষ্ঠু এবং মোবাইল ও ডেস্কটপের সাথে সামঞ্জস্যপূর্ণ।'],
-        'payments' => ['💳 নিরাপদ পেমেন্ট পদ্ধতি', 'আমরা স্থানীয় ওয়ালেট, ব্যাংক ট্রান্সফার এবং ক্রিপ্টো (USDT) মাধ্যমে দ্রুত ও নিরাপদ জমা এবং উত্তোলন সমর্থন করি। প্রতিটি লেনদেন আপনার সুরক্ষার জন্য এনক্রিপ্ট করা হয়েছে। আপনার জয়কৃত অর্থ দ্রুত পান!'],
-        'support' => ['📞 ২৪/৭ গ্রাহক সহায়তা', 'আমাদের নিবেদিত সাপোর্ট দল লাইভ চ্যাট, ইমেল এবং টেলিগ্রামের মাধ্যমে ২৪/৭ উপলব্ধ, দ্রুত সমস্যা সমাধানে সাহায্য করতে।'],
-        'bonuses' => ['🎁 এক্সক্লুসিভ বোনাস এবং প্রমোশন', 'নতুন খেলোয়াড়রা উদার ওয়েলকাম বোনাস উপভোগ করেন, এবং নিয়মিত প্রমোশনগুলিতে ফ্রি স্পিন, ক্যাশব্যাক অফার এবং ডিপোজিট ম্যাচ অন্তর্ভুক্ত থাকে। ফ্যান্সিওয়েল-এ প্রতিটি দিন আরও জেতার সুযোগ।'],
-        'withdrawals' => ['🔄 তাৎক্ষণিক উত্তোলন', 'ফ্যান্সিওয়েল অত্যন্ত দ্রুত উত্তোলন নিশ্চিত করে, কোনো ঝামেলা ছাড়া। আপনার জয়কৃত অর্থ আপনারই — যে কোনো সময় অর্থ উত্তোলনের অনুরোধ করুন এবং মিনিটের মধ্যে পান।']
+        'title' => 'মিল্ক টি ও চট্টগ্রামের বাস সার্ভিস',
+        'subtitle' => 'বাংলাদেশে তাজা মিল্ক টি | আরামদায়ক চট্টগ্রাম বাস সার্ভিস',
+
+        'milktea' => [
+            '🧋 সুস্বাদু মিল্ক টি',
+            'বাংলাদেশে আমাদের মিল্ক টি স্টোরে পাবেন বিভিন্ন স্বাদের মিল্ক টি – ক্লাসিক, ব্রাউন সুগার, ম্যাচা, ফলের চা এবং চিজ ফোম স্পেশাল। প্রতিটি কাপ তাজা ও মানসম্মত উপাদানে তৈরি।'
+        ],
+
+        'quality' => [
+            '🌱 তাজা ও প্রিমিয়াম উপাদান',
+            'আমরা ব্যবহার করি অর্গানিক চা পাতা, তাজা দুধ এবং প্রাকৃতিক ফ্লেভার, যাতে প্রতিটি পানীয় হয় স্বাস্থ্যকর ও সুস্বাদু।'
+        ],
+
+        'bus_services' => [
+            '🚌 চট্টগ্রামে আরামদায়ক বাস সার্ভিস',
+            'চট্টগ্রামে আমাদের বাসগুলো নিরাপদ, নির্ভরযোগ্য এবং সাশ্রয়ী পরিবহন সেবা প্রদান করে। শহরের ভেতর কিংবা দূরপাল্লার যাত্রা – সব জায়গায় সময়মতো আরামদায়ক যাতায়াত নিশ্চিত করা হয়।'
+        ],
+
+        'routes' => [
+            '📍 জনপ্রিয় রুট',
+            'আমাদের বাস রুটগুলোর মধ্যে রয়েছে আগ্রাবাদ, জিইসি মোড়, নিউ মার্কেট, বহদ্দারহাট এবং আন্তঃজেলা বাস টার্মিনাল।'
+        ],
+
+        'support' => [
+            '📞 গ্রাহক সহায়তা',
+            'মিল্ক টি অর্ডার অথবা বাস টিকিট সংক্রান্ত যেকোনো প্রশ্নের জন্য আমাদের টিম ফোন, হোয়াটসঅ্যাপ এবং ফেসবুক মেসেঞ্জারে সর্বদা প্রস্তুত।'
+        ]
     ]
 ];
+
 
 $texts = $servicesTexts[$lang];
 ?>
@@ -30,32 +73,57 @@ $texts = $servicesTexts[$lang];
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Primary Meta Tags -->
-    <title><?php echo $lang === 'en' ? 'Fancywheel - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support' : 'ফ্যান্সিহুইল - বিশ্বস্ত অনলাইন ক্যাসিনো | বড় জয়, দ্রুত অর্থপ্রদান, 24/7 সহায়তা'; ?></title>
+    <meta name="language" content="<?= $lang === 'en' ? 'English' : 'Bangla' ?>">
+    <meta name="author" content="MilkTea & Bus Services">
 
-    <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
-    <meta name="title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
-    <meta name="description" content="<?php echo $lang === 'en' ? 'Play at Fancywin – the trusted online casino with secure payments, instant withdrawals, exciting bonuses, and real money wins. Join now & start winning!' : 'ফ্যান্সিউইন-এ খেলুন - নিরাপদ পেমেন্ট, তাৎক্ষণিক উত্তোলন, উত্তেজনাপূর্ণ বোনাস এবং আসল অর্থ জয়ের সাথে বিশ্বস্ত অনলাইন ক্যাসিনো। এখনই যোগদান করুন এবং জেতা শুরু করুন!'; ?>">
-    <meta name="keywords" content="Fancywin, online casino, win real money, fast withdrawal, secure payments, casino bonuses, slots, live dealer, 24/7 support">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
-    <meta name="author" content="Fancywin">
+    <!-- Dynamic Title -->
+    <title>
+        <?= $lang === 'en'
+            ? 'Services'
+            : 'সেবা' ?>
+    </title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="<?= $lang === 'en'
+                                            ? 'Enjoy fresh Milktea in Bangladesh and safe, comfortable bus rides in Chittagong. Fast delivery, tasty drinks, and reliable transport services.'
+                                            : 'বাংলাদেশে তাজা মিল্ক টি উপভোগ করুন এবং চট্টগ্রামে নিরাপদ ও আরামদায়ক বাস যাত্রা। দ্রুত ডেলিভারি, সুস্বাদু পানীয়, এবং নির্ভরযোগ্য পরিবহন।' ?>">
+
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="<?= $lang === 'en'
+                                        ? 'Milktea, Bangladesh, Chittagong bus, fresh drinks, boba tea, bus routes, delivery, travel'
+                                        : 'মিল্ক টি, বাংলাদেশ, চট্টগ্রাম বাস, তাজা পানীয়, বোবা চা, বাস রুট, ডেলিভারি, ভ্রমণ' ?>">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fanciwheel.com/">
-    <meta property="og:title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
-    <meta property="og:description" content="Join Fancywin today and enjoy secure online gaming, fast payouts, and 24/7 customer support.">
-    <meta property="og:image" content="https://fancywheel.com/images/og-banner.jpg">
+    <meta property="og:title" content="<?= $lang === 'en'
+                                            ? 'Milktea & Chittagong Bus Services | Fresh Drinks & Comfortable Rides'
+                                            : 'মিল্ক টি ও চট্টগ্রামের বাস সার্ভিস | তাজা পানীয় ও আরামদায়ক যাত্রা' ?>">
+    <meta property="og:description" content="<?= $lang === 'en'
+                                                    ? 'Discover fresh Milktea flavors and reliable bus services in Chittagong. Order online or book your bus now!'
+                                                    : 'চট্টগ্রামে তাজা মিল্ক টি এবং নির্ভরযোগ্য বাস সার্ভিস আবিষ্কার করুন। এখনই অনলাইন অর্ডার বা টিকিট বুক করুন!' ?>">
+    <meta property="og:image" content="https://fanciwheel.com/images/og-milktea-bus.jpg">
+
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://fancywheel.com/">
-    <meta property="twitter:title" content="Fancywin - Trusted Online Casino | Big Wins, Fast Payments, 24/7 Support">
-    <meta property="twitter:description" content="Play real money games and withdraw instantly at Fancywin. Safe, licensed, and available 24/7.">
-    <meta property="twitter:image" content="https://fancywheel.com/images/og-banner.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://fanciwheel.com/">
+    <meta name="twitter:title" content="<?= $lang === 'en'
+                                            ? 'Milktea & Chittagong Bus Services | Fresh Drinks & Comfortable Rides'
+                                            : 'মিল্ক টি ও চট্টগ্রামের বাস সার্ভিস | তাজা পানীয় ও আরামদায়ক যাত্রা' ?>">
+    <meta name="twitter:description" content="<?= $lang === 'en'
+                                                    ? 'Enjoy fresh Milktea and safe, comfortable bus rides in Chittagong. Order online or book your ride today!'
+                                                    : 'চট্টগ্রামে তাজা মিল্ক টি এবং নিরাপদ, আরামদায়ক বাস যাত্রা উপভোগ করুন। এখনই অর্ডার বা বুক করুন!' ?>">
+    <meta name="twitter:image" content="https://fanciwheel.com/images/og-milktea-bus.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="./dist/output.css">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
     <script>
@@ -65,10 +133,10 @@ $texts = $servicesTexts[$lang];
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-
         gtag('config', 'G-98CRLK26X1');
     </script>
 </head>
+
 
 <body class="bg-gray-900 text-white">
     <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
@@ -80,22 +148,34 @@ $texts = $servicesTexts[$lang];
     include 'loading.php'
     ?>
     <?php include 'scroll-top-button.php'; ?>
-    <main class="px-6 py-12 max-w-6xl mx-auto">
+    <main class="max-w-4xl mx-auto px-4 py-12">
         <div class="mb-5">
             <h1 class="text-3xl font-bold text-red-600"><?= $texts['title'] ?></h1>
             <p class="text-lg mt-2"><?= $texts['subtitle'] ?></p>
         </div>
 
-        <!-- Games -->
+        <!-- Milktea -->
         <section class="mb-5">
-            <h2 class="text-2xl font-semibold mb-4"><?= $texts['games'][0] ?></h2>
-            <p class="text-gray-300"><?= $texts['games'][1] ?></p>
+            <h2 class="text-2xl font-semibold mb-4"><?= $texts['milktea'][0] ?></h2>
+            <p class="text-gray-300"><?= $texts['milktea'][1] ?></p>
         </section>
 
-        <!-- Payments -->
+        <!-- Quality -->
         <section class="mb-5">
-            <h2 class="text-2xl font-semibold mb-4"><?= $texts['payments'][0] ?></h2>
-            <p class="text-gray-300"><?= $texts['payments'][1] ?></p>
+            <h2 class="text-2xl font-semibold mb-4"><?= $texts['quality'][0] ?></h2>
+            <p class="text-gray-300"><?= $texts['quality'][1] ?></p>
+        </section>
+
+        <!-- Bus Services -->
+        <section class="mb-5">
+            <h2 class="text-2xl font-semibold mb-4"><?= $texts['bus_services'][0] ?></h2>
+            <p class="text-gray-300"><?= $texts['bus_services'][1] ?></p>
+        </section>
+
+        <!-- Routes -->
+        <section class="mb-5">
+            <h2 class="text-2xl font-semibold mb-4"><?= $texts['routes'][0] ?></h2>
+            <p class="text-gray-300"><?= $texts['routes'][1] ?></p>
         </section>
 
         <!-- Support -->
@@ -103,19 +183,8 @@ $texts = $servicesTexts[$lang];
             <h2 class="text-2xl font-semibold mb-4"><?= $texts['support'][0] ?></h2>
             <p class="text-gray-300"><?= $texts['support'][1] ?></p>
         </section>
-
-        <!-- Bonuses -->
-        <section class="mb-5">
-            <h2 class="text-2xl font-semibold mb-4"><?= $texts['bonuses'][0] ?></h2>
-            <p class="text-gray-300"><?= $texts['bonuses'][1] ?></p>
-        </section>
-
-        <!-- Withdrawals -->
-        <section class="mb-5">
-            <h2 class="text-2xl font-semibold mb-4"><?= $texts['withdrawals'][0] ?></h2>
-            <p class="text-gray-300"><?= $texts['withdrawals'][1] ?></p>
-        </section>
     </main>
+
 
     <?php
     include 'footer.php'
