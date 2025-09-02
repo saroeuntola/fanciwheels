@@ -32,6 +32,7 @@ $translations = [
         line-height: 0;
         color: #333;
         transition: color 0.3s ease;
+        z-index: 1000;
     }
 
     .close-icon:hover {
