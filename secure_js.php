@@ -1,6 +1,6 @@
 <?php
 
-$allowed_hosts = ['fanciwheel.com', 'www.fanciwheel.com', 'localhost', '127.0.0.1'];
+$allowed_hosts = ['fanciwheel.com', 'www.fanciwheel.com', 'localhost', '127.0.0.1', 'fancywheel:8080'];
 
 $host = $_SERVER['HTTP_HOST'] ?? '';
 if (!in_array($host, $allowed_hosts)) {

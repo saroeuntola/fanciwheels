@@ -1,5 +1,13 @@
 const phoneInput = document.querySelector("#phone");
 const phoneInput1 = document.querySelector("#phone1");
+const API_BASE = window.APP_CONFIG?.API_URL || "";
+if (!API_BASE) {
+  Swal.fire({
+    icon: "error",
+    title: "Configuration Error",
+    text: "API URL not set!",
+  });
+}
 
 // First phone input
 const iti = window.intlTelInput(phoneInput, {
@@ -38,7 +46,7 @@ document.querySelector("#registerForm").addEventListener("submit", async (e) => 
     }
 
     try {
-        const response = await fetch("https://fanciwheel.com/admin/page/api/create_player", {
+        const response = await fetch(API_BASE + "create_player", {
             method: "POST",
             body: new URLSearchParams({
                 name,
@@ -51,21 +59,21 @@ document.querySelector("#registerForm").addEventListener("submit", async (e) => 
         });
 
         const data = await response.json();
-        if (data.success) {
-            Swal.fire({
-                icon: "success",
-                title: `Welcome, ${data.player.name}!`,
-                text: "Registration successful.",
-            }).then(() => {
-                window.open("spin.php");
-            });
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Registration Failed",
-                text: data.message || "Failed to register."
-            });
-        }
+         if (data.success) {
+           Swal.fire({
+             icon: "success",
+             title: "Registration Successful",
+             text: "Our customer will contact you soon.",
+             confirmButtonText: "OK",
+           });
+         } else {
+           Swal.fire({
+             icon: "error",
+             title: "Registration Failed",
+             text: data.message || "Failed to register.",
+             confirmButtonText: "OK",
+           });
+         }
     } catch (error) {
         Swal.fire({
             icon: "error",
@@ -97,39 +105,41 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
     }
 
     try {
-        const response = await fetch("https://fanciwheel.com/admin/page/api/create_player", {
-            method: "POST",
-            body: new URLSearchParams({
-                name,
-                gmail,
-                phone1
-            }),
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
+        const response = await fetch(API_BASE + "create_player", {
+          method: "POST",
+          body: new URLSearchParams({
+            name,
+            gmail,
+            phone1,
+          }),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
         });
 
         const data = await response.json();
         if (data.success) {
-            Swal.fire({
-                icon: "success",
-                title: `Welcome, ${data.player.name}!`,
-                text: "Registration successful.",
-            }).then(() => {
-                window.open("spin.php");
-            });
+          Swal.fire({
+            icon: "success",
+            title: "Registration Successful",
+            text: "Our customer will contact you soon.",
+            confirmButtonText: "OK",
+          });
         } else {
-            Swal.fire({
-                icon: "error",
-                title: "Registration Failed",
-                text: data.message || "Failed to register."
-            });
+          Swal.fire({
+            icon: "error",
+            title: "Registration Failed",
+            text: data.message || "Failed to register.",
+            confirmButtonText: "OK",
+          });
         }
+
     } catch (error) {
         Swal.fire({
             icon: "error",
             title: "Server Error",
             text: "An error occurred during registration."
+            
         });
         console.error(error);
     }

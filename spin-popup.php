@@ -1,4 +1,5 @@
 <?php
+include './config/baseURL.php';
 $translations = [
     'en' => [
         'spinMessage' => 'Your Spin Time is Enough!',
@@ -136,7 +137,7 @@ $translations = [
     }
 
     #spinBtn:hover {
-        background-color: #1400AD;
+        background-color: #C4472B;
         transition: 500ms;
         color: white;
 
@@ -177,7 +178,7 @@ $translations = [
 
     @media (max-width: 600px) {
         #spinWheelModal .popup {
-   
+
             padding: 10px;
             /* smaller padding for mobile */
         }
@@ -260,8 +261,9 @@ $translations = [
             <!-- Registration Form -->
             <form id="registerForm" class="space-y-6">
                 <h3 class="text-sm font-bold text-yellow-400 text-center">
-                    <?= $lang === 'en' ? 'Resigter Now!' : 'এখন নিবন্ধন করুন!' ?> <br>
-                    <?= $lang === 'en' ? 'New player free 100$ to play game.' : 'নতুন খেলোয়াড়দের জন্য গেমটি খেলতে বিনামূল্যে ১০০ ডলার।' ?>
+                    <?= $lang === 'en'
+                        ? 'Sign up today to collect your win and unlock extra spin chances!'
+                        : 'আজই নিবন্ধন করুন, আপনার জয়ের পুরস্কার সংগ্রহ করুন এবং অতিরিক্ত স্পিনের সুযোগ আনলক করুন!' ?>
                 </h3>
                 <div>
                     <input type="text" id="name" name="name" required
@@ -285,7 +287,7 @@ $translations = [
 
                 <button type="submit"
                     class="w-full bg-yellow-400 text-gray-900 font-semibold py-3 rounded-lg hover:bg-yellow-500 transition">
-                    <?= $lang === 'en' ? 'Login' : 'লগইন করুন' ?>
+                    <?= $lang === 'en' ? 'Sign up' : 'লগইন করুন' ?>
                 </button>
             </form>
         </div>
@@ -308,8 +310,10 @@ $translations = [
             <form id="registerForm1" class="space-y-6">
                 <h3 class="text-sm font-bold text-yellow-400 text-center">
                     <?= $lang === 'en' ? 'Your Spin Time is Enough!' : 'তোমার স্পিন টাইম যথেষ্ট!' ?>
-                    <br><?= $lang === 'en' ? 'Please Register to play game.' : 'গেমটি খেলতে অনুগ্রহ করে নিবন্ধন করুন' ?>
+                    <br>
+                    <?= $lang === 'en' ? 'Please register now, it\'s free!' : 'গেমটি খেলতে অনুগ্রহ করে এখনই নিবন্ধন করুন, এটি সম্পূর্ণ ফ্রি!' ?>
                 </h3>
+
                 <div>
                     <input type="text" id="name" name="name" required
                         placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
@@ -332,13 +336,18 @@ $translations = [
 
                 <button type="submit"
                     class="w-full bg-yellow-400 text-gray-900 font-semibold py-3 rounded-lg hover:bg-yellow-500 transition">
-                    <?= $lang === 'en' ? 'Login' : 'লগইন করুন' ?>
+                    <?= $lang === 'en' ? 'Sing Up' : 'লগইন করুন' ?>
                 </button>
             </form>
         </div>
     </div>
 </body>
 
+<script>
+    window.APP_CONFIG = {
+        API_URL: "<?= $apiBaseURL ?>"
+    };
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="module" src="secure_js.php?file=script.js"></script>
 <script>
