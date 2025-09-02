@@ -5,7 +5,8 @@ function navLink($page, $label, $lang, $currentPage, $currentId)
         '/' => '/',
         'services' => 'services',
         'about' => 'about',
-        'faq' => 'faq'
+        'faq' => 'faq',
+        'contact'=>'contact'
     ];
 
     $targetFile = $pageMap[$page] ?? '';

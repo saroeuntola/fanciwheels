@@ -42,7 +42,8 @@ $menu = [
   'about' => $lang === 'en' ? 'About' : 'সম্পর্কে',
   'faq' => $lang === 'en' ? 'FAQs' : 'FAQs',
   'join' => $lang === 'en' ? 'Join Now' : 'যোগদান করুন',
-  'search' => $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...'
+  'search' => $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...',
+  'contact' => $lang === 'en' ? 'Contact' : 'যোগাযোগ'
 ];
 
 $languageNames = [
@@ -134,6 +135,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
             <?= navLink('services', $menu['services'], $lang, $currentPage, $currentId) ?>
             <?= navLink('about', $menu['about'], $lang, $currentPage, $currentId) ?>
             <?= navLink('faq', $menu['faq'], $lang, $currentPage, $currentId) ?>
+            <?= navLink('contact', $menu['contact'], $lang, $currentPage, $currentId) ?>
           </nav>
 
           <!-- Search -->
@@ -202,6 +204,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
       <?= navLink('services', $menu['services'], $lang, $currentPage, $currentId) ?>
       <?= navLink('about', $menu['about'], $lang, $currentPage, $currentId) ?>
       <?= navLink('faq', $menu['faq'], $lang, $currentPage, $currentId) ?>
+      <?= navLink('contact', $menu['contact'], $lang, $currentPage, $currentId) ?>
     </div>
 
   </div>
@@ -262,7 +265,8 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     const $searchModal = $('#searchModal');
     const $searchInput = $('#search-box');
     const $searchResults = $('#search-results');
-    const API_URL = "<?= $apiBaseURL?>search_api";
+    const API_URL = "<?= $apiBaseURL ?>search_api";
+
     function openSearchModal() {
       $searchModal.removeClass('hidden');
       $searchInput.focus();
