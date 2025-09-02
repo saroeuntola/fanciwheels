@@ -2,12 +2,12 @@
 include './admin/page/library/users_lib.php';
 include './admin/page/library/brand_lib.php';
 include 'helpers.php';
+include './config/baseURL.php';
 
 $auth = new User();
 $brand = new Brand();
 $username = $_SESSION['username'] ?? '';
 $userId = $_SESSION['user_id'] ?? null;
-
 $brandList = $brand->getBrand();
 $user = null;
 
@@ -262,7 +262,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     const $searchModal = $('#searchModal');
     const $searchInput = $('#search-box');
     const $searchResults = $('#search-results');
-
+    const API_URL = "<?= $apiBaseURL?>search_api";
     function openSearchModal() {
       $searchModal.removeClass('hidden');
       $searchInput.focus();
@@ -291,7 +291,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 
       $('#search-loading').removeClass('hidden');
 
-      $.getJSON('http://fancywheel:8080/admin/page/api/search_api', {
+      $.getJSON(API_URL, {
           q: query,
           lang: '<?= $lang ?>'
         })
