@@ -232,7 +232,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
             <svg class="w-5 h-5 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2 5a2 2 0 012-2h2.586a1 1 0 01.707.293l1.414 1.414A2 2 0 0010 5h6a2 2 0 012 2v8a2 2 0 01-2 2h-6a2 2 0 00-1.293.293l-1.414 1.414A1 1 0 015.586 19H4a2 2 0 01-2-2V5z" />
             </svg>
-            <?= $lang === 'en' ? 'Popular Posts' : 'জনপ্রিয় পোস্ট' ?>
+            <?= $lang === 'en' ? 'Latest Posts' : 'শেষ পোস্ট' ?>
           </h3>
           <div class="space-y-4">
             <?php foreach (array_slice($popularGames, 0, 6) as $popular): ?>
