@@ -70,7 +70,7 @@ $texts = $servicesTexts[$lang];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= $lang ?>">
 
 <head>
     <meta charset="UTF-8">

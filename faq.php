@@ -10,7 +10,7 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= $lang ?>">
 
 <head>
   <?php include 'head-log.php' ?>

@@ -9,8 +9,7 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="<?= $lang ?>">
 <head>
   <?php include 'head-log.php'; ?>
   <meta charset="UTF-8" />
