@@ -65,7 +65,10 @@ document.querySelector("#registerForm").addEventListener("submit", async (e) => 
              title: "Registration Successful",
              text: "Our customer will contact you soon.",
              confirmButtonText: "OK",
-           });
+            }).then(() => {
+      
+    document.getElementById("registerForm").reset();
+  });
          } else {
            Swal.fire({
              icon: "error",
@@ -93,7 +96,7 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
     const formData = new FormData(e.target);
     const name = formData.get("name").trim();
     const gmail = formData.get("gmail").trim();
-    const phone1 = formData.get("phone1").trim();
+    const phone = formData.get("phone").trim();
 
     if (!name || !gmail) {
         Swal.fire({
@@ -110,7 +113,7 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
           body: new URLSearchParams({
             name,
             gmail,
-            phone1,
+            phone,
           }),
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -124,6 +127,8 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
             title: "Registration Successful",
             text: "Our customer will contact you soon.",
             confirmButtonText: "OK",
+          }).then(() => {
+            document.getElementById("registerForm1").reset();
           });
         } else {
           Swal.fire({
@@ -131,7 +136,8 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
             title: "Registration Failed",
             text: data.message || "Failed to register.",
             confirmButtonText: "OK",
-          });
+          });  
+          
         }
 
     } catch (error) {

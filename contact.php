@@ -5,12 +5,11 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="<?= $lang === 'en' ? 'en' : 'bn' ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Fancy Wheel</title>
+    <title><? $lang === 'en' ? 'Contact us' : 'আমাদের সাথে যোগাযোগ করুন'?> | Fancy Wheel</title>
     <meta name="description" content="Contact us for inquiries, support, or collaboration. Connect with us on Facebook, Telegram, or our website.">
     <meta name="keywords" content="Contact, Support, Facebook, Telegram, Fancy Wheel">
     <meta name="author" content="Fancy Wheel">
@@ -51,8 +50,8 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
                 <label for="message" class="block font-medium mb-1"><?= $lang === 'en' ? 'Message' : 'বার্তা' ?></label>
                 <textarea id="message" name="message" rows="5" class="w-full border border-gray-600 rounded px-3 py-2 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="<?= $lang === 'en' ? 'Your Massage' : 'তোমার বার্তা' ?>"></textarea>
             </div>
-            <button class="bg-red-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600 transition-colors">
-                Send Message
+            <button class=" text-white font-semibold px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600">
+                <?= $lang === 'en' ? 'Send Message' : 'বার্তা পাঠান' ?>
             </button>
         </form>
     </section>

@@ -31,15 +31,9 @@ $translations = [
         cursor: pointer;
         padding: 0;
         line-height: 0;
-        color: #333;
         transition: color 0.3s ease;
         z-index: 1000;
     }
-
-    .close-icon:hover {
-        color: #f00;
-    }
-
     /* Spin Wheel Modal (no background color) */
     #spinWheelModal {
         position: fixed;
@@ -108,15 +102,12 @@ $translations = [
     }
 
     #spinCountDisplay {
-        color: wheat;
-        background-color: #E3DC24;
         border-radius: 50px;
         width: 50%;
         text-align: center;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #333;
         font-size: 15px;
         margin-top: 120px;
         margin-left: 72px;
@@ -129,19 +120,12 @@ $translations = [
         font-size: 18px;
         width: 100%;
         cursor: pointer;
-        background-color: #E3DC24;
         border-radius: 25px;
         margin-top: 15px;
-        color: #333;
         font-weight: bold;
     }
 
-    #spinBtn:hover {
-        background-color: #C4472B;
-        transition: 500ms;
-        color: white;
 
-    }
 
     /* Result Modal */
     #popupOverlay,
@@ -231,10 +215,10 @@ $translations = [
                 <div class="small-wheel"></div>
                 <div class="wheel" id="wheel"></div>
             </div>
-            <div id="spinCountDisplay"></div>
-            <button id="spinBtn"><?= $lang === 'en' ? 'SPIN' : 'স্পিন' ?></button>
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full" id="spinCountDisplay"></div>
+            <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full" id="spinBtn"><?= $lang === 'en' ? 'SPIN' : 'স্পিন' ?></button>
 
-            <button id="closeModalBtn" class="close-icon" aria-label="Close modal">
+            <button id="closeModalBtn" class="close-icon text-white" aria-label="Close modal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
                     stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -246,10 +230,10 @@ $translations = [
     <!-- Result Popup -->
     <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
         <div
-            class="popup bg-gray-900 rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
+            class="popup bg-gray-800 rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
             <!-- Close Button (X) -->
             <button id="closePopup" aria-label="Close popup"
-                class="absolute top-4 right-4 text-yellow-400 hover:text-yellow-500 focus:outline-none">
+                class="absolute top-0 right-4 p-0 focus:outline-none text-blue-600">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -257,10 +241,10 @@ $translations = [
                 </svg>
             </button>
 
-            <p id="popupMessage" class="text-center text-lg font-semibold mb-6"></p>
+            <p id="popupMessage" class="text-center text-lg font-semibold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"></p>
             <!-- Registration Form -->
             <form id="registerForm" class="space-y-6">
-                <h3 class="text-sm font-bold text-yellow-400 text-center">
+                <h3 class="text-sm font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     <?= $lang === 'en'
                         ? 'Sign up today to collect your win and unlock extra spin chances!'
                         : 'আজই নিবন্ধন করুন, আপনার জয়ের পুরস্কার সংগ্রহ করুন এবং অতিরিক্ত স্পিনের সুযোগ আনলক করুন!' ?>
@@ -268,7 +252,7 @@ $translations = [
                 <div>
                     <input type="text" id="name" name="name" required
                         placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition" />
+                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                 </div>
 
 
@@ -276,17 +260,17 @@ $translations = [
                 <div>
                     <input type="email" id="gmail" name="gmail" required
                         placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition" />
+                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                 </div>
 
                 <div>
                     <input type="tel" id="phone" name="phone"
                         placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition" />
+                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-yellow-400 text-gray-900 font-semibold py-3 rounded-lg hover:bg-yellow-500 transition">
+                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full py-3 transition">
                     <?= $lang === 'en' ? 'Sign up' : 'লগইন করুন' ?>
                 </button>
             </form>
@@ -296,10 +280,10 @@ $translations = [
 
     <div id="popupOverlay1" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
         <div
-            class="popup bg-gray-900 rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
+            class="popup bg-gray-800 rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
             <!-- Close Button (X) -->
             <button id="closePopup1" aria-label="Close popup"
-                class="absolute top-4 right-4 text-yellow-400 hover:text-yellow-500 focus:outline-none">
+                class="absolute top-0 right-4 text-white focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -308,7 +292,7 @@ $translations = [
             </button>
             <!-- Registration Form -->
             <form id="registerForm1" class="space-y-6">
-                <h3 class="text-sm font-bold text-yellow-400 text-center">
+                <h3 class="text-sm font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent text-center">
                     <?= $lang === 'en' ? 'Your Spin Time is Enough!' : 'তোমার স্পিন টাইম যথেষ্ট!' ?>
                     <br>
                     <?= $lang === 'en' ? 'Please register now, it\'s free!' : 'গেমটি খেলতে অনুগ্রহ করে এখনই নিবন্ধন করুন, এটি সম্পূর্ণ ফ্রি!' ?>
@@ -317,7 +301,7 @@ $translations = [
                 <div>
                     <input type="text" id="name" name="name" required
                         placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition" />
+                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                 </div>
 
 
@@ -325,17 +309,17 @@ $translations = [
                 <div>
                     <input type="email" id="gmail" name="gmail" required
                         placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition" />
+                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                 </div>
 
                 <div>
                     <input type="tel" id="phone1" name="phone"
                         placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition" />
+                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-yellow-400 text-gray-900 font-semibold py-3 rounded-lg hover:bg-yellow-500 transition">
+                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full py-3 transition">
                     <?= $lang === 'en' ? 'Sing Up' : 'লগইন করুন' ?>
                 </button>
             </form>

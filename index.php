@@ -18,7 +18,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <?php
     echo $lang === 'en'
       ? 'Milktea & Bus Services in Chittagong | Fancy Wheel'
-      : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস | ফ্যানসি হুইল';
+      : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস | Fancy Wheel';
     ?>
   </title>
 

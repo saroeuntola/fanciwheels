@@ -181,7 +181,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
                 </svg>
               </button>
               <div id="profileDropdown" class="absolute right-0 mt-2 w-48 bg-slate-800/95 backdrop-blur-lg border border-slate-700/50 text-white rounded-xl shadow-2xl hidden z-[9999] overflow-hidden">
-                <a href="<?= $baseURL ?>/admin/page/user/profile.php" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-700/50">Profile</a>
+                <a href="/admin/page/user/profile" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-700/50">Profile</a>
                 <a href="logout.php" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10">Logout</a>
               </div>
             </div>
