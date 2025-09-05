@@ -1,28 +1,5 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 <style>
-    #privacyModal {
-        color: black
-    }
-
-    #privacyModal h1,
-    h2,
-    h3 {
-        color: red;
-        font-weight: bold;
-    }
-
-    #privacyModal h1 {
-        font-size: 25px;
-    }
-
-    #privacyModal h3 {
-        margin-top: 30px;
-    }
-
-    p {
-        margin-bottom: 15px;
-    }
-
     #privacyModal section {
         margin-bottom: 30px;
         padding-bottom: 10px;
@@ -99,7 +76,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 3rem;
-        padding: 60px 0px;
+        padding: 75px 0px;
     }
 
     .footer-section {
@@ -127,37 +104,18 @@
         }
     }
 
-    .logo-section {
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-        padding: 2rem;
-        border-radius: 15px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
-    }
 
-    .logo-section:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-    }
+
 
     .logo {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: bold;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;
     }
 
-    .logo::before {
-        content: '🎮';
-        font-size: 1.5rem;
-    }
 
     .footer-description {
         color: rgba(255, 255, 255, 0.7);
@@ -275,7 +233,7 @@
     }
 
     .social-link:nth-child(2):hover {
-        background: linear-gradient(135deg, #1da1f2, #0084b4);
+        background: linear-gradient(135deg, #69C9D0, #EE1D52);
     }
 
     .social-link:nth-child(3):hover {
@@ -321,9 +279,7 @@
             padding: 3rem 1rem 1rem;
         }
 
-        .logo-section {
-            padding: 1.5rem;
-        }
+
 
         .social-links {
             justify-content: center;
@@ -403,6 +359,29 @@
             padding: 60px 22px;
         }
     }
+
+    .social-link:nth-child(1) {
+        background: linear-gradient(135deg, #3b5998, #8b9dc3);
+    }
+
+    .social-link:nth-child(2) {
+
+        background-color: #000;
+    }
+
+    .social-link:nth-child(3) {
+        background: linear-gradient(135deg, #e4405f, #f77737);
+    }
+
+    .social-link:nth-child(4) {
+        background: linear-gradient(135deg, #ff0000, #cc0000);
+    }
+
+    .social-link:nth-child(5) {
+
+        background: linear-gradient(135deg, #1da1f2, #0084b4);
+
+    }
 </style>
 
 <?php
@@ -440,12 +419,40 @@ $texts = $footerTexts[$lang];
 
             <!-- Logo & Description -->
             <div class="footer-section logo-section">
-                <h2 class="logo glow">FancyWheel</h2>
+                <h1 class="logo glow">Fancy Wheel</h1>
                 <p class="footer-description">
                     <?= $lang === 'en'
-                        ? 'Explore, spin and play the most exciting games online. Fun starts here with a click. Join millions of gamers worldwide!'
-                        : 'সবচেয়ে উত্তেজনাপূর্ণ অনলাইন গেমগুলো আবিষ্কার, স্পিন এবং খেলুন। মজার শুরু একটি ক্লিকে। কোটি গেমারের সঙ্গে যোগ দিন!' ?>
+                        ? 'Discover the best bus services and milk tea spots across Bangladesh. Travel comfortably and enjoy delicious tea at every stop!'
+                        : 'বাংলাদেশে সেরা বাস সার্ভিস এবং মিল্কটি স্পটগুলো আবিষ্কার করুন। আরামদায়ক ভ্রমণ করুন এবং প্রতিটি স্টপে সুস্বাদু চা উপভোগ করুন!' ?>
                 </p>
+
+            </div>
+            <!-- Follow Us Section -->
+            <div class="footer-section">
+                <h3 class="footer-title"><?= $texts['connect'] ?></h3>
+                <p class="footer-description">
+                    <?= $lang === 'en'
+                        ? 'Stay connected with us on social media for the latest updates and promotions.'
+                        : 'সর্বশেষ আপডেট এবং প্রচারের জন্য আমাদের সোশ্যাল মিডিয়ায় সংযুক্ত থাকুন।' ?>
+                </p>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@Username" target="_blank" class="social-link" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+
+                    <a href="https://instagram.com" target="_blank" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="social-link" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://t.me/TelegramUsername" target="_blank" class="social-link" aria-label="Telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                </div>
             </div>
 
             <!-- Navigation -->

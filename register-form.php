@@ -194,17 +194,9 @@
       margin-top: 30px;
     }
 
-    /* #spinBtn,
-    #closeModalBtn {
-      width: 80%;
-      margin: 15px auto 0 auto;
-      font-size: 20px;
-    } */
-
-  }
 </style>
 
-<body>
+<body class="max-w-3xl">
 
   <div class="fixed bg-black w-full bg-opacity-70 flex items-center justify-center mx-auto h-full">
 

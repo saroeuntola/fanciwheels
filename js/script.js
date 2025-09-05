@@ -36,56 +36,50 @@ document.querySelector("#registerForm").addEventListener("submit", async (e) => 
     const gmail = formData.get("gmail").trim();
     const phone = formData.get("phone").trim();
 
-    if (!name || !gmail) {
-        Swal.fire({
-            icon: "warning",
-            title: "Missing Information",
-            text: "Please fill in Name and Gmail."
-        });
-        return;
-    }
+     if (!name || !gmail) {
+       toastr.warning("Please fill in Name and Gmail.", "Missing Information");
+       return;
+     }
 
     try {
-        const response = await fetch(API_BASE + "create_player", {
-            method: "POST",
-            body: new URLSearchParams({
-                name,
-                gmail,
-                phone
-            }),
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        });
+      const response = await fetch(API_BASE + "create_player", {
+        method: "POST",
+        body: new URLSearchParams({
+          name,
+          gmail,
+          phone,
+        }),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
 
-        const data = await response.json();
-         if (data.success) {
-           Swal.fire({
-             icon: "success",
-             title: "Registration Successful",
-             text: "Our customer will contact you soon.",
-             confirmButtonText: "OK",
-            }).then(() => {
-      
-    document.getElementById("registerForm").reset();
-  });
-         } else {
-           Swal.fire({
-             icon: "error",
-             title: "Registration Failed",
-             text: data.message || "Failed to register.",
-             confirmButtonText: "OK",
-           });
-         }
+      const data = await response.json();
+      if (data.success) {
+        toastr.success(
+          "Our customer will contact you soon.",
+          "Registration Successful"
+        );
+        document.getElementById("registerForm").reset();
+      } else {
+        toastr.error(
+          data.message || "Failed to register.",
+          "Registration Failed"
+        );
+      }
     } catch (error) {
-        Swal.fire({
-            icon: "error",
-            title: "Server Error",
-            text: "An error occurred during registration."
-        });
-        console.error(error);
+      toastr.error("An error occurred during registration.", "Server Error");
+      console.error(error);
     }
 });
+
+// Toastr global config
+toastr.options = {
+  "closeButton": true,
+  "progressBar": true,
+  "positionClass": "toast-top-center",
+  "timeOut": "6000"
+};
 
 document.querySelector("#registerForm1").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -99,11 +93,7 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
     const phone = formData.get("phone").trim();
 
     if (!name || !gmail) {
-        Swal.fire({
-            icon: "warning",
-            title: "Missing Information",
-            text: "Please fill in Name and Gmail."
-        });
+        toastr.warning("Please fill in Name and Gmail.", "Missing Information");
         return;
     }
 
@@ -122,31 +112,15 @@ document.querySelector("#registerForm1").addEventListener("submit", async (e) =>
 
         const data = await response.json();
         if (data.success) {
-          Swal.fire({
-            icon: "success",
-            title: "Registration Successful",
-            text: "Our customer will contact you soon.",
-            confirmButtonText: "OK",
-          }).then(() => {
-            document.getElementById("registerForm1").reset();
-          });
+          toastr.success("Our customer will contact you soon.", "Registration Successful");
+          document.getElementById("registerForm1").reset();
         } else {
-          Swal.fire({
-            icon: "error",
-            title: "Registration Failed",
-            text: data.message || "Failed to register.",
-            confirmButtonText: "OK",
-          });  
-          
+          toastr.error(data.message || "Failed to register.", "Registration Failed");
         }
 
     } catch (error) {
-        Swal.fire({
-            icon: "error",
-            title: "Server Error",
-            text: "An error occurred during registration."
-            
-        });
+        toastr.error("An error occurred during registration.", "Server Error");
         console.error(error);
     }
 });
+

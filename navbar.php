@@ -61,14 +61,22 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
       <!-- Mobile Hamburger + Site Title -->
       <div class="lg:hidden flex items-center w-full justify-between">
         <div class="flex items-center gap-3">
-          <!-- Hamburger -->
-          <button id="mobileToggle" class=" text-white focus:outline-none">
+          <button id="mobileToggle" class="text-white focus:outline-none">
+            <!-- Hamburger Icon -->
             <svg id="mobileHamburger" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M4 6h16M4 12h16M4 18h16" />
             </svg>
+
+            <!-- Close Icon (hidden by default) -->
+            <svg id="mobileClose" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
+
           <!-- Site Title -->
-          <a href="/?lang=<?= $lang ?>" class="text-white text-lg font-bold">Fancy Wheel</a>
+          <h1>
+            <a href="/?lang=<?= $lang ?>" class="text-gray-100 text-lg font-bold ">Fancy Wheel</a>
+          </h1>
         </div>
 
         <!-- Search & Profile -->
@@ -81,7 +89,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
           <!-- mobile lang -->
           <div class="relative">
             <!-- Language Button -->
-            <button id="lang-btn-mobile" class="flex items-center text-white px-3 py-2 rounded-md hover:bg-green-600 focus:outline-none">
+            <button id="lang-btn-mobile" class="flex items-center text-white px-3 py-2 rounded-md  focus:outline-none">
               <img id="lang-flag-mobile" src="./image/flag/<?= $lang === 'en' ? 'en' : 'bn' ?>.svg" class="w-6 h-4 ml-2" alt="Flag">
               <span class="ml-2 font-medium"><?= $lang === 'en' ? 'EN' : 'BN' ?></span>
               <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +115,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
               <img src="<?= $profilePath ?>" alt="Profile" class="w-8 h-8 rounded-full object-cover">
             </button>
           <?php else: ?>
-            <a href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank"
+            <a href="https://fancywin.city/bd/bn/new-register-entry/account" target="_blank"
               class="text-sm text-white px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 flex items-center">
               <!-- User icon SVG -->
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -127,7 +135,10 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
       <!-- Desktop Menu -->
       <div class="hidden lg:flex items-center w-full">
         <!-- Site Title -->
-        <a href="/?lang=<?= $lang ?>" class="text-white text-2xl font-bold mr-8">Fancy Wheel</a>
+        <h1>
+          <a href="/?lang=<?= $lang ?>" class="text-gray-100 text-2xl font-bold mr-8">Fancy Wheel</a>
+        </h1>
+
         <!-- Navigation-->
         <div class="flex items-center gap-4 ml-auto">
           <nav class="flex space-x-6">
@@ -137,7 +148,6 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
             <?= navLink('faq', $menu['faq'], $lang, $currentPage, $currentId) ?>
             <?= navLink('contact', $menu['contact'], $lang, $currentPage, $currentId) ?>
           </nav>
-
           <!-- Search -->
           <button id="openSearchModal" class="flex items-center text-white p-2 rounded-full hover:bg-white/10 transition gap-2">
             <?= $lang === 'en' ? 'Search...' : 'অনুসন্ধান...' ?>
@@ -186,7 +196,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
               </div>
             </div>
           <?php else: ?>
-            <a href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" class="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700"><?= $menu['join'] ?></a>
+            <a href="https://fancywin.city/bd/bn/new-register-entry/account" target="_blank" class="transition-all duration-500 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700"><?= $menu['join'] ?></a>
           <?php endif; ?>
 
 
@@ -198,7 +208,8 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobileMenu" class="lg:hidden hidden bg-primary text-white">
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden hidden absolute top-full left-0 w-full bg-gray-800 text-white z-50">
     <div class="flex flex-col p-4 space-y-3">
       <?= navLink('/', $menu['home'], $lang, $currentPage, $currentId) ?>
       <?= navLink('services', $menu['services'], $lang, $currentPage, $currentId) ?>
@@ -206,14 +217,14 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
       <?= navLink('faq', $menu['faq'], $lang, $currentPage, $currentId) ?>
       <?= navLink('contact', $menu['contact'], $lang, $currentPage, $currentId) ?>
     </div>
-
   </div>
+
 
 </nav>
 
 
 <!-- Search Modal (shared for Desktop & Mobile) -->
-<div id="searchModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+<div id="searchModal" class="fixed inset-0 bg-black bg-opacity-70 hidden z-50 flex items-center justify-center">
   <div class="bg-gray-600 w-full h-full max-w-4xl max-h-full overflow-y-auto relative p-4">
     <!-- Header -->
     <div class="flex justify-between items-center border-b pb-4">
@@ -257,9 +268,14 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     setupLangDropdown('#lang-btn-mobile', '#lang-menu-mobile');
 
     // ===== Mobile Menu Toggle =====
-    $('#mobileToggle').click(function() {
+    // ===== Mobile Menu Toggle =====
+    $('#mobileToggle').click(function(e) {
+      e.stopPropagation();
       $('#mobileMenu').toggleClass('hidden');
+      $('#mobileHamburger').toggleClass('hidden');
+      $('#mobileClose').toggleClass('hidden');
     });
+
 
     // ===== Search Modal (Shared Desktop & Mobile) =====
     const $searchModal = $('#searchModal');

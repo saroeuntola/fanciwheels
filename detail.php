@@ -44,8 +44,8 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     <link rel="icon" href="<?= htmlspecialchars('https://fanciwheel.com' . '/admin/page/game/' . $gameImage) ?>" type="image/png">
     <link rel="shortcut icon" href="<?= htmlspecialchars('https://fanciwheel.com' . '/admin/page/game/' . $gameImage) ?>" type="image/png">
   <?php else: ?>
-    <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
-    <link rel="shortcut icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
+    <link rel="icon" href="./image/PWAicon-192px.png" type="image/png">
+    <link rel="shortcut icon" href="./image/PWAicon-192px.png" type="image/png">
   <?php endif; ?>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
   <script>
@@ -73,12 +73,42 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <meta name="twitter:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
   <meta name="twitter:description" content="<?= htmlspecialchars($game['description'] ?? 'Check out this detail') ?>" />
   <meta name="twitter:image" content="<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TCJVFMSG');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google Analytics / gtag.js -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-98CRLK26X1');
+  </script>
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Blog",
+      "@type": "Website",
       "name": "<?= htmlspecialchars($game['name'] ?? 'Detail') ?>",
       "description": "<?= htmlspecialchars($game['description'] ?? 'Check out this detail') ?>",
       "image": "<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>",
@@ -258,8 +288,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                     loading="lazy"
                     alt="<?= htmlspecialchars($popularName) ?>"
                     class="w-16 h-16 object-cover rounded-lg group-hover:opacity-80 opacity-0 transition-opacity duration-500"
-                    onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove()"
-                    />
+                    onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove()" />
 
                 </div>
                 <div class=" flex-1 min-w-0">
@@ -282,6 +311,10 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   </div>
 
   <?php include 'footer.php'; ?>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCJVFMSG"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 </body>
 
 </html>

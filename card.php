@@ -58,7 +58,7 @@ $games = $gameObj->getgames($lang);
         }
 
         .post-title {
-            color: red;
+
             font-weight: bold;
             font-size: 30px;
         }
@@ -72,6 +72,8 @@ $games = $gameObj->getgames($lang);
             .post-title {
                 font-size: 30px;
             }
+
+
         }
 
         @media (max-width: 480px) {
@@ -104,12 +106,12 @@ $games = $gameObj->getgames($lang);
             #hotspot {
                 padding: 0 16px;
             }
+
         }
 
         /* Arrow buttons styling */
         .arrow-btn {
             position: absolute;
-            background-color: rgba(100, 100, 100, 0.7);
             border: none;
             color: white;
             font-size: 2rem;
@@ -128,17 +130,13 @@ $games = $gameObj->getgames($lang);
         }
 
         .arrow-btn.left-0 {
-            left: 10px;
+            left: 8px;
         }
 
         .arrow-btn.right-0 {
-            right: 10px;
+            right: 8px;
         }
 
-        .arrow-btn:hover {
-            background-color: rgba(255, 255, 255, 0.8);
-            color: black;
-        }
 
         .game-card {
             flex: 0 0 calc((100% - 40px) / 3);
@@ -178,7 +176,7 @@ $games = $gameObj->getgames($lang);
 <body>
     <div class="post-container">
         <div class="post-header">
-            <h1 class="post-title">
+            <h1 class="post-title text-gray-100 mb-4">
                 <?php echo $lang === 'en'
                     ? 'Milktea & Bus Services in Chittagong'
                     : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস'; ?>
@@ -194,8 +192,8 @@ $games = $gameObj->getgames($lang);
         </p>
 
 
-        <div class="mt-4" id="hotspot">
-            <p class="p-2 rounded-md w-[77px]">
+        <div class="mt-4 mb-4" id="hotspot">
+            <p class="p-2 rounded-md w-[77px]  bg-gradient-to-r from-blue-600 to-purple-600">
                 <?php echo $lang === 'en' ? 'Hotspot' : 'হটস্পট'; ?>
             </p>
         </div>

@@ -34,6 +34,7 @@ $translations = [
         transition: color 0.3s ease;
         z-index: 1000;
     }
+
     /* Spin Wheel Modal (no background color) */
     #spinWheelModal {
         position: fixed;
@@ -144,8 +145,8 @@ $translations = [
 
     #popupOverlay .popup,
     #popupOverlay1 .popup {
-        background: black;
-        padding: 30px;
+        background: #0F0D0D;
+        padding: 30px 20px;
         border-radius: 10px;
         max-width: 90%;
         text-align: center;
@@ -204,6 +205,11 @@ $translations = [
 
     }
 </style>
+<!-- Toastr CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <body>
     <!-- Spin Wheel Modal -->
@@ -230,10 +236,10 @@ $translations = [
     <!-- Result Popup -->
     <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
         <div
-            class="popup bg-gray-800 rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
+            class="popup rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
             <!-- Close Button (X) -->
             <button id="closePopup" aria-label="Close popup"
-                class="absolute top-0 right-4 p-0 focus:outline-none text-blue-600">
+                class="absolute top-0 right-4 p-0 focus:outline-none text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -255,8 +261,6 @@ $translations = [
                         class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                 </div>
 
-
-
                 <div>
                     <input type="email" id="gmail" name="gmail" required
                         placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
@@ -265,6 +269,7 @@ $translations = [
 
                 <div>
                     <input type="tel" id="phone" name="phone"
+                        oninput="this.value = this.value.replace(/(?!^\+)[^0-9]/g, '')"
                         placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
                         class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                 </div>
@@ -280,7 +285,7 @@ $translations = [
 
     <div id="popupOverlay1" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
         <div
-            class="popup bg-gray-800 rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
+            class="popup bg-blue-800 rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
             <!-- Close Button (X) -->
             <button id="closePopup1" aria-label="Close popup"
                 class="absolute top-0 right-4 text-white focus:outline-none">
@@ -314,6 +319,7 @@ $translations = [
 
                 <div>
                     <input type="tel" id="phone1" name="phone"
+                        oninput="this.value = this.value.replace(/(?!^\+)[^0-9]/g, '')"
                         placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
                         class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                 </div>

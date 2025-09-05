@@ -21,7 +21,13 @@ if ($existingPlayer) {
     echo json_encode(['success' => false, 'message' => 'Email already registered']);
     exit;
 }
-
+if (!empty($phone)) {
+    $existingPhone = $playerObj->getPlayerByPhone($phone);
+    if ($existingPhone) {
+        echo json_encode(['success' => false, 'message' => 'Phone number already registered']);
+        exit;
+    }
+}
 $created = $playerObj->createPlayer($name, $phone, $gmail);
 
 if ($created) {

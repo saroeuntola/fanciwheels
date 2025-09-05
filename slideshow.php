@@ -12,23 +12,23 @@ $banners = $bannerObj->getBanner();
 
   .slideshow-container {
     position: relative;
-    width: 100vw;
+    width: 100%;
     max-width: 1212px;
     height: 400px;
-    max-height: 400px;
     overflow: hidden;
-    margin: 30px auto;
+    margin: 85px auto 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 15px;
-    margin-top: 85px;
+    border-radius: 6px;
   }
 
+  /* Slides */
   .slide-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* ensures images cover container */
     transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
     position: absolute;
     top: 0;
@@ -42,37 +42,38 @@ $banners = $bannerObj->getBanner();
     z-index: 1;
   }
 
+  /* Navigation buttons */
   .nav-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.8);
     border: none;
-    padding: 12px;
+    padding: 14px;
     border-radius: 50%;
-    color: #263238;
+    color: white;
     font-size: 1.2rem;
     cursor: pointer;
     z-index: 2;
+    opacity: 80%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: background 0.3s, transform 0.3s;
   }
 
   .nav-btn:hover,
   .nav-btn:focus {
-    background: rgba(255, 255, 255, 1);
     transform: translateY(-50%) scale(1.1);
     outline: none;
   }
 
   #prevBtn {
-    left: 1rem;
+    left: 0.4rem;
   }
 
   #nextBtn {
-    right: 1rem;
+    right: 0.4rem;
   }
 
+  /* Dots */
   .dots-container {
     position: absolute;
     bottom: 1rem;
@@ -85,7 +86,7 @@ $banners = $bannerObj->getBanner();
     display: inline-block;
     width: 10px;
     height: 10px;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255);
     border-radius: 50%;
     margin: 0 5px;
     cursor: pointer;
@@ -93,36 +94,49 @@ $banners = $bannerObj->getBanner();
   }
 
   .dot.active {
-    background: #B3E5FC;
+    background: #1E88E5;
   }
 
+  /* Responsive: Large tablets */
   @media (max-width: 1024px) {
     .slideshow-container {
-      width: 95vw;
-      height: 300px;
-    }
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .slideshow-container {
-      width: 91vw;
+      width: 47.5rem;
       height: 300px;
     }
   }
 
   @media (max-width: 800px) {
     .slideshow-container {
-      width: 90vw;
+      width: 47.5rem;
       height: 300px;
     }
   }
 
-  @media (max-width: 480px) {
+  /* Responsive: Small tablets */
+  @media (max-width: 768px) {
     .slideshow-container {
-      height: 240px;
-      width: 93.5vw;
+      width: 47.5rem;
+      height: 300px;
     }
+  }
+
+  /* Responsive: Mobile */
+  @media (max-width: 480px) {
+    .nav-btn {
+      padding: 4px;
+    }
+
+    .slideshow-container {
+      width: 92.5vw;
+      height: 210px;
+    }
+  }
+
+  /* Ensure images always fill the container height */
+  .slideshow-container .slide-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 </style>
 

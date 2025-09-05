@@ -8,17 +8,23 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index, follow" />
+  <!-- Googlebot (main crawler) -->
+  <meta name="googlebot" content="index, follow">
+  <!-- AdsBot (Google Ads crawler) -->
+  <meta name="AdsBot-Google" content="index, follow">
+  <!-- Google News crawler -->
+  <meta name="googlebot-news" content="index, follow">
+  <!-- General robots (other search engines) -->
+  <meta name="robots" content="index, follow">
   <meta name="google-site-verification" content="KQ_ffol2MIoJcfrqSEKOfToxbgsEPcFj3STGCvUen5U" />
-
   <?php include 'head-log.php'; ?>
 
   <!-- Title -->
   <title>
     <?php
     echo $lang === 'en'
-      ? 'Milktea & Bus Services in Chittagong | Fancy Wheel'
-      : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস | Fancy Wheel';
+      ? 'Fancy Wheel - Milktea & Bus Services in Chittagong'
+      : 'Fancy Wheel - চট্টগ্রামে মিল্ক টি এবং বাস সার্ভিস';
     ?>
   </title>
 
@@ -32,8 +38,8 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <!-- Keywords -->
   <meta name="keywords" content="<?php
                                   echo $lang === 'en'
-                                    ? 'Milktea, Chittagong bus service, fresh milk tea, best Milktea, safe bus rides, Bangladesh travel'
-                                    : 'মিল্কটি, চট্টগ্রাম বাস সার্ভিস, তাজা মিল্কটি, সেরা মিল্কটি, নিরাপদ বাস যাত্রা, বাংলাদেশ ভ্রমণ';
+                                    ? 'Fancy Wheel, fancywheel, fanciwheel, Milktea, Chittagong bus service, fresh milk tea, best Milktea, safe bus rides, Bangladesh travel'
+                                    : 'Fancy Wheel,fancywheel, fanciwheel, মিল্কটি, চট্টগ্রাম বাস সার্ভিস, তাজা মিল্কটি, সেরা মিল্কটি, নিরাপদ বাস যাত্রা, বাংলাদেশ ভ্রমণ';
                                   ?>">
 
   <!-- Favicon -->
@@ -48,6 +54,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fanciwheel.com" />
   <meta property="og:image" content="https://fanciwheel.com/image/PWAicon-192px.png" />
+  <meta property="og:site_name" content="Fancy Wheel">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -69,28 +76,54 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <!-- SweetAlert2 -->
-  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 
   <!-- IntlTelInput CSS/JS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
-  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://fanciwheel.com/",
+      "name": "Fancy Wheel",
+      "alternateName": "fanciwheel.com",
+      "logo": "https://fanciwheel.com/image/PWAicon-192px.png",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://fanciwheel.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
+      "url": "https://fanciwheel.com/",
       "name": "Fancy Wheel",
-      "url": "https://fanciwheel.com",
+      "alternateName": "fanciwheel.com",
       "logo": "https://fanciwheel.com/image/PWAicon-192px.png",
-      "sameAs": [
-        "https://www.facebook.com/fanciwheel",
-        "https://twitter.com/fanciwheel",
-        "https://www.instagram.com/fanciwheel/"
-      ]
     }
   </script>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TCJVFMSG');
+  </script>
+  <!-- End Google Tag Manager -->
 
   <!-- Google Analytics / gtag.js -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
@@ -103,6 +136,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     gtag('js', new Date());
     gtag('config', 'G-98CRLK26X1');
   </script>
+
 </head>
 
 
@@ -228,7 +262,10 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCJVFMSG"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 </body>
 
 </html>

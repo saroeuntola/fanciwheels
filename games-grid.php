@@ -87,8 +87,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     }
 
     #hot-games-title {
-      font-size: 40px;
-      margin-bottom: 15px;
+      font-size: 30px;
     }
 
     #games-header {
@@ -115,7 +114,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
       }
 
       #hot-games-title {
-        font-size: 25px;
+        font-size: 18px;
         margin: 0;
         padding: 0;
       }
@@ -132,22 +131,26 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
         background: none;
         border: none;
       }
+
     }
 
     .text-scroll {
       color: darkred;
     }
 
+
+
     /* Arrow buttons styling */
     .arrow-btn {
       position: absolute;
-      background-color: rgba(100, 100, 100, 0.7);
+
       border: none;
       color: white;
       font-size: 2rem;
       width: 40px;
       height: 60px;
       cursor: pointer;
+      opacity: 80%;
       z-index: 10;
       border-radius: 6px;
       transition: background-color 0.3s ease, transform 0.15s ease;
@@ -163,19 +166,15 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     }
 
     .arrow-btn.left-0 {
-      left: 20px;
+      left: 8px;
       top: 112px;
     }
 
     .arrow-btn.right-0 {
-      right: 20px;
+      right: 8px;
       top: 112px;
     }
 
-    .arrow-btn:hover {
-      background-color: rgba(255, 255, 255, 0.8);
-      color: black;
-    }
 
     .play-btn {
       background-color: #992717;
@@ -190,9 +189,9 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
 <body class="bg-gray-900" id="games-grid">
 
   <div>
-    <div class="flex flex-col items-center mb-5" id="games-header">
+    <div class="flex flex-col mb-4" id="games-header">
       <!-- Title -->
-      <h1 class="text-yellow-400 text-4xl md:text-5xl font-bold mb-4 text-center">
+      <h1 class="font-bold text-center">
         <span class="animated-text" id="hot-games-title"><?= $lang === 'bn' ? 'হট গেম বিনামূল্যে খেলুন' : ' Hot Games Play Free' ?></span>
       </h1>
     </div>
@@ -214,8 +213,8 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
 
 
             <h3 class="text-lg font-bold mb-2"><?= htmlspecialchars($game['title']) ?></h3>
-            <p class="game-desc text-sm text-gray-300 flex-grow"><?= htmlspecialchars($game['description']) ?></p>
-            <a href="<?= $game['link'] ?>" class="play-btn p-2 text-center text-white rounded-lg font-bold transition-colors duration-300 w-full"><?= $lang === 'en' ? 'Play Now' : 'খেলা লক' ?></a>
+            <p class="game-desc text-sm text-gray-300 flex-grow mb-2"><?= htmlspecialchars($game['description']) ?></p>
+            <a href="<?= $game['link'] ?>" class="play-btn p-2 text-center text-white rounded-lg font-bold transition-colors duration-300 w-full  bg-gradient-to-r from-blue-600 to-purple-600"><?= $lang === 'en' ? 'Play Now' : 'খেলা লক' ?></a>
           </div>
 
 
@@ -233,14 +232,15 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
 
   <!-- Modal -->
   <div id="comingSoonModal" class="modal hidden fixed inset-0 z-[1000] bg-black/60">
-    <div class="modal-content bg-gray-800 text-gray-100 mx-auto mt-[15%] p-8 rounded-lg w-[90%] max-w-md text-center">
-      <span class="close-btn text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-black">&times;</span>
+
+    <div class="modal-content bg-gray-800 text-gray-100 mx-auto mt-[15%] p-6 rounded-lg w-[90%] max-w-md text-center">
+      <span class="close-btn text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-white">&times;</span>
       <h2 class="text-xl mb-4"> <?= $lang === 'en' ? 'Game Locked' : 'খেলা লক' ?> </h2>
       <p>
-        <a id="link" href="https://fancywin.city/kh/en/new-register-entry/account" target="_blank" rel="noopener noreferrer" class="text-cyan-400 font-bold underline">
+        <a id="link" href="https://fancywin.city/bd/bn/new-register-entry/account" target="_blank" rel="noopener noreferrer" class="text-cyan-400 font-bold underline">
           <?= $lang === 'en' ? 'Join now' : 'এখন নিবন্ধন করুন' ?>
         </a>
-        <?= $lang === 'en' ? ' to unlock more games, enjoy exciting gameplay, and win big — safe, fun, and easy!' : 'আরও গেম আনলক করতে, উত্তেজনাপূর্ণ গেমপ্লে উপভোগ করতে এবং বড় জয় পেতে — নিরাপদ, মজাদার এবং সহজ!' ?>
+        <?= $lang === 'en' ? 'to play games, enjoy exciting gameplay, and win big, safe, fun, and easy!' : 'গেম খেলতে, উত্তেজনাপূর্ণ গেমপ্লে উপভোগ করতে এবং বড়, নিরাপদ, মজাদার এবং সহজে জিততে এখনই যোগ দিন!' ?>
 
       </p>
     </div>
@@ -258,7 +258,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     playButtons.forEach(btn => {
       btn.addEventListener("click", function(e) {
         const href = this.getAttribute("href");
-        if (href === "#") {
+        if (href === "looked") {
           e.preventDefault();
           modal.style.display = "block";
         }

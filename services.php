@@ -75,6 +75,12 @@ $texts = $servicesTexts[$lang];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Googlebot (main crawler) -->
+    <meta name="googlebot" content="index, follow">
+    <!-- AdsBot (Google Ads crawler) -->
+    <meta name="AdsBot-Google" content="index, follow">
+    <!-- Google News crawler -->
+    <meta name="googlebot-news" content="index, follow">
     <meta name="robots" content="index, follow">
     <meta name="language" content="<?= $lang === 'en' ? 'English' : 'Bangla' ?>">
     <meta name="author" content="MilkTea & Bus Services">
@@ -123,6 +129,24 @@ $texts = $servicesTexts[$lang];
 
     <!-- CSS -->
     <link rel="stylesheet" href="./dist/output.css">
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TCJVFMSG');
+    </script>
+    <!-- End Google Tag Manager -->
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
@@ -134,6 +158,16 @@ $texts = $servicesTexts[$lang];
         }
         gtag('js', new Date());
         gtag('config', 'G-98CRLK26X1');
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://fanciwheel.com/",
+            "name": "Fancy Wheel",
+            "alternateName": "fanciwheel.com",
+            "logo": "https://fanciwheel.com/image/PWAicon-192px.png",
+        }
     </script>
 </head>
 
@@ -150,37 +184,37 @@ $texts = $servicesTexts[$lang];
     <?php include 'scroll-top-button.php'; ?>
     <main class="max-w-4xl mx-auto px-4 py-12">
         <div class="mb-5">
-            <h1 class="text-3xl font-bold text-red-600"><?= $texts['title'] ?></h1>
+            <h1 class="text-2xl font-bold text-gray-100"><?= $texts['title'] ?></h1>
             <p class="text-lg mt-2"><?= $texts['subtitle'] ?></p>
         </div>
 
         <!-- Milktea -->
         <section class="mb-5">
-            <h2 class="text-2xl font-semibold mb-4"><?= $texts['milktea'][0] ?></h2>
+            <h2 class="text-lg font-semibold mb-4 text-gray-100"><?= $texts['milktea'][0] ?></h2>
             <p class="text-gray-300"><?= $texts['milktea'][1] ?></p>
         </section>
 
         <!-- Quality -->
         <section class="mb-5">
-            <h2 class="text-2xl font-semibold mb-4"><?= $texts['quality'][0] ?></h2>
+            <h2 class="text-lg font-semibold mb-4 text-gray-100"><?= $texts['quality'][0] ?></h2>
             <p class="text-gray-300"><?= $texts['quality'][1] ?></p>
         </section>
 
         <!-- Bus Services -->
         <section class="mb-5">
-            <h2 class="text-2xl font-semibold mb-4"><?= $texts['bus_services'][0] ?></h2>
+            <h2 class="text-lg font-semibold mb-4 text-gray-100"><?= $texts['bus_services'][0] ?></h2>
             <p class="text-gray-300"><?= $texts['bus_services'][1] ?></p>
         </section>
 
         <!-- Routes -->
         <section class="mb-5">
-            <h2 class="text-2xl font-semibold mb-4"><?= $texts['routes'][0] ?></h2>
+            <h2 class="text-lg font-semibold mb-4 text-gray-100"><?= $texts['routes'][0] ?></h2>
             <p class="text-gray-300"><?= $texts['routes'][1] ?></p>
         </section>
 
         <!-- Support -->
         <section class="mb-5">
-            <h2 class="text-2xl font-semibold mb-4"><?= $texts['support'][0] ?></h2>
+            <h2 class="text-lg font-semibold mb-4 text-gray-100"><?= $texts['support'][0] ?></h2>
             <p class="text-gray-300"><?= $texts['support'][1] ?></p>
         </section>
     </main>
@@ -189,6 +223,10 @@ $texts = $servicesTexts[$lang];
     <?php
     include 'footer.php'
     ?>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCJVFMSG"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 </body>
 
 </html>

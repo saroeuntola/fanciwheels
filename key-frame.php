@@ -100,7 +100,6 @@
 
     /* Fixed icon on the left */
     .announcement-icon {
-        background-color: brown;
         color: white;
         padding: 5px 10px;
         border-radius: 4px;
@@ -188,14 +187,14 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 $announcements = $announcementObj->getAnnouncements($lang);
 ?>
 <main id="main">
-    <div class="announcement-icon"><i class="fas fa-bullhorn"></i></div>
+    <div class="announcement-icon bg-gradient-to-r from-blue-600 to-purple-600"><i class="fas fa-bullhorn"></i></div>
     <div class="container">
         <!-- Sliding text -->
         <?php if (!empty($announcements)): ?>
             <?php foreach ($announcements as $ann): ?>
-                <div class="announcement">
+                <p class="announcement ">
                     <?= htmlspecialchars($ann['message'], ENT_QUOTES) ?>
-                </div>
+                </p>
             <?php endforeach; ?>
         <?php else: ?>
             <div class="announcement">No announcements available.</div>

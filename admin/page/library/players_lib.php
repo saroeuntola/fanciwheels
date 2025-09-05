@@ -7,9 +7,17 @@ class Player
     {
         $this->db = dbConn(); 
     }
+    // Check if player with the same phone exists
+    public function getPlayerByPhone($phone)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM players WHERE phone = ?");
+        $stmt->execute([$phone]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 
     // CREATE a new player
-  public function createPlayer($name, $phone, $gmail)
+    public function createPlayer($name, $phone, $gmail)
 {
     $quotedGmail = $this->db->quote($gmail);
     // Check if player with the same gmail exists

@@ -10,13 +10,20 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
 
 <!DOCTYPE html>
 <html lang="<?= $lang ?>">
+
 <head>
   <?php include 'head-log.php'; ?>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Googlebot (main crawler) -->
+  <meta name="googlebot" content="index, follow">
+  <!-- AdsBot (Google Ads crawler) -->
+  <meta name="AdsBot-Google" content="index, follow">
+  <!-- Google News crawler -->
+  <meta name="googlebot-news" content="index, follow">
+  <!-- General robots (other search engines) -->
   <meta name="robots" content="index, follow">
   <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
-
   <!-- Dynamic Title -->
   <title><?php echo htmlspecialchars($currentTexts['title']); ?></title>
 
@@ -46,6 +53,25 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
   <!-- Styles -->
   <link href="./dist/output.css" rel="stylesheet">
 
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TCJVFMSG');
+  </script>
+  <!-- End Google Tag Manager -->
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
   <script>
@@ -56,6 +82,17 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
     }
     gtag('js', new Date());
     gtag('config', 'G-98CRLK26X1');
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://fanciwheel.com/",
+      "name": "Fancy Wheel",
+      "alternateName": "fanciwheel.com",
+      "logo": "https://fanciwheel.com/image/PWAicon-192px.png",
+    }
   </script>
 </head>
 
@@ -71,56 +108,60 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
 
   <div class="max-w-4xl mx-auto px-4 py-12">
     <!-- Heading -->
-    <h1 class="text-3xl md:text-4xl font-bold text-red-600 mb-6"><?php echo $currentTexts['title']; ?></h1>
-    <h2 class="text-2xl font-semibold text-red-600 mb-6"><?php echo $currentTexts['heading']; ?></h2>
+    <h1 class="text-2xl md:text-4xl font-bold text-gray-100 mb-6"><?php echo $currentTexts['title']; ?></h1>
+    <h2 class="text-lg font-semibold text-gray-100 mb-6"><?php echo $currentTexts['heading']; ?></h2>
 
     <!-- Introduction -->
     <p class="mb-6 leading-relaxed text-gray-300"><?php echo $currentTexts['intro']; ?></p>
 
     <!-- Milktea -->
     <section class="mb-8">
-      <h3 class="text-xl font-semibold text-red-600 mb-2">🧋 Milktea</h3>
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">🧋<?= $lang === 'en' ? 'Milktea' : 'দুধ চা' ?></h3>
       <p class="text-gray-300 mb-4"><?php echo $currentTexts['milktea']; ?></p>
     </section>
 
     <!-- Bus Services -->
     <section class="mb-8">
-      <h3 class="text-xl font-semibold text-red-600">🚌 Bus Services</h3>
+      <h3 class="text-lg font-semibold text-gray-100">🚌<?= $lang === 'en' ? 'Bus Services' : 'বাস পরিষেবা' ?></h3>
       <p class="text-gray-300 mb-4"><?php echo $currentTexts['bus_services']; ?></p>
     </section>
 
     <!-- Why Choose Us -->
     <section class="mb-8">
-      <h3 class="text-xl font-semibold text-red-600 mb-2">⭐ Why Choose Us</h3>
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">⭐<?= $lang === 'en' ? 'Why Choose Us' : 'কেন আমাদের নির্বাচন করেছে' ?></h3>
       <p class="text-gray-300 mb-4"><?php echo $currentTexts['why_choose']; ?></p>
     </section>
 
     <!-- Delivery Options -->
     <section class="mb-8">
-      <h3 class="text-xl font-semibold text-red-600 mb-2">🚚 Delivery Options</h3>
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">🚚<?= $lang === 'en' ? 'Delivery Options' : 'ডেলিভারি বিকল্প' ?></h3>
       <p class="text-gray-300 mb-4"><?php echo $currentTexts['delivery_options']; ?></p>
     </section>
 
     <!-- Customer Support -->
     <section class="mb-8">
-      <h3 class="text-xl font-semibold text-red-600">📞 Customer Support</h3>
+      <h3 class="text-lg font-semibold text-gray-100">📞<?= $lang === 'en' ? 'Customer Support' : 'গ্রাহক সহায়তা' ?></h3>
       <p class="text-gray-300 mb-4"><?php echo $currentTexts['customer_support']; ?></p>
     </section>
 
     <!-- Join Us -->
     <section class="mb-8">
-      <h3 class="text-xl font-semibold text-red-600">🎉 Join Us</h3>
+      <h3 class="text-lg font-semibold text-gray-100">🎉<?= $lang === 'en' ? 'Customer Support' : 'গ্রাহক সহায়তা' ?></h3>
       <p class="text-gray-300 mb-4"><?php echo $currentTexts['join_us']; ?></p>
     </section>
 
     <!-- Conclusion -->
     <section>
-      <p class="text-red-600"><?php echo $currentTexts['conclusion']; ?></p>
+      <p class="text-gray-100"><?php echo $currentTexts['conclusion']; ?></p>
     </section>
   </div>
 
 
   <?php include 'footer.php'; ?>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCJVFMSG"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 </body>
 
 </html>
