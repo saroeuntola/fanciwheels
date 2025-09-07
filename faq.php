@@ -6,12 +6,10 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 // Include FAQs
 $faqData = include './language/faqs-translate.php';
 $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
-
 ?>
 
 <!DOCTYPE html>
-<html lang="<?= $lang ?>">
-
+<html lang="<?= $lang === 'en' ? 'en' : 'bn-BD' ?>">
 <head>
   <?php include 'head-log.php' ?>
   <!-- Googlebot (main crawler) -->

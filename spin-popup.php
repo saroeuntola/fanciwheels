@@ -12,9 +12,17 @@ $translations = [
 ];
 ?>
 <style>
+    .iti {
+        width: 100% !important;
+    }
+
+    .iti input {
+        width: 100% !important;
+    }
+
     .iti__country-list {
         background: black;
-        width: 300px;
+        width: 280px;
     }
 
     .popup {
@@ -50,7 +58,7 @@ $translations = [
         padding: 50px;
     }
 
-    .popup {
+    #spinWheelModal .popup {
         background-image: url('image/bg-image.jpg');
         padding: 70px;
         border-radius: 10px;
@@ -125,9 +133,6 @@ $translations = [
         margin-top: 15px;
         font-weight: bold;
     }
-
-
-
     /* Result Modal */
     #popupOverlay,
     #popupOverlay1 {
@@ -142,30 +147,67 @@ $translations = [
         justify-content: center;
 
     }
-
     #popupOverlay .popup,
     #popupOverlay1 .popup {
-        background: #0F0D0D;
-        padding: 30px 20px;
+        background: linear-gradient(135deg,
+                rgba(0, 0, 255, 0.6),
+                /* blue */
+                rgba(255, 0, 0, 0.6)
+                /* red */
+            );
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow:
+            0 25px 45px rgba(0, 0, 0, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.05),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        padding: 30px;
         border-radius: 10px;
-        max-width: 90%;
-        text-align: center;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        font-size: 20px;
+
+    }
+    /* Modern gradient backgrounds */
+    .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Enhanced input styling */
+    input {
+        background: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    input:focus {
+        background: rgba(255, 255, 255, 0.12) !important;
+        border-color: rgba(102, 126, 234, 0.5);
+        box-shadow:
+            0 0 0 3px rgba(102, 126, 234, 0.1),
+            0 4px 12px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+    }
+
+    input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
     }
 
     #popupOverlay .popup button,
     #popupOverlay1 .popup button {
         margin-top: 20px;
-        padding: 10px 20px;
+        padding: 12px 20px;
         font-size: 16px;
     }
 
     @media (max-width: 600px) {
         #spinWheelModal .popup {
-
             padding: 10px;
-            /* smaller padding for mobile */
         }
 
         .close-icon {
@@ -215,7 +257,6 @@ $translations = [
     <!-- Spin Wheel Modal -->
     <div id="spinWheelModal">
         <div class="popup">
-
             <div class="wheel-container">
                 <div class="border-spin"></div>
                 <div class="small-wheel"></div>
@@ -233,13 +274,12 @@ $translations = [
             </button>
         </div>
     </div>
+
     <!-- Result Popup -->
     <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
-        <div
-            class="popup rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
-            <!-- Close Button (X) -->
-            <button id="closePopup" aria-label="Close popup"
-                class="absolute top-0 right-4 p-0 focus:outline-none text-white">
+        <div class="popup rounded-xl shadow-xl max-w-md w-full text-white font-sans relative bg-gray-800">
+            <!-- Close Button -->
+            <button id="closePopup" aria-label="Close popup" class="absolute top-0 right-0 focus:outline-none text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -247,31 +287,57 @@ $translations = [
                 </svg>
             </button>
 
-            <p id="popupMessage" class="text-center text-lg font-semibold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"></p>
+            <h1 id="popupMessage" class="text-center text-lg font-semibold mb-6 text-white "></h1>
             <!-- Registration Form -->
-            <form id="registerForm" class="space-y-6">
-                <h3 class="text-sm font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <form id="registerForm" class="space-y-6 p-6">
+                <h3 class="text-sm font-bold text-white">
                     <?= $lang === 'en'
                         ? 'Sign up today to collect your win and unlock extra spin chances!'
                         : 'আজই নিবন্ধন করুন, আপনার জয়ের পুরস্কার সংগ্রহ করুন এবং অতিরিক্ত স্পিনের সুযোগ আনলক করুন!' ?>
                 </h3>
-                <div>
-                    <input type="text" id="name" name="name" required
-                        placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+
+                <!-- Name -->
+                <div class="relative">
+
+                    <input type="text" name="name" placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
+                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                    <span class="text-red-500 text-sm mt-1 hidden" id="nameError1">
+                        <?= $lang === 'en' ? 'Name is required' : 'নাম আবশ্যক' ?>
+                    </span>
                 </div>
 
-                <div>
-                    <input type="email" id="gmail" name="gmail" required
-                        placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+                <!-- Email -->
+                <div class="relative">
+
+                    <input type="email" name="gmail" placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
+                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
+                        <i class="fa-solid fa-envelope"></i>
+                    </span>
+                    <span class="text-red-500 text-sm mt-1 hidden" id="emailError1">
+                        <?= $lang === 'en' ? 'Email is required' : 'ইমেইল আবশ্যক' ?>
+                    </span>
                 </div>
 
-                <div>
-                    <input type="tel" id="phone" name="phone"
-                        oninput="this.value = this.value.replace(/(?!^\+)[^0-9]/g, '')"
+                <!-- Phone -->
+                <div class="relative">
+
+                    <input type="tel" name="phone" id="phone"
                         placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                        oninput="this.value = this.value.replace(/(?!^\+)[^0-9]/g, '')" />
+                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
+                        <i class="fa-solid fa-phone"></i>
+                    </span>
+                    <span class="text-red-500 text-sm mt-1 hidden" id="phoneError1">
+                        <?= $lang === 'en' ? 'Phone number is required' : 'ফোন নম্বর আবশ্যক' ?>
+                    </span>
                 </div>
 
                 <button type="submit"
@@ -281,52 +347,80 @@ $translations = [
             </form>
         </div>
     </div>
-
-
     <div id="popupOverlay1" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
-        <div
-            class="popup bg-blue-800 rounded-xl shadow-xl max-w-md w-full p-8 text-white font-sans relative lg:w-[25%] md:w-[50%]">
-            <!-- Close Button (X) -->
-            <button id="closePopup1" aria-label="Close popup"
-                class="absolute top-0 right-4 text-white focus:outline-none">
+        <div class="popup rounded-xl shadow-xl max-w-md w-full text-white font-sans relative bg-blue-800">
+            <!-- Close Button -->
+            <button id="closePopup1" aria-label="Close popup" class="absolute top-0 right-0 p-0 focus:outline-none text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                     <line x1="18" y1="6" x2="6" y2="18" />
                     <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
             </button>
-            <!-- Registration Form -->
-            <form id="registerForm1" class="space-y-6">
-                <h3 class="text-sm font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent text-center">
-                    <?= $lang === 'en' ? 'Your Spin Time is Enough!' : 'তোমার স্পিন টাইম যথেষ্ট!' ?>
-                    <br>
-                    <?= $lang === 'en' ? 'Please register now, it\'s free!' : 'গেমটি খেলতে অনুগ্রহ করে এখনই নিবন্ধন করুন, এটি সম্পূর্ণ ফ্রি!' ?>
-                </h3>
 
-                <div>
-                    <input type="text" id="name" name="name" required
-                        placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+            <!-- Registration Form 2 -->
+            <form id="registerForm1" class="space-y-6 p-6">
+                <div class="">
+                    <h3 class="text-sm font-bold text-white text-center mb-4">
+                        <?= $lang === 'en'
+                            ? 'You have used all your spins'
+                            : 'আপনি আপনার সব স্পিন ব্যবহার করেছেন' ?>
+                    </h3>
+                    <p class=" text-white">
+                        <?= $lang === 'en'
+                            ? 'Please register for free to get more spins'
+                            : 'অধিক স্পিন পেতে দয়া করে বিনামূল্যে নিবন্ধন করুন' ?>
+                    </p>
                 </div>
 
+                <!-- Name -->
+                <div class="relative">
 
-
-                <div>
-                    <input type="email" id="gmail" name="gmail" required
-                        placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+                    <input type="text" name="name" placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
+                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                    <span class="text-red-500 text-sm mt-1 hidden" id="nameError2">
+                        <?= $lang === 'en' ? 'Name is required' : 'নাম আবশ্যক' ?>
+                    </span>
                 </div>
 
-                <div>
-                    <input type="tel" id="phone1" name="phone"
-                        oninput="this.value = this.value.replace(/(?!^\+)[^0-9]/g, '')"
+                <!-- Email -->
+                <div class="relative">
+
+                    <input type="email" name="gmail" placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
+                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
+                        <i class="fa-solid fa-envelope"></i>
+                    </span>
+                    <span class="text-red-500 text-sm mt-1 hidden" id="emailError2">
+                        <?= $lang === 'en' ? 'Email is required' : 'ইমেইল আবশ্যক' ?>
+                    </span>
+                </div>
+
+                <!-- Phone -->
+                <div class="relative">
+
+                    <input type="tel" name="phone" id="phone1"
                         placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
-                        class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                        oninput="this.value = this.value.replace(/(?!^\+)[^0-9]/g, '')" />
+                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
+                        <i class="fa-solid fa-phone"></i>
+                    </span>
+                    <span class="text-red-500 text-sm mt-1 hidden" id="phoneError2">
+                        <?= $lang === 'en' ? 'Phone number is required' : 'ফোন নম্বর আবশ্যক' ?>
+                    </span>
                 </div>
 
+                <!-- Submit -->
                 <button type="submit"
                     class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full py-3 transition">
-                    <?= $lang === 'en' ? 'Sing Up' : 'লগইন করুন' ?>
+                    <?= $lang === 'en' ? 'Sign up' : 'লগইন করুন' ?>
                 </button>
             </form>
         </div>

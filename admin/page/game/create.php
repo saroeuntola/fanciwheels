@@ -2,6 +2,7 @@
 include('../library/game_lib.php');
 include('../library/category_lib.php');
 include('../library/checkroles.php');
+include $_SERVER['DOCUMENT_ROOT'] . '/config/baseURL.php';
 protectPathAccess();
 
 $product = new Games();
@@ -69,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center min-h-screen w-full">
-    <div class="w-full max-w-2xl bg-white p-8 rounded-lg shadow-lg">
+    <div class="w-full max-w-5xl bg-white p-8 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold text-center mb-6 text-indigo-700">Create Post</h2>
 
         <form action="create" method="POST" enctype="multipart/form-data" class="space-y-5" onsubmit="syncQuillContent()">
@@ -195,6 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         });
 
+        const API_URL = "<?= $apiBaseURL ?>upload_image";
         // Intercept image uploads
         function imageHandler() {
             const input = document.createElement('input');
@@ -209,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     formData.append('image', file);
 
                     // Send image to server
-                    const res = await fetch('https://fanciwheel.com/admin/page/game/upload_image', {
+                    const res = await fetch(API_URL, {
                         method: 'POST',
                         body: formData
                     });

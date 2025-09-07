@@ -4,11 +4,6 @@ $gameObj = new Games();
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 $games = $gameObj->getgames($lang);
 ?>
-<!DOCTYPE html>
-<html lang="<?php echo htmlspecialchars($lang); ?>">
-
-<head>
-    <title><?php echo $lang === 'en' ? 'Popular Cities in Bangladesh' : 'বাংলাদেশের জনপ্রিয় শহর'; ?></title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         /* Your original styles */
@@ -171,9 +166,7 @@ $games = $gameObj->getgames($lang);
             margin-left: 10px;
         }
     </style>
-</head>
 
-<body>
     <div class="post-container">
         <div class="post-header">
             <h1 class="post-title text-gray-100 mb-4">
@@ -330,6 +323,3 @@ $games = $gameObj->getgames($lang);
             });
         });
     </script>
-</body>
-
-</html>

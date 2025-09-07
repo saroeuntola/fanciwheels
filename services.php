@@ -70,7 +70,7 @@ $texts = $servicesTexts[$lang];
 ?>
 
 <!DOCTYPE html>
-<html lang="<?= $lang ?>">
+<html lang="<?= $lang === 'en' ? 'en' : 'bn-BD' ?>">
 
 <head>
     <meta charset="UTF-8">

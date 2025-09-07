@@ -5,7 +5,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 ?>
 
 <!DOCTYPE html>
-<html lang="<?= $lang === 'en' ? 'en' : 'bn' ?>">
+<html lang="<?= $lang === 'en' ? 'en' : 'bn-BD' ?>">
 
 <head>
     <meta charset="UTF-8">

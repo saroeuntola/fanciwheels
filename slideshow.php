@@ -27,8 +27,6 @@ $banners = $bannerObj->getBanner();
   .slide-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    /* ensures images cover container */
     transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
     position: absolute;
     top: 0;
@@ -76,7 +74,7 @@ $banners = $bannerObj->getBanner();
   /* Dots */
   .dots-container {
     position: absolute;
-    bottom: 1rem;
+    bottom: 0.5rem;
     width: 100%;
     text-align: center;
     z-index: 2;
@@ -101,22 +99,23 @@ $banners = $bannerObj->getBanner();
   @media (max-width: 1024px) {
     .slideshow-container {
       width: 47.5rem;
-      height: 300px;
+      height: 280px;
     }
-  }
 
-  @media (max-width: 800px) {
-    .slideshow-container {
-      width: 47.5rem;
-      height: 300px;
+    .dots-container {
+      bottom: 1rem;
     }
   }
 
   /* Responsive: Small tablets */
   @media (max-width: 768px) {
     .slideshow-container {
-      width: 47.5rem;
-      height: 300px;
+      width: 45.5rem;
+      height: 275px;
+    }
+
+    .dots-container {
+      bottom: 1rem;
     }
   }
 
@@ -128,7 +127,17 @@ $banners = $bannerObj->getBanner();
 
     .slideshow-container {
       width: 92.5vw;
-      height: 210px;
+      height: 170px;
+    }
+
+    .dots-container {
+      bottom: 0rem;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      margin: 0 4px;
     }
   }
 
@@ -136,7 +145,7 @@ $banners = $bannerObj->getBanner();
   .slideshow-container .slide-image {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: fill;
   }
 </style>
 
@@ -148,7 +157,7 @@ $banners = $bannerObj->getBanner();
           <img class="slide-image <?= $index === 0 ? 'active' : '' ?>"
             src="<?= './admin/page/banner/' . htmlspecialchars($banner['image']) ?>"
             alt="<?= htmlspecialchars($banner['title']) ?>"
-            class="w-full h-full object-cover">
+            class="">
         <?php endforeach; ?>
       <?php else: ?>
         <p class="text-center text-gray-500">No banners available</p>

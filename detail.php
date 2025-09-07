@@ -25,7 +25,7 @@ $gameImage = $game['image'] ?? 'default.png';
 $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo htmlspecialchars($lang); ?>">
+<html lang="<?= $lang === 'en' ? 'en' : 'bn-BD' ?>">
 
 <head>
   <meta charset="UTF-8" />
@@ -133,6 +133,10 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     overflow: hidden;
   }
 
+  .img {
+    border-radius: 5px;
+  }
+
   .group:hover .group-hover\:opacity-80 {
     opacity: 0.8;
   }
@@ -198,8 +202,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
             src="<?= './admin/page/game/' . htmlspecialchars($gameImage) ?>"
             alt="<?= htmlspecialchars($metaText) ?>"
             loading="lazy"
-            class="w-full h-64 md:h-[310px] lg:h-[450px] object-cover rounded-xl mb-6" />
-
+            class="w-full md:h-[310px] lg:h-[450px] object-cover mb-4 img" />
           <div class="text-gray-300 space-y-4 text-base leading-relaxed md:text-lg">
             <?= $game['description'] ?? ($lang === 'en' ? 'No description available.' : 'কোনো বিবরণ নেই।') ?>
           </div>
@@ -265,7 +268,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
             <?= $lang === 'en' ? 'Latest Posts' : 'শেষ পোস্ট' ?>
           </h3>
           <div class="space-y-4">
-            <?php foreach (array_slice($popularGames, 0, 6) as $popular): ?>
+            <?php foreach (array_slice($popularGames, 0, 10) as $popular): ?>
               <?php
               $popularImage = $popular['image'] ?? 'default.png';
               $popularName = $popular['name'] ?? ($lang === 'en' ? 'Latest Posts' : 'শেষ পোস্ট');

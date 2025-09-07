@@ -3,7 +3,7 @@ include './admin/page/library/db.php';
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 ?>
 <!DOCTYPE html>
-<html lang="<?= $lang ?>">
+<html lang="<?= $lang === 'en' ? 'en' : 'bn-BD' ?>">
 
 <head>
   <meta charset="UTF-8" />
@@ -23,7 +23,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <title>
     <?php
     echo $lang === 'en'
-      ? 'Fancy Wheel - Milktea & Bus Services in Chittagong'
+      ? 'Fancy Wheel - Milk Tea & Bus Services in Chittagong'
       : 'Fancy Wheel - চট্টগ্রামে মিল্ক টি এবং বাস সার্ভিস';
     ?>
   </title>
@@ -31,15 +31,15 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <!-- Meta Description -->
   <meta name="description" content="<?php
                                     echo $lang === 'en'
-                                      ? 'Enjoy fresh Milktea and reliable bus services in Chittagong. Delicious flavors, high-quality ingredients, and safe, comfortable travel around the city.'
+                                      ? 'milk tea, Enjoy fresh Milktea and reliable bus services in Chittagong. Delicious flavors, high-quality ingredients, and safe, comfortable travel around the city.'
                                       : 'চট্টগ্রামে তাজা মিল্কটি এবং নির্ভরযোগ্য বাস সার্ভিস উপভোগ করুন। সুস্বাদু স্বাদ, উচ্চমানের উপাদান এবং নিরাপদ, আরামদায়ক যাত্রা।';
                                     ?>">
 
   <!-- Keywords -->
   <meta name="keywords" content="<?php
                                   echo $lang === 'en'
-                                    ? 'Fancy Wheel, fancywheel, fanciwheel, Milktea, Chittagong bus service, fresh milk tea, best Milktea, safe bus rides, Bangladesh travel'
-                                    : 'Fancy Wheel,fancywheel, fanciwheel, মিল্কটি, চট্টগ্রাম বাস সার্ভিস, তাজা মিল্কটি, সেরা মিল্কটি, নিরাপদ বাস যাত্রা, বাংলাদেশ ভ্রমণ';
+                                    ? 'bus ticket bd dhaka to sylhet, green line bus, ticket bd, bdtickets, shohoz bus, ena bus ticket, bus ticket, fancy wheels, Milktea, Natural beauty of Bangladesh, travel, bus, fancywheel bus, Tourist Places In Bangladesh, বাংলাদেশ, অনলাইন ক্যাসিনো, বাংলাদেশের সেরা ক্যাসিনো, বাংলাদেশের শীর্ষ ক্যাসিনো, বাংলাদেশে বাজি খেলা, ক্যাসিনো সাইট বাংলাদেশ, ক্যাসিনো গেম, স্লট, জুয়া, পণ, লাইভ ক্যাসিনো, ক্রীড়া পণ, অনলাইন জুয়া, আইনি অনলাইন ক্যাসিনো বাংলাদেশ, অনলাইন ক্যাসিনো বিডি, বাংলাদেশের শীর্ষ ক্যাসিনো সাইট, কালো জ্যাক, রুলেট,  জুজু,, অনলাইন ক্যাসিনো বাংলাদেশ,Fancy Wheel,fancywheel, fanciwheel, মিল্কটি, চট্টগ্রাম বাস সার্ভিস, তাজা মিল্কটি, সেরা মিল্কটি, নিরাপদ বাস যাত্রা, বাংলাদেশ ভ্রমণ, Bangladesh travel'
+                                    : 'bus ticket bd dhaka to sylhet, Bus Tickets Online in Bangladesh, green line bus, ticket bd, bdtickets, shohoz bus, ena bus ticket, bus ticket, fancy wheels, Chittagong, Milktea, Fancy Wheel, fancywheel, Tourist Places In Bangladesh, fanciwheel, Natural beauty of Bangladesh,Bangladesh travel, travel, bus, fancywheel bus,chittagong to dhaka bus ticket price,বাংলাদেশ, অনলাইন ক্যাসিনো, বাংলাদেশের সেরা ক্যাসিনো, বাংলাদেশের শীর্ষ ক্যাসিনো, বাংলাদেশে বাজি খেলা, ক্যাসিনো সাইট বাংলাদেশ, ক্যাসিনো গেম, স্লট, জুয়া, পণ, লাইভ ক্যাসিনো, ক্রীড়া পণ, অনলাইন জুয়া, আইনি অনলাইন ক্যাসিনো বাংলাদেশ, অনলাইন ক্যাসিনো বিডি, বাংলাদেশের শীর্ষ ক্যাসিনো সাইট, কালো জ্যাক, রুলেট,  জুজু,, অনলাইন ক্যাসিনো বাংলাদেশ, মিল্কটি, চট্টগ্রাম বাস সার্ভিস, তাজা মিল্কটি, সেরা মিল্কটি, নিরাপদ বাস যাত্রা, বাংলাদেশ ভ্রমণ';
                                   ?>">
 
   <!-- Favicon -->

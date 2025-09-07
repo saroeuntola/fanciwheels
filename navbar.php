@@ -13,7 +13,7 @@ $user = null;
 
 if ($userId) {
   $userLib = new User();
-  $user = $userLib->getUserByID($userId);
+  $user = $userLib->getUser($userId);
 }
 
 $profileImage = isset($user['profile']) && !empty($user['profile']) ? $user['profile'] : 'default.png';
@@ -115,22 +115,20 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
               <img src="<?= $profilePath ?>" alt="Profile" class="w-8 h-8 rounded-full object-cover">
             </button>
           <?php else: ?>
-            <a href="https://fancywin.city/bd/bn/new-register-entry/account" target="_blank"
+            <button onclick="window.open('https://fancywin.city/bd/bn/new-register-entry/account', '_blank')"
               class="text-sm text-white px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 flex items-center">
               <!-- User icon SVG -->
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A7 7 0 0112 15a7 7 0 016.879 2.804M12 12a5 5 0 100-10 5 5 0 000 10z" />
               </svg>
 
-            </a>
+            </button>
 
           <?php endif; ?>
 
         </div>
 
       </div>
-
-
 
       <!-- Desktop Menu -->
       <div class="hidden lg:flex items-center w-full">
@@ -196,7 +194,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
               </div>
             </div>
           <?php else: ?>
-            <a href="https://fancywin.city/bd/bn/new-register-entry/account" target="_blank" class="transition-all duration-500 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700"><?= $menu['join'] ?></a>
+            <button onclick="window.open('https://fancywin.city/bd/bn/new-register-entry/account', '_blank')" class="transition-all duration-500 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700"><?= $menu['join'] ?></button>
           <?php endif; ?>
 
 
@@ -235,7 +233,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     <!-- Search Input -->
     <div class="mt-4">
       <input type="text" id="search-box" placeholder="<?= $lang === 'en' ? 'Type to search...' : 'অনুসন্ধান করতে টাইপ করুন...' ?>"
-        class="w-full px-4 py-3 rounded-md border focus:outline-none focus:ring-2 focus:ring-green-500 text-black">
+        class="w-full px-4 py-3 rounded-md border focus:outline-none focus:ring-2 focus:ring-green-500 text-white">
     </div>
 
     <!-- Loading Indicator -->
