@@ -1,6 +1,8 @@
-<?php include './admin/page/library/db.php' ?>
-
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include "./admin/page/library/db.php";
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 
 $servicesTexts = [
@@ -126,9 +128,10 @@ $texts = $servicesTexts[$lang];
 
     <!-- Favicon -->
     <link rel="icon" href="https://fanciwheel.com/image/PWAicon-192px.png" type="image/png">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="./dist/output.css">
+    <link href="./dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/css/all.min.css" />
+    <script src="./js/all.min.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
     <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {

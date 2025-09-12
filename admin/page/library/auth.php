@@ -1,29 +1,75 @@
 <?php
-session_start();
 include('db.php');
-
 class Auth
 {
     public $db;
 
     public function __construct()
     {
-        $this->db = dbConn(); 
+         $this->db = dbConn(); 
     }
 
-    // Register
-    public function register($username, $email, $password, $sex, $role_id = 1) 
+
+    public function exists($field, $value)
     {
+        $allowed = ['username', 'email', 'phone'];
+        if (!in_array($field, $allowed)) return false;
+
+        $stmt = $this->db->prepare("SELECT id FROM users WHERE $field = :value LIMIT 1");
+        $stmt->execute(['value' => $value]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row ? true : false;
+    }
+    // Register
+
+    public function createAccUser($username, $email, $phone, $password, $role_id)
+    {
+        // Check if exists
+        if (
+            $this->exists('username', $username) ||
+            $this->exists('email', $email) ||
+            $this->exists('phone', $phone)
+        ) {
+            throw new PDOException("Email, username, or phone already exists", 23000);
+        }
+
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-        $data = [
+
+        $stmt = $this->db->prepare("
+        INSERT INTO users (username, email, phone, password, role_id) 
+        VALUES (:username, :email, :phone, :password, :role_id)
+    ");
+
+        return $stmt->execute([
+            'username' => $username,
+            'email'    => $email,
+            'phone'    => $phone,
+            'password' => $hashed_password,
+            'role_id'  => $role_id
+        ]);
+    }
+
+    public function register($username, $email, $phone, $password, $role_id = 2)
+    {
+        // Check if exists
+        if (
+            $this->exists('username', $username) ||
+            $this->exists('email', $email) ||
+            $this->exists('phone', $phone)
+        ) {
+            throw new PDOException("Email, username, or phone already exists", 23000);
+        }
+
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+        $stmt = $this->db->prepare("INSERT INTO users (username,email,phone,password,role_id) VALUES (:username,:email,:phone,:password,:role_id)");
+        return $stmt->execute([
             'username' => $username,
             'email' => $email,
+            'phone' => $phone,
             'password' => $hashed_password,
-            'sex' => $sex,
-            'role_id' => $role_id 
-        ];
-
-        return dbInsert('users', $data); 
+            'role_id' => $role_id
+        ]);
     }
 
     // Login

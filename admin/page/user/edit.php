@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $role->updateUser($userId, $dataToUpdate);
-    header('Location: index.php');
+    header('Location: ./');
     exit;
 }
 

@@ -1,7 +1,7 @@
 <?php 
 include "../admin/page/library/checkroles.php";
 include('../admin/page/library/users_lib.php');
-protectPathAccess();  
+protectPathAccess(); 
 // $categoryCount = dbCount("categories");
 // $productCount = dbCount("games");
 // $userCount = dbCount("users");
@@ -14,7 +14,6 @@ protectPathAccess();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="./page/assets/css/styles.css">
-       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="/dist/output.css" rel="stylesheet">
 </head>
 <body>

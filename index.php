@@ -1,5 +1,8 @@
 <?php
-include './admin/page/library/db.php';
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+include('./admin/page/library/db.php');
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 ?>
 <!DOCTYPE html>
@@ -23,8 +26,8 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <title>
     <?php
     echo $lang === 'en'
-      ? 'Fancy Wheel - Milk Tea & Bus Services in Chittagong'
-      : 'Fancy Wheel - চট্টগ্রামে মিল্ক টি এবং বাস সার্ভিস';
+      ? 'FancyWheel - Milk Tea & Bus Services in Chittagong'
+      : 'FancyWheel - চট্টগ্রামে মিল্ক টি এবং বাস সার্ভিস';
     ?>
   </title>
 
@@ -62,22 +65,13 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <meta name="twitter:description" content="<?php echo $lang === 'en' ? 'Fresh Milktea and safe bus services in Chittagong. Enjoy high-quality flavors and comfortable rides.' : 'চট্টগ্রামে তাজা মিল্কটি এবং নিরাপদ বাস সার্ভিস। উচ্চমানের স্বাদ এবং আরামদায়ক যাত্রা উপভোগ করুন।'; ?>" />
   <meta name="twitter:image" content="https://fanciwheel.com/image/PWAicon-192px.png" />
 
-  <!-- Tailwind CSS -->
   <link href="./dist/output.css" rel="stylesheet">
-
-  <!-- Quill Editor (if needed) -->
-  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <link rel="stylesheet" href="./dist/css/all.min.css" />
+  <script src="./js/all.min.js"></script>
+  <script src="./js/jquery-3.6.0.min.js"></script>
+  <link href="https://cdn.quilljs.com/1.3.6/css/quill.snow.css" rel="stylesheet">
   <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-
-  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-  <!-- IntlTelInput CSS/JS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
@@ -86,7 +80,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
       "@context": "https://schema.org",
       "@type": "WebSite",
       "url": "https://fanciwheel.com/",
-      "name": "Fancy Wheel",
+      "name": "FancyWheel",
       "alternateName": "fanciwheel.com",
       "logo": "https://fanciwheel.com/image/PWAicon-192px.png",
       "potentialAction": {
@@ -101,7 +95,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
       "@context": "https://schema.org",
       "@type": "Organization",
       "url": "https://fanciwheel.com/",
-      "name": "Fancy Wheel",
+      "name": "FancyWheel",
       "alternateName": "fanciwheel.com",
       "logo": "https://fanciwheel.com/image/PWAicon-192px.png",
     }
@@ -136,10 +130,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     gtag('js', new Date());
     gtag('config', 'G-98CRLK26X1');
   </script>
-
 </head>
-
-
 <style>
   /* Line clamp utilities */
   .line-clamp-1 {
@@ -249,18 +240,15 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <?php include 'scroll-top-button.php'; ?>
   <!-- Cards Section -->
   <div class="max-w-7xl mx-auto lg:px-[35px] md:px-[24px] mt-6">
-    <?php include 'card.php'; ?>
+    <?php include 'blog-card.php'; ?>
   </div>
   <div class="max-w-7xl mx-auto lg:px-[35px] md:px-[24px]">
-    <?php include 'games-grid.php' ?>
+    <?php include 'games-card.php' ?>
   </div>
   <div class="mb-12">
   </div>
   <?php include 'footer.php'; ?>
   <?php include 'spin-popup.php'; ?>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCJVFMSG"

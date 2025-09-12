@@ -1,15 +1,17 @@
-<?php include './admin/page/library/db.php' ?>
 <?php
-
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+include "./admin/page/library/db.php";
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 
-// Include FAQs
 $faqData = include './language/faqs-translate.php';
 $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
 ?>
 
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? 'en' : 'bn-BD' ?>">
+
 <head>
   <?php include 'head-log.php' ?>
   <!-- Googlebot (main crawler) -->
@@ -62,8 +64,10 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS -->
   <link href="./dist/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="./dist/css/all.min.css" />
+  <script src="./js/all.min.js"></script>
+  <script src="./js/jquery-3.6.0.min.js"></script>
 
   <!-- Google Analytics / gtag.js -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>

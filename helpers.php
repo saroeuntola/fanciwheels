@@ -2,11 +2,11 @@
 function navLink($page, $label, $lang, $currentPage, $currentId)
 {
     $pageMap = [
-        '/' => '/',
-        'services' => 'services',
-        'about' => 'about',
-        'faq' => 'faq',
-        'contact'=>'contact'
+        '/' => 'index.php',
+        'services' => 'services.php',
+        'about' => 'about.php',
+        'faq' => 'faq.php',
+        'contact' => 'contact.php'
     ];
 
     $targetFile = $pageMap[$page] ?? '';
@@ -14,17 +14,17 @@ function navLink($page, $label, $lang, $currentPage, $currentId)
 
     $isActive = ($currentFile === $targetFile);
 
-    $href = $page;
+    $href = $pageMap[$page] ?? $page;
     $params = ['lang' => $lang];
-    if ($currentFile === 'detail' && $currentId) {
+    if ($currentFile === 'detail.php' && $currentId) {
         $params['slug'] = $currentId;
     }
     $queryString = http_build_query($params);
     $href .= '?' . $queryString;
 
     $classes = $isActive
-        ? 'inline-block text-white underline underline-offset-4 decoration-2'
-        : 'inline-block text-white hover:underline hover:underline-offset-4 hover:decoration-2';
+        ? 'text-white border-b-2 border-white px-3 font-medium' // Active page underline
+        : 'text-white hover:border-b-2 hover:border-white px-3 font-medium transition-all duration-300'; // Hover underline
 
-    return "<a href=\"{$href}\" class=\"{$classes} px-3 font-medium\">{$label}</a>";
+    return "<a href=\"{$href}\" class=\"{$classes}\">{$label}</a>";
 }

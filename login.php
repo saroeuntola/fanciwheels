@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+ session_start();
+}
 include('./admin/page/library/auth.php');
 $auth = new Auth();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -304,7 +307,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="w-full max-w-md login-container">
             <div class="glass-card p-8 rounded-2xl">
                 <div class="text-center mb-8">
-                    <h1 class="title-text">Welcome Back</h1>
+                    <h1 class="title-text">Login</h1>
                     <p class="subtitle-text">Sign in to your account</p>
                 </div>
 
@@ -326,12 +329,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
 
                     <button type="submit" class="btn-primary w-full">
-                        Sign In
+                        Login
                     </button>
 
-                    <div class="text-center">
-                        <a href="register.php" class="link-text">Don't have an account? Create one</a>
-                    </div>
+               
 
                     <?php if (isset($error_message)): ?>
                         <div class="error-message">

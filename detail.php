@@ -1,7 +1,9 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
 include "./admin/page/library/db.php";
 include "./admin/page/library/game_lib.php";
-
 $currentPage = basename($_SERVER['PHP_SELF']);
 
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
@@ -58,9 +60,11 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
 
     gtag('config', 'G-98CRLK26X1');
   </script>
-  <!-- CSS -->
-  <link href="./dist/output.css" rel="stylesheet">
 
+  <link href="./dist/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="./dist/css/all.min.css" />
+  <script src="./js/all.min.js"></script>
+  <script src="./js/jquery-3.6.0.min.js"></script>
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
   <meta property="og:description" content="<?= htmlspecialchars($game['description'] ?? 'Check out detail') ?>" />
@@ -185,6 +189,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
     <?php include 'navbar.php'; ?>
   </nav>
+
   <?php include 'loading.php'; ?>
   <?php include 'scroll-top-button.php'; ?>
 
@@ -314,6 +319,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   </div>
 
   <?php include 'footer.php'; ?>
+
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCJVFMSG"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

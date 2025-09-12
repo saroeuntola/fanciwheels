@@ -1,31 +1,27 @@
 <?php
-include './admin/page/library/users_lib.php';
-include './admin/page/library/brand_lib.php';
-include 'helpers.php';
-include './config/baseURL.php';
 
+include './admin/page/library/brand_lib.php';
+include './admin/page/library/users_lib.php';
+
+include './config/baseURL.php';
 $auth = new User();
 $brand = new Brand();
 $username = $_SESSION['username'] ?? '';
-$userId = $_SESSION['user_id'] ?? null;
+$userId   = $_SESSION['user_id'] ?? null;
 $brandList = $brand->getBrand();
-$user = null;
-
 if ($userId) {
   $userLib = new User();
-  $user = $userLib->getUser($userId);
-}
-
-$profileImage = isset($user['profile']) && !empty($user['profile']) ? $user['profile'] : 'default.png';
-$profilePath = '/admin/page/user/user_image/' . htmlspecialchars($profileImage);
-$fullPath = '/admin/page/user/user_image/' . $profileImage;
-if (!file_exists($fullPath)) {
-  $profilePath = '/admin/page/user/user_image/default.png';
+  $user    = $userLib->getUser($userId);
+  $profilePath = !empty($user['profile'])
+    ? '/admin/page/user/user_image/' . $user['profile']
+    : './image/no_profile.png';
 }
 
 $currentPage = basename($_SERVER['PHP_SELF']);
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 $currentId = isset($_GET['slug']) ? trim($_GET['slug']) : null;
+
+
 
 function buildLangUrl($langTarget, $currentPage, $currentId)
 {
@@ -36,12 +32,48 @@ function buildLangUrl($langTarget, $currentPage, $currentId)
   return $currentPage . '?' . http_build_query($params);
 }
 
+function navLink($page, $label, $lang, $currentPage, $currentId)
+{
+  $pageMap = [
+    '/' => 'index.php',
+    'services' => 'services.php',
+    'about' => 'about.php',
+    'faq' => 'faq.php',
+    'contact' => 'contact.php'
+  ];
+
+  $targetFile = $pageMap[$page] ?? $page;
+  $currentFile = basename($currentPage);
+
+  // Handle '/' mapping for index page
+  if ($currentFile === 'index.php' && $page === '/') {
+    $isActive = true;
+  } else {
+    $isActive = ($currentFile === $targetFile);
+  }
+
+  $href = $targetFile;
+  $params = ['lang' => $lang];
+  if ($currentFile === 'detail.php' && $currentId) {
+    $params['slug'] = $currentId;
+  }
+  $queryString = http_build_query($params);
+  $href .= '?' . $queryString;
+
+  $classes = 'font-medium nav-link text-white';
+  if ($isActive) $classes .= ' active';
+
+  return "<a href=\"{$href}\" class=\"{$classes}\">{$label}</a>";
+}
+
+
+
 $menu = [
   'home' => $lang === 'en' ? 'Home' : 'হোমপেজ',
   'services' => $lang === 'en' ? 'Services' : 'সেবা',
   'about' => $lang === 'en' ? 'About' : 'সম্পর্কে',
   'faq' => $lang === 'en' ? 'FAQs' : 'FAQs',
-  'join' => $lang === 'en' ? 'Join Now' : 'যোগদান করুন',
+  'join' => $lang === 'en' ? 'Sign In' : 'লগ ইন',
   'search' => $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...',
   'contact' => $lang === 'en' ? 'Contact' : 'যোগাযোগ'
 ];
@@ -52,8 +84,118 @@ $languageNames = [
 ];
 $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 ?>
+<style>
+  #mobileProfileDropdown {
+    top: 50px;
+  }
+
+  /* Add this inside your <style> tag in the navbar */
 
 
+  .nav-link.active {
+    border-bottom: 3px solid white;
+  }
+
+  .nav-link {
+    position: relative;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  /* Add this to your <style> */
+  /* Add to your <style> */
+  #mobileMenu {
+
+    width: 250px;
+  }
+
+  #mobileMenu.open {
+    left: 0;
+    /* slide in */
+  }
+
+  /* Mobile Overlay */
+  #mobileOverlay {
+    display: none;
+
+    position: fixed;
+    top: 64px;
+    /* leave navbar visible */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 64px);
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 5s ease;
+  }
+
+  #mobileOverlay.show {
+    display: block;
+    opacity: 1;
+    z-index: 2;
+  }
+
+  #logo {
+    width: 115px;
+    height: 23px;
+    object-fit: fill;
+  }
+
+  #logo:hover {
+    opacity: 0.7;
+  }
+
+  @media(min-width: 1024px) {
+    #mobileOverlay {
+      display: none !important;
+    }
+
+    #logo {
+      width: 135px;
+      height: 28px;
+      object-fit: fill;
+    }
+  }
+
+  /* Mobile Menu */
+  #mobileMenu {
+    position: fixed;
+    top: 64px;
+    left: -100%;
+
+    height: calc(100vh - 64px);
+    background-color: #1f2937;
+    z-index: 10;
+    transition: left 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 3s ease;
+    opacity: 0;
+  }
+
+  #mobileMenu.open {
+    left: 0;
+    opacity: 1;
+  }
+
+
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+</style>
 <!-- Navbar -->
 <nav class="bg-gray-800 relative shadow-2xl border-b border-white/10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -63,7 +205,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
         <div class="flex items-center gap-3">
           <button id="mobileToggle" class="text-white focus:outline-none">
             <!-- Hamburger Icon -->
-            <svg id="mobileHamburger" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <svg id="mobileHamburger" class="w-6 h-7" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
               <path d="M4 6h16M4 12h16M4 18h16" />
             </svg>
 
@@ -75,35 +217,39 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 
           <!-- Site Title -->
           <h1>
-            <a href="/?lang=<?= $lang ?>" class="text-gray-100 text-lg font-bold ">Fancy Wheel</a>
+            <a href="/?lang=<?= $lang ?>" class="mr-8">
+              <img id="logo" src="./image/logo.png" alt="logo">
+              <!-- <span class="text-lg">FancyWheel</span> -->
+            </a>
           </h1>
+
         </div>
 
         <!-- Search & Profile -->
         <div class="flex items-center">
-          <button id="mobileSearchBtn" class=" text-white focus:outline-none"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <button id="mobileSearchBtn" class="p-0 text-white focus:outline-none"> <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg></button>
+            </svg>
+          </button>
 
           <!-- mobile lang -->
           <div class="relative">
             <!-- Language Button -->
-            <button id="lang-btn-mobile" class="flex items-center text-white px-3 py-2 rounded-md  focus:outline-none">
-              <img id="lang-flag-mobile" src="./image/flag/<?= $lang === 'en' ? 'en' : 'bn' ?>.svg" class="w-6 h-4 ml-2" alt="Flag">
-              <span class="ml-2 font-medium"><?= $lang === 'en' ? 'EN' : 'BN' ?></span>
-              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button id="lang-btn-mobile" class="flex items-center text-white px-4 py-2 rounded-md  focus:outline-none">
+              <img id="lang-flag-mobile" src="./image/flag/<?= $lang === 'en' ? 'en' : 'bn' ?>.svg" class="w-8 h-6" alt="Flag">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
             <!-- Language Dropdown -->
-            <div id="lang-menu-mobile" class="hidden absolute right-0 mt-2 w-36 bg-gray-800 rounded-md shadow-lg z-50">
+            <div id="lang-menu-mobile" class="hidden absolute mt-2 px-6 py-2 w-36 bg-gray-800 rounded-md shadow-lg z-50">
               <?php foreach ($languageNames as $code => $name): ?>
                 <?php if ($code !== $lang): ?>
-                  <a href="<?= buildLangUrl($code, $currentPage, $currentId) ?>" class="flex items-center px-3 py-2 text-white hover:bg-gray-100 transition">
-                    <img src="./image/flag/<?= $code ?>.svg" class="w-6 h-4 mr-2" alt="<?= $name ?> Flag">
-                    <span><?= $name ?></span>
+                  <a href="<?= buildLangUrl($code, $currentPage, $currentId) ?>" class="flex items-center justify-center gap-2 text-white hover:bg-gray-100 transition">
+                    <img src="./image/flag/<?= $code ?>.svg" class="w-6 h-4" alt="<?= $name ?> Flag">
+                    <p class=""><?= $name ?></p>
                   </a>
                 <?php endif; ?>
               <?php endforeach; ?>
@@ -111,20 +257,26 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
           </div>
 
           <?php if ($userId): ?>
-            <button id="mobileProfileBtn" class="relative p-1 rounded-full bg-white/10 border border-white/20">
+            <button id="mobileProfileBtn" class="relative rounded-full0">
               <img src="<?= $profilePath ?>" alt="Profile" class="w-8 h-8 rounded-full object-cover">
             </button>
+            <div id="mobileProfileDropdown"
+              class="absolute right-0 mt-2 w-56 bg-slate-800/95 backdrop-blur-lg border border-slate-700/50 text-white rounded-xl shadow-2xl hidden z-[9999] overflow-hidden">
+              <div class="px-4 py-3 border-b border-slate-700/50">
+                <p class="text-sm font-semibold"><?= htmlspecialchars($user['username']) ?></p>
+              </div>
+              <a href="/admin/page/user/profile" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-700/50">Profile</a>
+              <button onclick="window.location.href='logout'" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10">Logout</button>
+            </div>
           <?php else: ?>
-            <button onclick="window.open('https://fancywin.city/bd/bn/new-register-entry/account', '_blank')"
-              class="text-sm text-white px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 flex items-center">
-              <!-- User icon SVG -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A7 7 0 0112 15a7 7 0 016.879 2.804M12 12a5 5 0 100-10 5 5 0 000 10z" />
-              </svg>
-
+            <button
+              class="openAuthModal text-sm text-white px-3 py-1 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 flex items-center">
+              <?= $menu['join'] ?>
             </button>
 
           <?php endif; ?>
+
+
 
         </div>
 
@@ -134,12 +286,15 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
       <div class="hidden lg:flex items-center w-full">
         <!-- Site Title -->
         <h1>
-          <a href="/?lang=<?= $lang ?>" class="text-gray-100 text-2xl font-bold mr-8">Fancy Wheel</a>
+          <a href="/?lang=<?= $lang ?>" class=" mr-8">
+            <img id="logo" src="./image/logo.png" alt="logo">
+            <!-- <span class="text-2xl">FancyWheel</span> -->
+          </a>
         </h1>
 
         <!-- Navigation-->
         <div class="flex items-center gap-4 ml-auto">
-          <nav class="flex space-x-6">
+          <nav class="flex space-x-8 mr-2">
             <?= navLink('/', $menu['home'], $lang, $currentPage, $currentId) ?>
             <?= navLink('services', $menu['services'], $lang, $currentPage, $currentId) ?>
             <?= navLink('about', $menu['about'], $lang, $currentPage, $currentId) ?>
@@ -178,25 +333,34 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
             </div>
           </div>
 
-          <!-- Profile / Join -->
-          <?php if ($userId): ?>
+          <?php if ($userId && !empty($user)): ?>
             <div class="relative">
-              <button id="profileMenuBtn" class="group flex items-center gap-2 px-3 py-2 rounded-full bg-white/10 border border-white/20">
-                <img src="<?= $profilePath ?>" alt="" class="w-8 h-8 object-cover rounded-full border-2 border-white/30">
-                <span class="text-white/90 text-sm"><?= htmlspecialchars(substr($username, 0, 8)) ?></span>
-                <svg class="w-4 h-4 text-white/60 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <button id="profileMenuBtn" class="group flex items-center gap-2 rounded-full">
+                <img src="<?= htmlspecialchars($profilePath) ?>" alt="Profile"
+                  class="w-8 h-8 object-cover rounded-full border-2 border-white/30">
+
+                <svg class="w-4 h-4 text-white group-hover:rotate-180 transition-transform duration-200"
+                  fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <div id="profileDropdown" class="absolute right-0 mt-2 w-48 bg-slate-800/95 backdrop-blur-lg border border-slate-700/50 text-white rounded-xl shadow-2xl hidden z-[9999] overflow-hidden">
+
+              <!-- Dropdown -->
+              <div id="profileDropdown"
+                class="absolute right-0 mt-2 w-56 bg-slate-800/95 backdrop-blur-lg border border-slate-700/50 text-white rounded-xl shadow-2xl hidden z-[9999] overflow-hidden">
+                <p class="flex items-center gap-3 px-4 py-3 hover:bg-slate-700/50">
+                  <?= htmlspecialchars($user['username'] ?? 'User') ?>
+                </p>
                 <a href="/admin/page/user/profile" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-700/50">Profile</a>
-                <a href="logout.php" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10">Logout</a>
+                <button onclick="window.location.href='logout'" class="flex items-center gap-3 px-3 py-3 text-red-400 hover:bg-red-500/10">Logout</button>
               </div>
             </div>
           <?php else: ?>
-            <button onclick="window.open('https://fancywin.city/bd/bn/new-register-entry/account', '_blank')" class="transition-all duration-500 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700"><?= $menu['join'] ?></button>
+            <button
+              class="openAuthModal transition-all duration-500 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700">
+              <?= $menu['join'] ?>
+            </button>
           <?php endif; ?>
-
 
         </div>
 
@@ -204,10 +368,9 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 
     </div>
   </div>
-
   <!-- Mobile Menu -->
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="lg:hidden hidden absolute top-full left-0 w-full bg-gray-800 text-white z-50">
+  <div id="mobileOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden"></div>
+  <div id="mobileMenu" class="lg:hidden fixed top-5 left-[-100%] h-full bg-gray-800 text-white z-10 transition-left duration-300 ease-in-out">
     <div class="flex flex-col p-4 space-y-3">
       <?= navLink('/', $menu['home'], $lang, $currentPage, $currentId) ?>
       <?= navLink('services', $menu['services'], $lang, $currentPage, $currentId) ?>
@@ -218,8 +381,8 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
   </div>
 
 
-</nav>
 
+</nav>
 
 <!-- Search Modal (shared for Desktop & Mobile) -->
 <div id="searchModal" class="fixed inset-0 bg-black bg-opacity-70 hidden z-50 flex items-center justify-center">
@@ -233,7 +396,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     <!-- Search Input -->
     <div class="mt-4">
       <input type="text" id="search-box" placeholder="<?= $lang === 'en' ? 'Type to search...' : 'অনুসন্ধান করতে টাইপ করুন...' ?>"
-        class="w-full px-4 py-3 rounded-md border focus:outline-none focus:ring-2 focus:ring-green-500 text-white">
+        class="w-full px-4 py-3 rounded-md border focus:outline-none focus:ring-2 focus:ring-green-500 text-black">
     </div>
 
     <!-- Loading Indicator -->
@@ -243,10 +406,69 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     </div>
   </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(function() {
 
+<script src="./js/jquery-3.6.0.min.js"></script>
+<?php
+include 'auth-form.php';
+?>
+
+<script>
+  $(document).ready(function() {
+
+    // ===== Desktop Profile Dropdown =====
+    $('#profileMenuBtn').click(function(e) {
+      e.stopPropagation();
+      $('#profileDropdown').toggleClass('hidden');
+    });
+
+    // ===== Mobile Profile Dropdown =====
+    $('#mobileProfileBtn').click(function(e) {
+      e.stopPropagation();
+      $('#mobileProfileDropdown').toggleClass('hidden');
+    });
+
+    // Close dropdowns when clicking outside
+    $(document).click(function() {
+      $('#profileDropdown').addClass('hidden');
+      $('#mobileProfileDropdown').addClass('hidden');
+    });
+
+    // Close dropdowns on ESC key
+    $(document).keydown(function(e) {
+      if (e.key === 'Escape') {
+        $('#profileDropdown').addClass('hidden');
+        $('#mobileProfileDropdown').addClass('hidden');
+      }
+    });
+  });
+
+
+  function openAuthModal() {
+    const modal = $("#authModal");
+    const modalContent = $("#authModal > div");
+    $("#registerAuth").hide();
+    $("#loginAuth").show();
+    modal.removeClass("opacity-0 pointer-events-none");
+    modalContent.removeClass("scale-95").addClass("scale-100");
+  }
+
+  function closeAuthModal() {
+    const modal = $("#authModal");
+    const modalContent = $("#authModal > div");
+
+    modalContent.removeClass("scale-100").addClass("scale-95");
+    modal.addClass("opacity-0 pointer-events-none");
+  }
+
+  $(".openAuthModal").click(openAuthModal);
+
+  $(".closeAuthModal").click(closeAuthModal);
+
+  $("#authModal").click(function(e) {
+    if (e.target === this) closeAuthModal();
+  });
+
+  $(function() {
     // ===== Language Dropdowns =====
     function setupLangDropdown(btnSelector, menuSelector) {
       const $btn = $(btnSelector),
@@ -266,13 +488,34 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     setupLangDropdown('#lang-btn-mobile', '#lang-menu-mobile');
 
     // ===== Mobile Menu Toggle =====
-    // ===== Mobile Menu Toggle =====
+    // Mobile Toggle with overlay
     $('#mobileToggle').click(function(e) {
       e.stopPropagation();
-      $('#mobileMenu').toggleClass('hidden');
       $('#mobileHamburger').toggleClass('hidden');
       $('#mobileClose').toggleClass('hidden');
+
+      $('#mobileMenu').toggleClass('open');
+      $('#mobileOverlay').toggleClass('show'); // fade overlay
     });
+
+    // Close menu when clicking outside or overlay
+    $(document).click(function(e) {
+      if (!$(e.target).closest('#mobileMenu, #mobileToggle').length) {
+        $('#mobileMenu').removeClass('open');
+        $('#mobileOverlay').removeClass('show');
+        $('#mobileHamburger').removeClass('hidden');
+        $('#mobileClose').addClass('hidden');
+      }
+    });
+
+    $('#mobileOverlay').click(function() {
+      $('#mobileMenu').removeClass('open');
+      $('#mobileOverlay').removeClass('show');
+      $('#mobileHamburger').removeClass('hidden');
+      $('#mobileClose').addClass('hidden');
+    });
+
+
 
 
     // ===== Search Modal (Shared Desktop & Mobile) =====
@@ -291,10 +534,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
       $searchResults.empty();
     }
 
-    // Open modal buttons
     $('#openSearchModal, #mobileSearchBtn').click(openSearchModal);
-
-    // Close modal on clicking outside or close button
     $searchModal.click(function(e) {
       if (e.target === this) closeSearchModal();
     });
@@ -318,18 +558,18 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
             let html = '';
             data.forEach(item => {
               html += `<a href="detail?slug=${item.slug}&lang=<?= $lang ?>" class="flex flex-col items-center bg-gray-800 rounded hover:shadow-lg transition relative">
-                                        <div class="absolute inset-0 flex items-center justify-center bg-gray-500 z-10" id="spinner">
-                                            <svg class="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24">
-                                                <circle class="opacity-25" cx="12" cy="12" r="10"
-                                                    stroke="currentColor" stroke-width="4"></circle>
-                                                <path class="opacity-75" fill="currentColor"
-                                                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                                            </svg>
-                                        </div>
-                  <img src="/admin/page/game/${item.image}" alt="${item.title}" class="w-full h-40 object-cover rounded mb-2 opacity-0 transition-opacity duration-500" loading="lazy" onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove();">
-                  <span class="text-sm font-medium mb-2">${item.title}</span>
-                </a>`;
+    <div class="absolute inset-0 flex items-center justify-center bg-gray-500 z-10" id="spinner">
+      <svg class="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+        viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10"
+          stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor"
+          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+      </svg>
+    </div>
+    <img src="/admin/page/game/${item.image}" alt="${item.title}" class="w-full h-40 object-cover rounded mb-2 opacity-0 transition-opacity duration-500" loading="lazy" onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove();">
+    <span class="text-sm font-medium mb-2">${item.title}</span>
+  </a>`;
             });
             $searchResults.html(html);
           } else {

@@ -133,6 +133,7 @@ $translations = [
         margin-top: 15px;
         font-weight: bold;
     }
+
     /* Result Modal */
     #popupOverlay,
     #popupOverlay1 {
@@ -147,38 +148,12 @@ $translations = [
         justify-content: center;
 
     }
+
     #popupOverlay .popup,
     #popupOverlay1 .popup {
-        background: linear-gradient(135deg,
-                rgba(0, 0, 255, 0.6),
-                /* blue */
-                rgba(255, 0, 0, 0.6)
-                /* red */
-            );
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        box-shadow:
-            0 25px 45px rgba(0, 0, 0, 0.1),
-            0 0 0 1px rgba(255, 255, 255, 0.05),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-
-    }
-    /* Modern gradient backgrounds */
-    .gradient-bg {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-color: #1F2937;
     }
 
-    .gradient-text {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    /* Enhanced input styling */
     input {
         background: rgba(255, 255, 255, 0.08) !important;
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -200,7 +175,6 @@ $translations = [
 
     #popupOverlay .popup button,
     #popupOverlay1 .popup button {
-        margin-top: 20px;
         padding: 12px 20px;
         font-size: 16px;
     }
@@ -236,27 +210,14 @@ $translations = [
         #spinCountDisplay {
             margin-left: 85px;
         }
-
-        /* #spinBtn,
-    #closeModalBtn {
-      width: 80%;
-      margin: 15px auto 0 auto;
-      font-size: 20px;
-    } */
-
-
     }
 </style>
-<!-- Toastr CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
-<!-- Toastr JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+<link rel="stylesheet" href="./dist/css/toastr.min.css">
+<script src="./js/toastr.min.js"></script>
 <body>
     <!-- Spin Wheel Modal -->
-    <div id="spinWheelModal">
-        <div class="popup">
+    <div id="spinWheelModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 z-50">
+        <div class="popup transform scale-95 transition-all duration-500 bg-gray-800 p-6 rounded-2xl relative">
             <div class="wheel-container">
                 <div class="border-spin"></div>
                 <div class="small-wheel"></div>
@@ -278,19 +239,19 @@ $translations = [
     <!-- Result Popup -->
     <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
         <div class="popup rounded-xl shadow-xl max-w-md w-full text-white font-sans relative bg-gray-800">
-            <!-- Close Button -->
-            <button id="closePopup" aria-label="Close popup" class="absolute top-0 right-0 focus:outline-none text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
+            <button id="closePopup" aria-label="Close popup" class="absolute top-0 right-0 focus:outline-none text-white p-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 p-0" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                     <line x1="18" y1="6" x2="6" y2="18" />
                     <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
             </button>
 
-            <h1 id="popupMessage" class="text-center text-lg font-semibold mb-6 text-white "></h1>
+            <h1 id="popupMessage" class="text-center text-lg font-semibold mb-2 text-white mt-4"></h1>
+
             <!-- Registration Form -->
             <form id="registerForm" class="space-y-6 p-6">
-                <h3 class="text-sm font-bold text-white">
+                <h3 class="text-sm font-bold text-white text-center">
                     <?= $lang === 'en'
                         ? 'Sign up today to collect your win and unlock extra spin chances!'
                         : 'আজই নিবন্ধন করুন, আপনার জয়ের পুরস্কার সংগ্রহ করুন এবং অতিরিক্ত স্পিনের সুযোগ আনলক করুন!' ?>
@@ -298,9 +259,8 @@ $translations = [
 
                 <!-- Name -->
                 <div class="relative">
-
                     <input type="text" name="name" placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
-                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
                    focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                     <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
                         <i class="fa-solid fa-user"></i>
@@ -314,7 +274,7 @@ $translations = [
                 <div class="relative">
 
                     <input type="email" name="gmail" placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
-                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
                    focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                     <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
                         <i class="fa-solid fa-envelope"></i>
@@ -329,7 +289,7 @@ $translations = [
 
                     <input type="tel" name="phone" id="phone"
                         placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
-                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
                    focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                         oninput="this.value = this.value.replace(/(?!^\+)[^0-9]/g, '')" />
                     <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
@@ -341,7 +301,7 @@ $translations = [
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full py-3 transition">
+                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-md py-3 transition">
                     <?= $lang === 'en' ? 'Sign up' : 'লগইন করুন' ?>
                 </button>
             </form>
@@ -377,7 +337,7 @@ $translations = [
                 <div class="relative">
 
                     <input type="text" name="name" placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
-                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
                    focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                     <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
                         <i class="fa-solid fa-user"></i>
@@ -391,7 +351,7 @@ $translations = [
                 <div class="relative">
 
                     <input type="email" name="gmail" placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
-                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
                    focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
                     <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
                         <i class="fa-solid fa-envelope"></i>
@@ -403,10 +363,9 @@ $translations = [
 
                 <!-- Phone -->
                 <div class="relative">
-
                     <input type="tel" name="phone" id="phone1"
                         placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
-                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 
+                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
                    focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                         oninput="this.value = this.value.replace(/(?!^\+)[^0-9]/g, '')" />
                     <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
@@ -419,7 +378,7 @@ $translations = [
 
                 <!-- Submit -->
                 <button type="submit"
-                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full py-3 transition">
+                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-md py-3 transition">
                     <?= $lang === 'en' ? 'Sign up' : 'লগইন করুন' ?>
                 </button>
             </form>
@@ -432,7 +391,6 @@ $translations = [
         API_URL: "<?= $apiBaseURL ?>"
     };
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="module" src="secure_js.php?file=script.js"></script>
 <script>
     const wheel = document.getElementById("wheel");
@@ -579,14 +537,38 @@ $translations = [
     closePopup1.on("click", () => {
         popupOverlay1.slideUp(400);
     });
-    closeModalBtn.addEventListener("click", () => {
-        document.getElementById("spinWheelModal").style.display = "none";
+
+    const spinWheelModal = document.getElementById("spinWheelModal");
+
+
+    // Open modal
+    function openSpinWheelModal() {
+        spinWheelModal.classList.remove("opacity-0", "pointer-events-none");
+        void spinWheelModal.offsetWidth;
+        spinWheelModal.querySelector(".popup").classList.remove("scale-95");
+        spinWheelModal.querySelector(".popup").classList.add("scale-100");
+
+        wheel.style.transform = "rotate(0deg)";
+        updateSpinCountDisplay();
+    }
+
+    // Close modal
+    function closeSpinWheelModal() {
+        spinWheelModal.querySelector(".popup").classList.remove("scale-100");
+        spinWheelModal.querySelector(".popup").classList.add("scale-95");
+
+        spinWheelModal.classList.add("opacity-0", "pointer-events-none");
+    }
+
+    closeModalBtn.addEventListener("click", closeSpinWheelModal);
+
+    spinWheelModal.addEventListener("click", (e) => {
+        if (e.target === spinWheelModal) closeSpinWheelModal();
     });
 
-    // Show modal on page load
     window.addEventListener("load", () => {
-        document.getElementById("spinWheelModal").style.display = "flex";
-        wheel.style.transform = "rotate(0deg)";
-        updateSpinCountDisplay(); // initialize display
+        setTimeout(() => {
+            openSpinWheelModal();
+        }, 1600);
     });
 </script>

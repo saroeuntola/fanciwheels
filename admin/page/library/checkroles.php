@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("auth.php");
 
 function protectPathAccess() {
@@ -11,7 +12,7 @@ function protectPathAccess() {
             exit;
         }
     } else {
-        header("Location: /login.php");
+        header("Location: /");
         exit;
     }
 }

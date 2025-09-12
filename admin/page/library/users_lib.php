@@ -28,7 +28,7 @@ class User
         $existing = dbSelect('users', 'id', "email=$quotedEmail");
 
         if ($existing && count($existing) > 0) {
-            return false; // Email already exists
+            return false; 
         }
 
         // Hash password before insert

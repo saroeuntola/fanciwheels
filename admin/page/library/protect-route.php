@@ -1,6 +1,6 @@
 <?php
+session_start();
 include("auth.php");
-
 function protectRouteAccess() {
     $auth = new Auth();
    if ($auth->is_logged_in()) {
@@ -9,7 +9,7 @@ function protectRouteAccess() {
         exit;
     }
 } else {
-    header("Location: login");
+    header("Location: /");
     exit;
 }
 

@@ -1,6 +1,8 @@
-<?php include './admin/page/library/db.php' ?>
-
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include "./admin/page/library/db.php";
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 ?>
 
@@ -18,9 +20,12 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <meta name="description" content="Contact us for inquiries, support, or collaboration. Connect with us on Facebook, Telegram, or our website.">
     <meta name="keywords" content="Contact, Support, Facebook, Telegram,tik tok, Fancy Wheel">
     <meta name="author" content="Fancy Wheel">
-    <link rel="stylesheet" href="./dist/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
+    <link href="./dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/css/all.min.css" />
+    <script src="./js/all.min.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
     <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {

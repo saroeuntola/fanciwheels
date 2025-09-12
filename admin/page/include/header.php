@@ -13,8 +13,7 @@ $user = $userLib->getUser($userId);
         <div class="header-left">
             <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
             <div class="logo">
-                <span style="font-size: 28px;">⚡</span>
-                FancyWheel Admin System
+              Admin System
             </div>
         </div>
         

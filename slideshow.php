@@ -128,6 +128,7 @@ $banners = $bannerObj->getBanner();
     .slideshow-container {
       width: 92.5vw;
       height: 170px;
+      border-radius: 0px;
     }
 
     .dots-container {

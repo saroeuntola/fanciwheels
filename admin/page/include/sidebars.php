@@ -13,7 +13,7 @@
                 <li class="menu-item">
                 <a href="/admin/players_record">
                     <span class="menu-icon">👥</span>
-                    <span>Resigter Records</span>
+                    <span>Registration Member</span>
                 </a>
             </li>
             <li class="menu-item">
@@ -66,12 +66,6 @@
                 <a href="/admin/visitor_logs" target="_blank" >
                     <span class="menu-icon">📄</span>
                     <span>Visitor Logs</span>
-                </a>
-            </li>
-             <li class="menu-item">
-                <a href="/admin/page/rank-crawl" target="_blank" >
-                    <span class="menu-icon">📊</span>
-                    <span>Keyword Crawl</span>
                 </a>
             </li>
             <li class="menu-item">
