@@ -8,11 +8,11 @@ function protectPathAccess() {
     
     if ($auth->is_logged_in()) {
         if ($_SESSION['role_id'] != 1) {
-            header("Location: /admin/page/include/no_access.php");
+            header("Location: /no_access");
             exit;
         }
     } else {
-        header("Location: /");
+        header("Location: /no_access");
         exit;
     }
 }

@@ -110,14 +110,11 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
                     placeholder="<?= $lang === 'en' ? 'Your Message' : 'তোমার বার্তা' ?>"></textarea>
             </div>
             <button type="submit"
-                class="text-white font-semibold px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600">
+                class="text-white font-semibold px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 transition duration-700 shadow-lg ">
                 <?= $lang === 'en' ? 'Send Message' : 'বার্তা পাঠান' ?>
             </button>
         </form>
     </section>
-
-
-
     <?php include 'footer.php' ?>
     <!-- Toastr CSS & JS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">

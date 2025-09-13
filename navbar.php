@@ -1,17 +1,27 @@
 <?php
 
-include './admin/page/library/brand_lib.php';
-include './admin/page/library/users_lib.php';
-
-include './config/baseURL.php';
+include('./admin/page/library/brand_lib.php');
+include('./admin/page/library/users_lib.php');
+include('./config/baseURL.php');
 $auth = new User();
 $brand = new Brand();
 $username = $_SESSION['username'] ?? '';
 $userId   = $_SESSION['user_id'] ?? null;
 $brandList = $brand->getBrand();
+
 if ($userId) {
   $userLib = new User();
-  $user    = $userLib->getUser($userId);
+  $user    = $userLib->getUserById($userId);
+
+  if (!$user || $user['status'] == 0) {
+    session_unset();
+    session_destroy();
+    setcookie('remember_token', '', time() - 3600, "/"); 
+
+    header("Location: /");
+    exit;
+  }
+
   $profilePath = !empty($user['profile'])
     ? '/admin/page/user/user_image/' . $user['profile']
     : './image/no_profile.png';
@@ -73,7 +83,8 @@ $menu = [
   'services' => $lang === 'en' ? 'Services' : 'সেবা',
   'about' => $lang === 'en' ? 'About' : 'সম্পর্কে',
   'faq' => $lang === 'en' ? 'FAQs' : 'FAQs',
-  'join' => $lang === 'en' ? 'Sign In' : 'লগ ইন',
+  'sign_in' => $lang === 'en' ? 'Sign In' : 'লগ ইন',
+  'sign_up' => $lang === 'en' ? 'Sign Up' : 'সাইন আপ',
   'search' => $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...',
   'contact' => $lang === 'en' ? 'Contact' : 'যোগাযোগ'
 ];
@@ -93,7 +104,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
 
 
   .nav-link.active {
-    border-bottom: 3px solid white;
+    border-bottom: 3px solid #1E88E5;
   }
 
   .nav-link {
@@ -110,7 +121,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     bottom: 0;
     height: 2px;
     width: 100%;
-    background-color: white;
+    background-color: #1E88E5;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease;
@@ -238,6 +249,7 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
             <!-- Language Button -->
             <button id="lang-btn-mobile" class="flex items-center text-white px-4 py-2 rounded-md  focus:outline-none">
               <img id="lang-flag-mobile" src="./image/flag/<?= $lang === 'en' ? 'en' : 'bn' ?>.svg" class="w-8 h-6" alt="Flag">
+              <span class="ml-2 font-medium"><?= $lang === 'en' ? 'EN' : 'BN' ?></span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -269,15 +281,8 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
               <button onclick="window.location.href='logout'" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10">Logout</button>
             </div>
           <?php else: ?>
-            <button
-              class="openAuthModal text-sm text-white px-3 py-1 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 flex items-center">
-              <?= $menu['join'] ?>
-            </button>
 
           <?php endif; ?>
-
-
-
         </div>
 
       </div>
@@ -357,9 +362,18 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
             </div>
           <?php else: ?>
             <button
-              class="openAuthModal transition-all duration-500 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700">
-              <?= $menu['join'] ?>
+              class="rounded-md openRegisterModal px-6 py-2 shadow-lg bg-gray-700  hover:bg-slate-700/50 hover:transition hover:duration-700">
+              <?= $menu['sign_up'] ?>
             </button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-4px text-white" fill="none" viewBox="0 0 1 24" stroke="currentColor">
+              <line x1="0.5" y1="0" x2="0.5" y2="24" stroke="currentColor" stroke-width="1" />
+            </svg>
+            <button
+              class="rounded-md openLoginModal px-6 py-2 shadow-lg bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700">
+              <?= $menu['sign_in'] ?>
+            </button>
+
+
           <?php endif; ?>
 
         </div>
@@ -372,16 +386,34 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
   <div id="mobileOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden"></div>
   <div id="mobileMenu" class="lg:hidden fixed top-5 left-[-100%] h-full bg-gray-800 text-white z-10 transition-left duration-300 ease-in-out">
     <div class="flex flex-col p-4 space-y-3">
+      <div class="flex gap-2 items-center">
+        <?php if ($userId): ?>
+
+        <?php else: ?>
+          <button
+            class="openLoginModal text-sm text-white px-4 py-3 shadow-lg rounded-md bg-gray-700  hover:bg-slate-700/50 hover:transition hover:duration-700 flex items-center">
+            <?= $menu['sign_up'] ?>
+          </button>
+
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-2px text-white" fill="none" viewBox="0 0 1 24" stroke="currentColor">
+            <line x1="0.5" y1="0" x2="0.5" y2="24" stroke="currentColor" stroke-width="1" />
+          </svg>
+          <button
+            class="openRegisterModal text-sm text-white px-4 py-3 shadow-lg rounded-md bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 flex items-center">
+            <?= $menu['sign_in'] ?>
+          </button>
+        <?php endif; ?>
+      </div>
+
       <?= navLink('/', $menu['home'], $lang, $currentPage, $currentId) ?>
       <?= navLink('services', $menu['services'], $lang, $currentPage, $currentId) ?>
       <?= navLink('about', $menu['about'], $lang, $currentPage, $currentId) ?>
       <?= navLink('faq', $menu['faq'], $lang, $currentPage, $currentId) ?>
       <?= navLink('contact', $menu['contact'], $lang, $currentPage, $currentId) ?>
     </div>
+
   </div>
-
-
-
+  </div>
 </nav>
 
 <!-- Search Modal (shared for Desktop & Mobile) -->
@@ -407,12 +439,24 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
   </div>
 </div>
 
-<script src="./js/jquery-3.6.0.min.js"></script>
+
 <?php
 include 'auth-form.php';
 ?>
 
 <script>
+  $(document).on("click", "#switchToRegister", function() {
+    $("#loginAuth").fadeOut(300, function() {
+      $("#registerAuth").fadeIn(300).removeClass("hidden");
+    });
+  });
+
+  $(document).on("click", "#switchToLogin", function() {
+    $("#registerAuth").fadeOut(300, function() {
+      $("#loginAuth").fadeIn(300).removeClass("hidden");
+    });
+  });
+
   $(document).ready(function() {
 
     // ===== Desktop Profile Dropdown =====
@@ -443,31 +487,6 @@ include 'auth-form.php';
   });
 
 
-  function openAuthModal() {
-    const modal = $("#authModal");
-    const modalContent = $("#authModal > div");
-    $("#registerAuth").hide();
-    $("#loginAuth").show();
-    modal.removeClass("opacity-0 pointer-events-none");
-    modalContent.removeClass("scale-95").addClass("scale-100");
-  }
-
-  function closeAuthModal() {
-    const modal = $("#authModal");
-    const modalContent = $("#authModal > div");
-
-    modalContent.removeClass("scale-100").addClass("scale-95");
-    modal.addClass("opacity-0 pointer-events-none");
-  }
-
-  $(".openAuthModal").click(openAuthModal);
-
-  $(".closeAuthModal").click(closeAuthModal);
-
-  $("#authModal").click(function(e) {
-    if (e.target === this) closeAuthModal();
-  });
-
   $(function() {
     // ===== Language Dropdowns =====
     function setupLangDropdown(btnSelector, menuSelector) {
@@ -483,7 +502,6 @@ include 'auth-form.php';
         $menu.addClass('hidden');
       });
     }
-
     setupLangDropdown('#lang-btn-desktop', '#lang-menu-desktop');
     setupLangDropdown('#lang-btn-mobile', '#lang-menu-mobile');
 

@@ -5,6 +5,14 @@ include('../library/checkroles.php');
 $user = new User();
 protectPathAccess();
 $users = $user->getUsers();
+
+// Handle status toggle
+if (isset($_GET['toggle_status_id'])) {
+    $id = intval($_GET['toggle_status_id']);
+    $user->toggleStatus($id); // You must implement this in users_lib.php
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,90 +20,119 @@ $users = $user->getUsers();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User</title>
+    <title>User Management</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link href="/dist/output.css" rel="stylesheet">
 </head>
+<style>
+    .admin {
+        background-color: brown;
+    }
+
+    .user {
+        background-color: yellowgreen;
+    }
+
+    .manager {
+        background-color: skyblue;
+    }
+
+    .active {
+        background-color: green;
+    }
+
+    .inactive {
+        background-color: black;
+    }
+</style>
 
 <body>
 
     <!-- Header -->
-    <?php
-    include '../include/header.php'
-    ?>
+    <?php include '../include/header.php'; ?>
     <!-- Sidebar -->
-    <?php
-    include '../include/sidebars.php'
-    ?>
+    <?php include '../include/sidebars.php'; ?>
+
     <!-- Main Content -->
     <main class="main-content" id="mainContent">
-
-        <!-- Dynamic Content Area -->
         <div id="dynamicContent">
-            <!-- Content Sections -->
-
             <div class="container mx-auto lg:p-10">
 
                 <!-- Header -->
                 <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-8">
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4 md:mb-0">User Management</h2>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4 md:mb-0">Users</h2>
                     <a href="create.php"
                         class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out text-center">
                         + Create New User
                     </a>
                 </div>
 
+                <!-- Search Input -->
+                <div class="mb-4">
+                    <input type="text" id="searchInput" placeholder="Search users..."
+                        class="w-full md:w-1/3 px-4 py-2 border rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+
                 <!-- Table -->
                 <div class="bg-white rounded-xl shadow-lg overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500">
+                    <table class="w-full text-sm text-left text-gray-500" id="usersTable">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-100">
                             <tr>
-                                <th scope="col" class="px-6 py-3">ID</th>
-                                <th scope="col" class="px-6 py-3">Username</th>
-                                <th scope="col" class="px-6 py-3">Phone</th>
-                                <th scope="col" class="px-6 py-3">Email</th>
-                                <th scope="col" class="px-6 py-3">Role</th>
-                                <th scope="col" class="px-6 py-3 text-center">Actions</th>
+                                <th class="px-6 py-3">ID</th>
+                                <th class="px-6 py-3">Username</th>
+                                <th class="px-6 py-3">Phone</th>
+                                <th class="px-6 py-3">Email</th>
+                                <th class="px-6 py-3">Role</th>
+                                <th class="px-6 py-3">Status</th>
+                                <th class="px-6 py-3 text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if ($users && count($users) > 0): ?>
                                 <?php foreach ($users as $userRow): ?>
                                     <tr class="bg-white border-b hover:bg-gray-50 transition">
-                                        <td class="px-6 py-4 font-medium text-gray-900">
-                                            <?php echo $userRow['id']; ?>
-                                        </td>
+                                        <td class="px-6 py-4 font-medium text-gray-900"><?= $userRow['id']; ?></td>
+                                        <td class="px-6 py-4"><?= htmlspecialchars($userRow['username']); ?></td>
+                                        <td class="px-6 py-4"><?= htmlspecialchars($userRow['phone']); ?></td>
+                                        <td class="px-6 py-4"><?= htmlspecialchars($userRow['email']); ?></td>
+                                        <td class="px-6 py-4">
+                                            <?php
+                                            $roleName = $userRow['role_name'] ?? '';
+                                            $roleColor = match (strtolower($roleName)) {
+                                                'admin' => 'admin',
+                                                'manager' => 'manager',
+                                                'user' => 'user',
+                                                default => 'bg-gray-500',
+                                            };
+                                            ?>
+                                            <span class="px-3 py-1 rounded-full text-white text-sm font-semibold <?= $roleColor; ?>">
+                                                <?= htmlspecialchars($roleName); ?>
+                                            </span>
 
-                                        <td class="px-6 py-4">
-                                            <?php echo htmlspecialchars($userRow['username']); ?>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <?php echo htmlspecialchars($userRow['phone']); ?>
+                                            <?php if ($userRow['status'] == 1): ?>
+                                                <span class="active px-3 py-1 text-white rounded-full text-sm">Active</span>
+                                            <?php else: ?>
+                                                <span class="inactive px-3 py-1 text-white rounded-full text-sm">Inactive</span>
+                                            <?php endif; ?>
                                         </td>
-                                        <td class="px-6 py-4">
-                                            <?php echo htmlspecialchars($userRow['email']); ?>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <?php echo htmlspecialchars($userRow['name']); ?>
-                                        </td>
-                                        <td class="px-6 py-4 flex justify-center space-x-3">
-                                            <a href="edit?id=<?php echo $userRow['id']; ?>"
-                                                class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
-                                                Edit
-                                            </a>
-                                            <a href="delete?id=<?php echo $userRow['id']; ?>"
-                                                class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
-                                                onclick="return confirm('Are you sure you want to delete this user?');">
-                                                Delete
-                                            </a>
+                                        <td class="px-6 py-4 flex justify-center space-x-2">
+                                            <a href="edit?id=<?= $userRow['id']; ?>" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">Edit</a>
+
+                                            <?php if ($userRow['status'] == 1): ?>
+                                                <a href="?toggle_status_id=<?= $userRow['id']; ?>" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition inactive ">Deactivate</a>
+                                            <?php else: ?>
+                                                <a href="?toggle_status_id=<?= $userRow['id']; ?>" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition active">Activate</a>
+                                            <?php endif; ?>
+
+                                            <a href="delete?id=<?= $userRow['id']; ?>" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="5" class="px-6 py-8 text-center text-gray-500 text-lg">
-                                        No users found.
-                                    </td>
+                                    <td colspan="7" class="px-6 py-8 text-center text-gray-500 text-lg">No users found.</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>
@@ -106,8 +143,18 @@ $users = $user->getUsers();
         </div>
     </main>
 
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const tableRows = document.querySelectorAll('#usersTable tbody tr');
 
-    <script src="../assets/js/admin_script.js"></script>
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            tableRows.forEach(row => {
+                row.style.display = row.textContent.toLowerCase().includes(query) ? '' : 'none';
+            });
+        });
+    </script>
+
 </body>
 
 </html>

@@ -214,6 +214,7 @@ $translations = [
 </style>
 <link rel="stylesheet" href="./dist/css/toastr.min.css">
 <script src="./js/toastr.min.js"></script>
+
 <body>
     <!-- Spin Wheel Modal -->
     <div id="spinWheelModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 z-50">
@@ -223,8 +224,8 @@ $translations = [
                 <div class="small-wheel"></div>
                 <div class="wheel" id="wheel"></div>
             </div>
-            <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full" id="spinCountDisplay"></div>
-            <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full" id="spinBtn"><?= $lang === 'en' ? 'SPIN' : 'স্পিন' ?></button>
+            <div class=" bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 shadow-lg text-white rounded-full" id="spinCountDisplay"></div>
+            <button class=" bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 shadow-lg text-white rounded-full" id="spinBtn"><?= $lang === 'en' ? 'SPIN' : 'স্পিন' ?></button>
 
             <button id="closeModalBtn" class="close-icon text-white" aria-label="Close modal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
@@ -301,7 +302,7 @@ $translations = [
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-md py-3 transition">
+                    class="w-full bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 shadow-lg text-white rounded-md py-3 transition">
                     <?= $lang === 'en' ? 'Sign up' : 'লগইন করুন' ?>
                 </button>
             </form>
@@ -378,7 +379,7 @@ $translations = [
 
                 <!-- Submit -->
                 <button type="submit"
-                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-md py-3 transition">
+                    class="w-full  bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 shadow-lg text-white rounded-md py-3 transition">
                     <?= $lang === 'en' ? 'Sign up' : 'লগইন করুন' ?>
                 </button>
             </form>

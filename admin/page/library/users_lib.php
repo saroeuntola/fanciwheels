@@ -7,19 +7,38 @@ class User
         $this->db = dbConn();
     }
 
-     public function getusers() {
-        $query = "SELECT u.*, r.name AS name 
-                  FROM users u
-                  JOIN roles r ON u.role_id = r.id 
-                  ORDER BY u.created_at DESC";
+    public function getUsers()
+    {
+        $query = "SELECT 
+                u.id, 
+                u.username, 
+                u.email, 
+                u.phone, 
+                u.status, 
+                u.created_at, 
+                r.name AS role_name 
+              FROM users u
+              JOIN roles r ON u.role_id = r.id
+              ORDER BY u.created_at DESC";
 
         try {
             $stmt = $this->db->query($query);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die("Error fetching products: " . $e->getMessage());
+            die("Error fetching users: " . $e->getMessage());
         }
     }
+    public function toggleStatus($id)
+    {
+        $stmt = $this->db->prepare("UPDATE users SET status = 1 - status WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+
+        // If user is now inactive, remove remember tokens
+        $stmt = $this->db->prepare("DELETE FROM user_tokens WHERE user_id = :id");
+        $stmt->execute([':id' => $id]);
+    }
+
+
     // CREATE a new user
     public function createUser($data)
     {
@@ -74,16 +93,13 @@ class User
 
         return dbUpdate('users', $data, "id=" . $this->db->quote($id));
     }
-    public function getUserByID($id)
-{
-    if ($id === null) {
-        return null;
+    public function getUserById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id LIMIT 1");
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id");
-    $stmt->execute([':id' => $id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
 
 
     // DELETE a user

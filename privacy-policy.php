@@ -1,8 +1,8 @@
 <?php
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-    include "./admin/page/library/db.php";
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include "./admin/page/library/db.php";
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
 ?>
 <!DOCTYPE html>
@@ -13,6 +13,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $lang === 'en' ? 'Privacy Policy' : 'গোপনীয়তা নীতি' ?></title>
     <link href="./dist/output.css" rel="stylesheet">
+    <script src="./js/jquery-3.6.0.min.js"></script>
 </head>
 
 <body class="bg-gray-900 text-white">

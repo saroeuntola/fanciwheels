@@ -10,7 +10,6 @@
 
     /* Fixed icon on the left */
     .announcement-icon {
-        background-color: brown;
         color: white;
         padding: 5px 10px;
         border-radius: 4px;
@@ -187,7 +186,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 $announcements = $announcementObj->getAnnouncements($lang);
 ?>
 <main id="main">
-    <div class="announcement-icon bg-gradient-to-r from-blue-600 to-purple-600"><i class="fas fa-bullhorn"></i></div>
+    <div class="announcement-icon bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 shadow-lg"><i class="fas fa-bullhorn"></i></div>
     <div class="container">
         <!-- Sliding text -->
         <?php if (!empty($announcements)): ?>

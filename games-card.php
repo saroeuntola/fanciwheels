@@ -175,15 +175,6 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     right: 8px;
     top: 112px;
   }
-
-
-  .play-btn {
-    background-color: #992717;
-  }
-
-  .play-btn:hover {
-    background-color: #104FB2;
-  }
 </style>
 
 <div>
@@ -206,14 +197,14 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
   <div id="gameGrid" class="game-grid flex overflow-x-auto snap-x snap-mandatory gap-5 p-0 m-0">
     <?php foreach ($games_item as $game): ?>
       <div class="game-card mb-2 bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-200 flex flex-col snap-start">
-        <img src="<?= $game['image'] ?>" alt="<?= htmlspecialchars($game['title']) ?>" class="w-full h-[206px] object-cover" loading="lazy">
+        <img src="<?= $game['image'] ?>" alt="<?= htmlspecialchars($game['title']) ?>" class="w-full h-[206px] object-fill" loading="lazy">
         <div class="game-content p-4 flex flex-col flex-grow">
 
 
           <h3 class="text-lg font-bold mb-2"><?= htmlspecialchars($game['title']) ?></h3>
           <p class="game-desc text-sm text-gray-300 flex-grow mb-2"><?= htmlspecialchars($game['description']) ?></p>
           <button
-            class="openAuthModal play-btn p-2 text-center text-white rounded-lg font-bold transition-colors duration-300 w-full bg-gradient-to-r from-blue-600 to-purple-600"
+            class="openRegisterModal play-btn p-2 text-center text-white rounded-md font-bold w-full bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700"
             data-link="<?= $isLoggedIn ? 'https://fancywin.city/bd/bn' : '' ?>">
             <?= $lang === 'en' ? 'Play Now' : 'খেলা লক' ?>
           </button>

@@ -90,8 +90,6 @@
           left: 0;
           width: 50px;
           height: 3px;
-          background: linear-gradient(90deg, #667eea, #764ba2);
-          border-radius: 2px;
           opacity: 0;
           transform: translateX(-20px);
           animation: slideIn 0.8s ease-out forwards;
@@ -418,8 +416,10 @@
 
 
               <!-- Logo & Description -->
-              <div class="footer-section logo-section">
-                  <h1 class="logo glow">Fancy Wheel</h1>
+              <div class="footer-section logo-section mt-4">
+                  <h1 class="logo">
+                      <img src="./image/logo.png" alt="fancy wheel logo" id="logo">
+                  </h1>
                   <p class="footer-description">
                       <?= $lang === 'en'
                             ? 'Discover the best bus services and milk tea spots across Bangladesh. Travel comfortably and enjoy delicious tea at every stop!'
@@ -486,7 +486,7 @@
 
                   <input type="email" placeholder="<?= $texts['email_placeholder'] ?>" class="px-4 py-2 rounded-full bg-gray-800 text-white w-full mb-2" />
                   <ul class="footer-links">
-                      <button onclick="window.open('https://fancywin.city/bd/bn/new-register-entry/account', '_blank')" class="relative group px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                      <button onclick="window.open('https://fancywin.city/bd/bn/new-register-entry/account', '_blank')" class="relative group px-6 py-2  text-white rounded-full shadow-lg bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700">
                           <span class="relative z-10 font-medium"><?= $texts['get_started'] ?></span>
                       </button>
                   </ul>
@@ -586,25 +586,25 @@
       </script>
       <script>
           // Open modals
-        //   document.getElementById("helpCenterLink").addEventListener("click", function(e) {
-        //       e.preventDefault();
-        //       document.getElementById("helpModal").classList.remove("hidden");
-        //   });
+          //   document.getElementById("helpCenterLink").addEventListener("click", function(e) {
+          //       e.preventDefault();
+          //       document.getElementById("helpModal").classList.remove("hidden");
+          //   });
 
-        //   document.getElementById("termsLink").addEventListener("click", function(e) {
-        //       e.preventDefault();
-        //       document.getElementById("termsModal").classList.remove("hidden");
-        //   });
+          //   document.getElementById("termsLink").addEventListener("click", function(e) {
+          //       e.preventDefault();
+          //       document.getElementById("termsModal").classList.remove("hidden");
+          //   });
 
-        //   document.getElementById("privacyLink").addEventListener("click", function(e) {
-        //       e.preventDefault();
-        //       document.getElementById("privacyModal").classList.remove("hidden");
-        //   });
+          //   document.getElementById("privacyLink").addEventListener("click", function(e) {
+          //       e.preventDefault();
+          //       document.getElementById("privacyModal").classList.remove("hidden");
+          //   });
 
-        //   // Close modal
-        //   function closeModal(id) {
-        //       document.getElementById(id).classList.add("hidden");
-        //   }
+          //   // Close modal
+          //   function closeModal(id) {
+          //       document.getElementById(id).classList.add("hidden");
+          //   }
       </script>
       <style>
           .max-h-\[80vh\]::-webkit-scrollbar {

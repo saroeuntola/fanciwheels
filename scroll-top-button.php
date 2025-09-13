@@ -9,7 +9,7 @@
     padding: 0;
     width: 60px;
     height: 60px;
-border-radius: 50%;
+    border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
@@ -126,11 +126,11 @@ border-radius: 50%;
 </style>
 
 
-<button id="scrollToTopBtn" class="scroll-to-top bg-gradient-to-r from-blue-600 to-purple-600" title="Scroll to top">
+<button id="scrollToTopBtn" class="scroll-to-top  bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700" title="Scroll to top">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
     <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
   </svg>
-  <span><?= $lang === 'en' ? ' TOP': 'TOP' ?></span>
+  <span><?= $lang === 'en' ? ' TOP' : 'TOP' ?></span>
 </button>
 
 <script>

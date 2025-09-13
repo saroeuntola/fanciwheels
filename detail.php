@@ -207,7 +207,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
             src="<?= './admin/page/game/' . htmlspecialchars($gameImage) ?>"
             alt="<?= htmlspecialchars($metaText) ?>"
             loading="lazy"
-            class="w-full md:h-[310px] lg:h-[450px] object-cover mb-4 img" />
+            class="w-full md:h-[310px] lg:h-[450px] object-fill mb-4 img" />
           <div class="text-gray-300 space-y-4 text-base leading-relaxed md:text-lg">
             <?= $game['description'] ?? ($lang === 'en' ? 'No description available.' : 'কোনো বিবরণ নেই।') ?>
           </div>
@@ -245,7 +245,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                         src="<?= './admin/page/game/' . htmlspecialchars($relatedImage) ?>"
                         loading="lazy"
                         alt="<?= htmlspecialchars($relatedMeta) ?>"
-                        class="object-cover group-hover:scale-105 opacity-0 transition-opacity duration-500" id="relate-img" onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove()" />
+                        class="object-fill group-hover:scale-105 opacity-0 transition-opacity duration-500" id="relate-img" onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove()" />
                     </div>
                     <div class=" mt-2">
                       <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-200">
@@ -300,14 +300,13 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
 
                 </div>
                 <div class=" flex-1 min-w-0">
-                  <a href="detail?slug=<?= $popular['slug'] ?>&lang=<?= $lang ?>" class="block group-hover:text-blue-400 transition-colors duration-200">
+                  <a href="detail?slug=<?= $popular['slug'] ?>&lang=<?= $lang ?>" class="block group-hover:text-blue-500 transition-colors duration-300">
                     <h4 class="text-sm font-semibold text-white truncate">
                       <?= htmlspecialchars($popularName) ?>
                     </h4>
                     <p class="text-xs text-gray-400 mt-1 line-clamp-2">
                       <?= htmlspecialchars(substr(strip_tags($popularDesc), 0, 80)) . '...' ?>
                     </p>
-
                   </a>
                 </div>
               </div>

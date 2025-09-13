@@ -75,11 +75,17 @@ class Auth
     // Login
     public function login($username, $password, $remember = false)
     {
-        // Get user 
-        $results = dbSelect('users', 'id, username, password, role_id', "username = " . $this->db->quote($username) . " LIMIT 1");
+        // Get user including status
+        $results = dbSelect('users', 'id, username, password, role_id, status', "username = " . $this->db->quote($username) . " LIMIT 1");
 
         if ($results && count($results) > 0) {
             $user = $results[0];
+
+            // Check if user is inactive
+            if ($user['status'] == 0) {
+                // Optionally, throw an error or return a message
+                return "inactive"; // indicate inactive user
+            }
 
             if (password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];

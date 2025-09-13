@@ -98,9 +98,9 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
       <input type="hidden" name="role_id" id="role_id" value="<?= base64_encode(2) ?>">
       <input type="hidden" id="countryCodeInput" value="+880">
 
-      <button type="submit" class="w-full p-3 bg-blue-600 text-white mt-4 mb-4"><?= $lang === 'en' ? 'Sign Up' : 'নিবন্ধন করুন' ?></button>
+      <button type="submit" class="w-full p-3 shadow-lg bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 text-white mt-4 mb-4"><?= $lang === 'en' ? 'Sign Up' : 'নিবন্ধন করুন' ?></button>
       <p class="text-white text-center mt-2"><?= $lang === 'en' ? 'Already have an account?' : 'ইতিমধ্যে একটি অ্যাকাউন্ট আছে?' ?>
-        <span id="switchToLogin" class="cursor-pointer text-blue-400 underline"><?= $lang === 'en' ? 'Sign In' : 'লগ ইন' ?></span>
+        <span id="switchToLogin" class="cursor-pointer text-blue-600 hover:text-blue-700  underline"><?= $lang === 'en' ? 'Sign In' : 'লগ ইন' ?></span>
       </p>
     </form>
 
@@ -135,9 +135,9 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
         <label for="rememberMe" class="text-white text-sm"><?= $lang === 'en' ? 'Remember me' : 'আমাকে মনে রেখো' ?></label>
       </div>
 
-      <button type="submit" class="w-full p-3 bg-blue-600 text-white mt-2 mb-4"><?= $lang === 'en' ? 'Sign In' : 'লগ ইন' ?></button>
+      <button type="submit" class="w-full p-3 shadow-lg bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 text-white mt-2 mb-4"><?= $lang === 'en' ? 'Sign In' : 'লগ ইন' ?></button>
       <p class="text-white text-center mt-2"><?= $lang === 'en' ? "Don't have an account?" : 'কোন অ্যাকাউন্ট নেই?' ?>
-        <span id="switchToRegister" class="cursor-pointer text-blue-400 underline"><?= $lang === 'en' ? 'Sign Up' : 'নিবন্ধন করুন' ?></span>
+        <span id="switchToRegister" class="cursor-pointer text-blue-600 hover:text-blue-700 underline"><?= $lang === 'en' ? 'Sign Up' : 'নিবন্ধন করুন' ?></span>
       </p>
     </form>
   </div>
@@ -148,7 +148,6 @@ include './config/baseURL.php';
 
 <link rel="stylesheet" href="./dist/css/all.min.css" />
 <script src="./js/all.min.js"></script>
-<script src="./js/jquery-3.6.0.min.js"></script>
 <script src="./js/toastr.min.js"></script>
 <link rel="stylesheet" href="./dist/css/toastr.min.css">
 <script>
@@ -172,6 +171,7 @@ include './config/baseURL.php';
   });
 </script>
 <script>
+
   $(document).ready(function() {
     document.getElementById("phone-number").addEventListener("input", function(e) {
       this.value = this.value.replace(/[^0-9+]/g, "");
@@ -214,13 +214,20 @@ include './config/baseURL.php';
   });
 
   $(document).ready(function() {
-
-    function openAuthModal() {
+    function openAuthModal(showLogin = true) {
       const modal = $("#authModal");
       const modalContent = $("#authModal > div");
 
       modal.removeClass("opacity-0 pointer-events-none");
       modalContent.removeClass("scale-95").addClass("scale-100");
+
+      if (showLogin) {
+        $("#registerAuth").hide();
+        $("#loginAuth").show();
+      } else {
+        $("#loginAuth").hide();
+        $("#registerAuth").show();
+      }
     }
 
     function closeAuthModal() {
@@ -231,7 +238,10 @@ include './config/baseURL.php';
       modal.addClass("opacity-0 pointer-events-none");
     }
 
-    $(".openAuthModal").click(openAuthModal);
+    // open login directly
+    $(".openLoginModal").click(() => openAuthModal(true));
+    // open register directly
+    $(".openRegisterModal").click(() => openAuthModal(false));
 
     $(".closeAuthModal").click(closeAuthModal);
 
@@ -239,13 +249,6 @@ include './config/baseURL.php';
       if (e.target === this) closeAuthModal();
     });
 
-    $("#switchToRegister").click(() => {
-      $("#loginAuth").fadeOut(300, () => $("#registerAuth").fadeIn(300));
-    });
-
-    $("#switchToLogin").click(() => {
-      $("#registerAuth").fadeOut(300, () => $("#loginAuth").fadeIn(300));
-    });
 
     const API_URL = "<?= $apiBaseURL ?>validate-check";
     toastr.options = {

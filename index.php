@@ -1,9 +1,11 @@
 <?php
+ob_start();
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 include('./admin/page/library/db.php');
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
+
 ?>
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? 'en' : 'bn-BD' ?>">
@@ -231,6 +233,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 </style>
 
 <body class="bg-gray-900 text-white">
+
   <nav class="w-full shadow-md fixed top-0 z-50">
     <?php include 'navbar.php'; ?>
   </nav>
