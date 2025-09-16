@@ -16,7 +16,7 @@ if ($userId) {
   if (!$user || $user['status'] == 0) {
     session_unset();
     session_destroy();
-    setcookie('remember_token', '', time() - 3600, "/"); 
+    setcookie('remember_token', '', time() - 3600, "/");
 
     header("Location: /");
     exit;
@@ -45,11 +45,11 @@ function buildLangUrl($langTarget, $currentPage, $currentId)
 function navLink($page, $label, $lang, $currentPage, $currentId)
 {
   $pageMap = [
-    '/' => 'index.php',
-    'services' => 'services.php',
-    'about' => 'about.php',
-    'faq' => 'faq.php',
-    'contact' => 'contact.php'
+    '/' => '/',
+    'services' => 'services',
+    'about' => 'about',
+    'faq' => 'faq',
+    'contact' => 'contact'
   ];
 
   $targetFile = $pageMap[$page] ?? $page;
@@ -70,8 +70,8 @@ function navLink($page, $label, $lang, $currentPage, $currentId)
   $queryString = http_build_query($params);
   $href .= '?' . $queryString;
 
-  $classes = 'font-medium nav-link text-white';
-  if ($isActive) $classes .= ' active';
+  $classes = 'font-medium text-white';
+  if ($isActive) $classes .= 'active';
 
   return "<a href=\"{$href}\" class=\"{$classes}\">{$label}</a>";
 }
@@ -103,28 +103,29 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
   /* Add this inside your <style> tag in the navbar */
 
 
-  .nav-link.active {
-    border-bottom: 3px solid #1E88E5;
-  }
 
-  .nav-link {
-    position: relative;
-    color: white;
-    font-weight: 500;
-    text-decoration: none;
-  }
 
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 100%;
-    background-color: #1E88E5;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
+
+  @media (max-width: 768px) {
+    .nav-link {
+
+      padding: 7px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border-radius: 5px;
+    }
+
+    .nav-link:hover {
+      background-color: #2563eb;
+      /* blue-600 */
+      color: #fff;
+    }
+
+    .nav-link.active {
+      background-color: #1e40af;
+      /* blue-800 */
+      color: #fff;
+    }
   }
 
   /* Add this to your <style> */
@@ -388,28 +389,44 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     <div class="flex flex-col p-4 space-y-3">
       <div class="flex gap-2 items-center">
         <?php if ($userId): ?>
-
         <?php else: ?>
-          <button
-            class="openLoginModal text-sm text-white px-4 py-3 shadow-lg rounded-md bg-gray-700  hover:bg-slate-700/50 hover:transition hover:duration-700 flex items-center">
-            <?= $menu['sign_up'] ?>
-          </button>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-2px text-white" fill="none" viewBox="0 0 1 24" stroke="currentColor">
-            <line x1="0.5" y1="0" x2="0.5" y2="24" stroke="currentColor" stroke-width="1" />
-          </svg>
-          <button
-            class="openRegisterModal text-sm text-white px-4 py-3 shadow-lg rounded-md bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 flex items-center">
-            <?= $menu['sign_in'] ?>
-          </button>
+          <div class="w-full flex justify-between mb-4">
+            <button
+              class="openLoginModal text-sm text-white px-4 py-3 shadow-lg rounded-md bg-gray-700  hover:bg-slate-700/50 hover:transition hover:duration-700 flex items-center">
+              <?= $menu['sign_up'] ?>
+            </button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-2px text-white" fill="none" viewBox="0 0 1 24" stroke="currentColor">
+              <line x1="0.5" y1="0" x2="0.5" y2="24" stroke="currentColor" stroke-width="1" />
+            </svg>
+            <button
+              class="openRegisterModal text-sm text-white px-4 py-3 shadow-lg rounded-md bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 flex items-center">
+              <?= $menu['sign_in'] ?>
+            </button>
+          </div>
         <?php endif; ?>
       </div>
+      <div class="nav-link <?= $currentPage === '/' ? 'active' : '' ?>">
+        <i class="fa-solid fa-house mr-3"></i>
+        <?= navLink('/', $menu['home'], $lang, $currentPage, $currentId) ?>
+      </div>
+      <div class="nav-link <?= $currentPage === 'services' ? 'active' : '' ?>">
+        <i class="fa-solid fa-list-check mr-3"></i>
+        <?= navLink('services', $menu['services'], $lang, $currentPage, $currentId) ?>
+      </div>
+      <div class="nav-link <?= $currentPage === 'about' ? 'active' : '' ?>">
+        <i class="fa-solid fa-address-card mr-3"></i>
+        <?= navLink('about', $menu['about'], $lang, $currentPage, $currentId) ?>
+      </div>
+      <div class="nav-link <?= $currentPage === 'fqa' ? 'active' : '' ?>">
+        <i class="fa-solid fa-circle-question mr-3"></i>
+        <?= navLink('faq', $menu['faq'], $lang, $currentPage, $currentId) ?>
+      </div>
+      <div class="nav-link <?= $currentPage === 'contact' ? 'active' : '' ?>">
+        <i class="fa-solid fa-phone mr-3"></i>
+        <?= navLink('contact', $menu['contact'], $lang, $currentPage, $currentId) ?>
 
-      <?= navLink('/', $menu['home'], $lang, $currentPage, $currentId) ?>
-      <?= navLink('services', $menu['services'], $lang, $currentPage, $currentId) ?>
-      <?= navLink('about', $menu['about'], $lang, $currentPage, $currentId) ?>
-      <?= navLink('faq', $menu['faq'], $lang, $currentPage, $currentId) ?>
-      <?= navLink('contact', $menu['contact'], $lang, $currentPage, $currentId) ?>
+      </div>
+
     </div>
 
   </div>

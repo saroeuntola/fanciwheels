@@ -181,7 +181,6 @@ $games = $gameObj->getgames($lang);
             <?php echo $lang === 'en' ? 'Hotspot' : 'হটস্পট'; ?>
         </p>
     </div>
-
     <div class="relative">
         <!-- Left Arrow Button -->
         <button id="prev-btns" aria-label="Scroll Left" class="arrow-btn left-0">
@@ -206,7 +205,7 @@ $games = $gameObj->getgames($lang);
                     $trimmed    = htmlspecialchars(mb_strimwidth($plainText, 0, 120, '...'), ENT_QUOTES, 'UTF-8');
                     $gameImage  = !empty($g['image']) ? htmlspecialchars($g['image'], ENT_QUOTES, 'UTF-8') : '';
                     ?>
-
+                    
                     <div class="game-card" onclick="window.location.href='detail?slug=<?= $slug ?>&lang=<?= $lang ?>'">
                         <div class="game-image" style="height: 210px;">
                             <?php if (!empty($gameImage)): ?>
