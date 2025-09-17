@@ -256,29 +256,25 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
   const closeBtn = document.querySelector(".close-btn");
   const container = document.getElementById("gameGrid");
   $(function() {
-    if (typeof closeAuthModal === "function") {
-      closeAuthModal();
-    }
-    $("#authModal").addClass("hidden opacity-0 pointer-events-none");
-  });
-  $(function() {
-    $(function() {
-      $(".openRegisterModal").click(function(e) {
-        e.preventDefault();
-        const link = $(this).attr("data-link");
-        if (link && link.trim() !== "") {
-          if (typeof closeAuthModal === "function") {
-            closeAuthModal();
-          }
-    
-          window.open(link, "_blank");
-          return;
+    $(".openRegisterModal").click(function(e) {
+      e.preventDefault();
+      const link = $(this).attr("data-link");
+      if (link && link.trim() !== "") {
+        if (typeof closeAuthModal === "function") {
+          closeAuthModal();
         }
-        if (typeof openAuthModal === "function") {
-          openAuthModal(false);
-        }
-      });
+
+        window.open(link, "_blank");
+        return;
+      }
+      if (typeof openAuthModal === "function") {
+        openAuthModal(false);
+      }
     });
+  });
+  
+  $(function() {
+
     const $grid = $("#gameGrid");
     const scrollAmount = 390;
 
