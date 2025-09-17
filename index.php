@@ -28,7 +28,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <title>
     <?php
     echo $lang === 'en'
-      ? 'FancyWheel - Milk Tea & Bus Services in Chittagong'
+      ? 'FancyWheel - Best bus and milk tea in Chittagong'
       : 'FancyWheel - চট্টগ্রামে মিল্ক টি এবং বাস সার্ভিস';
     ?>
   </title>
@@ -36,8 +36,8 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <!-- Meta Description -->
   <meta name="description" content="<?php
                                     echo $lang === 'en'
-                                      ? 'milk tea, Enjoy fresh Milktea and reliable bus services in Chittagong. Delicious flavors, high-quality ingredients, and safe, comfortable travel around the city.'
-                                      : 'চট্টগ্রামে তাজা মিল্কটি এবং নির্ভরযোগ্য বাস সার্ভিস উপভোগ করুন। সুস্বাদু স্বাদ, উচ্চমানের উপাদান এবং নিরাপদ, আরামদায়ক যাত্রা।';
+                                      ? 'Enjoy fresh Milktea with a variety of flavors and reliable bus services across Chittagong. Experience high-quality drinks, safe and comfortable travel, and excellent customer support with FancyWheel today.'
+                                      : 'চট্টগ্রাম জুড়ে বিভিন্ন স্বাদের এবং নির্ভরযোগ্য বাস পরিষেবা সহ তাজা মিল্কটি উপভোগ করুন। আজই ফ্যান্সিহুইলের সাথে উচ্চমানের পানীয়, নিরাপদ এবং আরামদায়ক ভ্রমণ এবং চমৎকার গ্রাহক সহায়তা উপভোগ করুন।';
                                     ?>">
 
   <!-- Keywords -->

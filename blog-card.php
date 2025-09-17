@@ -165,8 +165,8 @@ $games = $gameObj->getgames($lang);
     <div class="post-header">
         <h1 class="post-title text-gray-100 mb-4">
             <?php echo $lang === 'en'
-                ? 'Milktea & Bus Services in Chittagong'
-                : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস'; ?>
+                ? 'Best bus and milk tea in Chittagong'
+                : 'চট্টগ্রামের সেরা বাস এবং দুধ চা'; ?>
         </h1>
     </div>
     <p class="post-subtitle mt-2">
@@ -228,7 +228,6 @@ $games = $gameObj->getgames($lang);
                                         class="w-full h-full opacity-0 transition-opacity duration-500 object-fill"
                                         onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove();">
                                 </div>
-
 
                             <?php else: ?>
                                 <div class="no-image-placeholder" style="height: 100%; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#9ca3af;">
