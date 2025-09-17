@@ -255,53 +255,30 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
   const modal = document.getElementById("comingSoonModal");
   const closeBtn = document.querySelector(".close-btn");
   const container = document.getElementById("gameGrid");
-  $(".openAuthModal").click(function(e) {
-    e.preventDefault();
-    const link = $(this).data("link");
-    if (link) {
-      window.open(link, "_blank");
-      openCloseModal();
-      return;
-    }
-    openAuthModal();
-  });
-
-
-  // function handlePlayClick(btn) {
-  //   const status = btn.getAttribute("data-status");
-  //   if (status === "locked") {
-  //     modal.classList.remove("hidden");
-  //     setTimeout(() => {
-  //       modal.classList.remove("opacity-0");
-  //       modal.querySelector(".modal-content").classList.remove("scale-95");
-  //       modal.querySelector(".modal-content").classList.add("scale-100");
-  //     }, 10);
-  //   } else {
-  //     window.location.href = btn.getAttribute("data-link");
-  //   }
-  // }
-
-  // Close modal with fade-out
-  // function closeModal() {
-  //   modal.classList.add("opacity-0");
-  //   modal.querySelector(".modal-content").classList.remove("scale-100");
-  //   modal.querySelector(".modal-content").classList.add("scale-95");
-
-  //   setTimeout(() => {
-  //     modal.classList.add("hidden");
-  //   }, 500); 
-  // }
-
-  // closeBtn.addEventListener("click", closeModal);
-
-  // window.addEventListener("click", (e) => {
-  //   if (e.target === modal) {
-  //     closeModal();
-  //   }
-  // });
-
-
   $(function() {
+    if (typeof closeAuthModal === "function") {
+      closeAuthModal();
+    }
+    $("#authModal").addClass("hidden opacity-0 pointer-events-none");
+  });
+  $(function() {
+    $(function() {
+      $(".openRegisterModal").click(function(e) {
+        e.preventDefault();
+        const link = $(this).attr("data-link");
+        if (link && link.trim() !== "") {
+          if (typeof closeAuthModal === "function") {
+            closeAuthModal();
+          }
+    
+          window.open(link, "_blank");
+          return;
+        }
+        if (typeof openAuthModal === "function") {
+          openAuthModal(false);
+        }
+      });
+    });
     const $grid = $("#gameGrid");
     const scrollAmount = 390;
 
