@@ -23,6 +23,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <meta name="robots" content="index, follow">
   <meta name="google-site-verification" content="KQ_ffol2MIoJcfrqSEKOfToxbgsEPcFj3STGCvUen5U" />
   <?php include 'head-log.php'; ?>
+
   <!-- Title -->
   <title>
     <?php
