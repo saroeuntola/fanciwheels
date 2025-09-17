@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center min-h-screen w-full">
-    <div class="w-full max-w-5xl bg-white p-8 rounded-lg shadow-lg">
+    <div class="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold text-center mb-6 text-indigo-700">Create Post</h2>
 
         <form action="create" method="POST" enctype="multipart/form-data" class="space-y-5" onsubmit="syncQuillContent()">

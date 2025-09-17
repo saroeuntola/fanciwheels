@@ -14,11 +14,9 @@ if (!isset($_GET['slug'])) {
   echo $lang === 'en' ? "slug not provided." : "আইডি প্রদান করা হয়নি।";
   exit;
 }
-
 $slug = trim($_GET['slug']);
 $gameObj = new Games();
 $game = $gameObj->getGameBySlug($slug, $lang);
-
 
 $relatedGames = $gameObj->getRelatedGames($slug, $game['category_id'], 6, $lang);
 $popularGames = $gameObj->getPopularGames(8, $lang);
@@ -32,10 +30,8 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
 <head>
   <meta charset="UTF-8" />
   <?php include 'head-log.php'; ?>
-
   <!-- Dynamic Title -->
   <title><?= htmlspecialchars($game['name']) ?></title>
-
   <!-- Meta Description -->
   <meta name="description" content="<?= htmlspecialchars($game['description']) ?>">
   <meta name="robots" content="index, follow">
@@ -52,7 +48,6 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
       dataLayer.push(arguments);
     }
@@ -60,7 +55,6 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
 
     gtag('config', 'G-98CRLK26X1');
   </script>
-
   <link href="./dist/output.css" rel="stylesheet">
   <link rel="stylesheet" href="./dist/css/all.min.css" />
   <script src="./js/all.min.js"></script>
@@ -95,7 +89,6 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     })(window, document, 'script', 'dataLayer', 'GTM-TCJVFMSG');
   </script>
   <!-- End Google Tag Manager -->
-
   <!-- Google Analytics / gtag.js -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
   <script>
@@ -107,7 +100,6 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     gtag('js', new Date());
     gtag('config', 'G-98CRLK26X1');
   </script>
-
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
     {
@@ -120,8 +112,6 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     }
   </script>
 </head>
-
-
 <style>
   .line-clamp-2 {
     display: -webkit-box;
@@ -129,14 +119,12 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-
   .img {
     border-radius: 5px;
   }
@@ -159,7 +147,6 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     }
 
   }
-
   @media (max-width: 768px) {
     .detail-page {
       padding: 16px;
@@ -170,7 +157,6 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
       height: 185px !important;
     }
   }
-
   @media (max-width: 468px) {
 
     #relate-img {
@@ -178,7 +164,6 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
       height: 185px !important;
     }
   }
-
   #relate-img {
     width: 100%;
     height: 140px;
@@ -262,7 +247,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
           </div>
         <?php endif; ?>
       </div>
-
+      
       <!-- Sidebar -->
       <div class="lg:col-span-1 space-y-8">
         <div class="bg-gray-800 rounded-2xl shadow-sm p-4">
