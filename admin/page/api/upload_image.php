@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 
 // Upload folder
-$uploadDir = "game_image/";
+$uploadDir = "content_image/";
 
 // Ensure folder exists
 if (!is_dir($uploadDir)) {
@@ -17,7 +17,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
         // Return URL relative to web root
-        $url = "/admin/page/game/game_image/" . basename($targetFile);
+        $url = "/admin/page/api/content_image/" . basename($targetFile);
         echo json_encode(['success' => true, 'url' => $url]);
         exit;
     }
