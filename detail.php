@@ -174,8 +174,6 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <nav class="w-full shadow-md sticky top-0 z-50 bg-gray-800">
     <?php include 'navbar.php'; ?>
   </nav>
-
-  <?php include 'loading.php'; ?>
   <?php include 'scroll-top-button.php'; ?>
 
   <div class="max-w-7xl mx-auto detail-page lg:p-[32px]">
