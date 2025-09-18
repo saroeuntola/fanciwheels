@@ -211,7 +211,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                 $relatedImage = $related['image'] ?? 'default.png';
                 $relatedMeta = $related['meta_text'] ?? ($lang === 'en' ? 'No image' : 'কোনো ছবি নেই');
                 ?>
-                <div class="group overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                <div class="group overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 mb-4">
                   <a href="detail?slug=<?= $related['slug'] ?>&lang=<?= $lang ?>" class="block">
                     <div class="relative overflow-hidden">
                       <!-- Spinner Overlay -->

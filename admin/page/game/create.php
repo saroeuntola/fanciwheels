@@ -145,7 +145,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </button>
         </form>
     </div>
-
     <script>
         const toolbarOptions = [
             [{
@@ -181,7 +180,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ['clean']
         ];
 
-        // Initialize Quill editors
         const descriptionEditor = new Quill('#description-editor', {
             theme: 'snow',
             modules: {
@@ -195,9 +193,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 toolbar: toolbarOptions
             }
         });
+        const Image = Quill.import('formats/image');
+        class CustomImage extends Image {
+            static formats(domNode) {
+                let formats = super.formats(domNode);
+                if (domNode.hasAttribute('loading')) {
+                    formats.loading = domNode.getAttribute('loading');
+                }
+                if (domNode.hasAttribute('alt')) {
+                    formats.alt = domNode.getAttribute('alt');
+                }
+                return formats;
+            }
 
+            format(name, value) {
+                if (name === 'loading') {
+                    if (value) {
+                        this.domNode.setAttribute('loading', value);
+                    } else {
+                        this.domNode.removeAttribute('loading');
+                    }
+                } else if (name === 'alt') {
+                    if (value) {
+                        this.domNode.setAttribute('alt', value);
+                    } else {
+                        this.domNode.removeAttribute('alt');
+                    }
+                } else {
+                    super.format(name, value);
+                }
+            }
+        }
+        Quill.register(CustomImage, true);
         const API_URL = "<?= $apiBaseURL ?>upload_image";
-        // Intercept image uploads
         function imageHandler() {
             const input = document.createElement('input');
             input.setAttribute('type', 'file');
@@ -210,28 +238,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     const formData = new FormData();
                     formData.append('image', file);
 
-                    // Send image to server
-                    const res = await fetch(API_URL, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    const data = await res.json();
-
-                    if (data.success) {
-                        const range = this.quill.getSelection();
-                        this.quill.insertEmbed(range.index, 'image', data.url);
-                    } else {
+                    try {
+                        const res = await fetch(API_URL, {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const data = await res.json();
+                        if (data.success) {
+                            const range = this.quill.getSelection(true);
+                            const altText = file.name.replace(/\.[^/.]+$/, "");
+                            const imgTag = `<img src="${data.url}" loading="lazy" alt="${altText}">`;
+                            this.quill.clipboard.dangerouslyPasteHTML(range.index, imgTag);
+                        } else {
+                            alert('Image upload failed');
+                        }
+                    } catch (err) {
+                        console.error('Upload error:', err);
                         alert('Image upload failed');
                     }
                 }
             };
         }
-
-        // Add image handler to both editors
         descriptionEditor.getModule('toolbar').addHandler('image', imageHandler);
         descriptionBnEditor.getModule('toolbar').addHandler('image', imageHandler);
-
-        // Sync Quill content to hidden inputs
         function syncQuillContent() {
             document.getElementById('description-input').value = descriptionEditor.root.innerHTML;
             document.getElementById('description-bn-input').value = descriptionBnEditor.root.innerHTML;
