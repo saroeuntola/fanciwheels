@@ -28,16 +28,16 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <title>
     <?php
     echo $lang === 'en'
-      ? 'FancyWheel - Best bus and milk tea in Chittagong'
-      : 'FancyWheel - চট্টগ্রামে মিল্ক টি এবং বাস সার্ভিস';
+      ? 'FancyWheel - Best bus service and milk tea in Chittagong'
+      : 'FancyWheel - চট্টগ্রামের সেরা বাস সার্ভিস এবং দুধ চা';
     ?>
   </title>
 
   <!-- Meta Description -->
   <meta name="description" content="<?php
                                     echo $lang === 'en'
-                                      ? 'Enjoy fresh Milktea with a variety of flavors and reliable bus services across Chittagong. Experience high-quality drinks, safe and comfortable travel, and excellent customer support with FancyWheel today.'
-                                      : 'চট্টগ্রাম জুড়ে বিভিন্ন স্বাদের এবং নির্ভরযোগ্য বাস পরিষেবা সহ তাজা মিল্কটি উপভোগ করুন। আজই ফ্যান্সিহুইলের সাথে উচ্চমানের পানীয়, নিরাপদ এবং আরামদায়ক ভ্রমণ এবং চমৎকার গ্রাহক সহায়তা উপভোগ করুন।';
+                                      ? 'Bus Tickets Online in Bangladesh. Enjoy fresh Milktea with a variety of flavors and reliable bus services across Chittagong. Experience high-quality drinks, safe and comfortable travel, and excellent customer support with FancyWheel today.'
+                                      : 'বাংলাদেশে অনলাইনে বাসের টিকিট। চট্টগ্রাম জুড়ে বিভিন্ন স্বাদের এবং নির্ভরযোগ্য বাস পরিষেবা সহ তাজা মিল্কটি উপভোগ করুন। আজই ফ্যান্সিহুইলের সাথে উচ্চমানের পানীয়, নিরাপদ এবং আরামদায়ক ভ্রমণ এবং চমৎকার গ্রাহক সহায়তা উপভোগ করুন।';
                                     ?>">
 
   <!-- Keywords -->
@@ -54,7 +54,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <link rel="canonical" href="https://fanciwheel.com" />
 
   <!-- Open Graph (Facebook, LinkedIn, etc.) -->
-  <meta property="og:title" content="<?php echo $lang === 'en' ? 'Milktea & Bus Services in Chittagong | Fancy Wheel' : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস | ফ্যানসি হুইল'; ?>" />
+  <meta property="og:title" content="<?php echo $lang === 'en' ? 'Milk tea & Bus Services in Chittagong - Fancy Wheel' : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস | ফ্যানসি হুইল'; ?>" />
   <meta property="og:description" content="<?php echo $lang === 'en' ? 'Enjoy fresh Milktea and reliable bus services in Chittagong. Delicious flavors, high-quality ingredients, and safe, comfortable travel.' : 'চট্টগ্রামে তাজা মিল্কটি এবং নির্ভরযোগ্য বাস সার্ভিস উপভোগ করুন। সুস্বাদু স্বাদ, উচ্চমানের উপাদান এবং নিরাপদ, আরামদায়ক যাত্রা।'; ?>" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fanciwheel.com" />
@@ -63,7 +63,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="<?php echo $lang === 'en' ? 'Milktea & Bus Services in Chittagong | Fancy Wheel' : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস | ফ্যানসি হুইল'; ?>" />
+  <meta name="twitter:title" content="<?php echo $lang === 'en' ? 'Milk tea & Bus Services in Chittagong - Fancy Wheel' : 'চট্টগ্রামে মিল্কটি ও বাস সার্ভিস | ফ্যানসি হুইল'; ?>" />
   <meta name="twitter:description" content="<?php echo $lang === 'en' ? 'Fresh Milktea and safe bus services in Chittagong. Enjoy high-quality flavors and comfortable rides.' : 'চট্টগ্রামে তাজা মিল্কটি এবং নিরাপদ বাস সার্ভিস। উচ্চমানের স্বাদ এবং আরামদায়ক যাত্রা উপভোগ করুন।'; ?>" />
   <meta name="twitter:image" content="https://fanciwheel.com/image/PWAicon-192px.png" />
 

@@ -172,7 +172,7 @@ $games = $gameObj->getgames($lang);
     <p class="post-subtitle mt-2">
         <?php
         echo $lang === 'en'
-            ? 'Enjoy fresh Milktea with a variety of flavors and reliable bus services across Chittagong. Experience high-quality drinks, safe and comfortable travel, and excellent customer support with FancyWheel today.'
+            ? 'Enjoy fresh Milk Tea with a variety of flavors and reliable bus services across Chittagong. Experience high-quality drinks, safe and comfortable travel, and excellent customer support with FancyWheel today.'
             : 'চট্টগ্রামে বিভিন্ন স্বাদের তাজা মিল্কটি এবং নির্ভরযোগ্য বাস সার্ভিস উপভোগ করুন। উচ্চমানের পানীয়, নিরাপদ ও আরামদায়ক যাত্রা এবং চমৎকার গ্রাহক সাপোর্ট উপভোগ করুন ফ্যান্সিওয়েলের সাথে।';
         ?>
     </p>
