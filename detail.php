@@ -33,7 +33,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <!-- Dynamic Title -->
   <title><?= htmlspecialchars($game['name']) ?></title>
   <!-- Meta Description -->
-  <meta name="description" content="<?= ($game['description']) ?>">
+  <meta name="description" content="<?= htmlspecialchars($game['description']) ?>">
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -60,16 +60,16 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <script src="./js/all.min.js"></script>
   <script src="./js/jquery-3.6.0.min.js"></script>
   <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="<?= ($game['name'] ?? 'Detail') ?>" />
-  <meta property="og:description" content="<?= ($game['description'] ?? 'Check out detail') ?>" />
-  <meta property="og:image" content="<?= (!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
+  <meta property="og:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
+  <meta property="og:description" content="<?= htmlspecialchars($game['description'] ?? 'Check out detail') ?>" />
+  <meta property="og:image" content="<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
   <meta property="og:url" content="https://fanciwheel.com" />
   <meta property="og:type" content="website" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
-  <meta name="twitter:description" content="<?= ($game['description'] ?? 'Check out this detail') ?>" />
+  <meta name="twitter:description" content="<?= htmlspecialchars($game['description'] ?? 'Check out this detail') ?>" />
   <meta name="twitter:image" content="<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
   <!-- Google Tag Manager -->
   <script>
