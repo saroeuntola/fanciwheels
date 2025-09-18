@@ -16,9 +16,10 @@ class Games {
         $name_field = $lang === 'en' ? 'name' : 'name_bn';
         $description_field = $lang === 'en' ? 'description' : 'description_bn';
         $meta_text_field = $lang === 'en' ? 'meta_text' : 'meta_text_bn';
-
+        $meta_desc_field = $lang === 'en' ? 'meta_desc' : 'meta_desc_bn';
+        $meta_keyword_field = $lang === 'en' ? 'meta_keyword' : 'meta_keyword_bn';
         $query = "SELECT p.id, p.slug, p.$name_field AS name, p.image, 
-                     p.$description_field AS description, 
+                     p.$description_field AS description, p.$description_field AS description, p.$meta_desc_field AS meta_desc,
                      p.game_link, p.category_id, p.created_at, 
                      p.$meta_text_field AS meta_text, 
                      c.name AS category_name 
@@ -44,15 +45,24 @@ class Games {
         $name_field = $lang === 'en' ? 'name' : 'name_bn';
         $description_field = $lang === 'en' ? 'description' : 'description_bn';
         $meta_text_field = $lang === 'en' ? 'meta_text' : 'meta_text_bn';
-
-        $query = "SELECT p.id, p.$name_field AS name, p.image, p.$description_field AS description, 
-                         p.game_link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
-                         c.name AS category_name 
-                  FROM games p
-                  JOIN categories c ON p.category_id = c.id 
-                  WHERE p.id = :id 
-                  LIMIT 1";
-    
+        $query = "SELECT 
+            p.id, 
+            p.$name_field AS name, 
+            p.image, 
+            p.$description_field AS description, 
+            p.meta_desc, 
+            p.meta_keyword,
+            p.meta_desc_bn, 
+            p.meta_keyword_bn,
+            p.game_link, 
+            p.category_id, 
+            p.created_at, 
+            p.$meta_text_field AS meta_text, 
+            c.name AS category_name 
+          FROM games p
+          JOIN categories c ON p.category_id = c.id 
+          WHERE p.id = :id 
+          LIMIT 1";
         try {
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -72,8 +82,10 @@ class Games {
         $name_field = $lang === 'en' ? 'name' : 'name_bn';
         $description_field = $lang === 'en' ? 'description' : 'description_bn';
         $meta_text_field = $lang === 'en' ? 'meta_text' : 'meta_text_bn';
-
-        $query = "SELECT p.id, p.$name_field AS name, p.image, p.$description_field AS description, 
+        $meta_desc_field = $lang === 'en' ? 'meta_desc' : 'meta_desc_bn';
+        $meta_keyword_field = $lang === 'en' ? 'meta_keyword' : 'meta_keyword_bn';
+        $query = "SELECT p.id, p.$name_field AS name, p.image, p.$description_field AS description, p.$meta_desc_field AS meta_desc, 
+            p.$meta_keyword_field AS meta_keyword,
                      p.game_link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
                      c.name AS category_name 
               FROM games p
@@ -192,7 +204,7 @@ class Games {
         return $slug;
     }
 
-    public function createGames($name, $image, $description, $link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn, $slug = null)
+    public function createGames($name, $image, $description, $link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn, $meta_desc, $meta_keyword, $meta_desc_bn, $meta_keyword_bn, $slug = null)
     {
         // Auto-generate slug from English name if not provided
         $slug = $slug ?: $this->generateSlug($name);
@@ -207,12 +219,17 @@ class Games {
             'meta_text' => $meta_text,
             'name_bn' => $name_bn,
             'description_bn' => $description_bn,
-            'meta_text_bn' => $meta_text_bn
+            'meta_text_bn' => $meta_text_bn,
+            'meta_desc' => $meta_desc,
+            'meta_keyword' => $meta_keyword,
+            'meta_desc_bn' => $meta_desc_bn,
+            'meta_keyword_bn' => $meta_keyword_bn,
+            
         ];
         return dbInsert('games', $data);
     }
 
-    public function updateGame($id, $name, $image, $description, $game_link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn, $slug = null)
+    public function updateGame($id, $name, $image, $description, $game_link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn, $meta_desc, $meta_keyword, $meta_desc_bn, $meta_keyword_bn, $slug = null)
     {
         if (!$this->getGameById($id)) {
             return false;
@@ -231,7 +248,12 @@ class Games {
             'meta_text' => $meta_text,
             'name_bn' => $name_bn,
             'description_bn' => $description_bn,
-            'meta_text_bn' => $meta_text_bn
+            'meta_text_bn' => $meta_text_bn,
+            'meta_desc' => $meta_desc,
+            'meta_keyword' => $meta_keyword,
+            'meta_desc_bn' => $meta_desc_bn,
+            'meta_keyword_bn' => $meta_keyword_bn,
+
         ];
         return dbUpdate('games', $data, "id=" . $this->db->quote($id));
     }

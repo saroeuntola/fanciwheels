@@ -33,7 +33,8 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <!-- Dynamic Title -->
   <title><?= htmlspecialchars($game['name']) ?></title>
   <!-- Meta Description -->
-  <meta name="description" content="<?= htmlspecialchars($game['description']) ?>">
+  <meta name="description" content="<?= htmlspecialchars($game['meta_desc']) ?>">
+  <meta name="keywords" content="<?= htmlspecialchars($game['meta_keyword']) ?>">
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -48,6 +49,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
+
     function gtag() {
       dataLayer.push(arguments);
     }
@@ -61,7 +63,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <script src="./js/jquery-3.6.0.min.js"></script>
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
-  <meta property="og:description" content="<?= htmlspecialchars($game['description'] ?? 'Check out detail') ?>" />
+  <meta property="og:description" content="<?= htmlspecialchars($game['meta_desc'] ?? 'Check out detail') ?>" />
   <meta property="og:image" content="<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
   <meta property="og:url" content="https://fanciwheel.com" />
   <meta property="og:type" content="website" />
@@ -69,7 +71,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
-  <meta name="twitter:description" content="<?= htmlspecialchars($game['description'] ?? 'Check out this detail') ?>" />
+  <meta name="twitter:description" content="<?= htmlspecialchars($game['meta_desc'] ?? 'Check out this detail') ?>" />
   <meta name="twitter:image" content="<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
   <!-- Google Tag Manager -->
   <script>
@@ -119,12 +121,14 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
   .img {
     border-radius: 5px;
   }
@@ -147,6 +151,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     }
 
   }
+
   @media (max-width: 768px) {
     .detail-page {
       padding: 16px;
@@ -157,6 +162,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
       height: 185px !important;
     }
   }
+
   @media (max-width: 468px) {
 
     #relate-img {
@@ -164,6 +170,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
       height: 185px !important;
     }
   }
+
   #relate-img {
     width: 100%;
     height: 140px;
@@ -245,7 +252,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
           </div>
         <?php endif; ?>
       </div>
-      
+
       <!-- Sidebar -->
       <div class="lg:col-span-1 space-y-8">
         <div class="bg-gray-800 rounded-2xl shadow-sm p-4">
