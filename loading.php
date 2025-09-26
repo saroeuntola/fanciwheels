@@ -45,13 +45,17 @@
 
   <!-- Loader Script -->
   <script>
-    $(window).on("load", function() {
+    $(function() {
       const $loader = $("#pageLoader");
       $loader.removeClass("opacity-0").css("opacity", "1");
-      $loader.addClass("opacity-0");
+
+      // Hide loader after 3s,
       setTimeout(function() {
-        $loader.css("display", "none").attr("aria-hidden", "true");
-      }, 1000);
+        $loader.addClass("opacity-0");
+        setTimeout(function() {
+          $loader.css("display", "none").attr("aria-hidden", "true");
+        }, 1000); // allow fade-out transition
+      }, 3000);
     });
   </script>
 

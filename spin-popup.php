@@ -344,7 +344,7 @@ include './config/baseURL.php';
         },
         "KM Slots": {
             win: {
-                en: "300tk KM Slots & Table",
+                en: "bonus 300tk on KM Slots & Table",
                 bn: "৩০০ টাকা কেএম স্লটস এবং টেবিল"
             },
             // hit: "35%",
@@ -352,7 +352,7 @@ include './config/baseURL.php';
         },
         "Jili Slots": {
             win: {
-                en: "Jili Slots Free Play",
+                en: "bonus 200tk on Jili Slots",
                 bn: "জিলি স্লটস ফ্রি প্লে"
             },
             // hit: "25%",
@@ -383,8 +383,6 @@ include './config/baseURL.php';
             link: "https://bit.ly/Bonus5"
         }
     };
-
-
 
     function performWobble(baseRotation) {
         const wobbleSequence = [-5, 4, -3, 2, -1, 1, -0.5, 0];
