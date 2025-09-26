@@ -1,15 +1,6 @@
 <?php
 include './config/baseURL.php';
-$translations = [
-    'en' => [
-        'spinMessage' => 'Your Spin Time is Enough!',
-        'winMessage' => 'You won'
-    ],
-    'bn' => [
-        'spinMessage' => 'তোমার স্পিন টাইম যথেষ্ট!',
-        'winMessage' => 'তুমি জিতেছ'
-    ]
-];
+
 ?>
 <style>
     .iti {
@@ -78,7 +69,7 @@ $translations = [
         position: absolute;
         width: 100%;
         height: 100%;
-        background-image: url('image/test23-removebg-preview.png');
+        background-image: url('image/wheel-test.png');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -238,80 +229,9 @@ $translations = [
     </div>
 
     <!-- Result Popup -->
-    <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
-        <div class="popup rounded-xl shadow-xl max-w-md w-full text-white font-sans relative bg-gray-800">
-            <button id="closePopup" aria-label="Close popup" class="absolute top-0 right-0 focus:outline-none text-white p-0">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 p-0" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-            </button>
-
-            <h1 id="popupMessage" class="text-center text-lg font-semibold mb-2 text-white mt-4"></h1>
-
-            <!-- Registration Form -->
-            <form id="registerForm" class="space-y-6 p-6">
-                <h3 class="text-sm font-bold text-white text-center">
-                    <?= $lang === 'en'
-                        ? 'Sign up today to collect your win and unlock extra spin chances!'
-                        : 'আজই নিবন্ধন করুন, আপনার জয়ের পুরস্কার সংগ্রহ করুন এবং অতিরিক্ত স্পিনের সুযোগ আনলক করুন!' ?>
-                </h3>
-
-                <!-- Name -->
-                <div class="relative">
-                    <input type="text" name="name" placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
-                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
-                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
-                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
-                        <i class="fa-solid fa-user"></i>
-                    </span>
-                    <span class="text-red-500 text-sm mt-1 hidden" id="nameError1">
-                        <?= $lang === 'en' ? 'Name is required' : 'নাম আবশ্যক' ?>
-                    </span>
-                </div>
-
-                <!-- Email -->
-                <div class="relative">
-
-                    <input type="email" name="gmail" placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
-                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
-                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
-                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
-                        <i class="fa-solid fa-envelope"></i>
-                    </span>
-                    <span class="text-red-500 text-sm mt-1 hidden" id="emailError1">
-                        <?= $lang === 'en' ? 'Email is required' : 'ইমেইল আবশ্যক' ?>
-                    </span>
-                </div>
-
-                <!-- Phone -->
-                <div class="relative">
-
-                    <input type="tel" name="phone" id="phone"
-                        placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
-                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
-                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-                        oninput="this.value = this.value.replace(/(?!^\+)[^0-9]/g, '')" />
-                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
-                        <i class="fa-solid fa-phone"></i>
-                    </span>
-                    <span class="text-red-500 text-sm mt-1 hidden" id="phoneError1">
-                        <?= $lang === 'en' ? 'Phone number is required' : 'ফোন নম্বর আবশ্যক' ?>
-                    </span>
-                </div>
-
-                <button type="submit"
-                    class="w-full bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 shadow-lg text-white rounded-md py-3 transition">
-                    <?= $lang === 'en' ? 'Sign up' : 'লগইন করুন' ?>
-                </button>
-            </form>
-        </div>
-    </div>
-    <div id="popupOverlay1" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
-        <div class="popup rounded-xl shadow-xl max-w-md w-full text-white font-sans relative bg-blue-800">
-            <!-- Close Button -->
-            <button id="closePopup1" aria-label="Close popup" class="absolute top-0 right-0 p-0 focus:outline-none text-white">
+    <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden px-4">
+        <div class="popup rounded-xl shadow-xl max-w-md w-full text-white font-sans relative bg-gray-800 p-6">
+            <button id="closePopup" aria-label="Close popup" class="absolute top-0 right-0 p-0 focus:outline-none text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -319,72 +239,22 @@ $translations = [
                 </svg>
             </button>
 
-            <!-- Registration Form 2 -->
-            <form id="registerForm1" class="space-y-6 p-6">
-                <div class="">
-                    <h3 class="text-sm font-bold text-white text-center mb-4">
-                        <?= $lang === 'en'
-                            ? 'You have used all your spins'
-                            : 'আপনি আপনার সব স্পিন ব্যবহার করেছেন' ?>
-                    </h3>
-                    <p class=" text-white">
-                        <?= $lang === 'en'
-                            ? 'Please register for free to get more spins'
-                            : 'অধিক স্পিন পেতে দয়া করে বিনামূল্যে নিবন্ধন করুন' ?>
-                    </p>
-                </div>
 
-                <!-- Name -->
-                <div class="relative">
+            <h1 id="popupTitle" class="text-center text-2xl font-bold text-green-700 mb-2"></h1>
+            <p id="popupMessage" class="text-center mb-2 text-white"></p>
+            <p id="popupHit" class="text-center text-sm text-yellow-400 mb-4"></p>
 
-                    <input type="text" name="name" placeholder="<?= $lang === 'en' ? 'Name' : 'নাম' ?>"
-                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
-                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
-                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
-                        <i class="fa-solid fa-user"></i>
-                    </span>
-                    <span class="text-red-500 text-sm mt-1 hidden" id="nameError2">
-                        <?= $lang === 'en' ? 'Name is required' : 'নাম আবশ্যক' ?>
-                    </span>
-                </div>
 
-                <!-- Email -->
-                <div class="relative">
-
-                    <input type="email" name="gmail" placeholder="<?= $lang === 'en' ? 'Email' : 'ইমেইল' ?>"
-                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
-                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
-                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
-                        <i class="fa-solid fa-envelope"></i>
-                    </span>
-                    <span class="text-red-500 text-sm mt-1 hidden" id="emailError2">
-                        <?= $lang === 'en' ? 'Email is required' : 'ইমেইল আবশ্যক' ?>
-                    </span>
-                </div>
-
-                <!-- Phone -->
-                <div class="relative">
-                    <input type="tel" name="phone" id="phone1"
-                        placeholder="<?= $lang === 'en' ? 'Phone Number' : 'ফোন নম্বর' ?>"
-                        class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 
-                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-                        oninput="this.value = this.value.replace(/(?!^\+)[^0-9]/g, '')" />
-                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
-                        <i class="fa-solid fa-phone"></i>
-                    </span>
-                    <span class="text-red-500 text-sm mt-1 hidden" id="phoneError2">
-                        <?= $lang === 'en' ? 'Phone number is required' : 'ফোন নম্বর আবশ্যক' ?>
-                    </span>
-                </div>
-
-                <!-- Submit -->
-                <button type="submit"
-                    class="w-full  bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 shadow-lg text-white rounded-md py-3 transition">
-                    <?= $lang === 'en' ? 'Sign up' : 'লগইন করুন' ?>
-                </button>
-            </form>
+            <!-- Claim Button -->
+            <a id="popupLink" href="#" target="_blank"
+                class="block w-full text-center bg-blue-600 hover:bg-blue-700 rounded-lg py-2 font-bold transition duration-300 mt-4">
+                <span id="popupBtnText"></span>
+            </a>
         </div>
     </div>
+
+
+
 </body>
 
 <script>
@@ -402,36 +272,37 @@ $translations = [
     const closePopup = $("#closePopup");
     const closePopup1 = $("#closePopup1");
     const closeModalBtn = document.getElementById("closeModalBtn");
-
     const segmentNumbers = [
 
-        "Red", "yallow", "Blue", "Yallow", "blue", "yallow", "red", "Yallow", "blue", "yallow", "blue", "yallow",
-        "red", "Yallow", "blue", "yallow"
+        "2", "Crazy Time", "1", "2", "Jili Slots", "5", "1", "KM Slots"
     ];
     const segments = segmentNumbers.length;
     const segmentAngle = 360 / segments;
-
     let startTimestamp = null;
     let duration = 8000;
     let startRotation = 0;
     let targetRotation = 0;
     let animationFrameId = null;
     let winningIndex = 0;
-
     const lang = "<?= $lang ?>";
     const translations = {
         en: {
             freeSpin: "Free Spin",
-            winMessage: "🎉 You won"
+            winMessage: "You won",
+            congratulations: "Congratulations!",
+            claim: "Claim Now"
         },
         bn: {
             freeSpin: "ফ্রি স্পিন",
-            winMessage: "🎉 আপনি জিতেছেন"
+            winMessage: "আপনি জিতেছেন",
+            congratulations: "অভিনন্দন!",
+            claim: "এখনই দাবি করুন"
         }
     };
 
+
     let spinCount = 0;
-    const maxSpins = 1;
+    let maxSpins = 2;
     const spinCountDisplay = document.getElementById("spinCountDisplay");
 
     function updateSpinCountDisplay() {
@@ -462,6 +333,59 @@ $translations = [
         }
     }
 
+    const winConfig = {
+        "Crazy Time": {
+            win: {
+                en: "bonus 500tk on Crazy Time",
+                bn: "ক্রেজি টাইম-এ ৫০০ টাকা বোনাস"
+            },
+            // hit: "20%",
+            link: "https://bit.ly/500EvoReg"
+        },
+        "KM Slots": {
+            win: {
+                en: "300tk KM Slots & Table",
+                bn: "৩০০ টাকা কেএম স্লটস এবং টেবিল"
+            },
+            // hit: "35%",
+            link: "https://bit.ly/300KMReg"
+        },
+        "Jili Slots": {
+            win: {
+                en: "Jili Slots Free Play",
+                bn: "জিলি স্লটস ফ্রি প্লে"
+            },
+            // hit: "25%",
+            link: "https://bit.ly/JiliSlots"
+        },
+        "1": {
+            win: {
+                en: "a chance to spin again",
+                bn: "আবার স্পিন করার সুযোগ"
+            },
+            // hit: "10%",
+            link: ""
+        },
+        "2": {
+            win: {
+                en: "2x Bonus",
+                bn: "২গুণ বোনাস"
+            },
+            // hit: "10%",
+            link: "https://bit.ly/Bonus2"
+        },
+        "5": {
+            win: {
+                en: "5x Bonus",
+                bn: "৫গুণ বোনাস"
+            },
+            // hit: "0%",
+            link: "https://bit.ly/Bonus5"
+        }
+    };
+
+
+
     function performWobble(baseRotation) {
         const wobbleSequence = [-5, 4, -3, 2, -1, 1, -0.5, 0];
         let index = 0;
@@ -477,8 +401,59 @@ $translations = [
                 winningIndex = (segments - (winningIndex % segments)) % segments;
 
                 const winNumber = segmentNumbers[winningIndex];
-                popupMessage.text(`${translations[lang].winMessage} ${winNumber}!`);
 
+                const config = winConfig[winNumber] || {
+                    win: {
+                        en: winNumber,
+                        bn: winNumber
+                    },
+                    hit: "",
+                    link: "#"
+                };
+
+                // Title
+                $("#popupTitle").text(translations[lang].congratulations);
+                $("#popupBtnText").text(translations[lang].claim);
+                // Message
+                popupMessage.text(`${translations[lang].winMessage} ${config.win[lang]}!`);
+
+                // Hit %
+                if (config.hit) {
+                    $("#popupHit").text(config.hit).show();
+                } else {
+                    $("#popupHit").hide();
+                }
+
+                if (winNumber === "1") {
+                    // Special case → extra spin reward
+                    $("#popupLink")
+                        .text(translations[lang].claim) // ✅ Use translation
+                        .attr("href", "#")
+                        .removeClass("opacity-50 pointer-events-none");
+
+                    // Remove old handlers and add one-time click
+                    $(document).off("click", "#popupLink").one("click", "#popupLink", function(e) {
+                        e.preventDefault();
+
+                        maxSpins++; // ✅ give extra spin
+                        updateSpinCountDisplay();
+
+                        // disable the button after claim
+                        $(this)
+                            .removeAttr("href")
+                            .addClass("opacity-50 pointer-events-none")
+                            .text("✔ " + translations[lang].claim);
+
+                        popupOverlay.slideUp(400); // close popup
+                    });
+                } else {
+                    // Normal reward
+                    $("#popupLink")
+                        .text(translations[lang].claim)
+                        .attr("href", config.link)
+                        .removeClass("opacity-50 pointer-events-none");
+                    $(document).off("click", "#popupLink");
+                }
                 // Show popup with slide down animation
                 popupOverlay.hide().css("display", "flex").hide().slideDown(400);
                 return;
@@ -490,6 +465,8 @@ $translations = [
             index++;
             setTimeout(doWobble, 200);
         }
+
+
 
         doWobble();
     }
