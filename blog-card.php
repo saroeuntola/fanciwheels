@@ -194,22 +194,19 @@ $games = $gameObj->getgames($lang);
             <?php if (!empty($games)): ?>
                 <?php foreach ($games as $index => $g): ?>
                     <?php
-
                     $gameId = (int)$g['id'];
                     $slug = htmlspecialchars($g['slug']);
                     $gameName   = htmlspecialchars($g['name'], ENT_QUOTES, 'UTF-8');
-
                     $metaText   = htmlspecialchars($g['meta_text'] ?? '', ENT_QUOTES, 'UTF-8');
-
                     $plainText  = strip_tags($g['description']);
                     $trimmed    = htmlspecialchars(mb_strimwidth($plainText, 0, 120, '...'), ENT_QUOTES, 'UTF-8');
                     $gameImage  = !empty($g['image']) ? htmlspecialchars($g['image'], ENT_QUOTES, 'UTF-8') : '';
                     ?>
-                    
-                    <div class="game-card" onclick="window.location.href='detail?slug=<?= $slug ?>&lang=<?= $lang ?>'">
+                    <div class="game-card"
+                        onclick="window.location.href='detail?slug=<?= $slug ?>&lang=<?= $lang ?>'">
                         <div class="game-image" style="height: 210px;">
                             <?php if (!empty($gameImage)): ?>
-                                <div class="relative w-full h-full overflow-hidden bg-gray-500">
+                                <div class="relative w-full h-full overflow-hidden bg-gray-500 group">
                                     <!-- Spinner Overlay -->
                                     <div class="absolute inset-0 flex items-center justify-center bg-gray-500 z-10" id="spinner">
                                         <svg class="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -225,7 +222,9 @@ $games = $gameObj->getgames($lang);
                                     <img src="<?= './admin/page/game/' . $gameImage ?>"
                                         loading="lazy"
                                         alt="<?= $metaText ?>"
-                                        class="w-full h-full opacity-0 transition-opacity duration-500 object-fill"
+                                        class="w-full h-full opacity-0 transition-opacity duration-500 
+                    transform transition-transform duration-500 object-fill
+                    group-hover:scale-110"
                                         onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove();">
                                 </div>
 
@@ -235,7 +234,7 @@ $games = $gameObj->getgames($lang);
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
-                                    <span><?php echo $lang === 'en' ? 'No Image' : 'কোনো ছবি নেই'; ?></span>
+                                    <span><?= $lang === 'en' ? 'No Image' : 'কোনো ছবি নেই'; ?></span>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -248,6 +247,7 @@ $games = $gameObj->getgames($lang);
                             </p>
                         </div>
                     </div>
+
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="empty-state" style="text-align:center; padding:80px 20px; color:#6b7280; grid-column: 1 / -1;">
