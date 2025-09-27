@@ -8,7 +8,7 @@ $staticPages = [
         'priority' => '1.0'
     ],
     [
-        'loc' => 'https://fanciwheel.com/index?lang=en',
+        'loc' => 'https://fanciwheel.com/?lang=en',
         'changefreq' => 'weekly',
         'priority' => '1.0'
     ],

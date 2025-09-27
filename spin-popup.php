@@ -358,13 +358,14 @@ include './config/baseURL.php';
             // hit: "25%",
             link: "https://bit.ly/JiliSlots"
         },
-        "1": {
+        "1": {    
             win: {
-                en: "a chance to spin again",
-                bn: "আবার স্পিন করার সুযোগ"
+                en: "1x Bonus",
+                bn: "৫গুণ বোনাস"
             },
-            // hit: "10%",
-            link: ""
+            // hit: "0%",
+            link: "https://bit.ly/Bonus1"
+           
         },
         "2": {
             win: {
@@ -375,12 +376,12 @@ include './config/baseURL.php';
             link: "https://bit.ly/Bonus2"
         },
         "5": {
-            win: {
-                en: "5x Bonus",
-                bn: "৫গুণ বোনাস"
-            },
-            // hit: "0%",
-            link: "https://bit.ly/Bonus5"
+           win: {
+                en: "a chance to spin again",
+               bn: "আবার স্পিন করার সুযোগ"
+           },
+            // hit: "10%",
+            link: ""
         }
     };
 
@@ -422,7 +423,7 @@ include './config/baseURL.php';
                     $("#popupHit").hide();
                 }
 
-                if (winNumber === "1") {
+                if (winNumber === "5") {
                     // Special case → extra spin reward
                     $("#popupLink")
                         .text(translations[lang].claim) // ✅ Use translation
