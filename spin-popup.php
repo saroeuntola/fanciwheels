@@ -358,14 +358,14 @@ include './config/baseURL.php';
             // hit: "25%",
             link: "https://bit.ly/JiliSlots"
         },
-        "1": {    
+        "1": {
             win: {
                 en: "1x Bonus",
-                bn: "৫গুণ বোনাস"
+                bn: "1x Bonus"
             },
             // hit: "0%",
             link: "https://bit.ly/Bonus1"
-           
+
         },
         "2": {
             win: {
@@ -376,10 +376,10 @@ include './config/baseURL.php';
             link: "https://bit.ly/Bonus2"
         },
         "5": {
-           win: {
+            win: {
                 en: "a chance to spin again",
-               bn: "আবার স্পিন করার সুযোগ"
-           },
+                bn: "আবার স্পিন করার সুযোগ"
+            },
             // hit: "10%",
             link: ""
         }
