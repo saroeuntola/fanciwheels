@@ -356,7 +356,7 @@ include './config/baseURL.php';
                 bn: "জিলি স্লটস ফ্রি প্লে"
             },
             // hit: "25%",
-            link: "https://bit.ly/JiliSlots"
+            link: "https://bit.ly/200JiliReg"
         },
         "1": {
             win: {
