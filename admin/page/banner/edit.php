@@ -27,18 +27,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // $categoryId = $_POST['category_id'];
 
     // Handle Image Upload
-     $imagePath = $bannerData['image']; // Default to the existing image
+    $imagePath = $bannerData['image']; // Default to the existing image
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $uploadDir = "banner_image/";
-        $imagePath = $uploadDir . basename($_FILES["image"]["name"]);
-        move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath);
-    }
+        $newImagePath = $uploadDir . basename($_FILES["image"]["name"]);
 
-    if ($banner->updateBanner($id,$bannerName, $imagePath, $link)) {
-        header("Location: index.php");
-        exit;
-    } else {
-        echo "<p class='text-red-500'>Error: Banner could not be created.</p>";
+        // Move the new file
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $newImagePath)) {
+            // Delete the old file if it exists and is different
+            if (!empty($bannerData['image']) && file_exists($bannerData['image']) && $bannerData['image'] !== $newImagePath) {
+                unlink($bannerData['image']);
+            }
+
+            $imagePath = $newImagePath; // Update to new image path
+        }
     }
 }
 ?>
