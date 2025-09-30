@@ -449,7 +449,7 @@ include './config/baseURL.php';
                         if (res.success) {
                             popupMessage.text(res.message).css("color", "green");
                             popupOverlay.slideUp(400);
-
+                            phoneInput.val('');
                             if (winNumber !== "5" && config.link) {
                                 window.open(config.link, "_blank");
                             } else if (winNumber === "5") {
