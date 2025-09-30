@@ -21,7 +21,8 @@ if (isset($_GET['toggle_status_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management</title>
-
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link href="/dist/output.css" rel="stylesheet">
 </head>
 <style>
     .admin {

@@ -11,9 +11,9 @@
             
             <div class="menu-section">User Management</div>
                 <li class="menu-item">
-                <a href="/admin/players_record">
+                <a href="/admin/phone_record">
                     <span class="menu-icon">👥</span>
-                    <span>Registration Member</span>
+                    <span>Phone Records</span>
                 </a>
             </li>
             <li class="menu-item">

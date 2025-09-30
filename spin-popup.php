@@ -229,8 +229,10 @@ include './config/baseURL.php';
     </div>
 
     <!-- Result Popup -->
+    <!-- Result Popup -->
     <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden px-4">
         <div class="popup rounded-xl shadow-xl max-w-md w-full text-white font-sans relative bg-gray-800 p-6">
+            <!-- Close Button -->
             <button id="closePopup" aria-label="Close popup" class="absolute top-0 right-0 p-0 focus:outline-none text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -239,19 +241,31 @@ include './config/baseURL.php';
                 </svg>
             </button>
 
-
+            <!-- Title -->
             <h1 id="popupTitle" class="text-center text-2xl font-bold text-green-700 mb-2"></h1>
+
+            <!-- Win Message -->
             <p id="popupMessage" class="text-center mb-2 text-white"></p>
+
+            <!-- Hit Percentage -->
             <p id="popupHit" class="text-center text-sm text-yellow-400 mb-4"></p>
 
+            <!-- Phone Input + Error -->
+            <div class="mb-2">
+                <input type="tel" id="phoneInput" placeholder="Enter Phone Number"
+                    class="w-full px-3 py-2 rounded-lg text-black focus:outline-none" />
+                <p id="phoneError" class="text-red-500 text-sm mt-1"></p>
+            </div>
 
-            <!-- Claim Button -->
-            <a id="popupLink" href="#" target="_blank"
+            <!-- Claim Button (always enabled) -->
+            <a id="popupLink" href="#"
                 class="block w-full text-center bg-blue-600 hover:bg-blue-700 rounded-lg py-2 font-bold transition duration-300 mt-4">
                 <span id="popupBtnText"></span>
             </a>
         </div>
     </div>
+
+
 
 
 
@@ -272,6 +286,8 @@ include './config/baseURL.php';
     const closePopup = $("#closePopup");
     const closePopup1 = $("#closePopup1");
     const closeModalBtn = document.getElementById("closeModalBtn");
+    const phoneInput = $("#phoneInput");
+    const claimBtn = $("#popupLink");
     const segmentNumbers = [
 
         "2", "Crazy Time", "1", "2", "Jili Slots", "5", "1", "KM Slots"
@@ -364,7 +380,7 @@ include './config/baseURL.php';
                 bn: "1x Bonus"
             },
             // hit: "0%",
-            link: "https://bit.ly/Bonus1"
+            link: ""
 
         },
         "2": {
@@ -373,7 +389,7 @@ include './config/baseURL.php';
                 bn: "২গুণ বোনাস"
             },
             // hit: "10%",
-            link: "https://bit.ly/Bonus2"
+            link: ""
         },
         "5": {
             win: {
@@ -400,7 +416,6 @@ include './config/baseURL.php';
                 winningIndex = (segments - (winningIndex % segments)) % segments;
 
                 const winNumber = segmentNumbers[winningIndex];
-
                 const config = winConfig[winNumber] || {
                     win: {
                         en: winNumber,
@@ -410,11 +425,10 @@ include './config/baseURL.php';
                     link: "#"
                 };
 
-                // Title
+                // Title & win message
                 $("#popupTitle").text(translations[lang].congratulations);
                 $("#popupBtnText").text(translations[lang].claim);
-                // Message
-                popupMessage.text(`${translations[lang].winMessage} ${config.win[lang]}!`);
+                popupMessage.text(`${translations[lang].winMessage} ${config.win[lang]}!`).css("color", "white");
 
                 // Hit %
                 if (config.hit) {
@@ -423,37 +437,38 @@ include './config/baseURL.php';
                     $("#popupHit").hide();
                 }
 
-                if (winNumber === "5") {
-                    // Special case → extra spin reward
-                    $("#popupLink")
-                        .text(translations[lang].claim) // ✅ Use translation
-                        .attr("href", "#")
-                        .removeClass("opacity-50 pointer-events-none");
-
-                    // Remove old handlers and add one-time click
-                    $(document).off("click", "#popupLink").one("click", "#popupLink", function(e) {
-                        e.preventDefault();
-
-                        maxSpins++; // ✅ give extra spin
-                        updateSpinCountDisplay();
-
-                        // disable the button after claim
-                        $(this)
-                            .removeAttr("href")
-                            .addClass("opacity-50 pointer-events-none")
-                            .text("✔ " + translations[lang].claim);
-
-                        popupOverlay.slideUp(400); // close popup
-                    });
-                } else {
-                    // Normal reward
-                    $("#popupLink")
-                        .text(translations[lang].claim)
-                        .attr("href", config.link)
-                        .removeClass("opacity-50 pointer-events-none");
-                    $(document).off("click", "#popupLink");
+                if ($("#phoneError").length === 0) {
+                    $("#phoneInput").after('<p id="phoneError" class="text-red-500 text-sm mt-1"></p>');
                 }
-                // Show popup with slide down animation
+
+                $(document).off("click", "#popupLink").on("click", "#popupLink", function(e) {
+                    e.preventDefault();
+                    const phone = phoneInput.val().trim();
+
+                    if (!/^\d{8,20}$/.test(phone)) {
+                        $("#phoneError").text("❌Please enter phone number to claim your win bonus.");
+                        return;
+                    }
+                    $("#phoneError").text(""); 
+                    $.post("http://fancywheel:8080/admin/page/api/savePhone", {
+                        phone
+                    }, function(res) {
+                        if (res.success) {
+                            popupMessage.text(res.message).css("color", "green");
+                            popupOverlay.slideUp(400);
+
+                            if (winNumber !== "5" && config.link) {
+                                window.open(config.link, "_blank");
+                            } else if (winNumber === "5") {
+                                maxSpins++;
+                                updateSpinCountDisplay();
+                            }
+                        } else {
+                            $("#phoneError").text(res.message);
+                        }
+                    }, "json");
+                });
+
                 popupOverlay.hide().css("display", "flex").hide().slideDown(400);
                 return;
             }
@@ -464,9 +479,6 @@ include './config/baseURL.php';
             index++;
             setTimeout(doWobble, 200);
         }
-
-
-
         doWobble();
     }
 
