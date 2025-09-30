@@ -55,7 +55,6 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 
         gtag('config', 'G-98CRLK26X1');
     </script>
-
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -124,9 +123,6 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
         </div>
     </section>
     <?php include 'footer.php' ?>
-
-
-
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCJVFMSG"
             height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

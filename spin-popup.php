@@ -247,7 +247,7 @@ include './config/baseURL.php';
             <p id="popupHit" class="text-center text-sm text-yellow-400 mb-4"></p>
 
             <!-- Phone Input + Error -->
-            <div class="mb-2 w-full">
+            <div class="mb-4 w-full mt-4">
                 <div class="flex gap-2 w-full">
                     <!-- Country selector -->
                     <div id="countrySelector" class="relative w-28 cursor-pointer flex-shrink-0">
@@ -275,11 +275,8 @@ include './config/baseURL.php';
                         class="flex-1 py-2 px-4 rounded-md text-white bg-gray-800 border-0  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full" />
                 </div>
 
-                <p id="phoneError" class="text-red-500 text-sm mt-1"></p>
+                <p id="phoneError" class="text-red-500 text-sm mt-1 mb-4"></p>
             </div>
-
-
-
             <!-- Claim Button (always enabled) -->
             <a id="popupLink" href="#"
                 class="block w-full text-center bg-blue-600 hover:bg-blue-700 rounded-lg py-2 font-bold transition duration-300 mt-4">
