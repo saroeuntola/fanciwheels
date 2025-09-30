@@ -57,8 +57,6 @@ Options -Indexes
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains; preload"
-    Header always set Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
-
     # Content Security Policy (CSP) – Allow All
     Header always set Content-Security-Policy "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; \
         script-src * 'unsafe-inline' 'unsafe-eval' data: blob:; \
