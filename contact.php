@@ -26,6 +26,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <link rel="stylesheet" href="./dist/css/all.min.css" />
     <script src="./js/all.min.js"></script>
     <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {
@@ -79,79 +80,104 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <?php include 'scroll-top-button.php'; ?>
 
     <section class="py-10 p-4 max-w-2xl mx-auto">
+        <div class="flex items-center bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto mb-10">
+                <div class="max-w-md mx-auto bg-black p-5 rounded-md shadow-sm">
+                    <div class="text-center">
+                        <h1 class="my-3 text-3xl font-semibold text-white dark:text-gray-200">
+                            Contact Us
+                        </h1>
+                        <p class="text-gray-400 dark:text-gray-400 mb-4">
+                            Fill up the form below to send us a message.
+                        </p>
+                    </div>
+                    <div class="m-7">
+                        <form action="https://api.web3forms.com/submit" method="POST" id="form">
+                            <input type="hidden" name="access_key" value="34eb21b0-5f6c-47e7-9906-da930e4f986f" />
+                            <input type="hidden" name="subject" value="New Submission from FancyWheel" />
+                            <input type="checkbox" name="botcheck" id="" style="display: none;" />
 
-        <h1 class="lg:text-3xl text-2lg font-bold text-center mb-4 text-white">
-            <?= $lang === 'en' ? 'Contact Us' : 'যোগাযোগ করুন' ?>
-        </h1>
-        <p class="text-center lg:text-lg text-sm text-gray-300 mb-6">
-            <?= $lang === 'en'
-                ? "Have questions or feedback? We'd love to hear from you! Fill out the form below or reach us through our social channels."
-                : "আপনার প্রশ্ন বা মতামত আছে? আমরা আপনার কাছ থেকে শুনতে আগ্রহী! নিচের ফর্মটি পূরণ করুন অথবা আমাদের সামাজিক চ্যানেলের মাধ্যমে যোগাযোগ করুন।"
-            ?>
-        </p>
+                            <div class="mb-6">
+                                <label for="name" class="block mb-2 text-sm text-gray-200 dark:text-gray-400">Full Name</label>
+                                <input type="text" name="name" id="name" placeholder="John Doe" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block mb-2 text-sm text-gray-200 dark:text-gray-400">Email Address</label>
+                                <input type="email" name="email" id="email" placeholder="you@example.com" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                            </div>
 
-        <form id="contactForm" class="p-6 rounded-lg shadow-md space-y-4 bg-gray-800 text-white">
-            <div>
-                <label for="name" class="block font-medium mb-1"><?= $lang === 'en' ? 'Name' : 'নাম' ?></label>
-                <input type="text" id="name" name="name"
-                    class="w-full border border-gray-600 rounded px-3 py-2 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    placeholder="<?= $lang === 'en' ? 'Your Name' : 'তোমার নাম' ?>">
+                            <div class="mb-6">
+                                <label for="message" class="block mb-2 text-sm text-gray-200 dark:text-gray-400">Your Message</label>
+
+                                <textarea rows="5" name="message" id="message" placeholder="Your Message" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" required></textarea>
+                            </div>
+                            <div class="mb-6">
+                                <button type="submit" class="w-full px-3 py-4 text-white bg-blue-600 rounded-md focus:bg-indigo-600 focus:outline-none">
+                                    Send Message
+                                </button>
+                            </div>
+                            <p class="text-base text-center text-gray-400" id="result"></p>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div>
-                <label for="email" class="block font-medium mb-1"> <?= $lang === 'en' ? 'Email' : 'ইমেইল' ?></label>
-                <input type="email" id="email" name="email"
-                    class="w-full border border-gray-600 rounded px-3 py-2 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    placeholder="<?= $lang === 'en' ? 'Your Email' : 'তোমার ইমেইল' ?>">
-            </div>
-            <div>
-                <label for="message" class="block font-medium mb-1"><?= $lang === 'en' ? 'Message' : 'বার্তা' ?></label>
-                <textarea id="message" name="message" rows="5"
-                    class="w-full border border-gray-600 rounded px-3 py-2 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    placeholder="<?= $lang === 'en' ? 'Your Message' : 'তোমার বার্তা' ?>"></textarea>
-            </div>
-            <button type="submit"
-                class="text-white font-semibold px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 transition duration-700 shadow-lg ">
-                <?= $lang === 'en' ? 'Send Message' : 'বার্তা পাঠান' ?>
-            </button>
-        </form>
+        </div>
     </section>
     <?php include 'footer.php' ?>
-    <!-- Toastr CSS & JS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script>
-        toastr.options = {
-            "closeButton": true,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "timeOut": "5000"
-        };
 
-        document.getElementById("contactForm").addEventListener("submit", function(e) {
-            e.preventDefault();
 
-            // Get form values
-            let name = document.getElementById("name").value.trim();
-            let email = document.getElementById("email").value.trim();
-            let message = document.getElementById("message").value.trim();
-
-            if (!name || !email || !message) {
-                toastr.error("Please fill in all fields", "Error");
-                return;
-            }
-
-            // Simulate successful post
-            toastr.success("Your message has been sent successfully!", "Success 🎉");
-
-            // Reset form
-            document.getElementById("contactForm").reset();
-        });
-    </script>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCJVFMSG"
             height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <script>
+        const form = document.getElementById("form");
+        const result = document.getElementById("result");
+
+        form.addEventListener("submit", function(e) {
+            const formData = new FormData(form);
+            e.preventDefault();
+            var object = {};
+            formData.forEach((value, key) => {
+                object[key] = value;
+            });
+            var json = JSON.stringify(object);
+            result.innerHTML = "Please wait...";
+
+            fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: json
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        result.innerHTML = json.message;
+                        result.classList.remove("text-gray-500");
+                        result.classList.add("text-green-500");
+                    } else {
+                        console.log(response);
+                        result.innerHTML = json.message;
+                        result.classList.remove("text-gray-500");
+                        result.classList.add("text-red-500");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    result.innerHTML = "Something went wrong!";
+                })
+                .then(function() {
+                    form.reset();
+                    setTimeout(() => {
+                        result.style.display = "none";
+                    }, 5000);
+                });
+        });
+    </script>
 </body>
 
 </html>
