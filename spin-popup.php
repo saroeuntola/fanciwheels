@@ -364,12 +364,12 @@ include './config/baseURL.php';
     const errorMessages = {
         en: {
             invalidLength: "❌ Invalid! phone number at least 8 digits.",
-            required: "❌ Please enter phone number to claim your win bonus.",
+            required: "❌ Enter your phone number to claim your winnings.",
             alreadyUsed: "❌ Phone Number Already used!"
         },
         bn: {
             invalidLength: "❌ অবৈধ! কমপক্ষে ৮ সংখ্যার ফোন নম্বর।",
-            required: "❌ আপনার বিজয় দাবি করতে ফোন নম্বর লিখুন।",
+            required: "❌ আপনার জয়ের টাকা দাবি করতে আপনার ফোন নম্বরটি প্রবেশ করান।",
             alreadyUsed: "❌ ফোন নম্বরটি ইতিমধ্যেই ব্যবহৃত হয়েছে!"
         }
     };
