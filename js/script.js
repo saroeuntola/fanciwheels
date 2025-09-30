@@ -1,4 +1,4 @@
-const API_BASE = window.APP_CONFIG?.API_URL || "";
+
 
 // Phone inputs
 const phoneInput = document.querySelector("#phone");

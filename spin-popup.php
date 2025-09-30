@@ -229,7 +229,6 @@ include './config/baseURL.php';
     </div>
 
     <!-- Result Popup -->
-    <!-- Result Popup -->
     <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden px-4">
         <div class="popup rounded-xl shadow-xl max-w-md w-full text-white font-sans relative bg-gray-800 p-6">
             <!-- Close Button -->
@@ -241,18 +240,45 @@ include './config/baseURL.php';
                 </svg>
             </button>
             <!-- Title -->
-            <h1 id="popupTitle" class="text-center text-2xl font-bold text-green-700 mb-2"></h1>
+            <h1 id="popupTitle" class="text-center text-2xl font-bold text-blue-600 mb-2"></h1>
 
             <!-- Win Message -->
-            <p id="popupMessage" class="text-center mb-2 text-white"></p>
+            <p id="popupMessage" class="text-center mb-2 text-blue-600"></p>
             <p id="popupHit" class="text-center text-sm text-yellow-400 mb-4"></p>
 
             <!-- Phone Input + Error -->
-            <div class="mb-2">
-                <input type="tel" id="phoneInput" placeholder="Enter Phone Number"
-                    class="w-full px-3 py-2 rounded-lg text-white focus:outline-none" />
+            <div class="mb-2 w-full">
+                <div class="flex gap-2 w-full">
+                    <!-- Country selector -->
+                    <div id="countrySelector" class="relative w-28 cursor-pointer flex-shrink-0">
+                        <div id="selectedCountry" class="flex items-center justify-between gap-2 bg-gray-700 text-white px-3 py-3 rounded-md">
+                            <img src="./image/flag/BD.png" alt="BD" class="w-6 h-6">
+                            <span>+880</span>
+                            <svg class="w-4 h-4 ml-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                        <ul id="countryList" class="absolute left-0 top-full w-full bg-gray-700 rounded-md mt-1 hidden z-10">
+                            <li class="flex items-center gap-2 px-3 py-1 mb-2 mt-2 hover:bg-gray-200 cursor-pointer text-white" data-code="+880" data-flag="./image/flag/BD.png">
+                                <img src="./image/flag/BD.png" alt="BD" class="w-6 h-6">
+                                <span>+880</span>
+                            </li>
+                            <li class="flex items-center gap-2 px-3 py-1 mb-2 hover:bg-gray-200 cursor-pointer text-white" data-code="+91" data-flag="./image/flag/in.png">
+                                <img src="./image/flag/in.png" alt="IN" class="w-6 h-6">
+                                <span>+91</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Phone input -->
+                    <input type="tel" id="phoneInput" placeholder=" <?= $lang === "en" ? "Enter Phone Number" : "ফোন নম্বর লিখুন" ?>"
+                        class="flex-1 py-2 px-4 rounded-md text-white bg-gray-800 border-0  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full" />
+                </div>
+
                 <p id="phoneError" class="text-red-500 text-sm mt-1"></p>
             </div>
+
+
 
             <!-- Claim Button (always enabled) -->
             <a id="popupLink" href="#"
@@ -263,14 +289,33 @@ include './config/baseURL.php';
     </div>
 
 </body>
+<script>
+    $("#phoneInput").on("input", function() {
+        let val = $(this).val();
+        val = val.replace(/[^\d+]/g, "");
+        if (val.indexOf("+") > 0) {
+            val = val.replace(/\+/g, "");
+            val = "+" + val;
+        }
+        $(this).val(val);
+    });
 
-<script>
-    window.APP_CONFIG = {
-        API_URL: "<?= $apiBaseURL ?>"
-    };
-</script>
-<script type="module" src="secure_js.php?file=script.js"></script>
-<script>
+    const selectedCountry = $("#selectedCountry");
+    const countryList = $("#countryList");
+    selectedCountry.on("click", function() {
+        countryList.toggle();
+    });
+
+    countryList.on("click", "li", function() {
+        const code = $(this).data("code");
+        const flag = $(this).data("flag");
+
+        selectedCountry.find("span").text(code);
+        selectedCountry.find("img").attr("src", flag);
+
+        countryList.hide();
+    });
+
     const wheel = document.getElementById("wheel");
     const spinBtn = document.getElementById("spinBtn");
     const popupOverlay = $("#popupOverlay");
@@ -282,9 +327,16 @@ include './config/baseURL.php';
     const phoneInput = $("#phoneInput");
     const claimBtn = $("#popupLink");
     const segmentNumbers = [
-
-        "2", "Crazy Time", "1", "2", "Jili Slots", "5", "1", "KM Slots"
+        "2",
+        "Crazy Time",
+        "1",
+        "2",
+        "Jili Slots",
+        "5",
+        "1",
+        "KM Slots",
     ];
+
     const segments = segmentNumbers.length;
     const segmentAngle = 360 / segments;
     let startTimestamp = null;
@@ -294,22 +346,33 @@ include './config/baseURL.php';
     let animationFrameId = null;
     let winningIndex = 0;
     const lang = "<?= $lang ?>";
+    const API_BASE = "<?= $apiBaseURL ?>"
     const translations = {
         en: {
             freeSpin: "Free Spin",
             winMessage: "You won",
             congratulations: "Congratulations!",
-            claim: "Claim Now"
+            claim: "Claim Now",
         },
         bn: {
             freeSpin: "ফ্রি স্পিন",
             winMessage: "আপনি জিতেছেন",
             congratulations: "অভিনন্দন!",
-            claim: "এখনই দাবি করুন"
+            claim: "এখনই দাবি করুন",
+        },
+    };
+    const errorMessages = {
+        en: {
+            invalidLength: "❌ Invalid! phone number at least 8 digits.",
+            required: "❌ Please enter phone number to claim your win bonus.",
+            alreadyUsed: "❌ Phone Number Already used!"
+        },
+        bn: {
+            invalidLength: "❌ অবৈধ! কমপক্ষে ৮ সংখ্যার ফোন নম্বর।",
+            required: "❌ আপনার বিজয় দাবি করতে ফোন নম্বর লিখুন।",
+            alreadyUsed: "❌ ফোন নম্বরটি ইতিমধ্যেই ব্যবহৃত হয়েছে!"
         }
     };
-
-
     let spinCount = 0;
     let maxSpins = 2;
     const spinCountDisplay = document.getElementById("spinCountDisplay");
@@ -319,7 +382,6 @@ include './config/baseURL.php';
         spinCountDisplay.textContent = text;
         spinCountDisplay.classList.add("spin-count");
     }
-
 
     function easeOutQuart(t) {
         return 1 - Math.pow(1 - t, 4);
@@ -332,7 +394,8 @@ include './config/baseURL.php';
         if (progress > 1) progress = 1;
 
         const easedProgress = easeOutQuart(progress);
-        const currentRotation = startRotation + easedProgress * (targetRotation - startRotation);
+        const currentRotation =
+            startRotation + easedProgress * (targetRotation - startRotation);
         wheel.style.transform = `rotate(${currentRotation}deg)`;
 
         if (progress < 1) {
@@ -345,53 +408,52 @@ include './config/baseURL.php';
     const winConfig = {
         "Crazy Time": {
             win: {
-                en: "bonus 500tk on Crazy Time",
-                bn: "ক্রেজি টাইম-এ ৫০০ টাকা বোনাস"
+                en: "Bonus 500tk on Crazy Time",
+                bn: "বোনাস 500tk on Crazy Time",
             },
             // hit: "20%",
-            link: "https://bit.ly/500EvoReg"
+            link: "https://bit.ly/500EvoReg",
         },
         "KM Slots": {
             win: {
-                en: "bonus 300tk on KM Slots & Table",
-                bn: "৩০০ টাকা কেএম স্লটস এবং টেবিল"
+                en: "Bonus 300tk on KM Slots & Table",
+                bn: "বোনাস Bonus 300tk on KM Slots & Table",
             },
             // hit: "35%",
-            link: "https://bit.ly/300KMReg"
+            link: "https://bit.ly/300KMReg",
         },
         "Jili Slots": {
             win: {
-                en: "bonus 200tk on Jili Slots",
-                bn: "জিলি স্লটস ফ্রি প্লে"
+                en: "Bonus 200tk on Jili Slots",
+                bn: "বোনাস 200tk on Jili Slots",
             },
             // hit: "25%",
-            link: "https://bit.ly/200JiliReg"
+            link: "https://bit.ly/200JiliReg",
         },
-        "1": {
+        1: {
             win: {
                 en: "1x Bonus",
-                bn: "1x Bonus"
+                bn: "1x Bonus",
             },
             // hit: "0%",
-            link: ""
-
+            link: "",
         },
-        "2": {
+        2: {
             win: {
                 en: "2x Bonus",
-                bn: "২গুণ বোনাস"
+                bn: "২গুণ বোনাস",
             },
             // hit: "10%",
-            link: ""
+            link: "",
         },
-        "5": {
+        5: {
             win: {
                 en: "a chance to spin again",
-                bn: "আবার স্পিন করার সুযোগ"
+                bn: "আবার স্পিন করার সুযোগ",
             },
             // hit: "10%",
-            link: ""
-        }
+            link: "",
+        },
     };
 
     function performWobble(baseRotation) {
@@ -402,7 +464,8 @@ include './config/baseURL.php';
             if (index >= wobbleSequence.length) {
                 spinBtn.disabled = false;
 
-                const finalRotation = baseRotation + wobbleSequence[wobbleSequence.length - 1];
+                const finalRotation =
+                    baseRotation + wobbleSequence[wobbleSequence.length - 1];
                 const normalizedRotation = finalRotation % 360;
                 const adjustedRotation = (normalizedRotation + segmentAngle / 2) % 360;
                 winningIndex = Math.floor(adjustedRotation / segmentAngle);
@@ -412,16 +475,18 @@ include './config/baseURL.php';
                 const config = winConfig[winNumber] || {
                     win: {
                         en: winNumber,
-                        bn: winNumber
+                        bn: winNumber,
                     },
                     hit: "",
-                    link: "#"
+                    link: "#",
                 };
 
                 // Title & win message
                 $("#popupTitle").text(translations[lang].congratulations);
                 $("#popupBtnText").text(translations[lang].claim);
-                popupMessage.text(`${translations[lang].winMessage} ${config.win[lang]}!`).css("color", "white");
+                popupMessage
+                    .text(`${translations[lang].winMessage} ${config.win[lang]}!`)
+                    .css("color", "white");
 
                 // Hit %
                 if (config.hit) {
@@ -431,36 +496,62 @@ include './config/baseURL.php';
                 }
 
                 if ($("#phoneError").length === 0) {
-                    $("#phoneInput").after('<p id="phoneError" class="text-red-500 text-sm mt-1"></p>');
+                    $("#phoneInput").after(
+                        '<p id="phoneError" class="text-red-500 text-sm mt-1"></p>'
+                    );
                 }
 
-                $(document).off("click", "#popupLink").on("click", "#popupLink", function(e) {
-                    e.preventDefault();
-                    const phone = phoneInput.val().trim();
+                $(document)
+                    .off("click", "#popupLink")
+                    .on("click", "#popupLink", function(e) {
+                        e.preventDefault();
 
-                    if (!/^\d{8,20}$/.test(phone)) {
-                        $("#phoneError").text("❌Please enter phone number to claim your win bonus.");
-                        return;
-                    }
-                    $("#phoneError").text("");
-                    $.post("https://fanciwheel.com/admin/page/api/savePhone", {
-                        phone
-                    }, function(res) {
-                        if (res.success) {
-                            popupMessage.text(res.message).css("color", "green");
-                            popupOverlay.slideUp(400);
-                            phoneInput.val('');
-                            if (winNumber !== "5" && config.link) {
-                                window.open(config.link, "_blank");
-                            } else if (winNumber === "5") {
-                                maxSpins++;
-                                updateSpinCountDisplay();
-                            }
-                        } else {
-                            $("#phoneError").text(res.message);
+                        let phone = $("#phoneInput").val().trim();
+                        const countryCode = $("#selectedCountry span").text().trim();
+                        if (phone === "") {
+                            $("#phoneError").text(errorMessages[lang].required);
+                            return;
                         }
-                    }, "json");
-                });
+                        if (phone.length < 8 || phone.length > 20) {
+                            $("#phoneError").text(errorMessages[lang].invalidLength);
+                            return;
+                        }
+                        if (!/^\d+$/.test(phone)) {
+                            $("#phoneError").text(errorMessages[lang].invalidLength);
+                            return;
+                        }
+
+                        $("#phoneError").text("");
+
+                        $.post(
+                            API_BASE + "savePhone?lang=" + lang, {
+                                phone: countryCode + phone,
+                            },
+                            function(res) {
+                                if (res.success) {
+                                    $("#popupMessage").text(res.message).css("color", "green");
+                                    $("#popupOverlay").slideUp(400);
+                                    $("#phoneInput").val("");
+
+                                    if (winNumber !== "5" && config.link) {
+                                        window.open(config.link, "_blank");
+                                    } else if (winNumber === "5") {
+                                        maxSpins++;
+                                        updateSpinCountDisplay();
+                                    }
+                                } else {
+                                    if (res.message.includes("already used")) {
+
+                                        $("#phoneError").text(errorMessages[lang].alreadyUsed);
+                                    } else {
+                                        $("#phoneError").text("❌ " + res.message);
+
+                                    }
+                                }
+                            },
+                            "json"
+                        );
+                    });
 
                 popupOverlay.hide().css("display", "flex").hide().slideDown(400);
                 return;
@@ -521,7 +612,6 @@ include './config/baseURL.php';
     });
 
     const spinWheelModal = document.getElementById("spinWheelModal");
-
 
     // Open modal
     function openSpinWheelModal() {
