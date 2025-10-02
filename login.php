@@ -331,9 +331,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button type="submit" class="btn-primary w-full">
                         Login
                     </button>
-
-               
-
                     <?php if (isset($error_message)): ?>
                         <div class="error-message">
                             <p><?php echo $error_message; ?></p>
@@ -344,5 +341,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </body>
-
 </html>

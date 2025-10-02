@@ -95,22 +95,26 @@ $texts = $servicesTexts[$lang];
     </title>
 
     <!-- Meta Description -->
-    <meta name="description" content="<?= $lang === 'en'
+    <meta name="description"
+        content="<?= $lang === 'en'
                                             ? 'Enjoy fresh Milktea in Bangladesh and safe, comfortable bus rides in Chittagong. Fast delivery, tasty drinks, and reliable transport services.'
                                             : 'বাংলাদেশে তাজা মিল্ক টি উপভোগ করুন এবং চট্টগ্রামে নিরাপদ ও আরামদায়ক বাস যাত্রা। দ্রুত ডেলিভারি, সুস্বাদু পানীয়, এবং নির্ভরযোগ্য পরিবহন।' ?>">
 
     <!-- Meta Keywords -->
-    <meta name="keywords" content="<?= $lang === 'en'
+    <meta name="keywords"
+        content="<?= $lang === 'en'
                                         ? 'Milktea, Bangladesh, Chittagong bus, fresh drinks, boba tea, bus routes, delivery, travel'
                                         : 'মিল্ক টি, বাংলাদেশ, চট্টগ্রাম বাস, তাজা পানীয়, বোবা চা, বাস রুট, ডেলিভারি, ভ্রমণ' ?>">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fanciwheel.com/">
-    <meta property="og:title" content="<?= $lang === 'en'
+    <meta property="og:title"
+        content="<?= $lang === 'en'
                                             ? 'Milktea & Chittagong Bus Services | Fresh Drinks & Comfortable Rides'
                                             : 'মিল্ক টি ও চট্টগ্রামের বাস সার্ভিস | তাজা পানীয় ও আরামদায়ক যাত্রা' ?>">
-    <meta property="og:description" content="<?= $lang === 'en'
+    <meta property="og:description"
+        content="<?= $lang === 'en'
                                                     ? 'Discover fresh Milktea flavors and reliable bus services in Chittagong. Order online or book your bus now!'
                                                     : 'চট্টগ্রামে তাজা মিল্ক টি এবং নির্ভরযোগ্য বাস সার্ভিস আবিষ্কার করুন। এখনই অনলাইন অর্ডার বা টিকিট বুক করুন!' ?>">
     <meta property="og:image" content="https://fanciwheel.com/images/og-milktea-bus.jpg">
@@ -118,10 +122,12 @@ $texts = $servicesTexts[$lang];
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://fanciwheel.com/">
-    <meta name="twitter:title" content="<?= $lang === 'en'
+    <meta name="twitter:title"
+        content="<?= $lang === 'en'
                                             ? 'Milktea & Chittagong Bus Services | Fresh Drinks & Comfortable Rides'
                                             : 'মিল্ক টি ও চট্টগ্রামের বাস সার্ভিস | তাজা পানীয় ও আরামদায়ক যাত্রা' ?>">
-    <meta name="twitter:description" content="<?= $lang === 'en'
+    <meta name="twitter:description"
+        content="<?= $lang === 'en'
                                                     ? 'Enjoy fresh Milktea and safe, comfortable bus rides in Chittagong. Order online or book your ride today!'
                                                     : 'চট্টগ্রামে তাজা মিল্ক টি এবং নিরাপদ, আরামদায়ক বাস যাত্রা উপভোগ করুন। এখনই অর্ডার বা বুক করুন!' ?>">
     <meta name="twitter:image" content="https://fanciwheel.com/images/og-milktea-bus.jpg">
@@ -134,43 +140,43 @@ $texts = $servicesTexts[$lang];
     <script src="./js/jquery-3.6.0.min.js"></script>
     <!-- Google Tag Manager -->
     <script>
-        (function(w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-TCJVFMSG');
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TCJVFMSG');
     </script>
     <!-- End Google Tag Manager -->
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'G-98CRLK26X1');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-98CRLK26X1');
     </script>
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "url": "https://fanciwheel.com/",
-            "name": "Fancy Wheel",
-            "alternateName": "fanciwheel.com",
-            "logo": "https://fanciwheel.com/image/PWAicon-192px.png",
-        }
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://fanciwheel.com/",
+        "name": "Fancy Wheel",
+        "alternateName": "fanciwheel.com",
+        "logo": "https://fanciwheel.com/image/PWAicon-192px.png",
+    }
     </script>
 </head>
 
@@ -227,8 +233,8 @@ $texts = $servicesTexts[$lang];
     include 'footer.php'
     ?>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCJVFMSG"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCJVFMSG" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 </body>
 

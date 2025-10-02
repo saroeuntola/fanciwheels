@@ -149,7 +149,6 @@ $banners = $bannerObj->getBanner();
     object-fit: fill;
   }
 </style>
-
 <body>
   <section class="slideshow-container max-w-7xl mx-auto" aria-label="Image slideshow">
     <div id="slide-container">

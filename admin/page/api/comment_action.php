@@ -29,7 +29,7 @@ if ($action === 'add_reply') {
     }
 
     $comment_id = (int)$_POST['comment_id'];
-    $username = $_SESSION['username']; // enforce from session
+    $username = $_SESSION['username'];
     $reply = trim($_POST['reply']);
 
     if ($reply) {

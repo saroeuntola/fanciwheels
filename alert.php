@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +9,6 @@
 </head>
 
 <body>
-
     <!-- Modal -->
     <?php if (isset($_SESSION['inactive_message'])): ?>
         <div id="inactiveModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -34,7 +32,5 @@
             });
         }
     </script>
-
 </body>
-
 </html>

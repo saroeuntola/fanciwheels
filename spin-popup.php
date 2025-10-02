@@ -205,6 +205,7 @@ include './config/baseURL.php';
 </style>
 <link rel="stylesheet" href="./dist/css/toastr.min.css">
 <script src="./js/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
 <body>
     <!-- Spin Wheel Modal -->
@@ -457,6 +458,44 @@ include './config/baseURL.php';
     function performWobble(baseRotation) {
         const wobbleSequence = [-5, 4, -3, 2, -1, 1, -0.5, 0];
         let index = 0;
+        // 🎉 Boom effect when win
+        function triggerConfetti() {
+            const duration = 2 * 1000; // 2 seconds
+            const animationEnd = Date.now() + duration;
+            const defaults = {
+                startVelocity: 30,
+                spread: 360,
+                ticks: 60,
+                zIndex: 1000
+            };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+
+                // Confetti from center top (x: 0.5, y: 0)
+                confetti({
+                    particleCount,
+                    angle: randomInRange(75, 105), // mostly downward
+                    spread: 60,
+                    origin: {
+                        x: 0.5,
+                        y: 0
+                    },
+                    ...defaults
+                });
+            }, 250);
+        }
+
 
         function doWobble() {
             if (index >= wobbleSequence.length) {
@@ -550,6 +589,7 @@ include './config/baseURL.php';
                             "json"
                         );
                     });
+                triggerConfetti();
 
                 popupOverlay.hide().css("display", "flex").hide().slideDown(400);
                 return;
