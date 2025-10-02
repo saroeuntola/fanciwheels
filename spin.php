@@ -1,64 +1,64 @@
 <?php
 session_start();
 if (!isset($_SESSION['player_name'])) {
-    header("Location: register-form");
-    exit;
+  header("Location: register-form");
+  exit;
 }
 $playerName = htmlspecialchars($_SESSION['player_name']);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin Wheel Game - Win Exciting Prizes</title>
 
-<!-- SEO Meta Tags -->
-<meta name="description" content="Play the Spin Wheel Game and win exciting prizes instantly! Try your luck and enjoy fun rewards online.">
-<meta name="keywords" content="Spin Wheel Game, Online Game, Win Prizes, Lucky Wheel, Fun Game">
-<meta name="author" content="FancyWheel">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spin Wheel Game - Win Exciting Prizes</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Play the Spin Wheel Game and win exciting prizes instantly! Try your luck and enjoy fun rewards online.">
+  <meta name="keywords" content="Spin Wheel Game, Online Game, Win Prizes, Lucky Wheel, Fun Game">
+  <meta name="author" content="FancyWheel">
   <link rel="icon" href="./image/inner-sw.png"
     type="image/png">
-<!-- Social Sharing / Open Graph -->
-<meta property="og:title" content="Spin Wheel Game - Win Exciting Prizes">
-<meta property="og:description" content="Play the Spin Wheel Game and win exciting prizes instantly!">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://fanciwheel.com/spin">
-<meta property="og:image" content="https://fanciwheel.com/image/inner-sw.png">
+  <!-- Social Sharing / Open Graph -->
+  <meta property="og:title" content="Spin Wheel Game - Win Exciting Prizes">
+  <meta property="og:description" content="Play the Spin Wheel Game and win exciting prizes instantly!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fanciwheel.com/spin">
+  <meta property="og:image" content="https://fanciwheel.com/image/inner-sw.png">
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Spin Wheel Game - Win Exciting Prizes">
-<meta name="twitter:description" content="Play the Spin Wheel Game and win exciting prizes instantly!">
-<meta name="twitter:image" content="https://https://fanciwheel.com//image/inner-sw.png">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Spin Wheel Game - Win Exciting Prizes">
+  <meta name="twitter:description" content="Play the Spin Wheel Game and win exciting prizes instantly!">
+  <meta name="twitter:image" content="https://https://fanciwheel.com//image/inner-sw.png">
 
-<!-- TailwindCSS and other libraries -->
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-   
+  <!-- TailwindCSS and other libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
- <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
 
-        /* .game-container {
+
+  /* .game-container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             padding: 30px;
@@ -269,43 +269,40 @@ $playerName = htmlspecialchars($_SESSION['player_name']);
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
-  } */ 
+  } */
 
 
 
- .wheel-container {
-  position: relative;
-  width: 350px;
-  height: 350px;
-  margin: 0 auto;
-}
+  .wheel-container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin: 0 auto;
+  }
 
-.border-spin {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url('./image/t.png'); /* Your border image */
-  background-size: cover;
-  background-position: center;
-  border: none;
-  z-index: 1;
-}
+  .border-spin {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('./image/t.png');
+    background-size: cover;
+    background-position: center;
+    border: none;
+    z-index: 1;
+  }
 
-.wheel {
-  position: absolute;
-  background-image: url('./image/inner-sw.png'); /* Your wheel image */
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
+  .wheel {
+    position: absolute;
+    background-image: url('./image/inner-sw.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
 
-}
-
-
-
+  }
 
   #popupOverlay {
     position: fixed;
-  
+
     width: 100%;
     height: 100%;
     z-index: 1000;
@@ -329,27 +326,27 @@ $playerName = htmlspecialchars($_SESSION['player_name']);
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
-  } 
-    
-  
- 
+  }
+
+
+
   #wallet.win-flash {
-  animation: walletFlash 3.5s ease-in-out;
-  color: gold;
-  text-shadow: 0 0 8px gold, 0 0 15px orange;
-}
+    animation: walletFlash 3.5s ease-in-out;
+    color: gold;
+    text-shadow: 0 0 8px gold, 0 0 15px orange;
+  }
 
-@media (max-width: 768px){
- .wheel-container {
-  width: 250px;
-  height: 250px;
-}
+  @media (max-width: 768px) {
+    .wheel-container {
+      width: 250px;
+      height: 250px;
+    }
 
-}
+  }
 
 
 
-/* 
+  /* 
   @media (max-width: 600px) {
     #spinWheelModal .popup {
     
@@ -359,7 +356,7 @@ $playerName = htmlspecialchars($_SESSION['player_name']);
     
     } */
 
-    /* .close-icon {
+  /* .close-icon {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -390,126 +387,123 @@ $playerName = htmlspecialchars($_SESSION['player_name']);
 
   } */
 
-    .message {
-  width: auto;
-  min-width: 200px;
-  max-width: 90vw;
-  cursor: default;
-}
+  .message {
+    width: auto;
+    min-width: 200px;
+    max-width: 90vw;
+    cursor: default;
+  }
+</style>
 
-    </style>
 <body>
-<!-- Modal -->
-<div id="welcomeModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
-  <div class="bg-gradient-to-b from-yellow-200 to-yellow-400 p-6 rounded-2xl shadow-2xl text-center max-w-sm w-full border-4 border-yellow-500 relative">
-    
-    <!-- Close Button -->
-    <button onclick="closeModal()" class="absolute top-3 right-3 text-yellow-700 hover:text-red-500 text-2xl font-bold">&times;</button>
-    
-    <!-- Icon -->
-    <img src="https://cdn-icons-png.flaticon.com/512/138/138281.png" class="w-16 h-16 mx-auto mb-4 animate-bounce" alt="Coin">
-    
-    <!-- Title -->
-    <h2 class="text-2xl font-extrabold text-yellow-900 mb-2">🎉 Welcome <?php echo $playerName; ?>!</h2>
-    
-    <!-- Message -->
-    <p class="text-lg text-yellow-800 mb-4">You’ve received <span class="font-bold">$100</span> free to play the game!</p>
-    
-    <!-- Button -->
-    <button id="closeBtn" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full shadow-lg transition duration-300">
-      Start Playing
-    </button>
-  </div>
-</div>
+  <!-- Modal -->
+  <div id="welcomeModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+    <div class="bg-gradient-to-b from-yellow-200 to-yellow-400 p-6 rounded-2xl shadow-2xl text-center max-w-sm w-full border-4 border-yellow-500 relative">
 
+      <!-- Close Button -->
+      <button onclick="closeModal()" class="absolute top-3 right-3 text-yellow-700 hover:text-red-500 text-2xl font-bold">&times;</button>
 
-</script>
-   <div class="game-container max-w-7xl w-full mx-auto p-4 lg:px-[250px]">
- 
-   <div class="flex items-center gap-3 bg-gradient-to-r from-yellow-400 to-yellow-600 px-4 py-2 rounded-full shadow-lg border-2 border-yellow-300 w-[170px] mb-5 mx-auto md:mx-0">
-  <img src="https://cdn-icons-png.flaticon.com/512/138/138281.png" alt="Coin" class="w-6 h-6 drop-shadow-md">
-  <span class="text-xl font-bold text-white tracking-wide">
-    <span id="wallet">100</span>
-  </span>
-</div>
+      <!-- Icon -->
+      <img src="https://cdn-icons-png.flaticon.com/512/138/138281.png" class="w-16 h-16 mx-auto mb-4 animate-bounce" alt="Coin">
 
-  <div class="wheel-container relative mx-auto mb-8">
-    <div class="border-spin absolute inset-0 rounded-full border-8 border-yellow-400 animate-spin-slow"></div>
-    <div id="wheel" class="wheel absolute inset-0"></div>
-  </div>
+      <!-- Title -->
+      <h2 class="text-2xl font-extrabold text-yellow-900 mb-2">🎉 Welcome <?php echo $playerName; ?>!</h2>
 
-  <div class="betting-section">
-    <h3 class="text-xl font-semibold mb-4 text-center text-yellow-400">Choose Your Bet:</h3>
-    <div class="bet-options grid grid-cols-2 gap-4 mb-6">
-  <div class="bet-item apple cursor-pointer p-3 bg-red-100 rounded text-center hover:bg-red-200" data-item="apple" data-multiplier="1" data-betamount="100">
-    🍎 Apple (1x) PAY $100
-  </div>
-  <div class="bet-item diamond cursor-pointer p-3 bg-blue-100 rounded text-center hover:bg-blue-200" data-item="diamond" data-multiplier="2" data-betamount="200">
-    💎 Diamond (2x) PAY $300
-  </div>
-  <div class="bet-item star cursor-pointer p-3 bg-yellow-100 rounded text-center hover:bg-yellow-200" data-item="star" data-multiplier="3" data-betamount="300">
-    ⭐ Star (3x) PAY $400
-  </div>
-  <div class="bet-item heart cursor-pointer p-3 bg-pink-100 rounded text-center hover:bg-pink-200" data-item="heart" data-multiplier="4" data-betamount="400">
-    ❤️ Heart (4x) PAY $500
-  </div>
-  <div class="bet-item coin cursor-pointer p-3 bg-green-100 rounded text-center hover:bg-green-200 col-span-2" data-item="coin" data-multiplier="5" data-betamount="500">
-    🪙 Coin (5x) PAY $600
-  </div>
-</div>
+      <!-- Message -->
+      <p class="text-lg text-yellow-800 mb-4">You’ve received <span class="font-bold">$100</span> free to play the game!</p>
 
-
-    <!-- <div class="bet-amount mb-6 flex items-center justify-center space-x-2">
-      <label for="betAmount" class="text-lg font-medium">Bet Amount: $</label>
-      <input type="number" id="betAmount" min="10" max="500" value="50" step="10" class="w-20 text-center border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-400 focus:outline-none">
-    </div> -->
-
-    <div class="text-center">
-      <button id="spinBtn" onclick="spin()" class="spin-btn bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-3 px-8 rounded shadow transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
-        SPIN THE WHEEL!
+      <!-- Button -->
+      <button id="closeBtn" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full shadow-lg transition duration-300">
+        Start Playing
       </button>
     </div>
   </div>
 
 
+  </script>
+  <div class="game-container max-w-7xl w-full mx-auto p-4 lg:px-[250px]">
 
-</div>
- 
- <div id="message" class="message fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-6 py-3 rounded shadow-lg text-center text-lg font-semibold" style="display: none; z-index: 9999;"></div>
-<div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden">
-  <div
-    class="popup bg-gray-900 rounded-xl shadow-xl max-w-md w-full mx-4 p-8 text-white font-sans relative
-           lg:w-[25%] md:w-[50%] max-h-[90vh] overflow-auto"
-  >
-    <!-- Close Button (X) -->
-    <button
-      id="closePopup"
-      aria-label="Close popup"
-      class="absolute top-4 right-4 text-yellow-400 hover:text-yellow-500 focus:outline-none"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        viewBox="0 0 24 24"
-      >
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </svg>
-    </button>
-    <!-- Registration Form -->
-    <form id="registerForm" action="" method="POST" class="space-y-6">
-      <div>
-   <h5 class="text-xl font-bold text-yellow-400 text-center">Your balance is Enough</h5>
-       <p class="text-sm font-bold text-yellow-400 text-center">Deposit to play game please contact us!</p>
+    <div class="flex items-center gap-3 bg-gradient-to-r from-yellow-400 to-yellow-600 px-4 py-2 rounded-full shadow-lg border-2 border-yellow-300 w-[170px] mb-5 mx-auto md:mx-0">
+      <img src="https://cdn-icons-png.flaticon.com/512/138/138281.png" alt="Coin" class="w-6 h-6 drop-shadow-md">
+      <span class="text-xl font-bold text-white tracking-wide">
+        <span id="wallet">100</span>
+      </span>
+    </div>
 
+    <div class="wheel-container relative mx-auto mb-8">
+      <div class="border-spin absolute inset-0 rounded-full border-8 border-yellow-400 animate-spin-slow"></div>
+      <div id="wheel" class="wheel absolute inset-0"></div>
+    </div>
+
+    <div class="betting-section">
+      <h3 class="text-xl font-semibold mb-4 text-center text-yellow-400">Choose Your Bet:</h3>
+      <div class="bet-options grid grid-cols-2 gap-4 mb-6">
+        <div class="bet-item apple cursor-pointer p-3 bg-red-100 rounded text-center hover:bg-red-200" data-item="apple" data-multiplier="1" data-betamount="100">
+          🍎 Apple (1x) PAY $100
+        </div>
+        <div class="bet-item diamond cursor-pointer p-3 bg-blue-100 rounded text-center hover:bg-blue-200" data-item="diamond" data-multiplier="2" data-betamount="200">
+          💎 Diamond (2x) PAY $300
+        </div>
+        <div class="bet-item star cursor-pointer p-3 bg-yellow-100 rounded text-center hover:bg-yellow-200" data-item="star" data-multiplier="3" data-betamount="300">
+          ⭐ Star (3x) PAY $400
+        </div>
+        <div class="bet-item heart cursor-pointer p-3 bg-pink-100 rounded text-center hover:bg-pink-200" data-item="heart" data-multiplier="4" data-betamount="400">
+          ❤️ Heart (4x) PAY $500
+        </div>
+        <div class="bet-item coin cursor-pointer p-3 bg-green-100 rounded text-center hover:bg-green-200 col-span-2" data-item="coin" data-multiplier="5" data-betamount="500">
+          🪙 Coin (5x) PAY $600
+        </div>
       </div>
-   
-      <!-- <div>
+
+
+      <!-- <div class="bet-amount mb-6 flex items-center justify-center space-x-2">
+      <label for="betAmount" class="text-lg font-medium">Bet Amount: $</label>
+      <input type="number" id="betAmount" min="10" max="500" value="50" step="10" class="w-20 text-center border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-400 focus:outline-none">
+    </div> -->
+
+      <div class="text-center">
+        <button id="spinBtn" onclick="spin()" class="spin-btn bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-3 px-8 rounded shadow transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+          SPIN THE WHEEL!
+        </button>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div id="message" class="message fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-6 py-3 rounded shadow-lg text-center text-lg font-semibold" style="display: none; z-index: 9999;"></div>
+  <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden">
+    <div
+      class="popup bg-gray-900 rounded-xl shadow-xl max-w-md w-full mx-4 p-8 text-white font-sans relative
+           lg:w-[25%] md:w-[50%] max-h-[90vh] overflow-auto">
+      <!-- Close Button (X) -->
+      <button
+        id="closePopup"
+        aria-label="Close popup"
+        class="absolute top-4 right-4 text-yellow-400 hover:text-yellow-500 focus:outline-none">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <!-- Registration Form -->
+      <form id="registerForm" action="" method="POST" class="space-y-6">
+        <div>
+          <h5 class="text-xl font-bold text-yellow-400 text-center">Your balance is Enough</h5>
+          <p class="text-sm font-bold text-yellow-400 text-center">Deposit to play game please contact us!</p>
+
+        </div>
+
+        <!-- <div>
         <input
           type="text"
           id="name"
@@ -546,314 +540,322 @@ $playerName = htmlspecialchars($_SESSION['player_name']);
         Login
       </button>
       <p class="text-sm">Do not have an account? <a href="#" class="text-yellow-400 hover:text-yellow-500 transition">Sign up </a> </p> -->
-    </form>
+      </form>
+    </div>
   </div>
-</div>
 
 
-<?php
-$secretBase64 = 'WW91clNlY3JldEtleUhlcmU=';
-$encodedKey = base64_encode($secretBase64);
-?>
-
-
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<script>
-    function showMessage(text, type = 'info', duration = 3000) {
-  Swal.fire({
-    toast: true,
-    position: 'bottom',
-    title: text,
-    showConfirmButton: false,
-    timer: duration,
-    timerProgressBar: true,
-    showClass: {
-      popup: 'swal2-show swal2-slide-in-bottom'
-    },
-    hideClass: {
-      popup: 'swal2-hide swal2-slide-out-bottom'
-    }
-  });
-}
-
-function hideMessage() {
-  Swal.close();
-}
-const popupOverlay = $("#popupOverlay");
-const popupMessage = $("#popupMessage");
-const closePopupBtn = $("#closePopup");
-let wallet = 100;
-let selectedBet = null;
-let selectedMultiplier = 2;
-let selectedBetAmount = 0;
-let isSpinning = false;
-
-const items = ['apple', 'diamond', 'star', 'heart', 'coin', 'crown'];
-
-const itemNames = {
-  'apple': 'Apple',
-  'diamond': 'Diamond',
-  'star': 'Star',
-  'heart': 'Heart',
-  'coin': 'Coin',
-  'crown': 'Crown'
-};
-
-const itemEmojis = {
-  'apple': '🍎',
-  'diamond': '💎',
-  'star': '⭐',
-  'heart': '❤️',
-  'coin': '🪙',
-  'crown': '👑'
-};
-
-function showModal() {
-  $("#welcomeModal").removeClass("hidden").hide().fadeIn(300);
-}
-
-function closeModal() {
-  $("#welcomeModal").fadeOut(200);
-}
-
-$(window).on("load", function() {
-  if (wallet != 0) {
-    setTimeout(showModal, 250);
-  }
-});
-
-
-// Close when Start Playing button clicked
-$(document).on("click", "#closeBtn", function() {
-  closeModal();
-});
-
-// Close when X icon clicked
-$(document).on("click", ".absolute.top-3.right-3", function() {
-  closeModal();
-});
-
-const parts = [
   <?php
-  $split = str_split($encodedKey, 4);
-  echo '"' . implode('","', $split) . '"';
+  $secretBase64 = 'WW91clNlY3JldEtleUhlcmU=';
+  $encodedKey = base64_encode($secretBase64);
   ?>
-];
 
-function getSecretKey() {
-  const combined = parts.join('');
-  return atob(combined);
-}
 
-const secretKey = getSecretKey();
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-function encodeData(obj) {
-  const json = JSON.stringify(obj);
-  let xorData = json
-    .split('')
-    .map((char, i) => String.fromCharCode(char.charCodeAt(0) ^ secretKey.charCodeAt(i % secretKey.length)))
-    .join('');
-  return btoa(xorData);
-}
 
-function decodeData(encoded) {
-  let xorData = atob(encoded);
-  let json = xorData
-    .split('')
-    .map((char, i) => String.fromCharCode(char.charCodeAt(0) ^ secretKey.charCodeAt(i % secretKey.length)))
-    .join('');
-  return JSON.parse(json);
-}
-
-function saveSession() {
-  try {
-    const sessionData = {
-      wallet: wallet,
-      lastPlayed: Date.now()
-    };
-    localStorage.setItem('swg_data', encodeData(sessionData));
-  } catch (e) {
-    console.log('Session storage not available');
-  }
-}
-
-function loadSession() {
-  try {
-    const savedData = localStorage.getItem('swg_data');
-    if (savedData) {
-      const sessionData = decodeData(savedData);
-      if (typeof sessionData.wallet === "number") {
-        wallet = sessionData.wallet;
-      } else {
-        wallet = 100;
-      }
-      return true;
-    }
-    wallet = 100;
-    return false;
-  } catch (e) {
-    console.log('Session storage not available or corrupt');
-    wallet = 100;
-    return false;
-  }
-}
-
-function updateWalletDisplay() {
-  $('#wallet').text(wallet);
-  saveSession();
-}
-
-// Initialize game
-$(document).ready(function() {
-  loadSession();
-  updateWalletDisplay();
-
-     $('#closePopup').click(() => {
-    popupOverlay.fadeOut(300);
-  });
-
-  $(document).on('click', '.bet-item', function() {
-    if (isSpinning) return;
-
-    $('.bet-item').removeClass('selected');
-    $(this).addClass('selected');
-
-    selectedBet = $(this).data('item');
-    selectedMultiplier = $(this).data('multiplier');
-    selectedBetAmount = parseInt($(this).data('betamount')) || 0;
-    hideMessage();
-    $('#selectedBetInfo').text(`Betting $${selectedBetAmount} on ${selectedBet.charAt(0).toUpperCase() + selectedBet.slice(1)}`);
-  });
-
-});
-
-let currentRotation = 0;
-
-function spin() {
-  if (isSpinning) return;
-
-  if (!selectedBet) {
-    showMessage('Please select an item to bet on!', 'info');
-    return;
-  }
-  if (selectedBetAmount > wallet) {
-    popupOverlay.removeClass("hidden").hide().fadeIn(300);
-    return;
-  }
-  if (selectedBetAmount < 10) {
-    showMessage('Minimum bet is $10!', 'info');
-    return;
-  }
-
-  isSpinning = true;
-  $('#spinBtn').prop('disabled', true).text('SPINNING...');
-  hideMessage();
-
-  wallet -= selectedBetAmount;
-  updateWalletDisplay();
-
-  const result = Math.floor(Math.random() * items.length);
-  const resultItem = items[result];
-
-  const degreesPerSlice = 360 / items.length;
-  const stopAngle = result * degreesPerSlice + (Math.random() * 8 - 4);
-
-  const extraRotations = (5 + Math.floor(Math.random() * 2)) * 360;
-  const spinDuration = (4 + Math.random() * 2).toFixed(2);
-  const targetRotation = currentRotation + extraRotations + stopAngle;
-
-  $('#wheel').css({
-    'transition': `transform ${spinDuration}s cubic-bezier(0.17, 0.67, 0.36, 1.02)`,
-    'transform': `rotate(${targetRotation}deg)`
-  });
-
-  currentRotation = targetRotation % 360;
-
-  setTimeout(() => {
-    if (resultItem === selectedBet) {
-      const winnings = selectedBetAmount * selectedMultiplier;
-      wallet += winnings;
-      updateWalletDisplay();
-
-      confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-
-      $('#wallet').addClass('win-flash');
-      setTimeout(() => $('#wallet').removeClass('win-flash'), 3000);
-
+  <script>
+    function showMessage(text, type = 'info', duration = 3000) {
       Swal.fire({
-        title: '🎉 Surprise! 🎉',
-        text: `You won ${winnings} coins! ${itemEmojis[resultItem]} ${itemNames[resultItem]}`,
+        toast: true,
+        position: 'bottom',
+        title: text,
         showConfirmButton: false,
-        timer: 3500,
+        timer: duration,
         timerProgressBar: true,
-        background: '#fffbe6',
-        customClass: {
-          popup: 'swal2-shadow'
+        showClass: {
+          popup: 'swal2-show swal2-slide-in-bottom'
+        },
+        hideClass: {
+          popup: 'swal2-hide swal2-slide-out-bottom'
         }
       });
-
-    } else {
-      showMessage(`😔 Lost ${selectedBetAmount}. Result was ${itemEmojis[resultItem]} ${itemNames[resultItem]}`, 'lose');
     }
 
-    saveSession();
-    isSpinning = false;
-    $('#spinBtn').prop('disabled', false).text('SPIN THE WHEEL!');
-
-    if (wallet < 10) {
-      popupOverlay.fadeIn(400);
+    function hideMessage() {
+      Swal.close();
     }
-  }, spinDuration * 1000 + 100);
+    const popupOverlay = $("#popupOverlay");
+    const popupMessage = $("#popupMessage");
+    const closePopupBtn = $("#closePopup");
+    let wallet = 100;
+    let selectedBet = null;
+    let selectedMultiplier = 2;
+    let selectedBetAmount = 0;
+    let isSpinning = false;
 
-  $('#wheel').css({
-    'transition': 'none',
-    'transform': `rotate(${currentRotation}deg)`
-  });
+    const items = ['apple', 'diamond', 'star', 'heart', 'coin', 'crown'];
 
-  setTimeout(() => {
-    const degreesPerSlice = 360 / items.length;
-    const stopAngle = result * degreesPerSlice + (Math.random() * 8 - 4);
-    const extraRotations = (5 + Math.floor(Math.random() * 2)) * 360;
-    const spinDuration = (4 + Math.random() * 2).toFixed(2);
-    const targetRotation = currentRotation + extraRotations + stopAngle;
+    const itemNames = {
+      'apple': 'Apple',
+      'diamond': 'Diamond',
+      'star': 'Star',
+      'heart': 'Heart',
+      'coin': 'Coin',
+      'crown': 'Crown'
+    };
 
-    $('#wheel').css({
-      'transition': `transform ${spinDuration}s cubic-bezier(0.17, 0.67, 0.36, 1.02)`,
-      'transform': `rotate(${targetRotation}deg)`
+    const itemEmojis = {
+      'apple': '🍎',
+      'diamond': '💎',
+      'star': '⭐',
+      'heart': '❤️',
+      'coin': '🪙',
+      'crown': '👑'
+    };
+
+    function showModal() {
+      $("#welcomeModal").removeClass("hidden").hide().fadeIn(300);
+    }
+
+    function closeModal() {
+      $("#welcomeModal").fadeOut(200);
+    }
+
+    $(window).on("load", function() {
+      if (wallet != 0) {
+        setTimeout(showModal, 250);
+      }
     });
 
-    currentRotation = targetRotation % 360;
-  }, 20);
-}
 
-</script>
+    // Close when Start Playing button clicked
+    $(document).on("click", "#closeBtn", function() {
+      closeModal();
+    });
 
-<style>
-/* Example flash effect for wallet on win */
-.win-flash {
-  animation: flash 4.5s ease-in-out;
-}
+    // Close when X icon clicked
+    $(document).on("click", ".absolute.top-3.right-3", function() {
+      closeModal();
+    });
 
-@keyframes flash {
-  0%, 100% { background-color: transparent; }
-  50% { background-color: #ffff99; }
-}
+    const parts = [
+      <?php
+      $split = str_split($encodedKey, 4);
+      echo '"' . implode('","', $split) . '"';
+      ?>
+    ];
 
-/* Selected bet highlight */
-.bet-item.selected {
-  box-shadow: 0 0 10px 3px gold;
-  border-radius: 8px;
-}
-</style>
+    function getSecretKey() {
+      const combined = parts.join('');
+      return atob(combined);
+    }
+
+    const secretKey = getSecretKey();
+
+    function encodeData(obj) {
+      const json = JSON.stringify(obj);
+      let xorData = json
+        .split('')
+        .map((char, i) => String.fromCharCode(char.charCodeAt(0) ^ secretKey.charCodeAt(i % secretKey.length)))
+        .join('');
+      return btoa(xorData);
+    }
+
+    function decodeData(encoded) {
+      let xorData = atob(encoded);
+      let json = xorData
+        .split('')
+        .map((char, i) => String.fromCharCode(char.charCodeAt(0) ^ secretKey.charCodeAt(i % secretKey.length)))
+        .join('');
+      return JSON.parse(json);
+    }
+
+    function saveSession() {
+      try {
+        const sessionData = {
+          wallet: wallet,
+          lastPlayed: Date.now()
+        };
+        localStorage.setItem('swg_data', encodeData(sessionData));
+      } catch (e) {
+        console.log('Session storage not available');
+      }
+    }
+
+    function loadSession() {
+      try {
+        const savedData = localStorage.getItem('swg_data');
+        if (savedData) {
+          const sessionData = decodeData(savedData);
+          if (typeof sessionData.wallet === "number") {
+            wallet = sessionData.wallet;
+          } else {
+            wallet = 100;
+          }
+          return true;
+        }
+        wallet = 100;
+        return false;
+      } catch (e) {
+        console.log('Session storage not available or corrupt');
+        wallet = 100;
+        return false;
+      }
+    }
+
+    function updateWalletDisplay() {
+      $('#wallet').text(wallet);
+      saveSession();
+    }
+
+    // Initialize game
+    $(document).ready(function() {
+      loadSession();
+      updateWalletDisplay();
+
+      $('#closePopup').click(() => {
+        popupOverlay.fadeOut(300);
+      });
+
+      $(document).on('click', '.bet-item', function() {
+        if (isSpinning) return;
+
+        $('.bet-item').removeClass('selected');
+        $(this).addClass('selected');
+
+        selectedBet = $(this).data('item');
+        selectedMultiplier = $(this).data('multiplier');
+        selectedBetAmount = parseInt($(this).data('betamount')) || 0;
+        hideMessage();
+        $('#selectedBetInfo').text(`Betting $${selectedBetAmount} on ${selectedBet.charAt(0).toUpperCase() + selectedBet.slice(1)}`);
+      });
+
+    });
+
+    let currentRotation = 0;
+
+    function spin() {
+      if (isSpinning) return;
+
+      if (!selectedBet) {
+        showMessage('Please select an item to bet on!', 'info');
+        return;
+      }
+      if (selectedBetAmount > wallet) {
+        popupOverlay.removeClass("hidden").hide().fadeIn(300);
+        return;
+      }
+      if (selectedBetAmount < 10) {
+        showMessage('Minimum bet is $10!', 'info');
+        return;
+      }
+
+      isSpinning = true;
+      $('#spinBtn').prop('disabled', true).text('SPINNING...');
+      hideMessage();
+
+      wallet -= selectedBetAmount;
+      updateWalletDisplay();
+
+      const result = Math.floor(Math.random() * items.length);
+      const resultItem = items[result];
+
+      const degreesPerSlice = 360 / items.length;
+      const stopAngle = result * degreesPerSlice + (Math.random() * 8 - 4);
+
+      const extraRotations = (5 + Math.floor(Math.random() * 2)) * 360;
+      const spinDuration = (4 + Math.random() * 2).toFixed(2);
+      const targetRotation = currentRotation + extraRotations + stopAngle;
+
+      $('#wheel').css({
+        'transition': `transform ${spinDuration}s cubic-bezier(0.17, 0.67, 0.36, 1.02)`,
+        'transform': `rotate(${targetRotation}deg)`
+      });
+
+      currentRotation = targetRotation % 360;
+
+      setTimeout(() => {
+        if (resultItem === selectedBet) {
+          const winnings = selectedBetAmount * selectedMultiplier;
+          wallet += winnings;
+          updateWalletDisplay();
+
+          confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: {
+              y: 0.6
+            }
+          });
+
+          $('#wallet').addClass('win-flash');
+          setTimeout(() => $('#wallet').removeClass('win-flash'), 3000);
+
+          Swal.fire({
+            title: '🎉 Surprise! 🎉',
+            text: `You won ${winnings} coins! ${itemEmojis[resultItem]} ${itemNames[resultItem]}`,
+            showConfirmButton: false,
+            timer: 3500,
+            timerProgressBar: true,
+            background: '#fffbe6',
+            customClass: {
+              popup: 'swal2-shadow'
+            }
+          });
+
+        } else {
+          showMessage(`😔 Lost ${selectedBetAmount}. Result was ${itemEmojis[resultItem]} ${itemNames[resultItem]}`, 'lose');
+        }
+
+        saveSession();
+        isSpinning = false;
+        $('#spinBtn').prop('disabled', false).text('SPIN THE WHEEL!');
+
+        if (wallet < 10) {
+          popupOverlay.fadeIn(400);
+        }
+      }, spinDuration * 1000 + 100);
+
+      $('#wheel').css({
+        'transition': 'none',
+        'transform': `rotate(${currentRotation}deg)`
+      });
+
+      setTimeout(() => {
+        const degreesPerSlice = 360 / items.length;
+        const stopAngle = result * degreesPerSlice + (Math.random() * 8 - 4);
+        const extraRotations = (5 + Math.floor(Math.random() * 2)) * 360;
+        const spinDuration = (4 + Math.random() * 2).toFixed(2);
+        const targetRotation = currentRotation + extraRotations + stopAngle;
+
+        $('#wheel').css({
+          'transition': `transform ${spinDuration}s cubic-bezier(0.17, 0.67, 0.36, 1.02)`,
+          'transform': `rotate(${targetRotation}deg)`
+        });
+
+        currentRotation = targetRotation % 360;
+      }, 20);
+    }
+  </script>
+
+  <style>
+    /* Example flash effect for wallet on win */
+    .win-flash {
+      animation: flash 4.5s ease-in-out;
+    }
+
+    @keyframes flash {
+
+      0%,
+      100% {
+        background-color: transparent;
+      }
+
+      50% {
+        background-color: #ffff99;
+      }
+    }
+
+    /* Selected bet highlight */
+    .bet-item.selected {
+      box-shadow: 0 0 10px 3px gold;
+      border-radius: 8px;
+    }
+  </style>
 
 </body>
 

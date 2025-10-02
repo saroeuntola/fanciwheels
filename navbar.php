@@ -392,14 +392,14 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
         <?php else: ?>
           <div class="w-full flex justify-between mb-4">
             <button
-              class="openLoginModal text-sm text-white px-4 py-3 shadow-lg rounded-md bg-gray-700  hover:bg-slate-700/50 hover:transition hover:duration-700 flex items-center">
+              class="openRegisterModal text-sm text-white px-4 py-3 shadow-lg rounded-md bg-gray-700  hover:bg-slate-700/50 hover:transition hover:duration-700 flex items-center">
               <?= $menu['sign_up'] ?>
             </button>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-2px text-white" fill="none" viewBox="0 0 1 24" stroke="currentColor">
               <line x1="0.5" y1="0" x2="0.5" y2="24" stroke="currentColor" stroke-width="1" />
             </svg>
             <button
-              class="openRegisterModal text-sm text-white px-4 py-3 shadow-lg rounded-md bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 flex items-center">
+              class="openLoginModal text-sm text-white px-4 py-3 shadow-lg rounded-md bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 flex items-center">
               <?= $menu['sign_in'] ?>
             </button>
           </div>
@@ -455,7 +455,6 @@ $fullLangName = $languageNames[$lang] ?? 'Unknown Language';
     </div>
   </div>
 </div>
-
 
 <?php
 include 'auth-form.php';
@@ -549,9 +548,6 @@ include 'auth-form.php';
       $('#mobileHamburger').removeClass('hidden');
       $('#mobileClose').addClass('hidden');
     });
-
-
-
 
     // ===== Search Modal (Shared Desktop & Mobile) =====
     const $searchModal = $('#searchModal');

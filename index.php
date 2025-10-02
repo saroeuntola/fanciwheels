@@ -186,13 +186,16 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
       background-color: rgba(255, 255, 255, 0.8);
     }
   }
+
   /* Loading animation for images */
   img {
     transition: opacity 0.3s ease;
   }
+
   img:not([src]) {
     opacity: 0;
   }
+
   /* Focus styles for accessibility */
   select:focus {
     outline: none;

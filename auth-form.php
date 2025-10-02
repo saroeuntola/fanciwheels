@@ -118,7 +118,6 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
         </span>
       </div>
 
-
       <div class="relative">
         <input type="password" name="password" placeholder="<?= $lang === 'en' ? 'Password' : 'পাসওয়ার্ড' ?>" class="w-full p-3 mb-1 bg-white/10 ">
         <p class="login-error text-red-500 text-sm mb-2"></p>
@@ -127,7 +126,6 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
         </span>
 
       </div>
-
 
       <!-- Remember Me -->
       <div class="flex items-center mb-2">

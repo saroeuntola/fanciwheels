@@ -241,14 +241,12 @@ include './config/baseURL.php';
             </button>
             <!-- Title -->
             <h1 id="popupTitle" class="text-center text-2xl font-bold text-blue-600 mb-2"></h1>
-
-            <!-- Win Message -->
             <p id="popupMessage" class="text-center mb-2 text-blue-600"></p>
             <p id="popupHit" class="text-center text-sm text-yellow-400 mb-4"></p>
 
             <!-- Phone Input + Error -->
             <div class="mb-4 w-full mt-4">
-                <div class="flex gap-2 w-full">
+                <div class="flex gap-2 w-full relative">
                     <!-- Country selector -->
                     <div id="countrySelector" class="relative w-28 cursor-pointer flex-shrink-0">
                         <div id="selectedCountry" class="flex items-center justify-between gap-2 bg-gray-700 text-white px-3 py-3 rounded-md">
@@ -273,11 +271,14 @@ include './config/baseURL.php';
                     <!-- Phone input -->
                     <input type="tel" id="phoneInput" placeholder=" <?= $lang === "en" ? "Enter Phone Number" : "ফোন নম্বর লিখুন" ?>"
                         class="flex-1 py-2 px-4 rounded-md text-white bg-gray-800 border-0  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full" />
+                    <span class="absolute inset-y-0 right-4 top-4 flex items-center text-gray-400">
+                        <i class="fa-solid fa-phone"></i>
+                    </span>
                 </div>
 
                 <p id="phoneError" class="text-red-500 text-sm mt-1 mb-4"></p>
             </div>
-            <!-- Claim Button (always enabled) -->
+
             <a id="popupLink" href="#"
                 class="block w-full text-center bg-blue-600 hover:bg-blue-700 rounded-lg py-2 font-bold transition duration-300 mt-4">
                 <span id="popupBtnText"></span>
