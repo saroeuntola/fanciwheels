@@ -136,7 +136,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   .ql-editor h3 {
     font-size: 22px;
   }
-  
+
 
   .ql-editor a:hover {
     color: #93c5fd;
@@ -145,7 +145,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
 
   .ql-editor ol {
     list-style-type: decimal;
-    padding-left: 2.5em;
+    padding-left: 4.5em;
     margin: 0.5em 0;
   }
 
