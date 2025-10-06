@@ -129,6 +129,15 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     text-decoration: underline;
   }
 
+  .ql-editor h1 {
+    font-size: 25px;
+  }
+
+  .ql-editor h3 {
+    font-size: 22px;
+  }
+  
+
   .ql-editor a:hover {
     color: #93c5fd;
     /* blue-300 */
