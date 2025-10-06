@@ -156,14 +156,12 @@ $banners = $bannerObj->getBanner();
         <?php foreach ($banners as $index => $banner): ?>
           <img class="slide-image <?= $index === 0 ? 'active' : '' ?>"
             src="<?= './admin/page/banner/' . htmlspecialchars($banner['image']) ?>"
-            alt="<?= htmlspecialchars($banner['title']) ?>"
-            class="">
+            alt="<?= htmlspecialchars($banner['title']) ?>">
         <?php endforeach; ?>
       <?php else: ?>
         <p class="text-center text-gray-500">No banners available</p>
       <?php endif; ?>
     </div>
-
     <button id="prevBtn" class="nav-btn" aria-label="Previous slide">
       <i class="fas fa-chevron-left" aria-hidden="true"></i>
     </button>

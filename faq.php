@@ -25,28 +25,31 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
-    <?= $lang === 'en'
-      ? 'Frequently Asked Questions | Bangladesh Bus Travel & Milk Tea'
-      : 'প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী | বাংলাদেশ বাস ভ্রমণ ও দুধ চা'; ?>
+    <?php echo $lang === 'en'
+      ? 'FancyWheel - Frequently Asked Questions'
+      : 'FancyWheel - সচরাচর জিজ্ঞাস্য (FAQs)'; ?>
   </title>
-
+  <!-- Hreflang for Multilingual Support -->
+  <link rel="alternate" href="https://fanciwheel.com/?lang=en" hreflang="en" />
+  <link rel="alternate" href="https://fanciwheel.com/?lang=bn" hreflang="bn" />
+  <link rel="alternate" href="https://fanciwheel.com/" hreflang="x-default" />
   <!-- Favicon -->
   <link rel="icon" href="/image/PWAicon-192px.png" type="image/png">
 
   <!-- SEO Meta Tags -->
   <meta name="description" content="<?php echo $lang === 'en'
-                                      ? 'Find answers to common questions about bus travel in Bangladesh, ticket booking, and the country’s famous milk tea culture.'
-                                      : 'বাংলাদেশে বাস ভ্রমণ, টিকিট বুকিং এবং জনপ্রিয় দুধ চা সংস্কৃতি সম্পর্কে সাধারণ প্রশ্নের উত্তর খুঁজুন।'; ?>">
+                                      ? 'Find answers to common questions about Fancy Wheel services'
+                                      : 'ফ্যান্সি হুইল পরিষেবা সম্পর্কে সাধারণ প্রশ্নের উত্তর খুঁজুন'; ?>">
   <meta name="keywords" content="Bangladesh bus travel, FAQ, bus ticket booking, Dhaka bus, BD transport, Sylhet tea, milk tea Bangladesh, roadside tea stalls">
-  <meta name="author" content="Bangladesh Travel & Tea Guide">
+  <meta name="author" content="FancyWheel">
 
   <!-- Open Graph Meta Tags (for social media sharing) -->
   <meta property="og:title" content="<?php echo $lang === 'en'
-                                        ? 'FAQ | Bus Travel & Milk Tea in Bangladesh'
-                                        : 'প্রশ্নোত্তর | বাংলাদেশে বাস ভ্রমণ ও দুধ চা'; ?>">
+                                        ? 'FancyWheel - Frequently Asked Questions'
+                                        : 'FancyWheel - সচরাচর জিজ্ঞাস্য (FAQs)'; ?>">
   <meta property="og:description" content="<?php echo $lang === 'en'
-                                              ? 'Explore common questions about bus services, ticket booking, and the iconic milk tea culture of Bangladesh.'
-                                              : 'বাস সেবা, টিকিট বুকিং এবং বাংলাদেশের দুধ চা সংস্কৃতি নিয়ে সাধারণ প্রশ্নগুলো জেনে নিন।'; ?>">
+                                              ? 'Find answers to common questions about Fancy Wheel services'
+                                              : 'ফ্যান্সি হুইল পরিষেবা সম্পর্কে সাধারণ প্রশ্নের উত্তর খুঁজুন'; ?>">
   <meta property="og:image" content="/image/bus-tea-og.png">
   <meta property="og:url" content="https://yourdomain.com/faq">
   <meta property="og:type" content="website">
@@ -54,11 +57,11 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
   <!-- Twitter Card Meta -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="<?php echo $lang === 'en'
-                                        ? 'FAQ | Bus Travel & Milk Tea in Bangladesh'
-                                        : 'প্রশ্নোত্তর | বাংলাদেশে বাস ভ্রমণ ও দুধ চা'; ?>">
+                                        ? 'FancyWheel - Frequently Asked Questions'
+                                        : 'FancyWheel - সচরাচর জিজ্ঞাস্য (FAQs)'; ?>">
   <meta name="twitter:description" content="<?php echo $lang === 'en'
-                                              ? 'Find answers to common questions about bus travel and milk tea culture in Bangladesh.'
-                                              : 'বাংলাদেশে বাস ভ্রমণ এবং দুধ চা সংস্কৃতি সম্পর্কে সাধারণ প্রশ্ন জানুন।'; ?>">
+                                              ? 'Find answers to common questions about Fancy Wheel services'
+                                              : 'ফ্যান্সি হুইল পরিষেবা সম্পর্কে সাধারণ প্রশ্নের উত্তর খুঁজুন'; ?>">
   <meta name="twitter:image" content="/image/bus-tea-twitter.png">
 
   <!-- Google Fonts -->
@@ -293,8 +296,8 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
       </h1>
       <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
         <?= $lang === 'en'
-          ? 'Find answers to common questions about bus travel services and the famous milk tea culture in Bangladesh.'
-          : 'বাংলাদেশে বাস ভ্রমণ সেবা এবং জনপ্রিয় দুধ চা সংস্কৃতি সম্পর্কে সাধারণ প্রশ্নের উত্তর খুঁজুন।' ?>
+          ? 'Find answers to common questions about Fancy Wheel services'
+          : 'ফ্যান্সি হুইল পরিষেবা সম্পর্কে সাধারণ প্রশ্নের উত্তর খুঁজুন' ?>
       </p>
     </div>
 

@@ -218,7 +218,6 @@ include './config/baseURL.php';
             </div>
             <div class=" bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 shadow-lg text-white rounded-full" id="spinCountDisplay"></div>
             <button class=" bg-blue-600 hover:bg-blue-700 hover:transition hover:duration-700 shadow-lg text-white rounded-full" id="spinBtn"><?= $lang === 'en' ? 'SPIN' : 'স্পিন' ?></button>
-
             <button id="closeModalBtn" class="close-icon text-white" aria-label="Close modal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
                     stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -228,7 +227,6 @@ include './config/baseURL.php';
             </button>
         </div>
     </div>
-
     <!-- Result Popup -->
     <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden px-4">
         <div class="popup rounded-xl shadow-xl max-w-md w-full text-white font-sans relative bg-gray-800 p-6">
@@ -244,7 +242,6 @@ include './config/baseURL.php';
             <h1 id="popupTitle" class="text-center text-2xl font-bold text-blue-600 mb-2"></h1>
             <p id="popupMessage" class="text-center mb-2 text-blue-600"></p>
             <p id="popupHit" class="text-center text-sm text-yellow-400 mb-4"></p>
-
             <!-- Phone Input + Error -->
             <div class="mb-4 w-full mt-4">
                 <div class="flex gap-2 w-full relative">
@@ -268,7 +265,6 @@ include './config/baseURL.php';
                             </li>
                         </ul>
                     </div>
-
                     <!-- Phone input -->
                     <input type="tel" id="phoneInput" placeholder=" <?= $lang === "en" ? "Enter Phone Number" : "ফোন নম্বর লিখুন" ?>"
                         class="flex-1 py-2 px-4 rounded-md text-white bg-gray-800 border-0  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full" />
@@ -276,17 +272,14 @@ include './config/baseURL.php';
                         <i class="fa-solid fa-phone"></i>
                     </span>
                 </div>
-
                 <p id="phoneError" class="text-red-500 text-sm mt-1 mb-4"></p>
             </div>
-
             <a id="popupLink" href="#"
                 class="block w-full text-center bg-blue-600 hover:bg-blue-700 rounded-lg py-2 font-bold transition duration-300 mt-4">
                 <span id="popupBtnText"></span>
             </a>
         </div>
     </div>
-
 </body>
 <script>
     $("#phoneInput").on("input", function() {
@@ -298,23 +291,18 @@ include './config/baseURL.php';
         }
         $(this).val(val);
     });
-
     const selectedCountry = $("#selectedCountry");
     const countryList = $("#countryList");
     selectedCountry.on("click", function() {
         countryList.toggle();
     });
-
     countryList.on("click", "li", function() {
         const code = $(this).data("code");
         const flag = $(this).data("flag");
-
         selectedCountry.find("span").text(code);
         selectedCountry.find("img").attr("src", flag);
-
         countryList.hide();
     });
-
     const wheel = document.getElementById("wheel");
     const spinBtn = document.getElementById("spinBtn");
     const popupOverlay = $("#popupOverlay");
@@ -459,42 +447,34 @@ include './config/baseURL.php';
         const wobbleSequence = [-5, 4, -3, 2, -1, 1, -0.5, 0];
         let index = 0;
         // 🎉 Boom effect when win
-        function triggerConfetti() {
-            const duration = 2 * 1000; // 2 seconds
-            const animationEnd = Date.now() + duration;
-            const defaults = {
-                startVelocity: 30,
-                spread: 360,
-                ticks: 60,
-                zIndex: 1000
-            };
+     function triggerConfetti() {
+    const duration = 2 * 1000; // 2 seconds
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
 
-            function randomInRange(min, max) {
-                return Math.random() * (max - min) + min;
-            }
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
 
-            const interval = setInterval(function() {
-                const timeLeft = animationEnd - Date.now();
+    const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
 
-                if (timeLeft <= 0) {
-                    return clearInterval(interval);
-                }
-
-                const particleCount = 50 * (timeLeft / duration);
-
-                // Confetti from center top (x: 0.5, y: 0)
-                confetti({
-                    particleCount,
-                    angle: randomInRange(75, 105), // mostly downward
-                    spread: 60,
-                    origin: {
-                        x: 0.5,
-                        y: 0
-                    },
-                    ...defaults
-                });
-            }, 250);
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
         }
+
+        const particleCount = 50 * (timeLeft / duration);
+
+        // Confetti from center top (x: 0.5, y: 0)
+        confetti({
+            particleCount,
+            angle: randomInRange(75, 105), // mostly downward
+            spread: 60,
+            origin: { x: 0.5, y: 0 },
+            ...defaults
+        });
+    }, 250);
+}
 
 
         function doWobble() {

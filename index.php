@@ -67,6 +67,11 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
   <meta name="twitter:description" content="<?php echo $lang === 'en' ? 'Fresh Milktea and safe bus services in Chittagong. Enjoy high-quality flavors and comfortable rides.' : 'চট্টগ্রামে তাজা মিল্কটি এবং নিরাপদ বাস সার্ভিস। উচ্চমানের স্বাদ এবং আরামদায়ক যাত্রা উপভোগ করুন।'; ?>" />
   <meta name="twitter:image" content="https://fanciwheel.com/image/PWAicon-192px.png" />
 
+  <!-- Hreflang for Multilingual Support -->
+  <link rel="alternate" href="https://fanciwheel.com/?lang=en" hreflang="en" />
+  <link rel="alternate" href="https://fanciwheel.com/?lang=bn" hreflang="bn" />
+  <link rel="alternate" href="https://fanciwheel.com/" hreflang="x-default" />
+
   <link href="./dist/output.css" rel="stylesheet">
   <link rel="stylesheet" href="./dist/css/all.min.css" />
   <script src="./js/all.min.js"></script>

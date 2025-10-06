@@ -28,7 +28,7 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
   <title><?php echo htmlspecialchars($currentTexts['title']); ?></title>
 
   <!-- Meta Description -->
-  <meta name="description" content="<?php echo htmlspecialchars($currentTexts['intro']); ?>">
+  <meta name="description" content="<?php echo htmlspecialchars($currentTexts['text1']); ?>">
 
   <!-- Keywords (optional, can update based on content) -->
   <meta name="keywords" content="Milktea, Chittagong bus services, Bangladesh, delivery, safe bus, fresh Milktea">
@@ -36,18 +36,21 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
   <!-- Language & Author -->
   <meta name="language" content="<?php echo $lang === 'en' ? 'English' : 'Bengali'; ?>">
   <meta name="author" content="Milktea & Chittagong Bus Services">
-
+  <!-- Hreflang for Multilingual Support -->
+  <link rel="alternate" href="https://fanciwheel.com/?lang=en" hreflang="en" />
+  <link rel="alternate" href="https://fanciwheel.com/?lang=bn" hreflang="bn" />
+  <link rel="alternate" href="https://fanciwheel.com/" hreflang="x-default" />
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="<?php echo htmlspecialchars($currentTexts['title']); ?>">
-  <meta property="og:description" content="<?php echo htmlspecialchars($currentTexts['intro']); ?>">
+  <meta property="og:description" content="<?php echo htmlspecialchars($currentTexts['text1']); ?>">
   <meta property="og:url" content="https://fanciwheel.com/about.php?lang=<?php echo $lang; ?>">
   <meta property="og:image" content="https://fanciwheel.com/images/about-og.jpg">
 
   <!-- Twitter Card -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="<?php echo htmlspecialchars($currentTexts['title']); ?>">
-  <meta property="twitter:description" content="<?php echo htmlspecialchars($currentTexts['intro']); ?>">
+  <meta property="twitter:description" content="<?php echo htmlspecialchars($currentTexts['text1']); ?>">
   <meta property="twitter:image" content="https://fanciwheel.com/images/about-og.jpg">
 
   <link href="./dist/output.css" rel="stylesheet">
@@ -110,53 +113,48 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
 
 
   <div class="max-w-4xl mx-auto px-4 py-12">
-    <!-- Heading -->
     <h1 class="text-2xl md:text-4xl font-bold text-gray-100 mb-6"><?php echo $currentTexts['title']; ?></h1>
-    <h2 class="text-lg font-semibold text-gray-100 mb-6"><?php echo $currentTexts['heading']; ?></h2>
+    <p class=" text-gray-100 mb-6"><?php echo $currentTexts['text1']; ?></p>
 
-    <!-- Introduction -->
-    <p class="mb-6 leading-relaxed text-gray-300"><?php echo $currentTexts['intro']; ?></p>
+    <p class="mb-6 leading-relaxed text-gray-100"><?php echo $currentTexts['text2']; ?></p>
 
-    <!-- Milktea -->
     <section class="mb-8">
-      <h3 class="text-lg font-semibold text-gray-100 mb-2">🧋<?= $lang === 'en' ? 'Milktea' : 'দুধ চা' ?></h3>
-      <p class="text-gray-300 mb-4"><?php echo $currentTexts['milktea']; ?></p>
+      <p class="text-gray-100 mb-4"><?php echo $currentTexts['text3']; ?></p>
     </section>
 
-    <!-- Bus Services -->
     <section class="mb-8">
-      <h3 class="text-lg font-semibold text-gray-100">🚌<?= $lang === 'en' ? 'Bus Services' : 'বাস পরিষেবা' ?></h3>
-      <p class="text-gray-300 mb-4"><?php echo $currentTexts['bus_services']; ?></p>
+
+      <p class="text-gray-100 mb-4"><?php echo $currentTexts['text4']; ?></p>
     </section>
 
-    <!-- Why Choose Us -->
+
     <section class="mb-8">
-      <h3 class="text-lg font-semibold text-gray-100 mb-2">⭐<?= $lang === 'en' ? 'Why Choose Us' : 'কেন আমাদের নির্বাচন করেছে' ?></h3>
-      <p class="text-gray-300 mb-4"><?php echo $currentTexts['why_choose']; ?></p>
+
+      <p class="text-gray-100 mb-4"><?php echo $currentTexts['text5']; ?></p>
     </section>
 
-    <!-- Delivery Options -->
     <section class="mb-8">
-      <h3 class="text-lg font-semibold text-gray-100 mb-2">🚚<?= $lang === 'en' ? 'Delivery Options' : 'ডেলিভারি বিকল্প' ?></h3>
-      <p class="text-gray-300 mb-4"><?php echo $currentTexts['delivery_options']; ?></p>
+      <p class="text-gray-100 mb-4">
+        <?php if ($lang === "en"): ?>
+          Reach out with your thoughts or questions at
+          <a href="mailto:contact@fancywheel.com" class="text-blue-400 underline ">
+            contact@fancywheel.com
+          </a>.
+          <br>
+          Let’s spin, sip, and explore together!
+        <?php elseif ($lang === "bn"): ?>
+          আপনার ভাবনা বা প্রশ্ন নিয়ে আমাদের সাথে যোগাযোগ করুন
+          <a href="mailto:contact@fancywheel.com" class="text-blue-400 underline">
+            contact@fancywheel.com
+          </a>।
+          <br>
+          আসুন একসাথে ঘুরি, চুমুক দেই এবং অন্বেষণ করি!
+        <?php endif; ?>
+      </p>
     </section>
 
-    <!-- Customer Support -->
-    <section class="mb-8">
-      <h3 class="text-lg font-semibold text-gray-100">📞<?= $lang === 'en' ? 'Customer Support' : 'গ্রাহক সহায়তা' ?></h3>
-      <p class="text-gray-300 mb-4"><?php echo $currentTexts['customer_support']; ?></p>
-    </section>
 
-    <!-- Join Us -->
-    <section class="mb-8">
-      <h3 class="text-lg font-semibold text-gray-100">🎉<?= $lang === 'en' ? 'Customer Support' : 'গ্রাহক সহায়তা' ?></h3>
-      <p class="text-gray-300 mb-4"><?php echo $currentTexts['join_us']; ?></p>
-    </section>
 
-    <!-- Conclusion -->
-    <section>
-      <p class="text-gray-100"><?php echo $currentTexts['conclusion']; ?></p>
-    </section>
   </div>
 
 
