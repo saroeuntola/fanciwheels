@@ -118,14 +118,14 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   .ql-editor ul {
     list-style-type: disc;
     /* normal bullets */
-    padding-left: 1.5em;
+    padding-left: 2.5em;
     /* indent for bullets */
     margin: 0.5em 0;
   }
 
   .ql-editor ol {
     list-style-type: decimal;
-    padding-left: 1.5em;
+    padding-left: 2.5em;
     margin: 0.5em 0;
   }
 
