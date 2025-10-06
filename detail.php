@@ -115,6 +115,25 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   </script>
 </head>
 <style>
+  .ql-editor ul {
+    list-style-type: disc;
+    /* normal bullets */
+    padding-left: 1.5em;
+    /* indent for bullets */
+    margin: 0.5em 0;
+  }
+
+  .ql-editor ol {
+    list-style-type: decimal;
+    padding-left: 1.5em;
+    margin: 0.5em 0;
+  }
+
+  .ql-editor li {
+    margin-bottom: 0.5em;
+    /* space between items */
+  }
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -198,7 +217,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
             alt="<?= htmlspecialchars($metaText) ?>"
             loading="lazy"
             class="w-full md:h-[310px] lg:h-[450px] object-fill mb-4 img" />
-          <div class="text-gray-300 space-y-4 text-base leading-relaxed md:text-lg">
+          <div class="text-gray-300 space-y-4 text-base leading-relaxed md:text-lg ql-editor">
             <?= $game['description'] ?? ($lang === 'en' ? 'No description available.' : 'কোনো বিবরণ নেই।') ?>
           </div>
         </div>
