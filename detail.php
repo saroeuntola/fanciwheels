@@ -146,7 +146,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   .ql-editor ol {
     list-style-type: decimal;
     padding-left: 4.5em;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .ql-editor li {
