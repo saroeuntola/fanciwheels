@@ -37,7 +37,10 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
   <meta name="keywords" content="<?= htmlspecialchars($game['meta_keyword']) ?>">
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <!-- Hreflang for Multilingual Support -->
+  <link rel="alternate" href="https://fanciwheel.com/?lang=en" hreflang="en" />
+  <link rel="alternate" href="https://fanciwheel.com/?lang=bn" hreflang="bn" />
+  <link rel="alternate" href="https://fanciwheel.com" hreflang="x-default" />
   <!-- Dynamic Favicon -->
   <?php if (!empty($gameImage)): ?>
     <link rel="icon" href="<?= htmlspecialchars('https://fanciwheel.com' . '/admin/page/game/' . $gameImage) ?>" type="image/png">
