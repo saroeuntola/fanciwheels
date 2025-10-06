@@ -123,6 +123,17 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     margin: 0.5em 0;
   }
 
+  .ql-editor a {
+    color: #60a5fa;
+    /* blue-400 */
+    text-decoration: underline;
+  }
+
+  .ql-editor a:hover {
+    color: #93c5fd;
+    /* blue-300 */
+  }
+
   .ql-editor ol {
     list-style-type: decimal;
     padding-left: 2.5em;
