@@ -198,8 +198,10 @@ $games = $gameObj->getgames($lang);
                     $slug = htmlspecialchars($g['slug']);
                     $gameName   = htmlspecialchars($g['name'], ENT_QUOTES, 'UTF-8');
                     $metaText   = htmlspecialchars($g['meta_text'] ?? '', ENT_QUOTES, 'UTF-8');
-                    $plainText  = strip_tags($g['description']);
-                    $trimmed   = mb_strimwidth($plainText, 0, 120, '...');
+                    $desc = $g['description'] ?? '';
+                    $desc = str_replace('&nbs', '&nbsp;', $desc);
+                    $plainText = html_entity_decode(strip_tags($desc));
+                    $trimmed = mb_strimwidth($plainText, 0, 120, '...');
                     $gameImage  = !empty($g['image']) ? htmlspecialchars($g['image'], ENT_QUOTES, 'UTF-8') : '';
                     ?>
                     <div class="game-card"
@@ -242,7 +244,7 @@ $games = $gameObj->getgames($lang);
                             <h1 class="game-rank" style="font-weight: bold; font-size: 18px; color:#f9fafb; margin-bottom: 6px;">
                                 <?= $gameName ?>
                             </h1>
-                            <p class="game-description break-words leading-relaxed" style="font-size: 14px; color: #e5e7eb;">
+                            <p class="game-description break-words" style="font-size: 14px; color: #e5e7eb;">
                                 <?= $trimmed ?>
                             </p>
                         </div>
