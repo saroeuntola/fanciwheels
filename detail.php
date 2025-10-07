@@ -304,10 +304,10 @@ $relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $item
                         class="object-fill group-hover:scale-105 opacity-0 transition-opacity duration-500" id="relate-img" onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove()" />
                     </div>
                     <div class=" mt-2">
-                      <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-200">
+                      <h3 class="text-md font-semibold text-white group-hover:text-blue-400 transition-colors duration-200">
                         <?= htmlspecialchars($related['name'] ?? ($lang === 'en' ? 'No Name' : 'কোনো নাম নেই')) ?>
                       </h3>
-                      <p class="text-gray-300 text-sm line-clamp-3">
+                      <p class="text-gray-300 text-sm line-clamp-3 leading-relaxed break-words">
                         <?= htmlspecialchars(substr(strip_tags($related['description'] ?? ($lang === 'en' ? 'No description' : 'কোনো বিবরণ নেই')), 0, 120)) . '...' ?>
                       </p>
                     </div>
@@ -414,7 +414,7 @@ $relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $item
                     <h4 class="text-sm font-semibold text-white truncate">
                       <?= htmlspecialchars($popularName) ?>
                     </h4>
-                    <p class="text-xs text-gray-400 mt-1 line-clamp-2">
+                    <p class="text-xs text-gray-400 mt-1 line-clamp-2 leading-relaxed break-words">
                       <?= htmlspecialchars(substr(strip_tags($popularDesc), 0, 80)) . '...' ?>
                     </p>
                   </a>

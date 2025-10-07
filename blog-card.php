@@ -242,7 +242,7 @@ $games = $gameObj->getgames($lang);
                             <h1 class="game-rank" style="font-weight: bold; font-size: 18px; color:#f9fafb; margin-bottom: 6px;">
                                 <?= $gameName ?>
                             </h1>
-                            <p class="game-description" style="font-size: 14px; color: #e5e7eb;">
+                            <p class="game-description break-words leading-relaxed" style="font-size: 14px; color: #e5e7eb;">
                                 <?= $trimmed ?>
                             </p>
                         </div>
