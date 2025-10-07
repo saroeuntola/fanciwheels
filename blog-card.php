@@ -199,8 +199,14 @@ $games = $gameObj->getgames($lang);
                     $gameName   = htmlspecialchars($g['name'], ENT_QUOTES, 'UTF-8');
                     $metaText   = htmlspecialchars($g['meta_text'] ?? '', ENT_QUOTES, 'UTF-8');
                     $desc = $g['description'] ?? '';
-                    $desc = str_replace('&nbs', '&nbsp;', $desc);
-                    $plainText = html_entity_decode(strip_tags($desc));
+
+                    // Step 1: Decode &nbsp; and others
+                    $decoded = html_entity_decode($desc, ENT_QUOTES, 'UTF-8');
+
+                    // Step 2: Remove HTML tags for preview
+                    $plainText = strip_tags($decoded);
+
+                    // Step 3: Trim safely (multibyte aware)
                     $trimmed = mb_strimwidth($plainText, 0, 120, '...');
                     $gameImage  = !empty($g['image']) ? htmlspecialchars($g['image'], ENT_QUOTES, 'UTF-8') : '';
                     ?>
