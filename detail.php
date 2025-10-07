@@ -19,7 +19,7 @@ $gameObj = new Games();
 $game = $gameObj->getGameBySlug($slug, $lang);
 
 $relatedGames = $gameObj->getRelatedGames($slug, $game['category_id'], 100, $lang);
-$popularGames = $gameObj->getPopularGames(8, $lang);
+$popularGames = $gameObj->getPopularGames(10, $lang);
 
 $gameImage = $game['image'] ?? 'default.png';
 $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
@@ -33,6 +33,25 @@ $currentPageRelated = isset($_GET['related_page']) && is_numeric($_GET['related_
 // Slice the related games array to get only current page items
 $relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $itemsPerPage, $itemsPerPage);
 
+function trimRichText($html, $limit = 100)
+{
+  // Decode HTML entities like &nbsp; to real spaces
+  $decoded = html_entity_decode($html, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+  // Remove unwanted invisible chars but keep formatting
+  $decoded = preg_replace('/\x{00A0}/u', ' ', $decoded); // Convert &nbsp; to space
+
+  // Strip tags but keep clean text for counting
+  $plainText = strip_tags($decoded);
+
+  // Trim multibyte text (Bangla/English friendly)
+  if (mb_strlen($plainText, 'UTF-8') > $limit) {
+    $plainText = mb_substr($plainText, 0, $limit, 'UTF-8') . '...';
+  }
+
+  // Return decoded + safely escaped (Bangla + English both fine)
+  return htmlspecialchars($plainText, ENT_QUOTES, 'UTF-8');
+}
 ?>
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? 'en' : 'bn-BD' ?>">
@@ -241,6 +260,44 @@ $relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $item
     width: 100%;
     height: 140px;
   }
+
+  .left-sidebar {
+    max-height: 600px;
+    /* Fixed height */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    padding-right: 2px;
+    /* Space for scrollbar */
+    scrollbar-width: thin;
+    /* For Firefox */
+    scrollbar-color: #4B5563 #1F2937;
+    /* thumb color, track color (Firefox) */
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Webkit browsers (Chrome, Edge, Safari) */
+  .left-sidebar::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  .left-sidebar::-webkit-scrollbar-track {
+    background: #1F2937;
+    /* Tailwind-gray-800 */
+    border-radius: 4px;
+  }
+
+  .left-sidebar::-webkit-scrollbar-thumb {
+    background-color: #4B5563;
+    /* Tailwind-gray-600 */
+    border-radius: 4px;
+    border: 1px solid #1F2937;
+    /* Padding around thumb */
+  }
+
+  .left-sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: #6B7280;
+    /* Tailwind-gray-500 */
+  }
 </style>
 
 <body class="bg-gray-900 text-white">
@@ -277,6 +334,7 @@ $relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $item
       </div>
 
       <!-- Sidebar -->
+      <!-- Sidebar -->
       <div class="lg:col-span-1 space-y-8">
         <div class="bg-gray-800 rounded-2xl shadow-sm p-4">
           <h3 class="text-lg lg:text-2xl sm:text-3xl font-bold text-white mb-6 flex items-center">
@@ -285,14 +343,16 @@ $relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $item
             </svg>
             <?= $lang === 'en' ? 'Latest Posts' : 'শেষ পোস্ট' ?>
           </h3>
-          <div class="space-y-4">
+
+          <!-- Scrollable content -->
+          <div class="space-y-4 left-sidebar overflow-y-auto pr-2 transition-all duration-500 ease-in-out">
             <?php foreach (array_slice($popularGames, 0, 10) as $popular): ?>
               <?php
               $popularImage = $popular['image'] ?? 'default.png';
               $popularName = $popular['name'] ?? ($lang === 'en' ? 'Latest Posts' : 'শেষ পোস্ট');
-              $popularDesc = $popular['description'] ?? '';
+
               ?>
-              <div class="flex items-start space-x-3 group">
+              <div class="flex items-start space-x-3 group transform transition-all duration-500 ease-in-out hover:translate-x-1 hover:scale-[1.02]">
                 <div class="flex-shrink-0 relative">
                   <!-- Spinner Overlay -->
                   <div class="absolute inset-0 flex items-center justify-center bg-gray-500 z-10" id="spinner">
@@ -308,17 +368,18 @@ $relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $item
                     src="<?= './admin/page/game/' . htmlspecialchars($popularImage) ?>"
                     loading="lazy"
                     alt="<?= htmlspecialchars($popularName) ?>"
-                    class="w-16 h-16 object-cover rounded-lg group-hover:opacity-80 opacity-0 transition-opacity duration-500"
+                    class="w-16 h-16 object-cover rounded-lg group-hover:opacity-80 opacity-0 transition-opacity duration-700 ease-in-out"
                     onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove()" />
-
                 </div>
-                <div class=" flex-1 min-w-0">
-                  <a href="detail?slug=<?= $popular['slug'] ?>&lang=<?= $lang ?>" class="block group-hover:text-blue-500 transition-colors duration-300">
+
+                <div class="flex-1 min-w-0">
+                  <a href="detail?slug=<?= $popular['slug'] ?>&lang=<?= $lang ?>"
+                    class="block group-hover:text-blue-400 transition-colors duration-300 ease-in-out">
                     <h4 class="text-sm font-semibold text-white truncate">
                       <?= htmlspecialchars($popularName) ?>
                     </h4>
                     <p class="text-xs text-gray-400 mt-1 line-clamp-2 leading-relaxed break-words">
-                      <?= substr(strip_tags($popularDesc), 0, 80) . '...' ?>
+                      <?= trimRichText($popular['description'] ?? ($lang === 'en' ? 'No description' : 'কোনো বিবরণ নেই'), 100) ?>
                     </p>
                   </a>
                 </div>
@@ -327,6 +388,7 @@ $relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $item
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
