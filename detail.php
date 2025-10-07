@@ -308,7 +308,7 @@ $relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $item
                         <?= htmlspecialchars($related['name'] ?? ($lang === 'en' ? 'No Name' : 'কোনো নাম নেই')) ?>
                       </h3>
                       <p class="text-gray-300 text-sm line-clamp-3 leading-relaxed break-words">
-                        <?= htmlspecialchars(substr(strip_tags($related['description'] ?? ($lang === 'en' ? 'No description' : 'কোনো বিবরণ নেই')), 0, 120)) . '...' ?>
+                        <?= substr(strip_tags($related['description'] ?? ($lang === 'en' ? 'No description' : 'কোনো বিবরণ নেই')), 0, 120) . '...' ?>
                       </p>
                     </div>
                   </a>
@@ -415,7 +415,7 @@ $relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $item
                       <?= htmlspecialchars($popularName) ?>
                     </h4>
                     <p class="text-xs text-gray-400 mt-1 line-clamp-2 leading-relaxed break-words">
-                      <?= htmlspecialchars(substr(strip_tags($popularDesc), 0, 80)) . '...' ?>
+                      <?= substr(strip_tags($popularDesc), 0, 80) . '...' ?>
                     </p>
                   </a>
                 </div>

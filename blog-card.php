@@ -199,7 +199,7 @@ $games = $gameObj->getgames($lang);
                     $gameName   = htmlspecialchars($g['name'], ENT_QUOTES, 'UTF-8');
                     $metaText   = htmlspecialchars($g['meta_text'] ?? '', ENT_QUOTES, 'UTF-8');
                     $plainText  = strip_tags($g['description']);
-                    $trimmed    = htmlspecialchars(mb_strimwidth($plainText, 0, 120, '...'), ENT_QUOTES, 'UTF-8');
+                    $trimmed   = mb_strimwidth($plainText, 0, 120, '...');
                     $gameImage  = !empty($g['image']) ? htmlspecialchars($g['image'], ENT_QUOTES, 'UTF-8') : '';
                     ?>
                     <div class="game-card"
