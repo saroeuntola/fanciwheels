@@ -40,15 +40,15 @@
             </svg>
         </div>
         <h1 class="text-2xl font-bold text-white mb-2">
-            Access Restricted
+            Unauthorized
         </h1>
         <p class="text-white mb-6">
-            Ensure you have sufficient permissions to access this page.
+            you not have permissions to access this page.
         </p>
         <a href="/"
             class="inline-block px-6 py-2 rounded-lg bg-blue-600 text-white 
               hover:bg-blue-700 transition-colors duration-300">
-            Return to Index
+            Return to Home
         </a>
     </div>
 

@@ -18,7 +18,7 @@ $slug = trim($_GET['slug']);
 $gameObj = new Games();
 $game = $gameObj->getGameBySlug($slug, $lang);
 
-$relatedGames = $gameObj->getRelatedGames($slug, $game['category_id'], 6, $lang);
+$relatedGames = $gameObj->getRelatedGames($slug, $game['category_id'], 100, $lang);
 $popularGames = $gameObj->getPopularGames(8, $lang);
 
 $gameImage = $game['image'] ?? 'default.png';
