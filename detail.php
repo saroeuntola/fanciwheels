@@ -23,6 +23,16 @@ $popularGames = $gameObj->getPopularGames(8, $lang);
 
 $gameImage = $game['image'] ?? 'default.png';
 $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
+$itemsPerPage = 6; // show 6 related games per page
+$totalRelated = count($relatedGames);
+$totalPages = ceil($totalRelated / $itemsPerPage);
+$currentPageRelated = isset($_GET['related_page']) && is_numeric($_GET['related_page'])
+  ? max(1, min($totalPages, (int)$_GET['related_page']))
+  : 1;
+
+// Slice the related games array to get only current page items
+$relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $itemsPerPage, $itemsPerPage);
+
 ?>
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? 'en' : 'bn-BD' ?>">
@@ -140,6 +150,20 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
     font-size: 22px;
   }
 
+  /* Small mobile */
+  @media (max-width: 480px) {}
+
+
+  /* Tablet portrait */
+  @media (max-width: 768px) {
+    .ql-editor h1 {
+      font-size: 20px;
+    }
+
+    .ql-editor h3 {
+      font-size: 18px;
+    }
+  }
 
   .ql-editor a:hover {
     color: #93c5fd;
@@ -255,7 +279,7 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
               <?= $lang === 'en' ? 'Related Content' : 'সম্পর্কিত বিষয়বস্তু' ?>
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-              <?php foreach ($relatedGames as $related): ?>
+              <?php foreach ($relatedGamesPage as $related): ?>
                 <?php
                 $relatedImage = $related['image'] ?? 'default.png';
                 $relatedMeta = $related['meta_text'] ?? ($lang === 'en' ? 'No image' : 'কোনো ছবি নেই');
@@ -290,7 +314,61 @@ $metaText = $game['meta_text'] ?? ($lang === 'en' ? 'Image' : 'ছবি');
                   </a>
                 </div>
               <?php endforeach; ?>
+
+
             </div>
+            <?php if ($totalPages > 1): ?>
+              <div class="flex justify-center items-center space-x-2 mt-4">
+
+                <!-- First Page -->
+                <?php if ($currentPageRelated > 1): ?>
+                  <a href="?slug=<?= urlencode($slug) ?>&lang=<?= $lang ?>&related_page=1"
+                    class="px-3 py-1 bg-blue-600 rounded hover:opacity-80"><i class="fa-solid fa-angles-left"></i></a>
+                <?php endif; ?>
+
+                <!-- Previous Page -->
+                <?php if ($currentPageRelated > 1): ?>
+                  <a href="?slug=<?= urlencode($slug) ?>&lang=<?= $lang ?>&related_page=<?= $currentPageRelated - 1 ?>"
+                    class="px-3 py-1 bg-gray-700 rounded "><i class="fa-solid fa-arrow-left"></i></a>
+                <?php endif; ?>
+
+                <!-- Page Numbers -->
+                <?php
+                $maxPagesToShow = 4;
+                $startPage = max(1, $currentPageRelated - 2);
+                $endPage = min($totalPages, $startPage + $maxPagesToShow - 1);
+
+                if ($startPage > 1) {
+                  echo '<span class="px-2 py-1 text-gray-400">...</span>';
+                }
+
+                for ($i = $startPage; $i <= $endPage; $i++): ?>
+                  <a href="?slug=<?= urlencode($slug) ?>&lang=<?= $lang ?>&related_page=<?= $i ?>"
+                    class="px-3 py-1 rounded <?= $i == $currentPageRelated ? 'bg-blue-600 text-white' : 'bg-gray-700 hover:bg-gray-600' ?>">
+                    <?= $i ?>
+                  </a>
+                <?php endfor; ?>
+
+                <?php if ($endPage < $totalPages) {
+                  echo '<span class="px-2 py-1 text-gray-400">...</span>';
+                  echo '<a href="?slug=' . urlencode($slug) . '&lang=' . $lang . '&related_page=' . $totalPages . '" class="px-3 py-1 rounded bg-gray-700 hover:bg-gray-600">' . $totalPages . '</a>';
+                } ?>
+
+                <!-- Next Page -->
+                <?php if ($currentPageRelated < $totalPages): ?>
+                  <a href="?slug=<?= urlencode($slug) ?>&lang=<?= $lang ?>&related_page=<?= $currentPageRelated + 1 ?>"
+                    class="px-3 py-1 bg-gray-700 rounded hover:bg-gray-600"><i class="fa-solid fa-arrow-right"></i></a>
+                <?php endif; ?>
+
+                <!-- Last Page -->
+                <?php if ($currentPageRelated < $totalPages): ?>
+                  <a href="?slug=<?= urlencode($slug) ?>&lang=<?= $lang ?>&related_page=<?= $totalPages ?>"
+                    class="px-3 py-1 bg-blue-600 rounded hover:opacity-80"><i class="fa-solid fa-angles-right"></i></a>
+                <?php endif; ?>
+
+              </div>
+            <?php endif; ?>
+
           </div>
         <?php endif; ?>
       </div>
