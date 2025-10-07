@@ -264,7 +264,7 @@ $relatedGamesPage = array_slice($relatedGames, ($currentPageRelated - 1) * $item
             alt="<?= htmlspecialchars($metaText) ?>"
             loading="lazy"
             class="w-full md:h-[310px] lg:h-[450px] object-fill mb-4 img" />
-          <div class="text-gray-300 space-y-4 text-base leading-relaxed md:text-lg ql-editor">
+          <div class="text-gray-300 space-y-4 text-base leading-relaxed md:text-lg ql-editor break-words">
             <?= $game['description'] ?? ($lang === 'en' ? 'No description available.' : 'কোনো বিবরণ নেই।') ?>
           </div>
         </div>
