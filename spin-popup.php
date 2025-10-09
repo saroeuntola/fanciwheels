@@ -361,7 +361,7 @@ include './config/baseURL.php';
         }
     };
     let spinCount = 0;
-    let maxSpins = 2;
+    let maxSpins = 1;
     const spinCountDisplay = document.getElementById("spinCountDisplay");
 
     function updateSpinCountDisplay() {
