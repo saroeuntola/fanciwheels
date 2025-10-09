@@ -67,14 +67,23 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     }
   }
 
-  .game-grid::-webkit-scrollbar {
-    height: 8px;
+  .game-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    scroll-behavior: auto;
+    /* remove snap */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 
-  .game-grid::-webkit-scrollbar-thumb {
-    background: var(--candy-purple);
-    border-radius: 4px;
+  .game-grid::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
   }
+
 
   /* Responsive card widths using flex-basis */
   .game-card {
@@ -84,7 +93,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     /* 3 items with 20px gap */
     min-width: 390px;
     /* prevent cards from getting too narrow */
-    overflow-x: auto;
+
   }
 
   #hot-games-title {
@@ -194,7 +203,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     </svg>
   </button>
 
-  <div id="gameGrid" class="game-grid flex overflow-x-auto snap-x snap-mandatory gap-5 p-0 m-0">
+  <div id="gameGrid" class="game-grid flex overflow-x-auto gap-5 p-0 m-0">
     <?php foreach ($games_item as $game): ?>
       <div class="game-card mb-2 bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-200 flex flex-col snap-start">
         <img src="<?= $game['image'] ?>" alt="<?= htmlspecialchars($game['title']) ?>" class="w-full h-[206px] object-fill" loading="lazy">
@@ -250,7 +259,67 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
   </div>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const grid = document.getElementById("gameGrid");
+    const autoSpeed = 0.5; // px per frame
+    let isPaused = false; // pause on hover
+    let isDragging = false;
 
+    // Clone content for seamless loop
+    const originalContent = grid.innerHTML;
+    grid.insertAdjacentHTML('beforeend', originalContent);
+
+    // Auto-scroll function
+    function autoScroll() {
+      if (!isPaused && !isDragging) {
+        grid.scrollLeft += autoSpeed;
+
+        // Loop
+        if (grid.scrollLeft >= grid.scrollWidth / 2) {
+          grid.scrollLeft -= grid.scrollWidth / 2;
+        }
+      }
+      requestAnimationFrame(autoScroll);
+    }
+
+    // Start auto-scroll
+    autoScroll();
+
+    // Pause auto-scroll while dragging
+    grid.addEventListener("mousedown", () => isDragging = true);
+    grid.addEventListener("touchstart", () => isDragging = true);
+    document.addEventListener("mouseup", () => isDragging = false);
+    document.addEventListener("touchend", () => isDragging = false);
+
+    // Pause auto-scroll on hover
+    grid.addEventListener("mouseenter", () => isPaused = true);
+    grid.addEventListener("mouseleave", () => isPaused = false);
+
+    // Arrow buttons
+    document.getElementById("prev-btn").addEventListener("click", () => {
+      grid.scrollBy({
+        left: -390,
+        behavior: 'smooth'
+      });
+    });
+    document.getElementById("next-btn").addEventListener("click", () => {
+      grid.scrollBy({
+        left: 390,
+        behavior: 'smooth'
+      });
+    });
+
+    // Manual scroll loop
+    grid.addEventListener("scroll", () => {
+      if (grid.scrollLeft <= 0) {
+        grid.scrollLeft += grid.scrollWidth / 2;
+      } else if (grid.scrollLeft >= grid.scrollWidth / 2) {
+        grid.scrollLeft -= grid.scrollWidth / 2;
+      }
+    });
+  });
+</script>
 <script>
   const modal = document.getElementById("comingSoonModal");
   const closeBtn = document.querySelector(".close-btn");
@@ -271,49 +340,5 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
         openAuthModal(false);
       }
     });
-  });
-  
-  $(function() {
-
-    const $grid = $("#gameGrid");
-    const scrollAmount = 390;
-
-    const originalContent = $grid.html();
-    $grid.prepend(originalContent);
-    $grid.append(originalContent);
-
-
-    const originalScrollLeft = $grid[0].scrollWidth / 3;
-    $grid.scrollLeft(originalScrollLeft);
-
-    $grid.on("scroll", function() {
-      const maxScrollLeft = $grid[0].scrollWidth;
-      const viewportWidth = $grid.outerWidth();
-      let scrollLeft = $grid.scrollLeft();
-
-      if (scrollLeft <= 0) {
-        $grid.scrollLeft(scrollLeft + (maxScrollLeft / 3));
-      } else if (scrollLeft >= maxScrollLeft * 2 / 3) {
-
-        $grid.scrollLeft(scrollLeft - (maxScrollLeft / 3));
-      }
-    });
-
-    $("#prev-btn").on("click", function() {
-      $grid.animate({
-          scrollLeft: $grid.scrollLeft() - scrollAmount
-        },
-        300
-      );
-    });
-
-    $("#next-btn").on("click", function() {
-      $grid.animate({
-          scrollLeft: $grid.scrollLeft() + scrollAmount
-        },
-        300
-      );
-    });
-
   });
 </script>

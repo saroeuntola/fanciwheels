@@ -3,12 +3,12 @@ return [
     'en' => [
         [
             'title' => 'Crazy Time (Evo)',
-            'description' => 'Arcade jumping fun — how high can you go?',
+            'description' => 'Spin fun — how high can you go?',
             'image' => './games/img/time.webp',
             'link' => 'looked'
         ],
         [
-            'title' => 'Super Ace Jili Slot',
+            'title' => 'Super Ace (Jili)',
             'description' => 'Match fruits and feed the animals in this fun puzzle game.',
             'image' => './games/img/Super-Ace-Jili-Slot.jpg',
             'link' => 'looked'
@@ -20,7 +20,7 @@ return [
             'link' => 'looked'
         ],
         [
-            'title' => 'Spades',
+            'title' => 'Showdown (PG)',
             'description' => 'Classic Spades — play tricks, partner up, and win big.',
             'image' => './games/img/pg.png',
             'link' => 'looked'
@@ -46,7 +46,7 @@ return [
             'link' => 'looked'
         ],
         [
-            'title' => 'Spades',
+            'title' => 'Showdown (PG)',
             'description' => 'ক্লাসিক স্পেডস — ট্রিক খেলুন, সঙ্গী নিন, এবং বড় জিতে নিন।',
             'image' => './games/img/pg.png',
             'link' => 'looked'
