@@ -260,57 +260,73 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener("load", () => {
     const grid = document.getElementById("gameGrid");
-    const autoSpeed = 0.5; // px per frame
-    let isPaused = false; // pause on hover
+    const autoSpeed = 1; // pixels per frame
     let isDragging = false;
 
     // Clone content for seamless loop
     const originalContent = grid.innerHTML;
-    grid.insertAdjacentHTML('beforeend', originalContent);
+    grid.insertAdjacentHTML("beforeend", originalContent);
 
-    // Auto-scroll function
+    // Auto-scroll
     function autoScroll() {
-      if (!isPaused && !isDragging) {
+      if (!isDragging) {
         grid.scrollLeft += autoSpeed;
-
-        // Loop
         if (grid.scrollLeft >= grid.scrollWidth / 2) {
           grid.scrollLeft -= grid.scrollWidth / 2;
         }
       }
       requestAnimationFrame(autoScroll);
     }
-
-    // Start auto-scroll
     autoScroll();
 
-    // Pause auto-scroll while dragging
-    grid.addEventListener("mousedown", () => isDragging = true);
-    grid.addEventListener("touchstart", () => isDragging = true);
+    // Drag support
+    let startX = 0;
+    let scrollLeft = 0;
+
+    grid.addEventListener("mousedown", e => {
+      isDragging = true;
+      startX = e.pageX - grid.offsetLeft;
+      scrollLeft = grid.scrollLeft;
+    });
+
+    grid.addEventListener("touchstart", e => {
+      isDragging = true;
+      startX = e.touches[0].pageX - grid.offsetLeft;
+      scrollLeft = grid.scrollLeft;
+    });
+
+    grid.addEventListener("mousemove", e => {
+      if (!isDragging) return;
+      const x = e.pageX - grid.offsetLeft;
+      grid.scrollLeft = scrollLeft - (x - startX);
+    });
+
+    grid.addEventListener("touchmove", e => {
+      if (!isDragging) return;
+      const x = e.touches[0].pageX - grid.offsetLeft;
+      grid.scrollLeft = scrollLeft - (x - startX);
+    });
+
     document.addEventListener("mouseup", () => isDragging = false);
     document.addEventListener("touchend", () => isDragging = false);
-
-    // Pause auto-scroll on hover
-    grid.addEventListener("mouseenter", () => isPaused = true);
-    grid.addEventListener("mouseleave", () => isPaused = false);
 
     // Arrow buttons
     document.getElementById("prev-btn").addEventListener("click", () => {
       grid.scrollBy({
         left: -390,
-        behavior: 'smooth'
+        behavior: "smooth"
       });
     });
     document.getElementById("next-btn").addEventListener("click", () => {
       grid.scrollBy({
         left: 390,
-        behavior: 'smooth'
+        behavior: "smooth"
       });
     });
 
-    // Manual scroll loop
+    // Manual scroll loop (in case user scrolls)
     grid.addEventListener("scroll", () => {
       if (grid.scrollLeft <= 0) {
         grid.scrollLeft += grid.scrollWidth / 2;
@@ -320,6 +336,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     });
   });
 </script>
+
 <script>
   const modal = document.getElementById("comingSoonModal");
   const closeBtn = document.querySelector(".close-btn");
