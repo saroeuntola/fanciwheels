@@ -69,10 +69,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
 
   .game-grid {
     display: flex;
-    overflow-x: auto;
     gap: 20px;
-    scroll-behavior: auto;
-    /* remove snap */
     -ms-overflow-style: none;
     /* IE/Edge */
     scrollbar-width: none;
@@ -148,7 +145,17 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     color: darkred;
   }
 
+  #gameGrid {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
 
+  #gameGrid::-webkit-scrollbar {
+    display: none;
+  }
 
   /* Arrow buttons styling */
   .arrow-btn {
@@ -259,58 +266,58 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
   </div>
 </div>
 
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const grid = document.getElementById("gameGrid");
     const autoSpeed = 0.5; // px per frame
-    let isPaused = false; // pause on hover
+    let isPaused = false;
     let isDragging = false;
 
-    // Clone content for seamless loop
+    // Force GPU acceleration
+    grid.style.transform = "translateZ(0)";
+
+    // Duplicate content for infinite effect
     const originalContent = grid.innerHTML;
-    grid.insertAdjacentHTML('beforeend', originalContent);
+    grid.insertAdjacentHTML("beforeend", originalContent);
 
-    // Auto-scroll function
-    function autoScroll() {
+    // Continuous scroll animation
+    let lastTime = 0;
+
+    function autoScroll(timestamp) {
+      if (!lastTime) lastTime = timestamp;
+      const delta = timestamp - lastTime;
+      lastTime = timestamp;
+
       if (!isPaused && !isDragging) {
-        grid.scrollLeft += autoSpeed;
+        grid.scrollLeft += autoSpeed * (delta / 16); // normalize for frame rate
 
-        // Loop
         if (grid.scrollLeft >= grid.scrollWidth / 2) {
           grid.scrollLeft -= grid.scrollWidth / 2;
         }
       }
+
       requestAnimationFrame(autoScroll);
     }
+    requestAnimationFrame(autoScroll);
 
-    // Start auto-scroll
-    autoScroll();
+    // Handle hover (desktop)
+    grid.addEventListener("mouseenter", () => (isPaused = true));
+    grid.addEventListener("mouseleave", () => (isPaused = false));
 
-    // Pause auto-scroll while dragging
-    grid.addEventListener("mousedown", () => isDragging = true);
-    grid.addEventListener("touchstart", () => isDragging = true);
-    document.addEventListener("mouseup", () => isDragging = false);
-    document.addEventListener("touchend", () => isDragging = false);
-
-    // Pause auto-scroll on hover
-    grid.addEventListener("mouseenter", () => isPaused = true);
-    grid.addEventListener("mouseleave", () => isPaused = false);
-
-    // Arrow buttons
-    document.getElementById("prev-btn").addEventListener("click", () => {
-      grid.scrollBy({
-        left: -390,
-        behavior: 'smooth'
-      });
+    // Handle touch drag (mobile)
+    grid.addEventListener("touchstart", () => (isDragging = true), {
+      passive: true
     });
-    document.getElementById("next-btn").addEventListener("click", () => {
-      grid.scrollBy({
-        left: 390,
-        behavior: 'smooth'
-      });
+    grid.addEventListener("touchend", () => (isDragging = false), {
+      passive: true
     });
 
-    // Manual scroll loop
+    // Handle mouse drag (desktop)
+    grid.addEventListener("mousedown", () => (isDragging = true));
+    document.addEventListener("mouseup", () => (isDragging = false));
+
+    // Loop correction for manual scroll
     grid.addEventListener("scroll", () => {
       if (grid.scrollLeft <= 0) {
         grid.scrollLeft += grid.scrollWidth / 2;
@@ -318,8 +325,23 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
         grid.scrollLeft -= grid.scrollWidth / 2;
       }
     });
+
+    // Button controls
+    document.getElementById("prev-btn")?.addEventListener("click", () => {
+      grid.scrollBy({
+        left: -390,
+        behavior: "smooth"
+      });
+    });
+    document.getElementById("next-btn")?.addEventListener("click", () => {
+      grid.scrollBy({
+        left: 390,
+        behavior: "smooth"
+      });
+    });
   });
 </script>
+
 <script>
   const modal = document.getElementById("comingSoonModal");
   const closeBtn = document.querySelector(".close-btn");
