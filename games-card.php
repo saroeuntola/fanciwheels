@@ -262,24 +262,29 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
 <script>
   window.addEventListener("load", () => {
     const grid = document.getElementById("gameGrid");
-    const autoSpeed = 1; // pixels per frame
     let isDragging = false;
 
     // Clone content for seamless loop
     const originalContent = grid.innerHTML;
     grid.insertAdjacentHTML("beforeend", originalContent);
 
-    // Auto-scroll
-    function autoScroll() {
+    // Auto-scroll variables
+    let lastTime = performance.now();
+    const speedPerSecond = 60; // pixels per second (adjust as needed)
+
+    function autoScroll(timestamp) {
+      const delta = timestamp - lastTime;
+      lastTime = timestamp;
+
       if (!isDragging) {
-        grid.scrollLeft += autoSpeed;
+        grid.scrollLeft += (speedPerSecond * delta) / 1000;
         if (grid.scrollLeft >= grid.scrollWidth / 2) {
           grid.scrollLeft -= grid.scrollWidth / 2;
         }
       }
       requestAnimationFrame(autoScroll);
     }
-    autoScroll();
+    requestAnimationFrame(autoScroll);
 
     // Drag support
     let startX = 0;
@@ -336,6 +341,7 @@ $games_item = $allGames[$lang] ?? $allGames['en'];
     });
   });
 </script>
+
 
 <script>
   const modal = document.getElementById("comingSoonModal");
