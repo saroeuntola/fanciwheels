@@ -281,6 +281,7 @@ include './config/baseURL.php';
         </div>
     </div>
 </body>
+
 <script>
     $("#phoneInput").on("input", function() {
         let val = $(this).val();

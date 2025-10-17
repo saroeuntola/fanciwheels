@@ -69,8 +69,8 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 
   <!-- Hreflang for Multilingual Support -->
   <link rel="alternate" href="https://fanciwheel.com/?lang=en" hreflang="en" />
-  <link rel="alternate" href="https://fanciwheel.com/?lang=bn" hreflang="bn" />
-  <link rel="alternate" href="https://fanciwheel.com/" hreflang="x-default" />
+  <link rel="alternate" href="https://fanciwheel.com/?lang=bn" hreflang="bn-BD" />
+  <link rel="alternate" href="https://fanciwheel.com" hreflang="x-default" />
 
   <link href="./dist/output.css" rel="stylesheet">
   <link rel="stylesheet" href="./dist/css/all.min.css" />
