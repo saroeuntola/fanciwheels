@@ -104,7 +104,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
       "url": "https://fanciwheel.com/",
       "name": "FancyWheel",
       "alternateName": "fanciwheel.com",
-      "logo": "https://fanciwheel.com/image/PWAicon-192px.png",
+      "logo": "https://fanciwheel.com/image/PWAicon-192px.png"
     }
   </script>
   <!-- Google Tag Manager -->
