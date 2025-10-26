@@ -97,7 +97,7 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
       "url": "https://fanciwheel.com/",
       "name": "Fancy Wheel",
       "alternateName": "fanciwheel.com",
-      "logo": "https://fanciwheel.com/image/PWAicon-192px.png",
+      "logo": "https://fanciwheel.com/image/PWAicon-192px.png"
     }
   </script>
 </head>
