@@ -48,10 +48,13 @@ class phoneRecords
     }
 
     // DELETE a phone record
-    public function delete($id)
+    public function deleteByid($id)
     {
         $sql = "DELETE FROM phone_records WHERE id = :id";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([':id' => $id]);
     }
+
+
+
 }
