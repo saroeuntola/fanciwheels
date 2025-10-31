@@ -1,89 +1,66 @@
 <?php
-header("Content-Type: application/xml; charset=UTF-8");
+ob_start();
+header('Content-Type: application/xml; charset=utf-8');
 
-$staticPages = [
-    [
-        'loc' => 'https://fanciwheel.com/',
-        'changefreq' => 'weekly',
-        'priority' => '1.0'
-    ],
-    [
-        'loc' => 'https://fanciwheel.com/?lang=en',
-        'changefreq' => 'weekly',
-        'priority' => '1.0'
-    ],
-    [
-        'loc' => 'https://fanciwheel.com/about?lang=en',
-        'changefreq' => 'weekly',
-        'priority' => '1.0'
-    ],
-    [
-        'loc' => 'https://fanciwheel.com/about',
-        'changefreq' => 'weekly',
-        'priority' => '0.8'
-    ],
-    [
-        'loc' => 'https://fanciwheel.com/services',
-        'changefreq' => 'weekly',
-        'priority' => '0.8'
-    ],
-    [
-        'loc' => 'https://fanciwheel.com/services?lang=en',
-        'changefreq' => 'weekly',
-        'priority' => '0.8'
-    ],
+// Base URL
+$baseUrl = "https://fanciwheel.com";
+
+// Include your database and post class
+require_once __DIR__ . '/admin/page/library/db.php';
+require_once __DIR__ . '/admin/page/library/game_lib.php';
+
+$postLib = new Games();
+$posts = [];
+try {
+    $posts = $postLib->getGames();
+} catch (Exception $e) {
+    $posts = [];
+}
+
+// Static pages
+$pages = [
+    ['slug' => '', 'priority' => 1.0],
+    ['slug' => '?lang=en', 'priority' => 1.0],
+    ['slug' => '/about', 'priority' => 0.8],
+    ['slug' => '/about?lang=en', 'priority' => 1.0],
+    ['slug' => '/services', 'priority' => 0.8],
+    ['slug' => '/services?lang=en', 'priority' => 0.8],
 ];
 
-$games = [
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=spin-your-way-from-chittagong-to-dhaka-your-ultimate-travel-guide&lang=en'
-    ],
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=how-to-brew-bangladeshi-milk-tea-a-5-step-spin-to-sip-heaven&lang=en'
-    ],
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=roll-from-dhaka-to-chittagong-your-ultimate-bus-counter-guide&lang=en'
-    ],
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=dhaka-spin-into-bangladesh-s-urban-jackpot&lang=en'
-    ],
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=spin-the-wild-wheel-unravel-the-sundarbans-mangrove-magic&lang=en'
-    ],
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=spin-the-wild-wheel-unravel-the-sundarbans-mangrove-magic&lang=en'
-    ],
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=spin-your-way-from-chittagong-to-dhaka-your-ultimate-travel-guide&lang=bn'
-    ],
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=how-to-brew-bangladeshi-milk-tea-a-5-step-spin-to-sip-heaven&lang=bn'
-    ],
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=roll-from-dhaka-to-chittagong-your-ultimate-bus-counter-guide&lang=bn'
-    ],
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=dhaka-spin-into-bangladesh-s-urban-jackpot&lang=bn'
-    ],
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=spin-the-wild-wheel-unravel-the-sundarbans-mangrove-magic&lang=bn'
-    ],
-    [
-        'loc' => 'https://www.fanciwheel.com/detail?slug=spin-the-wild-wheel-unravel-the-sundarbans-mangrove-magic&lang=bn'
-    ],
-];
+ob_end_clean();
 
-// Merge all pages
-$allPages = array_merge($staticPages, $games);
 echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <?php foreach ($allPages as $page): ?>
+    <?php
+    $today = date('Y-m-d');
+
+    // Add static pages
+    foreach ($pages as $page):
+    ?>
         <url>
-            <loc><?= htmlspecialchars($page['loc']) ?></loc>
-            <lastmod><?= date('Y-m-d') ?></lastmod>
-            <changefreq><?= $page['changefreq'] ?? 'weekly' ?></changefreq>
-            <priority><?= $page['priority'] ?? '0.8' ?></priority>
+            <loc><?= htmlspecialchars(rtrim($baseUrl, '/') . '/' . ltrim($page['slug'], '/')) ?></loc>
+            <lastmod><?= $today ?></lastmod>
+            <changefreq>weekly</changefreq>
+            <priority><?= $page['priority'] ?></priority>
         </url>
     <?php endforeach; ?>
+
+    <?php
+    // Add dynamic posts
+    foreach ($posts as $post):
+        foreach (['en', 'bn'] as $lang):
+            $slug = urlencode($post['slug']);
+    ?>
+            <url>
+                <loc><?= htmlspecialchars("$baseUrl/detail?slug=$slug&lang=$lang") ?></loc>
+                <lastmod><?= $today ?></lastmod>
+                <changefreq>weekly</changefreq>
+                <priority>0.8</priority>
+            </url>
+    <?php
+        endforeach;
+    endforeach;
+    ?>
 </urlset>
+<?php ob_end_flush(); ?>

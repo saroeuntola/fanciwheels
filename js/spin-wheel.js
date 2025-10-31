@@ -1,38 +1,24 @@
-const API_BASE = window.APP_CONFIG?.API_URL || "";
 $("#phoneInput").on("input", function () {
   let val = $(this).val();
-
-  // Remove all characters except digits and '+'
   val = val.replace(/[^\d+]/g, "");
-
-  // Ensure '+' is only at the start
   if (val.indexOf("+") > 0) {
     val = val.replace(/\+/g, "");
     val = "+" + val;
   }
-
   $(this).val(val);
 });
-// Use jQuery for consistency
 const selectedCountry = $("#selectedCountry");
 const countryList = $("#countryList");
-
-// Toggle country dropdown
 selectedCountry.on("click", function () {
   countryList.toggle();
 });
-
-// Select a country from the list
 countryList.on("click", "li", function () {
   const code = $(this).data("code");
   const flag = $(this).data("flag");
-
   selectedCountry.find("span").text(code);
   selectedCountry.find("img").attr("src", flag);
-
   countryList.hide();
 });
-
 const wheel = document.getElementById("wheel");
 const spinBtn = document.getElementById("spinBtn");
 const popupOverlay = $("#popupOverlay");
@@ -63,6 +49,7 @@ let targetRotation = 0;
 let animationFrameId = null;
 let winningIndex = 0;
 const lang = "<?= $lang ?>";
+const API_BASE = "<?= $apiBaseURL ?>";
 const translations = {
   en: {
     freeSpin: "Free Spin",
@@ -77,9 +64,20 @@ const translations = {
     claim: "এখনই দাবি করুন",
   },
 };
-
+const errorMessages = {
+  en: {
+    invalidLength: "❌ Invalid! phone number at least 8 digits.",
+    required: "❌ Enter your phone number to claim your winnings.",
+    alreadyUsed: "❌ Phone Number Already used!",
+  },
+  bn: {
+    invalidLength: "❌ অবৈধ! কমপক্ষে ৮ সংখ্যার ফোন নম্বর।",
+    required: "❌ আপনার জয়ের টাকা দাবি করতে আপনার ফোন নম্বরটি প্রবেশ করান।",
+    alreadyUsed: "❌ ফোন নম্বরটি ইতিমধ্যেই ব্যবহৃত হয়েছে!",
+  },
+};
 let spinCount = 0;
-let maxSpins = 2;
+let maxSpins = 1;
 const spinCountDisplay = document.getElementById("spinCountDisplay");
 
 function updateSpinCountDisplay() {
@@ -113,24 +111,24 @@ function animate(timestamp) {
 const winConfig = {
   "Crazy Time": {
     win: {
-      en: "bonus 500tk on Crazy Time",
-      bn: "ক্রেজি টাইম-এ ৫০০ টাকা বোনাস",
+      en: "Bonus 500tk on Crazy Time",
+      bn: "বোনাস 500tk on Crazy Time",
     },
     // hit: "20%",
     link: "https://bit.ly/500EvoReg",
   },
   "KM Slots": {
     win: {
-      en: "bonus 300tk on KM Slots & Table",
-      bn: "৩০০ টাকা কেএম স্লটস এবং টেবিল",
+      en: "Bonus 300tk on KM Slots & Table",
+      bn: "বোনাস Bonus 300tk on KM Slots & Table",
     },
     // hit: "35%",
     link: "https://bit.ly/300KMReg",
   },
   "Jili Slots": {
     win: {
-      en: "bonus 200tk on Jili Slots",
-      bn: "জিলি স্লটস ফ্রি প্লে",
+      en: "Bonus 200tk on Jili Slots",
+      bn: "বোনাস 200tk on Jili Slots",
     },
     // hit: "25%",
     link: "https://bit.ly/200JiliReg",
@@ -164,6 +162,40 @@ const winConfig = {
 function performWobble(baseRotation) {
   const wobbleSequence = [-5, 4, -3, 2, -1, 1, -0.5, 0];
   let index = 0;
+  // 🎉 Boom effect when win
+  function triggerConfetti() {
+    const duration = 2 * 1000; // 2 seconds
+    const animationEnd = Date.now() + duration;
+    const defaults = {
+      startVelocity: 30,
+      spread: 360,
+      ticks: 60,
+      zIndex: 1000,
+    };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function () {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+
+      // Confetti from center top (x: 0.5, y: 0)
+      confetti({
+        particleCount,
+        angle: randomInRange(75, 105), // mostly downward
+        spread: 60,
+        origin: { x: 0.5, y: 0 },
+        ...defaults,
+      });
+    }, 250);
+  }
 
   function doWobble() {
     if (index >= wobbleSequence.length) {
@@ -213,20 +245,23 @@ function performWobble(baseRotation) {
 
           let phone = $("#phoneInput").val().trim();
           const countryCode = $("#selectedCountry span").text().trim();
-
-          phone = phone.replace(/\D/g, "");
-
+          if (phone === "") {
+            $("#phoneError").text(errorMessages[lang].required);
+            return;
+          }
           if (phone.length < 8 || phone.length > 20) {
-            $("#phoneError").text(
-              "❌ Please enter phone number to claim your win bonus."
-            );
+            $("#phoneError").text(errorMessages[lang].invalidLength);
+            return;
+          }
+          if (!/^\d+$/.test(phone)) {
+            $("#phoneError").text(errorMessages[lang].invalidLength);
             return;
           }
 
           $("#phoneError").text("");
 
           $.post(
-            API_BASE + "savePhone",
+            API_BASE + "savePhone?lang=" + lang,
             {
               phone: countryCode + phone,
             },
@@ -234,9 +269,8 @@ function performWobble(baseRotation) {
               if (res.success) {
                 $("#popupMessage").text(res.message).css("color", "green");
                 $("#popupOverlay").slideUp(400);
-                $("#phoneInput").val(""); // Clear input after submission
+                $("#phoneInput").val("");
 
-                // Handle reward links or extra spin
                 if (winNumber !== "5" && config.link) {
                   window.open(config.link, "_blank");
                 } else if (winNumber === "5") {
@@ -245,7 +279,7 @@ function performWobble(baseRotation) {
                 }
               } else {
                 if (res.message.includes("already used")) {
-                  $("#phoneError").text("❌ Phone Number Already used!");
+                  $("#phoneError").text(errorMessages[lang].alreadyUsed);
                 } else {
                   $("#phoneError").text("❌ " + res.message);
                 }
@@ -254,6 +288,7 @@ function performWobble(baseRotation) {
             "json"
           );
         });
+      triggerConfetti();
 
       popupOverlay.hide().css("display", "flex").hide().slideDown(400);
       return;

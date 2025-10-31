@@ -56,28 +56,55 @@ function trimRichText($html, $limit = 100)
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? 'en' : 'bn-BD' ?>">
 
+<?php
+
+$rawDescription = $game['description'] ?? 'Check out this detail';
+$plainDescription = html_entity_decode(strip_tags($rawDescription), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+// Prepare image URL
+$imageURL = !empty($gameImage)
+  ? 'https://fanciwheel.com/admin/page/game/' . $gameImage
+  : 'https://fanciwheel.com/image/default-game.png';
+
+// Prepare URLs
+$pageURL = "https://fanciwheel.com/detail?slug=$slug";
+$canonicalURL = $pageURL; // main canonical
+$baseURL = "https://fanciwheel.com";
+
+// Publication dates
+$datePublished = !empty($game['created_at']) ? date('Y-m-d', strtotime($game['created_at'])) : date('Y-m-d');
+$dateModified = !empty($game['updated_at']) ? date('Y-m-d', strtotime($game['updated_at'])) : $datePublished;
+
+// Favicon
+$favicon = !empty($gameImage)
+  ? $imageURL
+  : 'https://fanciwheel.com/image/PWAicon-192px.png';
+?>
+
 <head>
   <meta charset="UTF-8" />
   <?php include 'head-log.php'; ?>
-  <!-- Dynamic Title -->
-  <title><?= htmlspecialchars($game['name']) ?></title>
-  <!-- Meta Description -->
-  <meta name="description" content="<?= htmlspecialchars($game['meta_desc']) ?>">
-  <meta name="keywords" content="<?= htmlspecialchars($game['meta_keyword']) ?>">
+
+  <!-- Dynamic Title & Meta -->
+  <title><?= htmlspecialchars($game['name'] ?? 'Detail') ?></title>
+  <meta name="description" content="<?= htmlspecialchars($plainDescription) ?>">
+  <meta name="keywords" content="<?= htmlspecialchars($game['meta_keyword'] ?? '') ?>">
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="<?= htmlspecialchars($canonicalURL) ?>" />
+
   <!-- Hreflang for Multilingual Support -->
-  <link rel="alternate" href="https://fanciwheel.com/?lang=en" hreflang="en" />
-  <link rel="alternate" href="https://fanciwheel.com/?lang=bn" hreflang="bn" />
-  <link rel="alternate" href="https://fanciwheel.com" hreflang="x-default" />
-  <!-- Dynamic Favicon -->
-  <?php if (!empty($gameImage)): ?>
-    <link rel="icon" href="<?= htmlspecialchars('https://fanciwheel.com' . '/admin/page/game/' . $gameImage) ?>" type="image/png">
-    <link rel="shortcut icon" href="<?= htmlspecialchars('https://fanciwheel.com' . '/admin/page/game/' . $gameImage) ?>" type="image/png">
-  <?php else: ?>
-    <link rel="icon" href="./image/PWAicon-192px.png" type="image/png">
-    <link rel="shortcut icon" href="./image/PWAicon-192px.png" type="image/png">
-  <?php endif; ?>
+  <link rel="alternate" href="<?= $pageURL ?>&lang=en" hreflang="en" />
+  <link rel="alternate" href="<?= $pageURL ?>&lang=bn" hreflang="bn" />
+  <link rel="alternate" href="<?= $pageURL ?>" hreflang="x-default" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="<?= htmlspecialchars($favicon) ?>" type="image/png">
+  <link rel="shortcut icon" href="<?= htmlspecialchars($favicon) ?>" type="image/png">
+
+  <!-- Google Analytics / gtag.js -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -86,25 +113,22 @@ function trimRichText($html, $limit = 100)
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-
     gtag('config', 'G-98CRLK26X1');
   </script>
-  <link href="./dist/output.css" rel="stylesheet">
-  <link rel="stylesheet" href="./dist/css/all.min.css" />
-  <script src="./js/all.min.js"></script>
-  <script src="./js/jquery-3.6.0.min.js"></script>
+
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
-  <meta property="og:description" content="<?= htmlspecialchars($game['meta_desc'] ?? 'Check out detail') ?>" />
-  <meta property="og:image" content="<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
-  <meta property="og:url" content="https://fanciwheel.com" />
-  <meta property="og:type" content="website" />
+  <meta property="og:description" content="<?= htmlspecialchars($plainDescription) ?>" />
+  <meta property="og:image" content="<?= htmlspecialchars($imageURL) ?>" />
+  <meta property="og:url" content="<?= $pageURL ?>" />
+  <meta property="og:type" content="article" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
-  <meta name="twitter:description" content="<?= htmlspecialchars($game['meta_desc'] ?? 'Check out this detail') ?>" />
-  <meta name="twitter:image" content="<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>" />
+  <meta name="twitter:description" content="<?= htmlspecialchars($plainDescription) ?>" />
+  <meta name="twitter:image" content="<?= htmlspecialchars($imageURL) ?>" />
+
   <!-- Google Tag Manager -->
   <script>
     (function(w, d, s, l, i) {
@@ -123,6 +147,7 @@ function trimRichText($html, $limit = 100)
     })(window, document, 'script', 'dataLayer', 'GTM-TCJVFMSG');
   </script>
   <!-- End Google Tag Manager -->
+  
   <!-- Google Analytics / gtag.js -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
   <script>
@@ -134,18 +159,40 @@ function trimRichText($html, $limit = 100)
     gtag('js', new Date());
     gtag('config', 'G-98CRLK26X1');
   </script>
-  <!-- Structured Data (JSON-LD) -->
+
+  <!-- CSS & JS -->
+  <link href="./dist/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="./dist/css/all.min.css" />
+  <script src="./js/all.min.js"></script>
+  <script src="./js/jquery-3.6.0.min.js"></script>
+
+  <!-- Structured Data: Article -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Website",
-      "name": "<?= htmlspecialchars($game['name'] ?? 'Detail') ?>",
-      "description": "<?= htmlspecialchars($game['description'] ?? 'Check out this detail') ?>",
-      "image": "<?= htmlspecialchars(!empty($gameImage) ? 'https://fanciwheel.com' . '/admin/page/game/' . $gameImage : 'https://fanciwheel.com/image/default-game.png') ?>",
-      "url": "https://fanciwheel.com"
+      "@type": "Article",
+      "headline": "<?= htmlspecialchars($game['name'] ?? 'Detail') ?>",
+      "description": "<?= htmlspecialchars($plainDescription) ?>",
+      "image": "<?= htmlspecialchars($imageURL) ?>",
+      "author": {
+        "@type": "Organization",
+        "name": "FanciWheel"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FanciWheel",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://fanciwheel.com/image/logo.png"
+        }
+      },
+      "url": "<?= $pageURL ?>",
+      "datePublished": "<?= $datePublished ?>",
+      "dateModified": "<?= $dateModified ?>"
     }
   </script>
 </head>
+
 <style>
   .ql-editor ul {
     list-style-type: disc;
