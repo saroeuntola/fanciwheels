@@ -90,12 +90,12 @@ $favicon = !empty($gameImage)
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="<?= htmlspecialchars($canonicalURL) ?>" />
+  <link rel="canonical" href="<?= htmlspecialchars($canonicalURL) ?>&lang=<?= $lang ?>" />
 
   <!-- Hreflang for Multilingual Support -->
   <link rel="alternate" href="<?= $pageURL ?>&lang=en" hreflang="en" />
   <link rel="alternate" href="<?= $pageURL ?>&lang=bn" hreflang="bn" />
-  <link rel="alternate" href="<?= $pageURL ?>" hreflang="x-default" />
+  <link rel="alternate" href="<?= $pageURL ?>&lang=bn" hreflang="x-default" />
 
   <!-- Favicon -->
   <link rel="icon" href="<?= htmlspecialchars($favicon) ?>" type="image/png">
@@ -117,7 +117,7 @@ $favicon = !empty($gameImage)
   <meta property="og:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
   <meta property="og:description" content="<?= htmlspecialchars($game['meta_desc']) ?>" />
   <meta property="og:image" content="<?= htmlspecialchars($imageURL) ?>" />
-  <meta property="og:url" content="<?= $pageURL ?>" />
+  <meta property="og:url" content="<?= $pageURL ?>&lang=<?= $lang ?>" />
   <meta property="og:type" content="article" />
 
   <!-- Twitter -->
@@ -144,7 +144,7 @@ $favicon = !empty($gameImage)
     })(window, document, 'script', 'dataLayer', 'GTM-TCJVFMSG');
   </script>
   <!-- End Google Tag Manager -->
-  
+
   <!-- Google Analytics / gtag.js -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-98CRLK26X1"></script>
   <script>
@@ -183,7 +183,7 @@ $favicon = !empty($gameImage)
           "url": "https://fanciwheel.com/image/logo.png"
         }
       },
-      "url": "<?= $pageURL ?>",
+      "url": "<?= $pageURL ?>&lang=<?= $lang ?>",
       "datePublished": "<?= $datePublished ?>",
       "dateModified": "<?= $dateModified ?>"
     }
