@@ -58,9 +58,6 @@ function trimRichText($html, $limit = 100)
 
 <?php
 
-$rawDescription = $game['description'] ?? 'Check out this detail';
-$plainDescription = html_entity_decode(strip_tags($rawDescription), ENT_QUOTES | ENT_HTML5, 'UTF-8');
-
 // Prepare image URL
 $imageURL = !empty($gameImage)
   ? 'https://fanciwheel.com/admin/page/game/' . $gameImage
@@ -87,7 +84,7 @@ $favicon = !empty($gameImage)
 
   <!-- Dynamic Title & Meta -->
   <title><?= htmlspecialchars($game['name'] ?? 'Detail') ?></title>
-  <meta name="description" content="<?= htmlspecialchars($plainDescription) ?>">
+  <meta name="description" content="<?= htmlspecialchars($game['meta_desc']) ?>">
   <meta name="keywords" content="<?= htmlspecialchars($game['meta_keyword'] ?? '') ?>">
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -118,7 +115,7 @@ $favicon = !empty($gameImage)
 
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
-  <meta property="og:description" content="<?= htmlspecialchars($plainDescription) ?>" />
+  <meta property="og:description" content="<?= htmlspecialchars($game['meta_desc']) ?>" />
   <meta property="og:image" content="<?= htmlspecialchars($imageURL) ?>" />
   <meta property="og:url" content="<?= $pageURL ?>" />
   <meta property="og:type" content="article" />
@@ -126,7 +123,7 @@ $favicon = !empty($gameImage)
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="<?= htmlspecialchars($game['name'] ?? 'Detail') ?>" />
-  <meta name="twitter:description" content="<?= htmlspecialchars($plainDescription) ?>" />
+  <meta name="twitter:description" content="<?= htmlspecialchars($game['meta_desc']) ?>" />
   <meta name="twitter:image" content="<?= htmlspecialchars($imageURL) ?>" />
 
   <!-- Google Tag Manager -->
@@ -172,7 +169,7 @@ $favicon = !empty($gameImage)
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "<?= htmlspecialchars($game['name'] ?? 'Detail') ?>",
-      "description": "<?= htmlspecialchars($plainDescription) ?>",
+      "description": "<?= htmlspecialchars($game['meta_desc']) ?>",
       "image": "<?= htmlspecialchars($imageURL) ?>",
       "author": {
         "@type": "Organization",
