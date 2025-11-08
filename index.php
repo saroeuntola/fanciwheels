@@ -8,7 +8,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 
 ?>
 <!DOCTYPE html>
-<html lang="<?= $lang === 'en' ? 'en' : 'bn-BD' ?>">
+<html lang="<?= $lang === 'en' ? 'en-BD' : 'bn-BD' ?>">
 
 <head>
   <meta charset="UTF-8" />
@@ -136,6 +136,15 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     }
     gtag('js', new Date());
     gtag('config', 'G-98CRLK26X1');
+  </script>
+
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="jy3fdKk78PbV8rJHH20UFA" async></script>
+  <script>
+    var ahrefs_analytics_script = document.createElement('script');
+    ahrefs_analytics_script.async = true;
+    ahrefs_analytics_script.src = 'https://analytics.ahrefs.com/analytics.js';
+    ahrefs_analytics_script.setAttribute('data-key', 'jy3fdKk78PbV8rJHH20UFA');
+    document.getElementsByTagName('head')[0].appendChild(ahrefs_analytics_script);
   </script>
 </head>
 <style>

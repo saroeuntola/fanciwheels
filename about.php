@@ -100,6 +100,16 @@ $currentTexts = $aboutTexts[$lang] ?? $aboutTexts['en'];
       "logo": "https://fanciwheel.com/image/PWAicon-192px.png"
     }
   </script>
+
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="jy3fdKk78PbV8rJHH20UFA" async></script>
+  <script>
+    var ahrefs_analytics_script = document.createElement('script');
+    ahrefs_analytics_script.async = true;
+    ahrefs_analytics_script.src = 'https://analytics.ahrefs.com/analytics.js';
+    ahrefs_analytics_script.setAttribute('data-key', 'jy3fdKk78PbV8rJHH20UFA');
+    document.getElementsByTagName('head')[0].appendChild(ahrefs_analytics_script);
+  </script>
+  
 </head>
 
 <body class="bg-gray-900 text-white">

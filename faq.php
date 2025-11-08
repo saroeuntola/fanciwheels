@@ -103,6 +103,16 @@ $currentFaqs = $faqData[$lang] ?? $faqData['bn'];
   </script>
   <!-- End Google Tag Manager -->
 
+
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="jy3fdKk78PbV8rJHH20UFA" async></script>
+  <script>
+    var ahrefs_analytics_script = document.createElement('script');
+    ahrefs_analytics_script.async = true;
+    ahrefs_analytics_script.src = 'https://analytics.ahrefs.com/analytics.js';
+    ahrefs_analytics_script.setAttribute('data-key', 'jy3fdKk78PbV8rJHH20UFA');
+    document.getElementsByTagName('head')[0].appendChild(ahrefs_analytics_script);
+  </script>
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
